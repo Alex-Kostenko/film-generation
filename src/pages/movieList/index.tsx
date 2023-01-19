@@ -15,7 +15,7 @@ const MovieListPage = () => {
   const { category, filmByCompany } = router.query;
 
   const redirect = (id: number) => {
-    router.push(`/aboutFilm/${id}`);
+    router.push(`/AboutFilm/${id}`);
   };
   return (
     <>

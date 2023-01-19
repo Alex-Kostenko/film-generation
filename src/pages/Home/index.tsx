@@ -18,7 +18,7 @@ const HomePage = () => {
 
   const redirect = () => {
     router.push(
-      `/movieList?category=${searchCriteria.category}&filmByCompany=${searchCriteria.filmByCompany}`
+      `/MovieList?category=${searchCriteria.category}&filmByCompany=${searchCriteria.filmByCompany}`
     );
   };
 
