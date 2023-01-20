@@ -18,25 +18,40 @@ const HomePage = () => {
 
   const redirect = () => {
     router.push(
-      `/MovieList?category=${searchCriteria.category}&filmByCompany=${searchCriteria.filmByCompany}`
+      `/movieList?category=${searchCriteria.category}&filmByCompany=${searchCriteria.filmByCompany}`
     );
   };
 
   return (
     <>
-      <h1 className={style.title}>MAIN PAGE</h1>
-      <select onChange={changeCriteria} name="category">
-        <option value="horor">horor</option>
-        <option value="comedy">comedy</option>
-        <option value="adventure">adventure</option>
-        <option value="fantasy">fantasy</option>
-      </select>
-      <select onChange={changeCriteria} name="filmByCompany">
-        <option value="netflix">netflix</option>
-        <option value="marvel">marvel</option>
-        <option value="dc">dc</option>
-      </select>
-      <button onClick={redirect}>Search</button>
+      <h1 className={style.title}>Home</h1>
+      <div className={style.serchPanel}>
+        <select
+          className={style.select}
+          onChange={changeCriteria}
+          name="category"
+        >
+          <option value="horor">horor</option>
+          <option value="comedy">comedy</option>
+          <option value="adventure">adventure</option>
+          <option value="fantasy">fantasy</option>
+          <option value="detective">detective</option>
+          <option value="drama">drama</option>
+        </select>
+        <select
+          className={style.select}
+          onChange={changeCriteria}
+          name="filmByCompany"
+        >
+          <option value="netflix">netflix</option>
+          <option value="marvel">marvel</option>
+          <option value="dc">dc</option>
+        </select>
+        <input className={style.datepicker} type="date" />
+      </div>
+      <button className={style.serchBtn} onClick={redirect}>
+        Search
+      </button>
     </>
   );
 };
