@@ -11,12 +11,10 @@ body {
   overflow-x: hidden;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+h1 {
+  display: block;
+  width: fit-content;
+  color: blueviolet;
+  font-size: 25px;
+  margin: 10px auto;
 }

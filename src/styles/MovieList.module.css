@@ -1,0 +1,26 @@
+.ul {
+  width: fit-content;
+  margin: 10px auto;
+}
+
+.li {
+  margin-bottom: 10px;
+  padding: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  border: 1px solid blueviolet;
+  list-style: none;
+}
+
+.searchCriteria {
+  display: block;
+  width: fit-content;
+  margin: 20px auto;
+  font-size: 16px;
+}
+
+.span {
+  margin-left: 8px;
+  font-size: 18;
+  font-weight: 600;
+}
