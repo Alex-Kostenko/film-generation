@@ -1,16 +1,18 @@
 import { useRouter } from "next/router";
+import { FC } from "react";
 
 import style from "../../styles/Home.module.css";
 
-const MOVIES = [
-  { title: "The Green Mile", id: 1 },
-  { title: "Intouchables", id: 2 },
-  { title: "Hachiko: A Dog's Story", id: 3 },
-  { title: "Avatar", id: 4 },
-  { title: "Forrest Gump", id: 5 },
-];
+interface IMovie {
+  id: number;
+  title: string;
+}
 
-const MovieListPage = () => {
+interface IMovieListPageProps {
+  MOVIES: IMovie[];
+}
+
+const MovieListPage: FC<IMovieListPageProps> = ({ MOVIES }) => {
   const router = useRouter();
   const { category, filmByCompany } = router.query;
 
@@ -29,7 +31,7 @@ const MovieListPage = () => {
       </div>
 
       <ul className={style.ul}>
-        {MOVIES.map((movie) => (
+        {MOVIES.map((movie: IMovie) => (
           <li
             className={style.li}
             onClick={() => redirect(movie.id)}
@@ -42,5 +44,17 @@ const MovieListPage = () => {
     </>
   );
 };
+
+export async function getServerSideProps() {
+  const MOVIES = [
+    { title: "The Green Mile", id: 1 },
+    { title: "Intouchables", id: 2 },
+    { title: "Hachiko: A Dog's Story", id: 3 },
+    { title: "Avatar", id: 4 },
+    { title: "Forrest Gump", id: 5 },
+  ];
+
+  return { props: { MOVIES } };
+}
 
 export default MovieListPage;

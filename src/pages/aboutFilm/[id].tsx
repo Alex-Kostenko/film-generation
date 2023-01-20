@@ -1,16 +1,29 @@
+import { FC } from "react";
+
 import style from "../../styles/Home.module.css";
 
-const AboutFilmPage = () => {
+interface IVideo {
+  poster: string;
+  src: string;
+  width: string;
+  height: string;
+}
+
+type AboutFilmPageProps = {
+  dataVideo: IVideo;
+};
+
+const AboutFilmPage: FC<AboutFilmPageProps> = ({ dataVideo }) => {
   return (
     <>
       <h1 className={style.title}>ABOUT FILM PAGE</h1>
       <div className={style.container}>
         <video
-          width="650"
-          height="400"
+          width={dataVideo.width}
+          height={dataVideo.height}
           controls
-          poster="https://avatars.mds.yandex.net/get-ott/224348/2a00000169e39ef77f588ccdfe574dae8227/1344x756"
-          src="https://www.youtube.com/watch?v=ZIz_OL7d-H8&ab_channel=%D0%9A%D0%B8%D0%BD%D0%BE%D0%A2%D1%80%D0%B5%D0%B9%D0%BB%D0%B5%D1%80%D1%8B"
+          poster={dataVideo.poster}
+          src={dataVideo.src}
         ></video>
         <p className={style.aboutFilms}>
           The Green Mile is a 1999 American fantasy drama film written and
@@ -34,5 +47,17 @@ const AboutFilmPage = () => {
     </>
   );
 };
+
+export async function getServerSideProps() {
+  const dataVideo = {
+    width: "650",
+    height: "400",
+    src: "https://www.youtube.com/watch?v=Ki4haFrqSrw&ab_channel=RottenTomatoesClassicTrailers",
+    poster:
+      "https://m.media-amazon.com/images/M/MV5BYzA4ZWRhNjktMTA3ZS00NDNiLThmMDMtNzdlYzk0ZjY2ZGFmXkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_.jpg",
+  };
+
+  return { props: { dataVideo } };
+}
 
 export default AboutFilmPage;
