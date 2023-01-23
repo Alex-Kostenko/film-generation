@@ -1,10 +1,10 @@
-import style from "../../styles/Home.module.css";
+import { FooterComponent, FooterText } from "./style";
 
 const Footer = () => {
   return (
-    <div className={style.footer}>
-      <p className={style.textFooter}>this is a great footer</p>
-    </div>
+    <FooterComponent>
+      <FooterText>great footer</FooterText>
+    </FooterComponent>
   );
 };
 

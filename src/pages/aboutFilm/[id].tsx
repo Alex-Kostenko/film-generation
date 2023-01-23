@@ -1,7 +1,7 @@
 import { FC } from "react";
 import FilmInfo from "@/components/FilmInfo";
 
-import style from "../../styles/AboutFilm.module.css";
+import { AboutFilms, Container, Video, Title } from "./style";
 
 interface IDescription {
   voiceActing: string;
@@ -27,14 +27,9 @@ type AboutFilmProps = {
 const AboutFilm: FC<AboutFilmProps> = ({ dataVideo, description }) => {
   return (
     <>
-      <h1 className={style.title}>ABOUT FILM</h1>
-      <div className={style.container}>
-        <video
-          className={style.video}
-          controls
-          poster={dataVideo.poster}
-          src={dataVideo.src}
-        ></video>
+      <Title>ABOUT FILM</Title>
+      <Container>
+        <Video controls poster={dataVideo.poster} src={dataVideo.src}></Video>
         <FilmInfo
           voiceActing={description.voiceActing}
           director={description.director}
@@ -45,8 +40,8 @@ const AboutFilm: FC<AboutFilmProps> = ({ dataVideo, description }) => {
           year={description.year}
           time={description.time}
         />
-      </div>
-      <p className={style.aboutFilms}>
+      </Container>
+      <AboutFilms>
         The Green Mile is a 1999 American fantasy drama film written and
         directed by Frank Darabont and based on Stephen King's 1996 novel of the
         same name. It stars Tom Hanks as a death row prison guard during the
@@ -63,7 +58,7 @@ const AboutFilm: FC<AboutFilmProps> = ({ dataVideo, description }) => {
         Academy Awards: Best Picture, Best Supporting Actor for Duncan, Best
         Sound and Best Screenplay Based on Material Previously Produced or
         Published.
-      </p>
+      </AboutFilms>
     </>
   );
 };

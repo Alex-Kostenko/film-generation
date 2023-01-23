@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { FC } from "react";
 import FilmCard from "@/components/FilmCard";
 
-import style from "../../styles/MovieList.module.css";
+import { SearchCriteria, Title, Tag } from "./style";
 
 interface IMovie {
   id: number;
@@ -24,26 +24,23 @@ const MovieList: FC<IMovieListProps> = ({ MOVIES }) => {
   };
   return (
     <>
-      <h1>MOVIE LIST</h1>
+      <Title>MOVIE LIST</Title>
       <div>
-        <p className={style.searchCriteria}>
+        <SearchCriteria>
           You are looking for a movie according to the given criteria:
-          <span className={style.span}>{category}</span>,
-          <span className={style.span}>{filmByCompany}</span>
-        </p>
+          <Tag>{category}</Tag>,<Tag>{filmByCompany}</Tag>
+        </SearchCriteria>
       </div>
 
-      <ul className={style.ul}>
-        {MOVIES.map((movie: IMovie) => (
-          <div key={movie.id} onClick={() => redirect(movie.id)}>
-            <FilmCard
-              src={movie.img}
-              title={movie.title}
-              description={movie.description}
-            />
-          </div>
-        ))}
-      </ul>
+      {MOVIES.map((movie: IMovie) => (
+        <div key={movie.id} onClick={() => redirect(movie.id)}>
+          <FilmCard
+            src={movie.img}
+            title={movie.title}
+            description={movie.description}
+          />
+        </div>
+      ))}
     </>
   );
 };

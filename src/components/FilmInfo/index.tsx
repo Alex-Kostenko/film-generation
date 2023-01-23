@@ -1,6 +1,11 @@
 import { FC } from "react";
 
-import style from "../../styles/FilmInfo.module.css";
+import {
+  DescriptionContainer,
+  DescriptionName,
+  DescriptionItem,
+  DescriptionText,
+} from "./style";
 
 interface IFilmInfoProps {
   name: string;
@@ -35,40 +40,40 @@ const FilmInfo: FC<IFilmInfoProps> = ({
   time,
 }) => {
   return (
-    <div className={style.descriptionContainer}>
-      <div className={style.descriptionItem}>
-        <span className={style.descriptionName}>name:</span>
-        <span className={style.descriptionText}>{name}</span>
-      </div>
-      <div className={style.descriptionItem}>
-        <span className={style.descriptionName}>year:</span>
-        <span className={style.descriptionText}>{year}</span>
-      </div>
-      <div className={style.descriptionItem}>
-        <span className={style.descriptionName}>country:</span>
-        <span className={style.descriptionText}>{country}</span>
-      </div>
-      <div className={style.descriptionItem}>
-        <span className={style.descriptionName}>genre:</span>
-        <span className={style.descriptionText}>{genre}</span>
-      </div>
-      <div className={style.descriptionItem}>
-        <span className={style.descriptionName}>time:</span>
-        <span className={style.descriptionText}>{time}</span>
-      </div>
-      <div className={style.descriptionItem}>
-        <span className={style.descriptionName}>voice acting:</span>
-        <span className={style.descriptionText}>{voiceActing}</span>
-      </div>
-      <div className={style.descriptionItem}>
-        <span className={style.descriptionName}>director:</span>
-        <span className={style.descriptionText}>{director}</span>
-      </div>
-      <div className={style.descriptionItem}>
-        <span className={style.descriptionName}>starring:</span>
-        <span className={style.descriptionText}>{starring}</span>
-      </div>
-    </div>
+    <DescriptionContainer>
+      <DescriptionItem>
+        <DescriptionName>name:</DescriptionName>
+        <DescriptionText>{name}</DescriptionText>
+      </DescriptionItem>
+      <DescriptionItem>
+        <DescriptionName>year:</DescriptionName>
+        <DescriptionText>{year}</DescriptionText>
+      </DescriptionItem>
+      <DescriptionItem>
+        <DescriptionName>country:</DescriptionName>
+        <DescriptionText>{country}</DescriptionText>
+      </DescriptionItem>
+      <DescriptionItem>
+        <DescriptionName>genre:</DescriptionName>
+        <DescriptionText>{genre}</DescriptionText>
+      </DescriptionItem>
+      <DescriptionItem>
+        <DescriptionName>time:</DescriptionName>
+        <DescriptionText>{time}</DescriptionText>
+      </DescriptionItem>
+      <DescriptionItem>
+        <DescriptionName>voice acting:</DescriptionName>
+        <DescriptionText>{voiceActing}</DescriptionText>
+      </DescriptionItem>
+      <DescriptionItem>
+        <DescriptionName>director:</DescriptionName>
+        <DescriptionText>{director}</DescriptionText>
+      </DescriptionItem>
+      <DescriptionItem>
+        <DescriptionName>starring:</DescriptionName>
+        <DescriptionText>{starring}</DescriptionText>
+      </DescriptionItem>
+    </DescriptionContainer>
   );
 };
 

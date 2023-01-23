@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import style from "../../styles/FilmCard.module.css";
+import { Card, Img, Info, Text, Title } from "./style";
 
 interface IFilmCardProps {
   src: string;
@@ -10,13 +10,13 @@ interface IFilmCardProps {
 
 const FilmCard: FC<IFilmCardProps> = ({ src, title, description }) => {
   return (
-    <div className={style.card}>
-      <img className={style.img} src={src} alt="" />
-      <div className={style.info}>
-        <h2 className={style.title}>{title}</h2>
-        <p className={style.text}>{description}</p>
-      </div>
-    </div>
+    <Card>
+      <Img src={src} alt="" />
+      <Info>
+        <Title>{title}</Title>
+        <Text>{description}</Text>
+      </Info>
+    </Card>
   );
 };
 
