@@ -1,7 +1,7 @@
 import { FC } from "react";
 import Footer from "../Footer";
 
-import style from "../../styles/Home.module.css";
+import { LayoutContainer } from "./style";
 
 type layoutProps = {
   children: React.ReactNode;
@@ -9,12 +9,10 @@ type layoutProps = {
 
 const Layout: FC<layoutProps> = ({ children }) => {
   return (
-    <div className={style.layout}>
-      <div className={style.mainContainer}>
-        {children}
-        <Footer />
-      </div>
-    </div>
+    <LayoutContainer>
+      {children}
+      <Footer />
+    </LayoutContainer>
   );
 };
 
