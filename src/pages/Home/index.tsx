@@ -41,7 +41,7 @@ const HomePage = () => {
         </Select>
         <Datepicker type="date" />
       </SerchPanel>
-      <Btn onClick={redirect}>Search</Btn>
+      <Btn label="Search" onClick={redirect} />
     </>
   );
 };
