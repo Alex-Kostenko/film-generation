@@ -6,9 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint --debug src/",
+    "lint": "eslint \"{src,apps,libs,test}//*.ts\" --fix",
     "lint:write": "eslint --debug src/ --fix",
-    "prettier": "prettier --write src/**/*.tsx",
+    "prettier": "prettier --write src//*.tsx",
     "prepare": "husky install"
   },
   "husky": {
@@ -17,10 +17,8 @@
     }
   },
   "lint-staged": {
-    "*.(js|jsx)": [
-      "npm run lint:write",
-      "git add"
-    ]
+    "*.(ts|tsx)": "npm run lint",
+    "*.{js,css,md,html,json}": "npm run format"
   },
   "dependencies": {
     "@Alex-Kostenko/ui-filmgen": "0.0.7",
