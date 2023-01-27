@@ -5,7 +5,6 @@ import { Datepicker, Title, SerchPanel, Select, Btn } from './style';
 
 const HomePage = () => {
   const router = useRouter();
-  console.log('asd');
 
   const [searchCriteria, setSearchCriteria] = useState({
     category: 'horor',
