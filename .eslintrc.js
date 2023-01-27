@@ -6,7 +6,6 @@ module.exports = {
     'plugin:import/warnings',
     'plugin:import/typescript',
     'prettier',
-    'prettier/@typescript-eslint',
   ],
   globals: {
     beforeAll: true,
@@ -24,15 +23,14 @@ module.exports = {
   },
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    ecmaVersion: 2018, // Allows for the parsing of modern ECMAScript features
-    sourceType: 'module', // Allows for the use of imports
+    ecmaVersion: 2018,
+    sourceType: 'module',
   },
   rules: {
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     'no-unused-vars': 'off',
     camelcase: 0,
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
-    'jsx-quotes': ['error', 'prefer-single'],
     'no-console': 2,
     'consistent-return': 0,
     quotes: [2, 'single', { avoidEscape: true }],

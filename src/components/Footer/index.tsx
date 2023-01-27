@@ -1,4 +1,4 @@
-import { FooterComponent, FooterText } from "./style";
+import { FooterComponent, FooterText } from './style';
 
 const Footer = () => {
   return (

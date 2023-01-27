@@ -1,7 +1,8 @@
-import { FC } from "react";
-import FilmInfo from "@/components/FilmInfo";
+import { FC } from 'react';
 
-import { AboutFilms, Container, Video, Title } from "./style";
+import FilmInfo from '@/components/FilmInfo';
+
+import { AboutFilms, Container, Video, Title } from './style';
 
 interface IDescription {
   voiceActing: string;
@@ -65,19 +66,19 @@ const AboutFilm: FC<AboutFilmProps> = ({ dataVideo, description }) => {
 
 export async function getServerSideProps() {
   const dataVideo = {
-    src: "https://www.youtube.com/watch?v=Ki4haFrqSrw&ab_channel=RottenTomatoesClassicTrailers",
+    src: 'https://www.youtube.com/watch?v=Ki4haFrqSrw&ab_channel=RottenTomatoesClassicTrailers',
     poster:
-      "https://m.media-amazon.com/images/M/MV5BYzA4ZWRhNjktMTA3ZS00NDNiLThmMDMtNzdlYzk0ZjY2ZGFmXkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_.jpg",
+      'https://m.media-amazon.com/images/M/MV5BYzA4ZWRhNjktMTA3ZS00NDNiLThmMDMtNzdlYzk0ZjY2ZGFmXkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_.jpg',
   };
   const description = {
-    voiceActing: "dubbed",
-    director: "Frank Darabont",
-    starring: "Tom Hanks, Michael Clarke, David Morse",
-    country: "USA",
-    genre: "detective, drama, crime",
-    name: "The Green Mile",
-    year: "1999",
-    time: "3 hours 9 minutes",
+    voiceActing: 'dubbed',
+    director: 'Frank Darabont',
+    starring: 'Tom Hanks, Michael Clarke, David Morse',
+    country: 'USA',
+    genre: 'detective, drama, crime',
+    name: 'The Green Mile',
+    year: '1999',
+    time: '3 hours 9 minutes',
   };
 
   return { props: { dataVideo, description } };

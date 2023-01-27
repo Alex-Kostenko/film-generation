@@ -1,6 +1,6 @@
-import { FC } from "react";
+import { FC } from 'react';
 
-import { Card, Img, Info, Text, Title } from "./style";
+import { Card, Img, Info, Text, Title } from './style';
 
 interface IFilmCardProps {
   src: string;

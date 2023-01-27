@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { Button } from "@Alex-Kostenko/ui-filmgen";
+import { Button } from '@Alex-Kostenko/ui-filmgen';
+import styled from 'styled-components';
 
 export const Title = styled.h1`
   display: block;
