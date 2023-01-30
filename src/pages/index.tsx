@@ -1,4 +1,4 @@
-import HomePage from "./home";
+import HomePage from './home';
 
 const Home = () => <HomePage />;
 export default Home;

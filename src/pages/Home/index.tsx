@@ -1,13 +1,14 @@
-import { useState } from "react";
-import { useRouter } from "next/router";
+import { useRouter } from 'next/router';
+import { useState } from 'react';
 
-import { Datepicker, Title, SerchPanel, Select, Btn } from "./style";
+import { Datepicker, Title, SerchPanel, Select, Btn } from './style';
 
 const HomePage = () => {
   const router = useRouter();
+
   const [searchCriteria, setSearchCriteria] = useState({
-    category: "horor",
-    filmByCompany: "netflix",
+    category: 'horor',
+    filmByCompany: 'netflix',
   });
 
   const changeCriteria = (event: any) => {
@@ -18,7 +19,7 @@ const HomePage = () => {
 
   const redirect = () => {
     router.push(
-      `/movieList?category=${searchCriteria.category}&filmByCompany=${searchCriteria.filmByCompany}`
+      `/movieList?category=${searchCriteria.category}&filmByCompany=${searchCriteria.filmByCompany}`,
     );
   };
 

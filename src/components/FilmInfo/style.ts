@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const DescriptionContainer = styled.div`
   display: flex;
