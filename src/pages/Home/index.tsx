@@ -10,6 +10,7 @@ const HomePage = () => {
     category: 'horor',
     filmByCompany: 'netflix',
   });
+  фыв;
 
   const changeCriteria = (event: any) => {
     setSearchCriteria((prev) => {
