@@ -23,7 +23,7 @@
     ]
   },
   "dependencies": {
-    "@Alex-Kostenko/ui-filmgen": "0.0.7",
+    "@Alex-Kostenko/ui-filmgen": "0.0.11",
     "@next/font": "13.1.2",
     "@types/node": "18.11.18",
     "@types/react": "18.0.26",

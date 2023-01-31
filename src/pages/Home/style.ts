@@ -50,5 +50,5 @@ export const Datepicker = styled.input`
 export const Btn = styled(Button)`
   display: block;
   width: 20%;
-  margin: 10px auto;
+  margin: 10px auto !important;
 `;
