@@ -89,10 +89,11 @@ export const WrapperSvg = styled.div`
   & .triangle {
     margin-top: 40px;
     cursor: pointer;
-    fill: yellow;
+    fill: rgba(29, 29, 29, 1);
     pointer-events: all;
+    transition: all 0.3s;
     &:hover {
-      /* fill: yellow; */
+      fill: #f33f3f;
     }
   }
 `;
