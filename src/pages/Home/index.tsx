@@ -1,7 +1,18 @@
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 import React, { useState } from 'react';
 
-import { Datepicker, Title, SerchPanel, Select, Btn } from './style';
+import {
+  Datepicker,
+  Title,
+  SerchPanel,
+  Select,
+  Btn,
+  SiderBar,
+  WrapperSvg,
+  Root,
+  ReactSlick,
+} from './style';
 
 const HomePage = () => {
   const router = useRouter();
@@ -24,9 +35,16 @@ const HomePage = () => {
   };
 
   return (
-    <>
-      <Title>Home</Title>
+    <Root>
+      <ReactSlick>REACT SLICK</ReactSlick>
       <SerchPanel>
+        <Image
+          className="ellipse_5"
+          src={'/ellipse_5.svg'}
+          height={500}
+          width={550}
+          alt={'ellipse_5'}
+        />
         <Select onChange={changeCriteria} name="category">
           <option value="horor">horor</option>
           <option value="comedy">comedy</option>
@@ -41,9 +59,56 @@ const HomePage = () => {
           <option value="dc">dc</option>
         </Select>
         <Datepicker type="date" />
+        <Btn label="Search" onClick={redirect} />
       </SerchPanel>
-      <Btn label="Search" onClick={redirect} />
-    </>
+      <SiderBar>
+        <WrapperSvg>
+          <Image
+            className="triangle"
+            src={'/triangle.svg'}
+            height={50}
+            width={50}
+            alt={'triangleClass'}
+          />
+          <Image
+            className="triangle"
+            src={'/home.svg'}
+            height={20}
+            width={20}
+            alt={'homeClass'}
+          />
+          <Image
+            className="triangle"
+            src={'/cinemaLine.svg'}
+            height={20}
+            width={20}
+            alt={'cinemaLineClass'}
+          />
+          <Image
+            className="triangle"
+            src={'/star.svg'}
+            height={20}
+            width={20}
+            alt={'cinemaLineClass'}
+          />
+        </WrapperSvg>
+      </SiderBar>
+
+      <Image
+        className="ellipse_4"
+        src={'/ellipse_4.svg'}
+        height={400}
+        width={400}
+        alt={'ellipse_4'}
+      />
+      <Image
+        className="ellipse_4_1"
+        src={'/ellipse_4_1.svg'}
+        height={400}
+        width={400}
+        alt={'ellipse_4'}
+      />
+    </Root>
   );
 };
 
