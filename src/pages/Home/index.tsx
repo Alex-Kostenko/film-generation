@@ -1,5 +1,8 @@
 import { useRouter } from 'next/router';
 import Image from 'next/image';
+import Star from '../../../public/star.svg';
+import CinemaLine from '../../../public/cinemaLine.svg';
+import Home from '../../../public/home.svg';
 import React, { useState } from 'react';
 
 import {
@@ -65,32 +68,14 @@ const HomePage = () => {
         <WrapperSvg>
           <Image
             className="triangle"
-            src={'/triangle.svg'}
-            height={50}
-            width={50}
+            src={'/UniCode.jpg'}
+            height={40}
+            width={40}
             alt={'triangleClass'}
           />
-          <Image
-            className="triangle"
-            src={'/home.svg'}
-            height={20}
-            width={20}
-            alt={'homeClass'}
-          />
-          <Image
-            className="triangle"
-            src={'/cinemaLine.svg'}
-            height={20}
-            width={20}
-            alt={'cinemaLineClass'}
-          />
-          <Image
-            className="triangle"
-            src={'/star.svg'}
-            height={20}
-            width={20}
-            alt={'cinemaLineClass'}
-          />
+          <Home className="triangle" aria-label="Home" />
+          <CinemaLine className="triangle" aria-label="CinemaLine" />
+          <Star className="triangle" aria-label="Star" />
         </WrapperSvg>
       </SiderBar>
 
