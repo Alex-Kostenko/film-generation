@@ -1,4 +1,4 @@
-import { Tag, MovieCard } from '@Alex-Kostenko/ui-filmgen';
+// import { Tag, MovieCard } from '@Alex-Kostenko/ui-filmgen';
 import styled from 'styled-components';
 
 export const SearchCriteria = styled.div`
@@ -15,10 +15,10 @@ export const Line = styled.div`
   background-color: #f33f3f;
 `;
 
-export const TagComponent = styled(Tag)`
-  margin: 0 10px;
-`;
+// export const TagComponent = styled(Tag)`
+//   margin: 0 10px;
+// `;
 
-export const CardComponent = styled(MovieCard)`
-  margin: 30px 0;
-`;
+// export const CardComponent = styled(MovieCard)`
+//   margin: 30px 0;
+// `;

@@ -10,7 +10,7 @@ import {
   Title,
   SerchPanel,
   Select,
-  Btn,
+  // Btn,
   SiderBar,
   WrapperSvg,
   Root,
@@ -62,7 +62,7 @@ const HomePage = () => {
           <option value="dc">dc</option>
         </Select>
         <Datepicker type="date" />
-        <Btn label="Search" onClick={redirect} />
+        {/* <Btn label="Search" onClick={redirect} /> */}
       </SerchPanel>
       <SiderBar>
         <WrapperSvg>
