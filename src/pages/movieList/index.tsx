@@ -1,7 +1,10 @@
 import { useRouter } from 'next/router';
 import { FC } from 'react';
 
-import { SearchCriteria, CardComponent, TagComponent, Line } from './style';
+import {
+  SearchCriteria,
+  /* CardComponent, TagComponent,*/ Line,
+} from './style';
 
 interface IMovie {
   id: number;
@@ -28,20 +31,20 @@ const MovieList: FC<IMovieListProps> = ({ MOVIES }) => {
     <>
       <div>
         <SearchCriteria>
-          <TagComponent className="tag-large" label={category} />
-          <TagComponent className="tag-large" label={filmByCompany} />
+          {/* <TagComponent className="tag-large" label={category} />
+          <TagComponent className="tag-large" label={filmByCompany} /> */}
         </SearchCriteria>
       </div>
       {MOVIES.map((movie: IMovie) => (
         <div key={movie.id} onClick={() => redirect(movie.id)}>
-          <CardComponent
+          {/* <CardComponent
             img={movie.img}
             titleEng={movie.engTitle}
             titleRus={movie.rusTitle}
             labels={movie.lables}
             date={movie.date}
             description={movie.description}
-          />
+          /> */}
           {MOVIES.length === movie.id ? null : <Line />}
         </div>
       ))}

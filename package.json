@@ -23,7 +23,6 @@
     ]
   },
   "dependencies": {
-    "@Alex-Kostenko/ui-filmgen": "0.0.18",
     "@next/font": "13.1.2",
     "@svgr/webpack": "^6.5.1",
     "@types/node": "18.11.18",
