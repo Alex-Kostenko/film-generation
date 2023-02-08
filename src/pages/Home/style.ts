@@ -1,4 +1,4 @@
-import { Button } from '@Alex-Kostenko/ui-filmgen';
+// import { Button } from '@Alex-Kostenko/ui-filmgen';
 import styled from 'styled-components';
 
 export const Title = styled.h1`
@@ -66,11 +66,11 @@ export const Datepicker = styled.input`
   }
 `;
 
-export const Btn = styled(Button)`
-  display: block;
-  width: 20%;
-  margin: 10px auto !important;
-`;
+// export const Btn = styled(Button)`
+//   display: block;
+//   width: 20%;
+//   margin: 10px auto !important;
+// `;
 
 export const SiderBar = styled.div`
   width: 50px;
