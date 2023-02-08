@@ -1,20 +1,20 @@
-import { useRouter } from 'next/router';
 import Image from 'next/image';
-import Star from '../../../public/star.svg';
-import CinemaLine from '../../../public/cinemaLine.svg';
-import Home from '../../../public/home.svg';
+import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 
+import CinemaLine from '../../../public/cinemaLine.svg';
+import Home from '../../../public/home.svg';
+import Star from '../../../public/star.svg';
+
 import {
-  Datepicker,
-  Title,
+  ReactSlick,
   SerchPanel,
   Select,
   // Btn,
+  Datepicker,
   SiderBar,
   WrapperSvg,
   Root,
-  ReactSlick,
 } from './style';
 
 const HomePage = () => {
