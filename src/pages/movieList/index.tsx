@@ -1,10 +1,7 @@
 import { useRouter } from 'next/router';
 import { FC } from 'react';
 
-import {
-  SearchCriteria,
-  /* CardComponent, TagComponent,*/ Line,
-} from './style';
+import { SearchCriteria, CardComponent, TagComponent, Line } from './style';
 
 interface IMovie {
   id: number;
@@ -31,20 +28,20 @@ const MovieList: FC<IMovieListProps> = ({ MOVIES }) => {
     <>
       <div>
         <SearchCriteria>
-          {/* <TagComponent className="tag-large" label={category} />
-          <TagComponent className="tag-large" label={filmByCompany} /> */}
+          <TagComponent className="tag-large" label={category} />
+          <TagComponent className="tag-large" label={filmByCompany} />
         </SearchCriteria>
       </div>
       {MOVIES.map((movie: IMovie) => (
         <div key={movie.id} onClick={() => redirect(movie.id)}>
-          {/* <CardComponent
+          <CardComponent
             img={movie.img}
             titleEng={movie.engTitle}
             titleRus={movie.rusTitle}
             labels={movie.lables}
             date={movie.date}
             description={movie.description}
-          /> */}
+          />
           {MOVIES.length === movie.id ? null : <Line />}
         </div>
       ))}
@@ -62,7 +59,7 @@ export async function getServerSideProps() {
       id: 1,
       description:
         "A supernatural tale set on death row in a Southern prison, where gentle giant John Coffey possesses the mysterious power to heal people's ailments. When the cell block's head guard, Paul Edgecomb, recognizes Coffey's miraculous gift, he tries desperately to help stave off the condemned man's execution.A supernatural tale set on death row in a Southern prison, where gentle giant John Coffey possesses the mysterious power to heal people's ailments. When the cell block's head guard, Paul Edgecomb, recognizes Coffey's miraculous gift, he tries desperately to help stave off the condemned man's execution.imprisoned for six months for robbery, but Philippe does not care about Driss's past.execution.A supernatural tale set on death row in a Southern prison, where gentle giant John Coffey possesses the mysterious power to heal people's ailments. When the cell block's head guard, Paul Edgecomb, recognizes Coffey's miraculous gift, he tries desperately to help stave off the condemned man's execution.imprisoned for six months for robbery, but Philippe does not care about Driss's past.",
-      img: 'https://cs10.pikabu.ru/post_img/big/2019/11/24/12/157462813113401882.png',
+      img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUx5EjMPQjUfrZgdSolgFqRmV-t5tHfZE4Aw&usqp=CAU',
     },
     {
       engTitle: 'Intouchables',

@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 
 import CinemaLine from '../../../public/cinemaLine.svg';
@@ -18,7 +18,7 @@ import {
 } from './style';
 
 const HomePage = () => {
-  const router = useRouter();
+  // const router = useRouter();
 
   const [searchCriteria, setSearchCriteria] = useState({
     category: 'horor',
@@ -31,15 +31,16 @@ const HomePage = () => {
     });
   };
 
-  const redirect = () => {
-    router.push(
-      `/movieList?category=${searchCriteria.category}&filmByCompany=${searchCriteria.filmByCompany}`,
-    );
-  };
+  // const redirect = () => {
+  //   router.push(
+  //     `/movieList?category=${searchCriteria.category}&filmByCompany=${searchCriteria.filmByCompany}`,
+  //   );
+  // };
 
   return (
     <Root>
       <ReactSlick>REACT SLICK</ReactSlick>
+      <div>{searchCriteria.category}</div>
       <SerchPanel>
         <Image
           className="ellipse_5"
