@@ -7,15 +7,15 @@ import Home from '../../../public/home.svg';
 import Star from '../../../public/star.svg';
 
 import {
+  SearchContainer,
   ReactSlick,
-  SerchPanel,
+  CriteriasContainer,
   Select,
   DatePickerComponent,
   Btn,
   SiderBar,
   WrapperSvg,
   Root,
-  InputEl,
 } from './style';
 
 const HomePage = () => {
@@ -56,15 +56,14 @@ const HomePage = () => {
   return (
     <Root>
       <ReactSlick>REACT SLICK</ReactSlick>
-      <div>{searchCriteria.category}</div>
-      <SerchPanel>
-        <Image
+      {/* <Image
           className="ellipse_5"
           src={'/ellipse_5.svg'}
           height={500}
           width={550}
           alt={'ellipse_5'}
-        />
+        /> */}
+      <CriteriasContainer>
         <Select
           placeholder="Genre"
           onChange={changeCriteria}
@@ -78,9 +77,10 @@ const HomePage = () => {
           name="filmByCompany"
         ></Select>
         <DatePickerComponent />
-        <InputEl />
+      </CriteriasContainer>
+      <SearchContainer>
         <Btn label="Search" onClick={redirect} />
-      </SerchPanel>
+      </SearchContainer>
       <SiderBar>
         <WrapperSvg>
           <Image
@@ -95,7 +95,6 @@ const HomePage = () => {
           <Star className="triangle" aria-label="Star" />
         </WrapperSvg>
       </SiderBar>
-
       <Image
         className="ellipse_4"
         src={'/ellipse_4.svg'}
