@@ -1,4 +1,9 @@
-// import { Button } from '@Alex-Kostenko/ui-filmgen';
+import {
+  Button,
+  SelectComponent,
+  DatePicker,
+  Input,
+} from '@Alex-Kostenko/ui-filmgen-v2';
 import styled from 'styled-components';
 
 export const Title = styled.h1`
@@ -14,7 +19,6 @@ export const SerchPanel = styled.div`
   display: flex;
   margin: 30px 0;
   position: relative;
-  display: flex;
   column-gap: 100px;
   row-gap: 40px;
   flex-wrap: wrap;
@@ -39,38 +43,25 @@ export const SerchPanel = styled.div`
   }
 `;
 
-export const Select = styled.select`
+export const DatePickerComponent = styled(DatePicker)`
+  display: block;
   width: 20%;
-  height: 30px;
-  border: 1px solid #999;
-  font-size: 18px;
-  color: blueviolet;
-  background-color: #eee;
-  border-radius: 5px;
-  @media (max-width: 767px) {
-    width: 80%;
-    margin-bottom: 15px;
-  }
+  margin: 10px auto !important;
 `;
 
-export const Datepicker = styled.input`
+export const InputEl = styled(Input)``;
+
+export const Btn = styled(Button)`
+  display: block;
   width: 20%;
-  height: 30px;
-  border: 1px solid #999;
-  font-size: 18px;
-  color: blueviolet;
-  background-color: #eee;
-  border-radius: 5px;
-  @media (max-width: 767px) {
-    width: 80%;
-  }
+  margin: 10px auto !important;
 `;
 
-// export const Btn = styled(Button)`
-//   display: block;
-//   width: 20%;
-//   margin: 10px auto !important;
-// `;
+export const Select = styled(SelectComponent)`
+  display: block;
+  width: 20%;
+  margin: 10px auto !important;
+`;
 
 export const SiderBar = styled.div`
   width: 50px;

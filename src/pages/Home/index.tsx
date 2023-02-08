@@ -1,5 +1,5 @@
 import Image from 'next/image';
-// import { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 
 import CinemaLine from '../../../public/cinemaLine.svg';
@@ -10,15 +10,16 @@ import {
   ReactSlick,
   SerchPanel,
   Select,
-  Datepicker,
-  // Btn,
+  DatePickerComponent,
+  Btn,
   SiderBar,
   WrapperSvg,
   Root,
+  InputEl,
 } from './style';
 
 const HomePage = () => {
-  // const router = useRouter();
+  const router = useRouter();
 
   const [searchCriteria, setSearchCriteria] = useState({
     category: 'horor',
@@ -31,11 +32,26 @@ const HomePage = () => {
     });
   };
 
-  // const redirect = () => {
-  //   router.push(
-  //     `/movieList?category=${searchCriteria.category}&filmByCompany=${searchCriteria.filmByCompany}`,
-  //   );
-  // };
+  const redirect = () => {
+    router.push(
+      `/movieList?category=${searchCriteria.category}&filmByCompany=${searchCriteria.filmByCompany}`,
+    );
+  };
+
+  const optionsGenre = [
+    { value: 'horor', label: 'horor' },
+    { value: 'comedy', label: 'comedy' },
+    { value: 'adventure', label: 'adventure' },
+    { value: 'fantasy', label: 'fantasy' },
+    { value: 'detective', label: 'detective' },
+    { value: 'drama', label: 'drama' },
+  ];
+
+  const optionsStudio = [
+    { value: 'netflix', label: 'netflix' },
+    { value: 'marvel', label: 'marvel' },
+    { value: 'dc', label: 'dc' },
+  ];
 
   return (
     <Root>
@@ -49,21 +65,21 @@ const HomePage = () => {
           width={550}
           alt={'ellipse_5'}
         />
-        <Select onChange={changeCriteria} name="category">
-          <option value="horor">horor</option>
-          <option value="comedy">comedy</option>
-          <option value="adventure">adventure</option>
-          <option value="fantasy">fantasy</option>
-          <option value="detective">detective</option>
-          <option value="drama">drama</option>
-        </Select>
-        <Select onChange={changeCriteria} name="filmByCompany">
-          <option value="netflix">netflix</option>
-          <option value="marvel">marvel</option>
-          <option value="dc">dc</option>
-        </Select>
-        <Datepicker type="date" />
-        {/* <Btn label="Search" onClick={redirect} /> */}
+        <Select
+          placeholder="Genre"
+          onChange={changeCriteria}
+          options={optionsGenre}
+          name="category"
+        ></Select>
+        <Select
+          placeholder="Studio"
+          onChange={changeCriteria}
+          options={optionsStudio}
+          name="filmByCompany"
+        ></Select>
+        <DatePickerComponent />
+        <InputEl />
+        <Btn label="Search" onClick={redirect} />
       </SerchPanel>
       <SiderBar>
         <WrapperSvg>
