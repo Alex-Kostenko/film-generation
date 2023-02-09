@@ -8,14 +8,14 @@ import {
 } from './style';
 
 interface IFilmInfoProps {
-  name: string;
-  year: string;
-  country: string;
-  genre: string;
-  time: string;
   voiceActing: string;
   director: string;
   starring: string;
+  country: string;
+  name: string;
+  year: string;
+  genre: string;
+  time: string;
 }
 
 const FilmInfo: FC<IFilmInfoProps> = ({
