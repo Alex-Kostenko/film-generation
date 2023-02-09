@@ -2,7 +2,15 @@ import { FC } from 'react';
 
 import FilmInfo from '@/components/FilmInfo';
 
-import { AboutFilms, Container, Video, Title } from './style';
+import {
+  LinkConteiner,
+  AboutFilms,
+  Container,
+  LinkTitle,
+  Video,
+  Title,
+  Link,
+} from './style';
 
 interface IDescription {
   voiceActing: string;
@@ -21,14 +29,19 @@ interface IVideo {
 }
 
 type AboutFilmProps = {
-  dataVideo: IVideo;
   description: IDescription;
+  dataVideo: IVideo;
+  filmName: string;
 };
 
-const AboutFilm: FC<AboutFilmProps> = ({ dataVideo, description }) => {
+const AboutFilm: FC<AboutFilmProps> = ({
+  description,
+  dataVideo,
+  filmName,
+}) => {
   return (
     <>
-      <Title>ABOUT FILM</Title>
+      <Title>{filmName}</Title>
       <Container>
         <Video controls poster={dataVideo.poster} src={dataVideo.src}></Video>
         <FilmInfo
@@ -47,19 +60,27 @@ const AboutFilm: FC<AboutFilmProps> = ({ dataVideo, description }) => {
         directed by Frank Darabont and based on Stephen King's 1996 novel of the
         same name. It stars Tom Hanks as a death row prison guard during the
         Great Depression who witnesses supernatural events following the arrival
-        of an enigmatic convict (Michael Clarke Duncan) at his facility. David
+        of an enigmatic convict Michael Clarke Duncan at his facility. David
         Morse, Bonnie Hunt, Sam Rockwell, and James Cromwell appear in
         supporting roles. The film premiered on December 10, 1999, in the United
         States to positive reviews from critics, who praised Darabont's
         direction and writing, emotional weight, and performances particularly
         for Hanks and Duncan, although its length received criticism. Since its
         release, the film has gained a reputation as one of the most emotionally
-        touching films of all time.[4] It was a commercial success, grossing
-        $286 million from its $60 million budget, and was nominated for four
-        Academy Awards: Best Picture, Best Supporting Actor for Duncan, Best
-        Sound and Best Screenplay Based on Material Previously Produced or
-        Published.
+        touching films of all time.It was a commercial success, grossing $286
+        million from its $60 million budget, and was nominated for four Academy
+        Awards: Best Picture, Best Supporting Actor for Duncan, Best Sound and
+        Best Screenplay Based on Material Previously Produced or Published.
       </AboutFilms>
+      <LinkConteiner>
+        <LinkTitle>Links to watch this movie:</LinkTitle>
+        <Link href="https://www.google.com/search?q=ptktyfz+vbkz&oq=ptktyfz+vbkz&aqs=chrome..69i57j46i10i512j0i10i22i30i625l5.2979j0j15&sourceid=chrome&ie=UTF-8">
+          first link
+        </Link>
+        <Link href="https://kinovezha.com/576-zelena-mylya.html">
+          second link
+        </Link>
+      </LinkConteiner>
     </>
   );
 };
@@ -81,7 +102,9 @@ export async function getServerSideProps() {
     time: '3 hours 9 minutes',
   };
 
-  return { props: { dataVideo, description } };
+  const filmName = 'The green mile';
+
+  return { props: { dataVideo, description, filmName } };
 }
 
 export default AboutFilm;
