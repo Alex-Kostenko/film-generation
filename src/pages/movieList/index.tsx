@@ -36,12 +36,12 @@ const MovieList: FC<IMovieListProps> = ({ MOVIES }) => {
         <div key={movie.id}>
           <CardComponent
             img={movie.img}
-            titleEng={movie.engTitle}
-            titleRus={movie.rusTitle}
+            title={movie.engTitle}
+            subtitle={movie.rusTitle}
             labels={movie.lables}
             date={movie.date}
             description={movie.description}
-            link={() => redirect(movie.id)}
+            action={() => redirect(movie.id)}
           />
           {MOVIES.length === movie.id ? null : <Line />}
         </div>
