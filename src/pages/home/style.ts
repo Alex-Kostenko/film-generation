@@ -158,3 +158,62 @@ export const ReactSlick = styled.div`
     scale: 0.7;
   }
 `;
+
+export const BurgerHeader = styled.div`
+  display: none;
+  @media (max-width: 600px) {
+    display: block;
+    height: 45px;
+    width: 100%;
+    background: gray;
+    position: absolute;
+    top: 0%;
+  }
+  & .logoBurger {
+    border-radius: 50%;
+    cursor: pointer;
+    margin-left: 5px;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+  }
+  & .menuStyle {
+    border-radius: 50%;
+    cursor: pointer;
+    margin-right: 5px;
+    position: absolute;
+    top: 50%;
+    right: 0%;
+    transform: translate(0, -50%);
+    fill: white;
+  }
+`;
+
+export const ModalContent = styled.div`
+  width: 100%;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 40px;
+  align-items: center;
+  & .triangle {
+    margin-top: 40px;
+    cursor: pointer;
+    fill: rgba(29, 29, 29, 1);
+    pointer-events: all;
+    transition: all 0.3s;
+  }
+`;
+
+export const WrapperRow = styled.div`
+  display: flex;
+  align-items: end;
+  column-gap: 10px;
+  cursor: pointer;
+  &:hover {
+    & .triangle {
+      fill: #f33f3f;
+    }
+  }
+  height: 30px;
+`;
