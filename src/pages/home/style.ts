@@ -1,5 +1,5 @@
 import {
-  Button,
+  // Button,
   SelectComponent,
   DatePicker,
 } from '@Alex-Kostenko/ui-filmgen-v2';
@@ -46,19 +46,20 @@ export const CriteriasContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  @media (max-width: 1100px) {
+    justify-content: space-around;
+  }
 `;
 
 export const SearchContainer = styled.div`
-  margin-top: 20px;
+  margin-top: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 70px;
 `;
 
 export const DatePickerComponent = styled(DatePicker)``;
-
-export const Btn = styled(Button)`
-  width: 50%;
-  display: block;
-  margin: 0 auto;
-`;
 
 export const Select = styled(SelectComponent)``;
 
@@ -71,7 +72,7 @@ export const SiderBar = styled.div`
     rgba(29, 29, 29, 0.4) 0%
   );
   position: absolute;
-  z-index: 2;
+  z-index: 3;
   top: 0%;
   left: 0%;
   position: fixed;
@@ -104,6 +105,7 @@ export const Root = styled.div`
     left: -8%;
     z-index: -1;
     @media (max-width: 1600px) {
+      top: 25%;
       scale: 0.7;
     }
     @media (max-width: 1340px) {
@@ -145,17 +147,33 @@ export const Root = styled.div`
       right: -25%;
     }
   }
+
+  li.slick-active > button::before {
+    color: #f33f3f !important;
+  }
+  .slick-slide img {
+    width: 100%;
+    height: 450px;
+    @media (max-width: 1340px) {
+      height: 400px;
+    }
+  }
+
+  .slick-dots {
+    bottom: 10px;
+  }
 `;
 
 export const ReactSlick = styled.div`
-  height: 50vh;
+  position: absolute;
+  z-index: 2;
+  height: 450px;
   width: 100%;
-  background-color: #a5a9ab;
-  @media (max-width: 1600px) {
-    scale: 0.8;
-  }
-  @media (max-width: 1070px) {
-    scale: 0.7;
+  left: 0px;
+  top: 0px;
+
+  @media (max-width: 1340px) {
+    height: 400px;
   }
 `;
 
@@ -216,4 +234,42 @@ export const WrapperRow = styled.div`
     }
   }
   height: 30px;
+`;
+
+export const LeftArroww = styled.div`
+  position: absolute;
+  z-index: 10;
+  left: 0;
+  cursor: pointer;
+  background: linear-gradient(
+    270deg,
+    rgba(29, 29, 29, 0) 0%,
+    rgba(30, 19, 19, 1) 100%
+  );
+  width: 100px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const RightArroww = styled.div`
+  position: absolute;
+  z-index: 10;
+  right: 0;
+  cursor: pointer;
+  background: linear-gradient(
+    90deg,
+    rgba(29, 29, 29, 0) 0%,
+    rgba(30, 19, 19, 1) 100%
+  );
+  width: 100px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const WrapperForAbsolute = styled.div`
+  margin-top: 490px;
 `;
