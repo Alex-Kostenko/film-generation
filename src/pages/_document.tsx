@@ -34,6 +34,7 @@ export default class MyDocument extends Document {
         <Head />
         <body style={{ background: '#0d0d0d' }}>
           <Main />
+          <div id="portal" />
           <NextScript />
         </body>
       </Html>
