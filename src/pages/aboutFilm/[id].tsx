@@ -87,7 +87,7 @@ const AboutFilm: FC<AboutFilmProps> = ({
 
 export async function getServerSideProps() {
   const dataVideo = {
-    src: 'https://www.youtube.com/watch?v=Ki4haFrqSrw&ab_channel=RottenTomatoesClassicTrailers',
+    src: '',
     poster:
       'https://m.media-amazon.com/images/M/MV5BYzA4ZWRhNjktMTA3ZS00NDNiLThmMDMtNzdlYzk0ZjY2ZGFmXkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_.jpg',
   };

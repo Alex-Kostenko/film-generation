@@ -1,5 +1,23 @@
-import { MovieCard, Tag } from '@Alex-Kostenko/ui-filmgen-v2';
+// import { MovieCard, Tag } from '@Alex-Kostenko/ui-filmgen-v2';
+import dynamic from 'next/dynamic';
 import styled from 'styled-components';
+
+const MovieCard = dynamic(
+  () =>
+    import('@Alex-Kostenko/ui-filmgen-v2/dist/MovieCard').then(
+      (mod) => mod.MovieCard,
+    ),
+  {
+    ssr: true,
+  },
+);
+
+const Tag = dynamic(
+  () => import('@Alex-Kostenko/ui-filmgen-v2/dist/Tag').then((mod) => mod.Tag),
+  {
+    ssr: true,
+  },
+);
 
 export const SearchCriteria = styled.div`
   display: flex;
