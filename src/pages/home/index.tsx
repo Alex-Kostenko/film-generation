@@ -24,7 +24,7 @@ import {
   WrapperRow,
   LeftArroww,
   RightArroww,
-  WrapperForAbsolute,
+  NavigationForPages,
 } from './style';
 import ModalComponent from '@/components/ModalComponent';
 import useToggle from 'hook/useToggle';
@@ -39,6 +39,8 @@ interface descroptionSlider {
 
 const HomePage = () => {
   const router = useRouter();
+  console.log(router);
+
   const [isModalOpen, openModal, closeModal] = useToggle();
 
   const sliderRef = useRef<any>(null);
@@ -116,16 +118,18 @@ const HomePage = () => {
             })}
           </Slider>
         </ReactSlick>
-        <WrapperForAbsolute>
+        <NavigationForPages>
           <CriteriasContainer>
             <Select
+              className="selectCategory"
               placeholder="Genre"
               onChange={changeCriteria}
               options={optionsGenre}
               name="category"
             />
-            <DatePickerComponent />
+            <DatePickerComponent className="datePicker" />
             <Select
+              className="selectFilmCompany"
               placeholder="Studio"
               onChange={changeCriteria}
               options={optionsStudio}
@@ -137,7 +141,6 @@ const HomePage = () => {
             <Button label="Search" />
           </SearchContainer>
 
-          {/* SiderBar*/}
           <SiderBar>
             <WrapperSvg>
               <Image
@@ -152,7 +155,6 @@ const HomePage = () => {
               <Star className="triangle" aria-label="Star" />
             </WrapperSvg>
           </SiderBar>
-          {/* SiderBar*/}
 
           <Image
             className="ellipse_4"
@@ -168,7 +170,7 @@ const HomePage = () => {
             width={400}
             alt={'ellipse_4'}
           />
-        </WrapperForAbsolute>
+        </NavigationForPages>
       </Root>
       <BurgerHeader>
         <Image

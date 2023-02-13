@@ -46,8 +46,20 @@ export const CriteriasContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  & .datePicker {
+    @media (max-width: 750px) {
+      order: 1;
+    }
+  }
+
   @media (max-width: 1100px) {
     justify-content: space-around;
+  }
+  @media (max-width: 750px) {
+    flex-wrap: wrap;
+    column-gap: 20px;
+    row-gap: 20px;
   }
 `;
 
@@ -72,7 +84,7 @@ export const SiderBar = styled.div`
     rgba(29, 29, 29, 0.4) 0%
   );
   position: absolute;
-  z-index: 3;
+  z-index: 2;
   top: 0%;
   left: 0%;
   position: fixed;
@@ -122,6 +134,15 @@ export const Root = styled.div`
     @media (max-width: 700px) {
       left: -25%;
     }
+    @media (max-width: 600px) {
+      left: -30%;
+    }
+    @media (max-width: 490px) {
+      left: -35%;
+    }
+    @media (max-width: 420px) {
+      left: -45%;
+    }
   }
   & .ellipse_4_1 {
     position: absolute;
@@ -146,6 +167,15 @@ export const Root = styled.div`
     @media (max-width: 700px) {
       right: -25%;
     }
+    @media (max-width: 600px) {
+      right: -30%;
+    }
+    @media (max-width: 490px) {
+      right: -35%;
+    }
+    @media (max-width: 420px) {
+      right: -45%;
+    }
   }
 
   li.slick-active > button::before {
@@ -157,6 +187,12 @@ export const Root = styled.div`
     @media (max-width: 1340px) {
       height: 400px;
     }
+    @media (max-width: 900px) {
+      height: 350px;
+    }
+    @media (max-width: 600px) {
+      height: 250px;
+    }
   }
 
   .slick-dots {
@@ -165,8 +201,9 @@ export const Root = styled.div`
 `;
 
 export const ReactSlick = styled.div`
-  position: absolute;
+  position: relative;
   z-index: 2;
+  display: block;
   height: 450px;
   width: 100%;
   left: 0px;
@@ -174,6 +211,12 @@ export const ReactSlick = styled.div`
 
   @media (max-width: 1340px) {
     height: 400px;
+  }
+  @media (max-width: 900px) {
+    height: 350px;
+  }
+  @media (max-width: 600px) {
+    height: 250px;
   }
 `;
 
@@ -186,6 +229,12 @@ export const BurgerHeader = styled.div`
     background: gray;
     position: absolute;
     top: 0%;
+    z-index: 2;
+    background: linear-gradient(
+      90deg,
+      rgba(29, 29, 29, 0.4) 50%,
+      rgba(29, 29, 29, 0.4) 0%
+    );
   }
   & .logoBurger {
     border-radius: 50%;
@@ -270,6 +319,12 @@ export const RightArroww = styled.div`
   align-items: center;
 `;
 
-export const WrapperForAbsolute = styled.div`
-  margin-top: 490px;
+export const NavigationForPages = styled.div`
+  max-width: 640px;
+  margin: 0 auto;
+  margin-top: 50px;
+  @media (max-width: 750px) {
+    margin: 0 50px;
+    margin-top: 50px;
+  }
 `;
