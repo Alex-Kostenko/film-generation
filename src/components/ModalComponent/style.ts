@@ -10,7 +10,7 @@ export const MainContainer = styled.div`
   height: 100%;
   overflow: auto;
   background-color: #0d0d0d;
-  z-index: 2;
+  z-index: 3;
   & .logoBurger {
     border-radius: 50%;
     cursor: pointer;
