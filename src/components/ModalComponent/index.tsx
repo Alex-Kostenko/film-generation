@@ -1,5 +1,6 @@
-import React, { FC } from 'react';
 import Image from 'next/image';
+import React, { FC } from 'react';
+
 import { Portal } from '../Portal';
 
 import { ButtonClose, MainContainer } from './style';
