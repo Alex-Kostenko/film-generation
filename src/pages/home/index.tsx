@@ -1,6 +1,7 @@
 import { Button, Input } from '@Alex-Kostenko/ui-filmgen-v2';
 // eslint-disable-next-line
 import useToggle from 'hook/useToggle';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import React, { useRef, useState } from 'react';
@@ -19,9 +20,7 @@ import {
   SearchContainer,
   ReactSlick,
   CriteriasContainer,
-  Select,
   DatePickerComponent,
-  // Btn,
   SiderBar,
   WrapperSvg,
   Root,
@@ -51,10 +50,18 @@ interface IValue {
 
 const HomePage = () => {
   const router = useRouter();
-
   const [isModalOpen, openModal, closeModal] = useToggle();
-
   const sliderRef = useRef<any>(null);
+
+  const Select = dynamic(
+    () =>
+      import('@Alex-Kostenko/ui-filmgen-v2/dist/SelectComponent').then(
+        (mod) => mod.SelectComponent,
+      ),
+    {
+      ssr: false,
+    },
+  );
 
   const settings = {
     dots: true,
@@ -134,7 +141,7 @@ const HomePage = () => {
             <Select
               className="selectCategory"
               placeholder="Genre"
-              onChange={(value: IValue, name: IName) =>
+              onChange={(name: IName, value: IValue) =>
                 changeCriteria(value, name)
               }
               options={optionsGenre}
@@ -144,7 +151,9 @@ const HomePage = () => {
             <Select
               className="selectFilmCompany"
               placeholder="Studio"
-              onChange={changeCriteria}
+              onChange={(name: IName, value: IValue) =>
+                changeCriteria(value, name)
+              }
               options={optionsStudio}
               name="filmByCompany"
             />

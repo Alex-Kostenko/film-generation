@@ -1,8 +1,4 @@
-import {
-  // Button,
-  SelectComponent,
-  DatePicker,
-} from '@Alex-Kostenko/ui-filmgen-v2';
+import { SelectComponent, DatePicker } from '@Alex-Kostenko/ui-filmgen-v2';
 import styled from 'styled-components';
 
 export const Title = styled.h1`
@@ -13,34 +9,6 @@ export const Title = styled.h1`
   margin: 0 auto;
   padding-top: 15px;
 `;
-
-// export const SerchPanel = styled.div`
-//   display: flex;
-//   margin: 30px 0;
-//   position: relative;
-//   column-gap: 100px;
-//   row-gap: 40px;
-//   flex-wrap: wrap;
-//   overflow: hidden;
-//   justify-content: space-around;
-//   & .ellipse_5 {
-//     position: absolute;
-//     top: -170%;
-//     left: 10%;
-//     transform: rotate(240deg);
-//     z-index: -1;
-//   }
-//   @media (max-width: 767px) {
-//     flex-direction: column;
-//     align-items: center;
-//   }
-//   @media (max-width: 1245px) {
-//     scale: 0.8;
-//   }
-//   @media (max-width: 1070px) {
-//     scale: 0.7;
-//   }
-// `;
 
 export const CriteriasContainer = styled.div`
   display: flex;
