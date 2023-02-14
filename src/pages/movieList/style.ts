@@ -30,7 +30,7 @@ export const Line = styled.div`
   width: 360px;
   height: 2px;
   margin: 20px auto;
-  background-color: #f33f3f;
+  background-color: rgb(243, 63, 63, 0.3);
 `;
 
 export const TagComponent = styled(Tag)`
