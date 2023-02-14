@@ -1,13 +1,19 @@
+import { Button, Input } from '@Alex-Kostenko/ui-filmgen-v2';
+// eslint-disable-next-line
+import useToggle from 'hook/useToggle';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import React, { useRef, useState } from 'react';
+import Slider from 'react-slick';
 
+import LeftArrow from '@/components/Arrows/LeftArrow';
+import RightArrow from '@/components/Arrows/RightArrow';
+import ModalComponent from '@/components/ModalComponent';
+
+import BurgerM from '../../../public/burgerM.svg';
 import CinemaLine from '../../../public/cinemaLine.svg';
 import Home from '../../../public/home.svg';
 import Star from '../../../public/star.svg';
-import BurgerM from '../../../public/burgerM.svg';
-
-import Slider from 'react-slick';
 
 import {
   SearchContainer,
@@ -26,20 +32,25 @@ import {
   RightArroww,
   NavigationForPages,
 } from './style';
-import ModalComponent from '@/components/ModalComponent';
-import useToggle from 'hook/useToggle';
-import LeftArrow from '@/components/Arrows/LeftArrow';
-import RightArrow from '@/components/Arrows/RightArrow';
-import { Button, Input } from '@Alex-Kostenko/ui-filmgen-v2';
 
 interface descroptionSlider {
   img: any;
   description: string;
 }
 
+interface IName {
+  option: any;
+  action: string;
+  name: string;
+}
+
+interface IValue {
+  value: string;
+  label: string;
+}
+
 const HomePage = () => {
   const router = useRouter();
-  console.log(router);
 
   const [isModalOpen, openModal, closeModal] = useToggle();
 
@@ -56,9 +67,9 @@ const HomePage = () => {
     filmByCompany: 'netflix',
   });
 
-  const changeCriteria = (event: any) => {
+  const changeCriteria = (value: IValue, name: IName) => {
     setSearchCriteria((prev) => {
-      return { ...prev, [event.target.name]: event.target.value };
+      return { ...prev, [name.name]: value.value };
     });
   };
 
@@ -123,7 +134,9 @@ const HomePage = () => {
             <Select
               className="selectCategory"
               placeholder="Genre"
-              onChange={changeCriteria}
+              onChange={(value: IValue, name: IName) =>
+                changeCriteria(value, name)
+              }
               options={optionsGenre}
               name="category"
             />
@@ -138,7 +151,7 @@ const HomePage = () => {
           </CriteriasContainer>
           <SearchContainer>
             <Input />
-            <Button label="Search" />
+            <Button label="Search" onClick={redirect} />
           </SearchContainer>
 
           <SiderBar>

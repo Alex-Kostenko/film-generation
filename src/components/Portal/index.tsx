@@ -1,5 +1,6 @@
 import { useRef, useEffect, useState, ReactNode } from 'react';
 import { createPortal } from 'react-dom';
+
 import { Overlay } from './style';
 
 interface PortalProps {
