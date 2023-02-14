@@ -1,4 +1,4 @@
-import { Button, Input } from '@Alex-Kostenko/ui-filmgen-v2';
+import { Button, Input, SelectComponent } from '@Alex-Kostenko/ui-filmgen-v2';
 // eslint-disable-next-line
 import useToggle from 'hook/useToggle';
 import Image from 'next/image';
@@ -19,9 +19,7 @@ import {
   SearchContainer,
   ReactSlick,
   CriteriasContainer,
-  Select,
   DatePickerComponent,
-  // Btn,
   SiderBar,
   WrapperSvg,
   Root,
@@ -51,9 +49,7 @@ interface IValue {
 
 const HomePage = () => {
   const router = useRouter();
-
   const [isModalOpen, openModal, closeModal] = useToggle();
-
   const sliderRef = useRef<any>(null);
 
   const settings = {
@@ -131,20 +127,22 @@ const HomePage = () => {
         </ReactSlick>
         <NavigationForPages>
           <CriteriasContainer>
-            <Select
+            <SelectComponent
               className="selectCategory"
               placeholder="Genre"
-              onChange={(value: IValue, name: IName) =>
+              onChange={(name: IName, value: IValue) =>
                 changeCriteria(value, name)
               }
               options={optionsGenre}
               name="category"
             />
             <DatePickerComponent className="datePicker" />
-            <Select
+            <SelectComponent
               className="selectFilmCompany"
               placeholder="Studio"
-              onChange={changeCriteria}
+              onChange={(name: IName, value: IValue) =>
+                changeCriteria(value, name)
+              }
               options={optionsStudio}
               name="filmByCompany"
             />
