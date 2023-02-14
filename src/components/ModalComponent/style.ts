@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { PALETTE } from '@/palette';
+
 export const MainContainer = styled.div`
   display: block;
   position: fixed;
@@ -9,7 +11,7 @@ export const MainContainer = styled.div`
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: #0d0d0d;
+  background-color: ${PALETTE.dark.darkModal};
   z-index: 3;
   & .logoBurger {
     border-radius: 50%;

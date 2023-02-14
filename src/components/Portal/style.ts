@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { PALETTE } from '@/palette';
+
 export const Overlay = styled.div`
   /* display: block;
   position: fixed;
@@ -9,7 +11,7 @@ export const Overlay = styled.div`
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: yellow;
+  background-color: ${PALETTE.yellow};
   z-index: 2; */
 `;
 

@@ -1,9 +1,3 @@
-export interface IFilmCardProps {
-  src: string;
-  title: string;
-  description: string;
-}
-
 export interface IFilmInfoProps {
   voiceActing: string;
   director: string;
