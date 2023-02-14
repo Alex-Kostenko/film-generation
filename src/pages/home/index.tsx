@@ -6,9 +6,9 @@ import { useRouter } from 'next/router';
 import React, { useRef, useState } from 'react';
 import Slider from 'react-slick';
 
-import LeftArrow from '@/components/Arrows/LeftArrow';
-import RightArrow from '@/components/Arrows/RightArrow';
 import ModalComponent from '@/components/ModalComponent';
+import LeftArrow from '@/icons/LeftArrow';
+import RightArrow from '@/icons/RightArrow';
 
 import BurgerM from '../../../public/burgerM.svg';
 import CinemaLine from '../../../public/cinemaLine.svg';
