@@ -1,6 +1,7 @@
 import { FC } from 'react';
 
 import FilmInfo from '@/components/FilmInfo';
+import { IAboutFilmProps } from '@/interfaces';
 
 import {
   LinkConteiner,
@@ -12,29 +13,7 @@ import {
   Link,
 } from './style';
 
-interface IDescription {
-  voiceActing: string;
-  director: string;
-  starring: string;
-  country: string;
-  genre: string;
-  name: string;
-  year: string;
-  time: string;
-}
-
-interface IVideo {
-  poster: string;
-  src: string;
-}
-
-type AboutFilmProps = {
-  description: IDescription;
-  dataVideo: IVideo;
-  filmName: string;
-};
-
-const AboutFilm: FC<AboutFilmProps> = ({
+const AboutFilm: FC<IAboutFilmProps> = ({
   description,
   dataVideo,
   filmName,
