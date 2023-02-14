@@ -1,12 +1,8 @@
 import { FC } from 'react';
 
-import { Card, Img, Info, Text, Title } from './style';
+import { IFilmCardProps } from '@/interfaces';
 
-interface IFilmCardProps {
-  src: string;
-  title: string;
-  description: string;
-}
+import { Title, Card, Img, Info, Text } from './style';
 
 const FilmCard: FC<IFilmCardProps> = ({ src, title, description }) => {
   return (

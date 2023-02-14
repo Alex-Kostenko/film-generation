@@ -1,6 +1,4 @@
 import { Button, Input, SelectComponent } from '@Alex-Kostenko/ui-filmgen-v2';
-// eslint-disable-next-line
-import useToggle from 'hook/useToggle';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import React, { useRef, useState } from 'react';
@@ -9,6 +7,9 @@ import Slider from 'react-slick';
 import ModalComponent from '@/components/ModalComponent';
 import LeftArrow from '@/icons/LeftArrow';
 import RightArrow from '@/icons/RightArrow';
+import { IDescroptionSlider, ICriteria, IName } from '@/interfaces';
+import { dateForSlider, optionsGenre, optionsStudio } from '@/utils/constants';
+import useToggle from '@/utils/hooks/useToggle';
 
 import BurgerM from '../../../public/burgerM.svg';
 import CinemaLine from '../../../public/cinemaLine.svg';
@@ -16,36 +17,20 @@ import Home from '../../../public/home.svg';
 import Star from '../../../public/star.svg';
 
 import {
-  SearchContainer,
-  ReactSlick,
-  CriteriasContainer,
   DatePickerComponent,
-  SiderBar,
-  WrapperSvg,
-  Root,
+  NavigationForPages,
+  CriteriasContainer,
+  SearchContainer,
   BurgerHeader,
   ModalContent,
+  RightArroww,
+  ReactSlick,
+  WrapperSvg,
   WrapperRow,
   LeftArroww,
-  RightArroww,
-  NavigationForPages,
+  SiderBar,
+  Root,
 } from './style';
-
-interface descroptionSlider {
-  img: any;
-  description: string;
-}
-
-interface IName {
-  option: any;
-  action: string;
-  name: string;
-}
-
-interface IValue {
-  value: string;
-  label: string;
-}
 
 const HomePage = () => {
   const router = useRouter();
@@ -63,9 +48,9 @@ const HomePage = () => {
     filmByCompany: 'netflix',
   });
 
-  const changeCriteria = (value: IValue, name: IName) => {
+  const changeCriteria = (name: IName, criteria: ICriteria) => {
     setSearchCriteria((prev) => {
-      return { ...prev, [name.name]: value.value };
+      return { ...prev, [criteria.name]: name.value };
     });
   };
 
@@ -74,36 +59,6 @@ const HomePage = () => {
       `/movieList?category=${searchCriteria.category}&filmByCompany=${searchCriteria.filmByCompany}`,
     );
   };
-
-  const optionsGenre = [
-    { value: 'horor', label: 'horor' },
-    { value: 'comedy', label: 'comedy' },
-    { value: 'adventure', label: 'adventure' },
-    { value: 'fantasy', label: 'fantasy' },
-    { value: 'detective', label: 'detective' },
-    { value: 'drama', label: 'drama' },
-  ];
-
-  const optionsStudio = [
-    { value: 'netflix', label: 'netflix' },
-    { value: 'marvel', label: 'marvel' },
-    { value: 'dc', label: 'dc' },
-  ];
-
-  const dateForSlider = [
-    {
-      description: 'cit odun',
-      img: <img src="http://placekitten.com/g/400/201" />,
-    },
-    {
-      description: 'cit dwa',
-      img: <img src="http://placekitten.com/g/400/200" />,
-    },
-    {
-      description: 'cit tru',
-      img: <img src="http://placekitten.com/g/400/204" />,
-    },
-  ];
 
   return (
     <>
@@ -120,7 +75,7 @@ const HomePage = () => {
             </div>
           </RightArroww>
           <Slider ref={sliderRef} {...settings}>
-            {dateForSlider?.map((item: descroptionSlider, index: number) => {
+            {dateForSlider?.map((item: IDescroptionSlider, index: number) => {
               return <div key={index}>{item.img}</div>;
             })}
           </Slider>
@@ -130,8 +85,8 @@ const HomePage = () => {
             <SelectComponent
               className="selectCategory"
               placeholder="Genre"
-              onChange={(name: IName, value: IValue) =>
-                changeCriteria(value, name)
+              onChange={(name: IName, criteria: ICriteria) =>
+                changeCriteria(name, criteria)
               }
               options={optionsGenre}
               name="category"
@@ -140,8 +95,8 @@ const HomePage = () => {
             <SelectComponent
               className="selectFilmCompany"
               placeholder="Studio"
-              onChange={(name: IName, value: IValue) =>
-                changeCriteria(value, name)
+              onChange={(name: IName, criteria: ICriteria) =>
+                changeCriteria(name, criteria)
               }
               options={optionsStudio}
               name="filmByCompany"
