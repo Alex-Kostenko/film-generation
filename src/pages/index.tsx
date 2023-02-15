@@ -1,17 +1,13 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import React, { useRef, useState } from 'react';
-
+import React, { useState } from 'react';
 import CinemaLine from '../../public/cinemaLine.svg';
 import Home from '../../public/home.svg';
 import Star from '../../public/star.svg';
 import BurgerM from '../../public/burgerM.svg';
 
-import Slider from 'react-slick';
-
 import {
   SearchContainer,
-  ReactSlick,
   CriteriasContainer,
   Select,
   DatePickerComponent,
@@ -21,8 +17,6 @@ import {
   BurgerHeader,
   ModalContent,
   WrapperRow,
-  LeftArroww,
-  RightArroww,
   NavigationForPages,
 } from './style';
 import ModalComponent from '@/components/ModalComponent';
@@ -31,24 +25,12 @@ import queryMovie from '@/Services/queryMovies';
 import useToggle from '@/utils/hooks/useToggle';
 import RightArrow from '@/icons/RightArrow';
 import LeftArrow from '@/icons/LeftArrow';
-
-interface descroptionSlider {
-  img: any;
-  description: string;
-}
+import SliderSlick from '@/components/Slider';
 
 const HomePage = () => {
   const router = useRouter();
 
   const [isModalOpen, openModal, closeModal] = useToggle();
-
-  const sliderRef = useRef<any>(null);
-
-  const settings = {
-    dots: true,
-    arrows: false,
-    autoplay: true,
-  };
 
   const [searchCriteria, setSearchCriteria] = useState({
     category: 'horor',
@@ -82,21 +64,6 @@ const HomePage = () => {
     { value: 'dc', label: 'dc' },
   ];
 
-  const dateForSlider = [
-    {
-      description: 'cit odun',
-      img: <img src="http://placekitten.com/g/400/201" />,
-    },
-    {
-      description: 'cit dwa',
-      img: <img src="http://placekitten.com/g/400/200" />,
-    },
-    {
-      description: 'cit tru',
-      img: <img src="http://placekitten.com/g/400/204" />,
-    },
-  ];
-
   // useEffect(() => {
   //   (async () => {
   //     const companies = await queryMovie.getAllFilter();
@@ -107,23 +74,7 @@ const HomePage = () => {
   return (
     <>
       <Root>
-        <ReactSlick>
-          <LeftArroww onClick={() => sliderRef.current.slickPrev()}>
-            <div>
-              <LeftArrow />
-            </div>
-          </LeftArroww>
-          <RightArroww onClick={() => sliderRef.current.slickNext()}>
-            <div>
-              <RightArrow />
-            </div>
-          </RightArroww>
-          <Slider ref={sliderRef} {...settings}>
-            {dateForSlider?.map((item: descroptionSlider, index: number) => (
-              <div key={index}>{item.img}</div>
-            ))}
-          </Slider>
-        </ReactSlick>
+        <SliderSlick />
         <NavigationForPages>
           <CriteriasContainer>
             <Select
