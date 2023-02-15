@@ -26,11 +26,11 @@ import {
   NavigationForPages,
 } from './style';
 import ModalComponent from '@/components/ModalComponent';
-import useToggle from 'hook/useToggle';
-import LeftArrow from '@/components/Arrows/LeftArrow';
-import RightArrow from '@/components/Arrows/RightArrow';
 import { Button, Input } from '@Alex-Kostenko/ui-filmgen-v2';
 import queryMovie from '@/Services/queryMovies';
+import useToggle from '@/utils/hooks/useToggle';
+import RightArrow from '@/icons/RightArrow';
+import LeftArrow from '@/icons/LeftArrow';
 
 interface descroptionSlider {
   img: any;
