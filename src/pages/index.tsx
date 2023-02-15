@@ -11,8 +11,6 @@ import {
   CriteriasContainer,
   Select,
   DatePickerComponent,
-  SiderBar,
-  WrapperSvg,
   Root,
   BurgerHeader,
   ModalContent,
@@ -23,8 +21,6 @@ import ModalComponent from '@/components/ModalComponent';
 import { Button, Input } from '@Alex-Kostenko/ui-filmgen-v2';
 import queryMovie from '@/Services/queryMovies';
 import useToggle from '@/utils/hooks/useToggle';
-import RightArrow from '@/icons/RightArrow';
-import LeftArrow from '@/icons/LeftArrow';
 import SliderSlick from '@/components/Slider';
 
 const HomePage = () => {
@@ -98,7 +94,7 @@ const HomePage = () => {
             <Button label="Search" />
           </SearchContainer>
 
-          <SiderBar>
+          {/* <SiderBar>
             <WrapperSvg>
               <Image
                 className="triangle"
@@ -111,7 +107,7 @@ const HomePage = () => {
               <CinemaLine className="triangle" aria-label="CinemaLine" />
               <Star className="triangle" aria-label="Star" />
             </WrapperSvg>
-          </SiderBar>
+          </SiderBar> */}
 
           <Image
             className="ellipse_4"
