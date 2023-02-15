@@ -22,9 +22,7 @@ import {
   SearchContainer,
   ModalContent,
   BurgerHeader,
-  WrapperSvg,
   WrapperRow,
-  SiderBar,
   Select,
   Root,
 } from './style';
@@ -89,7 +87,7 @@ const HomePage = () => {
             <Button label="Search" onClick={redirect} />
           </SearchContainer>
 
-          <SiderBar>
+          {/* <SiderBar>
             <WrapperSvg>
               <Image
                 className="triangle"
@@ -102,7 +100,7 @@ const HomePage = () => {
               <CinemaLine className="triangle" aria-label="CinemaLine" />
               <Star className="triangle" aria-label="Star" />
             </WrapperSvg>
-          </SiderBar>
+          </SiderBar> */}
 
           <Image
             className="ellipse_4"
