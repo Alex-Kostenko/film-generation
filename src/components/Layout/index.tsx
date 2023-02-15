@@ -5,7 +5,7 @@ import { ILayoutProps } from '@/interfaces';
 
 import Footer from '../Footer';
 
-import { LayoutContainer, LayoutHomePage } from './style';
+import { LayoutContainer } from './style';
 
 const Layout: FC<ILayoutProps> = ({ children }) => {
   const router = useRouter();
@@ -16,7 +16,7 @@ const Layout: FC<ILayoutProps> = ({ children }) => {
       <Footer />
     </LayoutContainer>
   ) : (
-    <LayoutHomePage>{children}</LayoutHomePage>
+    <>{children}</>
   );
 };
 
