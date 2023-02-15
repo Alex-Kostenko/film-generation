@@ -25,6 +25,7 @@ import {
   WrapperRow,
   Select,
   Root,
+  WrapperBtn,
 } from './style';
 
 const HomePage = () => {
@@ -61,47 +62,33 @@ const HomePage = () => {
       <Root>
         <SliderSlick />
         <NavigationForPages>
-          <CriteriasContainer>
-            <Select
-              className="selectCategory"
-              placeholder="Genre"
-              onChange={(name: IName, criteria: ICriteria) =>
-                changeCriteria(name, criteria)
-              }
-              options={optionsGenre}
-              name="category"
-            />
-            <DatePickerComponent className="datePicker" />
-            <Select
-              className="selectFilmCompany"
-              placeholder="Studio"
-              onChange={(name: IName, criteria: ICriteria) =>
-                changeCriteria(name, criteria)
-              }
-              options={optionsStudio}
-              name="filmByCompany"
-            />
-          </CriteriasContainer>
-          <SearchContainer>
-            <Input />
-            <Button label="Search" onClick={redirect} />
-          </SearchContainer>
-
-          {/* <SiderBar>
-            <WrapperSvg>
-              <Image
-                className="triangle"
-                src={'/UniCode.jpg'}
-                height={40}
-                width={40}
-                alt={'triangleClass'}
+          <WrapperBtn>
+            <CriteriasContainer>
+              <Select
+                className="selectCategory"
+                placeholder="Genre"
+                onChange={(name: IName, criteria: ICriteria) =>
+                  changeCriteria(name, criteria)
+                }
+                options={optionsGenre}
+                name="category"
               />
-              <Home className="triangle" aria-label="Home" />
-              <CinemaLine className="triangle" aria-label="CinemaLine" />
-              <Star className="triangle" aria-label="Star" />
-            </WrapperSvg>
-          </SiderBar> */}
-
+              <DatePickerComponent className="datePicker" />
+              <Select
+                className="selectCategory"
+                placeholder="Studio"
+                onChange={(name: IName, criteria: ICriteria) =>
+                  changeCriteria(name, criteria)
+                }
+                options={optionsStudio}
+                name="filmByCompany"
+              />
+            </CriteriasContainer>
+            <SearchContainer>
+              <Input />
+              <Button label="Search" onClick={redirect} />
+            </SearchContainer>
+          </WrapperBtn>
           <Image
             className="ellipse_4"
             src={'/ellipse_4.svg'}
