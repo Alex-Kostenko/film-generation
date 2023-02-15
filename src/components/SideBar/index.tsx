@@ -1,9 +1,10 @@
-import { FC } from 'react';
-import { SiderBar, WrapperSvg } from './style';
 import Image from 'next/image';
+
 import CinemaLine from '../../../public/cinemaLine.svg';
 import Home from '../../../public/home.svg';
 import Star from '../../../public/star.svg';
+
+import { SiderBar, WrapperSvg } from './style';
 
 const SideBar = () => {
   return (
