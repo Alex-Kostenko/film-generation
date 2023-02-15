@@ -1,27 +1,31 @@
+import { Button, Input } from '@Alex-Kostenko/ui-filmgen-v2';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
+
+import queryMovie from '@/Services/queryMovies';
+import ModalComponent from '@/components/ModalComponent';
+import SliderSlick from '@/components/Slider';
+import { ICriteria, IName } from '@/interfaces';
+import { optionsStudio, optionsGenre } from '@/utils/constants';
+import useToggle from '@/utils/hooks/useToggle';
+
+import BurgerM from '../../public/burgerM.svg';
 import CinemaLine from '../../public/cinemaLine.svg';
 import Home from '../../public/home.svg';
 import Star from '../../public/star.svg';
-import BurgerM from '../../public/burgerM.svg';
 
 import {
-  SearchContainer,
-  CriteriasContainer,
-  Select,
   DatePickerComponent,
-  Root,
-  BurgerHeader,
-  ModalContent,
-  WrapperRow,
   NavigationForPages,
+  CriteriasContainer,
+  SearchContainer,
+  ModalContent,
+  BurgerHeader,
+  WrapperRow,
+  Select,
+  Root,
 } from './style';
-import ModalComponent from '@/components/ModalComponent';
-import { Button, Input } from '@Alex-Kostenko/ui-filmgen-v2';
-import queryMovie from '@/Services/queryMovies';
-import useToggle from '@/utils/hooks/useToggle';
-import SliderSlick from '@/components/Slider';
 
 const HomePage = () => {
   const router = useRouter();
@@ -33,9 +37,9 @@ const HomePage = () => {
     filmByCompany: 'netflix',
   });
 
-  const changeCriteria = (event: any) => {
+  const changeCriteria = (name: IName, criteria: ICriteria) => {
     setSearchCriteria((prev) => {
-      return { ...prev, [event.target.name]: event.target.value };
+      return { ...prev, [criteria.name]: name.value };
     });
   };
 
@@ -44,21 +48,6 @@ const HomePage = () => {
       `/movieList?category=${searchCriteria.category}&filmByCompany=${searchCriteria.filmByCompany}`,
     );
   };
-
-  const optionsGenre = [
-    { value: 'horor', label: 'horor' },
-    { value: 'comedy', label: 'comedy' },
-    { value: 'adventure', label: 'adventure' },
-    { value: 'fantasy', label: 'fantasy' },
-    { value: 'detective', label: 'detective' },
-    { value: 'drama', label: 'drama' },
-  ];
-
-  const optionsStudio = [
-    { value: 'netflix', label: 'netflix' },
-    { value: 'marvel', label: 'marvel' },
-    { value: 'dc', label: 'dc' },
-  ];
 
   // useEffect(() => {
   //   (async () => {
@@ -76,7 +65,9 @@ const HomePage = () => {
             <Select
               className="selectCategory"
               placeholder="Genre"
-              onChange={changeCriteria}
+              onChange={(name: IName, criteria: ICriteria) =>
+                changeCriteria(name, criteria)
+              }
               options={optionsGenre}
               name="category"
             />
@@ -84,14 +75,16 @@ const HomePage = () => {
             <Select
               className="selectFilmCompany"
               placeholder="Studio"
-              onChange={changeCriteria}
+              onChange={(name: IName, criteria: ICriteria) =>
+                changeCriteria(name, criteria)
+              }
               options={optionsStudio}
               name="filmByCompany"
             />
           </CriteriasContainer>
           <SearchContainer>
             <Input />
-            <Button label="Search" />
+            <Button label="Search" onClick={redirect} />
           </SearchContainer>
 
           {/* <SiderBar>

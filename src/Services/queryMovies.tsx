@@ -6,9 +6,7 @@ const queryMovie = {
       const res = await api.get('/filters/all');
 
       return res.data;
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   },
 };
 

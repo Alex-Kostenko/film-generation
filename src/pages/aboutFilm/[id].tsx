@@ -1,5 +1,6 @@
 import { FC } from 'react';
 
+import BackBtn from '@/components/BackBtn';
 import FilmInfo from '@/components/FilmInfo';
 import { IAboutFilmProps } from '@/interfaces';
 
@@ -20,6 +21,7 @@ const AboutFilm: FC<IAboutFilmProps> = ({
 }) => {
   return (
     <>
+      <BackBtn />
       <Title>{filmName}</Title>
       <Container>
         <Video controls poster={dataVideo.poster} src={dataVideo.src}></Video>

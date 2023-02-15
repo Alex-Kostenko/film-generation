@@ -1,5 +1,6 @@
-import { PALETTE } from '@/palette';
 import styled from 'styled-components';
+
+import { PALETTE } from '@/palette';
 
 export const ReactSlick = styled.div`
   position: relative;

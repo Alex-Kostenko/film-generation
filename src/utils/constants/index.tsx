@@ -27,3 +27,9 @@ export const dateForSlider = [
     img: <img src="http://placekitten.com/g/400/204" />,
   },
 ];
+
+export const settingsSlider = {
+  dots: true,
+  arrows: false,
+  autoplay: true,
+};

@@ -1,8 +1,9 @@
+import { useRef } from 'react';
+import Slider from 'react-slick';
+
 import LeftArrow from '@/icons/LeftArrow';
 import RightArrow from '@/icons/RightArrow';
-import { FC, useRef } from 'react';
 
-import Slider from 'react-slick';
 import { LeftArroww, ReactSlick, RightArroww } from './style';
 
 interface descriptionSlider {
