@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { PALETTE } from '@/palette';
+
 export const DescriptionContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -24,7 +26,7 @@ export const DescriptionName = styled.span`
   margin-right: 50px;
   font-size: 15px;
   letter-spacing: 1px;
-  color: #e4dada;
+  color: ${PALETTE.beige};
   @media (max-width: 991px) {
     width: 80px;
     margin-right: 30px;
@@ -35,7 +37,7 @@ export const DescriptionName = styled.span`
 export const DescriptionText = styled.span`
   letter-spacing: 1px;
   font-size: 16px;
-  color: #ffffff;
+  color: ${PALETTE.white};
   @media (max-width: 991px) {
     font-size: 14px;
   }

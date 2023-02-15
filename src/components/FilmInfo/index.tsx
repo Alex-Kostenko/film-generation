@@ -1,22 +1,13 @@
 import { FC } from 'react';
 
+import { IFilmInfoProps } from '@/interfaces';
+
 import {
   DescriptionContainer,
   DescriptionName,
   DescriptionItem,
   DescriptionText,
 } from './style';
-
-interface IFilmInfoProps {
-  voiceActing: string;
-  director: string;
-  starring: string;
-  country: string;
-  name: string;
-  year: string;
-  genre: string;
-  time: string;
-}
 
 const FilmInfo: FC<IFilmInfoProps> = ({
   voiceActing,
