@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import CinemaLine from '../../../public/cinemaLine.svg';
 import Home from '../../../public/home.svg';
@@ -31,16 +31,25 @@ import useToggle from 'hook/useToggle';
 import LeftArrow from '@/components/Arrows/LeftArrow';
 import RightArrow from '@/components/Arrows/RightArrow';
 import { Button, Input } from '@Alex-Kostenko/ui-filmgen-v2';
+import queryMovie from '@/Services/queryMovies';
 
 interface descroptionSlider {
   img: any;
   description: string;
 }
 
-const HomePage = () => {
+const HomePage = (allFilters: any) => {
   const router = useRouter();
-  console.log(router);
+  console.log(allFilters);
 
+  // function submit() {
+  //   fetch('https://api-filmgen.vercel.app/filters/all', {
+  //     method: 'GET',
+  //   })
+  //     .then((response) => response.json())
+  //     .then((result) => console.log(result));
+  // }
+  // submit();
   const [isModalOpen, openModal, closeModal] = useToggle();
 
   const sliderRef = useRef<any>(null);
@@ -98,6 +107,13 @@ const HomePage = () => {
     },
   ];
 
+  useEffect(() => {
+    (async () => {
+      const companies = await queryMovie.getAllFilter();
+      console.log(companies);
+    })();
+  }, []);
+
   return (
     <>
       <Root>
@@ -113,9 +129,9 @@ const HomePage = () => {
             </div>
           </RightArroww>
           <Slider ref={sliderRef} {...settings}>
-            {dateForSlider?.map((item: descroptionSlider, index: number) => {
-              return <div key={index}>{item.img}</div>;
-            })}
+            {dateForSlider?.map((item: descroptionSlider, index: number) => (
+              <div key={index}>{item.img}</div>
+            ))}
           </Slider>
         </ReactSlick>
         <NavigationForPages>
@@ -206,6 +222,21 @@ const HomePage = () => {
       )}
     </>
   );
+};
+
+export const getStaticProps = async () => {
+  // const res = async () => {
+  //   return await queryMovie.getAllFilter();
+  // };
+  // console.log('QUERY>>>', res());
+  const allFilters = await queryMovie.getAllFilter();
+  console.log(allFilters);
+
+  return {
+    props: {
+      allFilters,
+    },
+  };
 };
 
 export default HomePage;
