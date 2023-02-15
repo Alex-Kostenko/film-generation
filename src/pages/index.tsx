@@ -1,41 +1,43 @@
+import { Button, Input } from '@Alex-Kostenko/ui-filmgen-v2';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import React, { useRef, useState } from 'react';
+import Slider from 'react-slick';
 
+import queryMovie from '@/Services/queryMovies';
+import ModalComponent from '@/components/ModalComponent';
+import LeftArrow from '@/icons/LeftArrow';
+import RightArrow from '@/icons/RightArrow';
+import { ICriteria, IName, IDescroptionSlider } from '@/interfaces';
+import {
+  settingsSlider,
+  dateForSlider,
+  optionsStudio,
+  optionsGenre,
+} from '@/utils/constants';
+import useToggle from '@/utils/hooks/useToggle';
+
+import BurgerM from '../../public/burgerM.svg';
 import CinemaLine from '../../public/cinemaLine.svg';
 import Home from '../../public/home.svg';
 import Star from '../../public/star.svg';
-import BurgerM from '../../public/burgerM.svg';
-
-import Slider from 'react-slick';
 
 import {
-  SearchContainer,
-  ReactSlick,
-  CriteriasContainer,
-  Select,
   DatePickerComponent,
-  SiderBar,
-  WrapperSvg,
-  Root,
-  BurgerHeader,
+  NavigationForPages,
+  CriteriasContainer,
+  SearchContainer,
   ModalContent,
+  BurgerHeader,
+  RightArroww,
+  ReactSlick,
+  WrapperSvg,
   WrapperRow,
   LeftArroww,
-  RightArroww,
-  NavigationForPages,
+  SiderBar,
+  Select,
+  Root,
 } from './style';
-import ModalComponent from '@/components/ModalComponent';
-import { Button, Input } from '@Alex-Kostenko/ui-filmgen-v2';
-import queryMovie from '@/Services/queryMovies';
-import useToggle from '@/utils/hooks/useToggle';
-import RightArrow from '@/icons/RightArrow';
-import LeftArrow from '@/icons/LeftArrow';
-
-interface descroptionSlider {
-  img: any;
-  description: string;
-}
 
 const HomePage = () => {
   const router = useRouter();
@@ -44,20 +46,14 @@ const HomePage = () => {
 
   const sliderRef = useRef<any>(null);
 
-  const settings = {
-    dots: true,
-    arrows: false,
-    autoplay: true,
-  };
-
   const [searchCriteria, setSearchCriteria] = useState({
     category: 'horor',
     filmByCompany: 'netflix',
   });
 
-  const changeCriteria = (event: any) => {
+  const changeCriteria = (name: IName, criteria: ICriteria) => {
     setSearchCriteria((prev) => {
-      return { ...prev, [event.target.name]: event.target.value };
+      return { ...prev, [criteria.name]: name.value };
     });
   };
 
@@ -66,36 +62,6 @@ const HomePage = () => {
       `/movieList?category=${searchCriteria.category}&filmByCompany=${searchCriteria.filmByCompany}`,
     );
   };
-
-  const optionsGenre = [
-    { value: 'horor', label: 'horor' },
-    { value: 'comedy', label: 'comedy' },
-    { value: 'adventure', label: 'adventure' },
-    { value: 'fantasy', label: 'fantasy' },
-    { value: 'detective', label: 'detective' },
-    { value: 'drama', label: 'drama' },
-  ];
-
-  const optionsStudio = [
-    { value: 'netflix', label: 'netflix' },
-    { value: 'marvel', label: 'marvel' },
-    { value: 'dc', label: 'dc' },
-  ];
-
-  const dateForSlider = [
-    {
-      description: 'cit odun',
-      img: <img src="http://placekitten.com/g/400/201" />,
-    },
-    {
-      description: 'cit dwa',
-      img: <img src="http://placekitten.com/g/400/200" />,
-    },
-    {
-      description: 'cit tru',
-      img: <img src="http://placekitten.com/g/400/204" />,
-    },
-  ];
 
   // useEffect(() => {
   //   (async () => {
@@ -118,8 +84,8 @@ const HomePage = () => {
               <RightArrow />
             </div>
           </RightArroww>
-          <Slider ref={sliderRef} {...settings}>
-            {dateForSlider?.map((item: descroptionSlider, index: number) => (
+          <Slider ref={sliderRef} {...settingsSlider}>
+            {dateForSlider?.map((item: IDescroptionSlider, index: number) => (
               <div key={index}>{item.img}</div>
             ))}
           </Slider>
@@ -129,7 +95,9 @@ const HomePage = () => {
             <Select
               className="selectCategory"
               placeholder="Genre"
-              onChange={changeCriteria}
+              onChange={(name: IName, criteria: ICriteria) =>
+                changeCriteria(name, criteria)
+              }
               options={optionsGenre}
               name="category"
             />
@@ -137,14 +105,16 @@ const HomePage = () => {
             <Select
               className="selectFilmCompany"
               placeholder="Studio"
-              onChange={changeCriteria}
+              onChange={(name: IName, criteria: ICriteria) =>
+                changeCriteria(name, criteria)
+              }
               options={optionsStudio}
               name="filmByCompany"
             />
           </CriteriasContainer>
           <SearchContainer>
             <Input />
-            <Button label="Search" />
+            <Button label="Search" onClick={redirect} />
           </SearchContainer>
 
           <SiderBar>
