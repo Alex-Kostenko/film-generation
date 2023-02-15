@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@Alex-Kostenko/ui-filmgen-v2@^0.0.21":
-  version "0.0.21"
-  resolved "https://npm.pkg.github.com/download/@Alex-Kostenko/ui-filmgen-v2/0.0.21/bceca7e037671493a05fa6be33e779684955c16d#bceca7e037671493a05fa6be33e779684955c16d"
-  integrity sha512-d/pVMysXqM2/kNMCRbjd9qY8ZpC2tG6inN6UG9DLrb6EDHL2HCIbgNG/fW+6nZTYo9/rYFYVe6WC7vwnFjHj4A==
+"@Alex-Kostenko/ui-filmgen-v2@^0.0.22":
+  version "0.0.22"
+  resolved "https://npm.pkg.github.com/download/@Alex-Kostenko/ui-filmgen-v2/0.0.22/4615f37005b05fc1e49d671cd9d8717b7c54e5da#4615f37005b05fc1e49d671cd9d8717b7c54e5da"
+  integrity sha512-rmizP1vDSfIKy62q6nmM8YlZURdTqvY68wPtS2JVzFOptEJ6fmWuIbr4BSxA8MmzIvKdxjok/oDMH8rB1bmQtQ==
   dependencies:
     "@babel/plugin-proposal-class-properties" "^7.18.6"
     "@babel/plugin-proposal-nullish-coalescing-operator" "^7.18.6"

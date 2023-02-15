@@ -91,7 +91,6 @@ export async function getServerSideProps() {
       id: 5,
       description:
         "The next day when Driss returns, Philippe's aide Yvonne greets him, telling him he has the job on a trial basis. Despite being uninterested and inexperienced, he does well caring for Philippe, albeit using unconventional methods. Driss learns the extent of his employer’s disability, aiding Philippe in every aspect of his life. A friend of Philippe's reveals that Driss was imprisoned for six months for robbery, but Philippe does not care about Driss's past. As Driss is the only one who does not treat Philippe with pity, he will not fire Driss as long as he does his job properly.Philippe explains his disability resulted from a paragliding incident and that his wife died without bearing children. Gradually, Driss helps him to organise his private life, including disciplining his precocious adopted daughter Elisa. Driss discovers modern art, opera and starts painting. For Philippe's birthday, a private classical music concert is performed in his living room.",
-      img: 'https://kudago.com/media/images/movie/fa/54/fa5468ef93b42e97d108b48ca41add08.jpg',
     },
   ];
 
