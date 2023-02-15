@@ -1,20 +1,13 @@
 import { Button, Input } from '@Alex-Kostenko/ui-filmgen-v2';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import React, { useRef, useState } from 'react';
-import Slider from 'react-slick';
+import React, { useState } from 'react';
 
 import queryMovie from '@/Services/queryMovies';
 import ModalComponent from '@/components/ModalComponent';
-import LeftArrow from '@/icons/LeftArrow';
-import RightArrow from '@/icons/RightArrow';
-import { ICriteria, IName, IDescroptionSlider } from '@/interfaces';
-import {
-  settingsSlider,
-  dateForSlider,
-  optionsStudio,
-  optionsGenre,
-} from '@/utils/constants';
+import SliderSlick from '@/components/Slider';
+import { ICriteria, IName } from '@/interfaces';
+import { optionsStudio, optionsGenre } from '@/utils/constants';
 import useToggle from '@/utils/hooks/useToggle';
 
 import BurgerM from '../../public/burgerM.svg';
@@ -29,11 +22,8 @@ import {
   SearchContainer,
   ModalContent,
   BurgerHeader,
-  RightArroww,
-  ReactSlick,
   WrapperSvg,
   WrapperRow,
-  LeftArroww,
   SiderBar,
   Select,
   Root,
@@ -43,8 +33,6 @@ const HomePage = () => {
   const router = useRouter();
 
   const [isModalOpen, openModal, closeModal] = useToggle();
-
-  const sliderRef = useRef<any>(null);
 
   const [searchCriteria, setSearchCriteria] = useState({
     category: 'horor',
@@ -73,23 +61,7 @@ const HomePage = () => {
   return (
     <>
       <Root>
-        <ReactSlick>
-          <LeftArroww onClick={() => sliderRef.current.slickPrev()}>
-            <div>
-              <LeftArrow />
-            </div>
-          </LeftArroww>
-          <RightArroww onClick={() => sliderRef.current.slickNext()}>
-            <div>
-              <RightArrow />
-            </div>
-          </RightArroww>
-          <Slider ref={sliderRef} {...settingsSlider}>
-            {dateForSlider?.map((item: IDescroptionSlider, index: number) => (
-              <div key={index}>{item.img}</div>
-            ))}
-          </Slider>
-        </ReactSlick>
+        <SliderSlick />
         <NavigationForPages>
           <CriteriasContainer>
             <Select
