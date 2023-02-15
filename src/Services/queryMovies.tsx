@@ -1,10 +1,9 @@
-import api from '@/api/config';
+import api from './config';
 
 const queryMovie = {
   async getAllFilter() {
     try {
       const res = await api.get('/filters/all');
-      console.log('RES>>>', res);
 
       return res.data;
     } catch (error) {

@@ -3,7 +3,7 @@ import { FC } from 'react';
 
 import Footer from '../Footer';
 
-import { LayoutContainer, LayoutHomePage } from './style';
+import { LayoutContainer } from './style';
 
 type layoutProps = {
   children: React.ReactNode;
@@ -18,7 +18,7 @@ const Layout: FC<layoutProps> = ({ children }) => {
       <Footer />
     </LayoutContainer>
   ) : (
-    <LayoutHomePage>{children}</LayoutHomePage>
+    <>{children}</>
   );
 };
 
