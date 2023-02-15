@@ -1,5 +1,6 @@
-import { PALETTE } from '@/palette';
 import styled from 'styled-components';
+
+import { PALETTE } from '@/palette';
 
 export const SiderBar = styled.div`
   width: 50px;

@@ -4,8 +4,9 @@ import { FC } from 'react';
 import { ILayoutProps } from '@/interfaces';
 
 import Footer from '../Footer';
-import { LayoutContainer } from './style';
 import SideBar from '../SideBar';
+
+import { LayoutContainer } from './style';
 
 const Layout: FC<ILayoutProps> = ({ children }) => {
   const router = useRouter();

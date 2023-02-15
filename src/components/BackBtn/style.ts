@@ -4,7 +4,7 @@ import { PALETTE } from '@/palette';
 
 export const Button = styled.button`
   position: absolute;
-  left: 20px;
+  left: 60px;
   top: 20px;
   font-size: 16px;
   background: transparent;
