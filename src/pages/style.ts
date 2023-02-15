@@ -1,9 +1,7 @@
-import {
-  // Button,
-  SelectComponent,
-  DatePicker,
-} from '@Alex-Kostenko/ui-filmgen-v2';
+import { SelectComponent, DatePicker } from '@Alex-Kostenko/ui-filmgen-v2';
 import styled from 'styled-components';
+
+import { PALETTE } from '@/palette';
 
 export const Title = styled.h1`
   display: block;
@@ -13,34 +11,6 @@ export const Title = styled.h1`
   margin: 0 auto;
   padding-top: 15px;
 `;
-
-// export const SerchPanel = styled.div`
-//   display: flex;
-//   margin: 30px 0;
-//   position: relative;
-//   column-gap: 100px;
-//   row-gap: 40px;
-//   flex-wrap: wrap;
-//   overflow: hidden;
-//   justify-content: space-around;
-//   & .ellipse_5 {
-//     position: absolute;
-//     top: -170%;
-//     left: 10%;
-//     transform: rotate(240deg);
-//     z-index: -1;
-//   }
-//   @media (max-width: 767px) {
-//     flex-direction: column;
-//     align-items: center;
-//   }
-//   @media (max-width: 1245px) {
-//     scale: 0.8;
-//   }
-//   @media (max-width: 1070px) {
-//     scale: 0.7;
-//   }
-// `;
 
 export const CriteriasContainer = styled.div`
   display: flex;
@@ -78,11 +48,7 @@ export const Select = styled(SelectComponent)``;
 export const SiderBar = styled.div`
   width: 50px;
   height: 100%;
-  background: linear-gradient(
-    90deg,
-    rgba(29, 29, 29, 0.4) 50%,
-    rgba(29, 29, 29, 0.4) 0%
-  );
+  background: ${PALETTE.siderBarGradient};
   position: absolute;
   z-index: 2;
   top: 0%;
@@ -105,7 +71,7 @@ export const WrapperSvg = styled.div`
     pointer-events: all;
     transition: all 0.3s;
     &:hover {
-      fill: #f33f3f;
+      fill: ${PALETTE.crimson};
     }
   }
 `;
@@ -179,7 +145,7 @@ export const Root = styled.div`
   }
 
   li.slick-active > button::before {
-    color: #f33f3f !important;
+    color: ${PALETTE.crimson} !important;
   }
   .slick-slide img {
     width: 100%;
@@ -226,15 +192,11 @@ export const BurgerHeader = styled.div`
     display: block;
     height: 45px;
     width: 100%;
-    background: gray;
+    background: ${PALETTE.gray};
     position: absolute;
     top: 0%;
     z-index: 2;
-    background: linear-gradient(
-      90deg,
-      rgba(29, 29, 29, 0.4) 50%,
-      rgba(29, 29, 29, 0.4) 0%
-    );
+    background: ${PALETTE.siderBarGradient};
   }
   & .logoBurger {
     border-radius: 50%;
@@ -252,7 +214,7 @@ export const BurgerHeader = styled.div`
     top: 50%;
     right: 0%;
     transform: translate(0, -50%);
-    fill: white;
+    fill: ${PALETTE.white};
   }
 `;
 
@@ -266,7 +228,7 @@ export const ModalContent = styled.div`
   & .triangle {
     margin-top: 40px;
     cursor: pointer;
-    fill: rgba(29, 29, 29, 1);
+    fill: ${PALETTE.dark.darkBlack};
     pointer-events: all;
     transition: all 0.3s;
   }
@@ -279,7 +241,7 @@ export const WrapperRow = styled.div`
   cursor: pointer;
   &:hover {
     & .triangle {
-      fill: #f33f3f;
+      fill: ${PALETTE.crimson};
     }
   }
   height: 30px;
@@ -290,11 +252,7 @@ export const LeftArroww = styled.div`
   z-index: 10;
   left: 0;
   cursor: pointer;
-  background: linear-gradient(
-    270deg,
-    rgba(29, 29, 29, 0) 0%,
-    rgba(30, 19, 19, 1) 100%
-  );
+  background: ${PALETTE.leftArrowGradient};
   width: 100px;
   height: 100%;
   display: flex;
@@ -307,11 +265,7 @@ export const RightArroww = styled.div`
   z-index: 10;
   right: 0;
   cursor: pointer;
-  background: linear-gradient(
-    90deg,
-    rgba(29, 29, 29, 0) 0%,
-    rgba(30, 19, 19, 1) 100%
-  );
+  background: ${PALETTE.rightArrowGradient};
   width: 100px;
   height: 100%;
   display: flex;

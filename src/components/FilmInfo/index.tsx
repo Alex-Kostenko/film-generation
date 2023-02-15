@@ -1,22 +1,13 @@
 import { FC } from 'react';
 
+import { IFilmInfoProps } from '@/interfaces';
+
 import {
   DescriptionContainer,
   DescriptionName,
   DescriptionItem,
   DescriptionText,
 } from './style';
-
-interface IFilmInfoProps {
-  voiceActing: string;
-  director: string;
-  starring: string;
-  country: string;
-  name: string;
-  year: string;
-  genre: string;
-  time: string;
-}
 
 const FilmInfo: FC<IFilmInfoProps> = ({
   voiceActing,
@@ -28,40 +19,24 @@ const FilmInfo: FC<IFilmInfoProps> = ({
   year,
   time,
 }) => {
+  const ITEM = [
+    { name: 'name', text: `${name}` },
+    { name: 'year', text: `${year}` },
+    { name: 'country', text: `${country}` },
+    { name: 'genre', text: `${genre}` },
+    { name: 'time', text: `${time}` },
+    { name: 'voice acting', text: `${voiceActing}` },
+    { name: 'director', text: `${director}` },
+    { name: 'starring', text: `${starring}` },
+  ];
   return (
     <DescriptionContainer>
-      <DescriptionItem>
-        <DescriptionName>name:</DescriptionName>
-        <DescriptionText>{name}</DescriptionText>
-      </DescriptionItem>
-      <DescriptionItem>
-        <DescriptionName>year:</DescriptionName>
-        <DescriptionText>{year}</DescriptionText>
-      </DescriptionItem>
-      <DescriptionItem>
-        <DescriptionName>country:</DescriptionName>
-        <DescriptionText>{country}</DescriptionText>
-      </DescriptionItem>
-      <DescriptionItem>
-        <DescriptionName>genre:</DescriptionName>
-        <DescriptionText>{genre}</DescriptionText>
-      </DescriptionItem>
-      <DescriptionItem>
-        <DescriptionName>time:</DescriptionName>
-        <DescriptionText>{time}</DescriptionText>
-      </DescriptionItem>
-      <DescriptionItem>
-        <DescriptionName>voice acting:</DescriptionName>
-        <DescriptionText>{voiceActing}</DescriptionText>
-      </DescriptionItem>
-      <DescriptionItem>
-        <DescriptionName>director:</DescriptionName>
-        <DescriptionText>{director}</DescriptionText>
-      </DescriptionItem>
-      <DescriptionItem>
-        <DescriptionName>starring:</DescriptionName>
-        <DescriptionText>{starring}</DescriptionText>
-      </DescriptionItem>
+      {ITEM.map((item, index) => (
+        <DescriptionItem key={index}>
+          <DescriptionName>{item.name}:</DescriptionName>
+          <DescriptionText>{item.text}</DescriptionText>
+        </DescriptionItem>
+      ))}
     </DescriptionContainer>
   );
 };

@@ -1,21 +1,9 @@
 import { useRouter } from 'next/router';
 import { FC } from 'react';
 
+import { IMovieListProps, IMovie } from '@/interfaces';
+
 import { SearchCriteria, CardComponent, TagComponent, Line } from './style';
-
-interface IMovie {
-  id: number;
-  engTitle: string;
-  rusTitle: string;
-  description: string;
-  img: string;
-  lables: Array<string>;
-  date: string;
-}
-
-interface IMovieListProps {
-  MOVIES: IMovie[];
-}
 
 const MovieList: FC<IMovieListProps> = ({ MOVIES }) => {
   const router = useRouter();

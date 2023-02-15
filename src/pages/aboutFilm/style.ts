@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { PALETTE } from '@/palette';
+
 export const Container = styled.div`
   display: flex;
   margin-top: 30px;
@@ -15,7 +17,7 @@ export const Title = styled.h1`
   margin: 0 auto;
   padding-top: 15px;
   font-size: 25px;
-  color: #f33f3f;
+  color: ${PALETTE.crimson};
 `;
 
 export const AboutFilms = styled.p`
@@ -24,7 +26,7 @@ export const AboutFilms = styled.p`
   font-family: SFProDisplay-Light;
   letter-spacing: 3px;
   line-height: 20px;
-  color: #e4dada;
+  color: ${PALETTE.beige};
   @media (max-width: 991px) {
     padding: 0 15px;
     font-size: 13px;
@@ -50,7 +52,7 @@ export const LinkConteiner = styled.div`
 
 export const LinkTitle = styled.h3`
   letter-spacing: 1px;
-  color: #e4dada;
+  color: ${PALETTE.beige};
 `;
 
 export const Link = styled.a`
@@ -58,6 +60,6 @@ export const Link = styled.a`
   width: fit-content;
   margin: 10px 0;
   cursor: pointer;
-  color: #f33f3f;
+  color: ${PALETTE.crimson};
   text-decoration: none;
 `;

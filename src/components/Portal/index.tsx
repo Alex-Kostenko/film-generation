@@ -1,10 +1,9 @@
-import { useRef, useEffect, useState, ReactNode } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { Overlay } from './style';
 
-interface PortalProps {
-  children: ReactNode;
-}
+import { PortalProps } from '@/interfaces';
+
+import { Overlay } from './style';
 
 export const Portal = (props: PortalProps) => {
   const ref = useRef<Element | null>(null);

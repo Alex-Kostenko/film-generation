@@ -45,7 +45,7 @@
     "typescript": "4.9.4"
   },
   "devDependencies": {
-    "@Alex-Kostenko/ui-filmgen-v2": "^0.0.20",
+    "@Alex-Kostenko/ui-filmgen-v2": "^0.0.21",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
     "babel-eslint": "^8.2.3",

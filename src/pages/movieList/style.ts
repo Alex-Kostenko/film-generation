@@ -1,6 +1,8 @@
 import { MovieCard, Tag } from '@Alex-Kostenko/ui-filmgen-v2';
 import styled from 'styled-components';
 
+import { PALETTE } from '@/palette';
+
 export const SearchCriteria = styled.div`
   display: flex;
   width: fit-content;
@@ -12,7 +14,7 @@ export const Line = styled.div`
   width: 360px;
   height: 2px;
   margin: 20px auto;
-  background-color: #f33f3f;
+  background-color: ${PALETTE.crimsonLite};
 `;
 
 export const TagComponent = styled(Tag)`
