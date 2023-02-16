@@ -1,4 +1,4 @@
-import { Button, Input } from '@Alex-Kostenko/ui-filmgen-v2';
+import { Button, Input } from 'alex-unicode';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';

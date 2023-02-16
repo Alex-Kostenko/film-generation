@@ -1,4 +1,4 @@
-import { SelectComponent, DatePicker } from '@Alex-Kostenko/ui-filmgen-v2';
+import { SelectComponent, DatePicker } from 'alex-unicode';
 import styled from 'styled-components';
 
 import { PALETTE } from '@/palette';
