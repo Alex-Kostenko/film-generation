@@ -23,7 +23,6 @@
     ]
   },
   "dependencies": {
-    "@Alex-Kostenko/ui-filmgen-v2": "git+https://Alex-Kostenko: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@github.com/Alex-Kostenko/ui-filmgen-v2.git",
     "@next/font": "13.1.2",
     "@reduxjs/toolkit": "^1.9.2",
     "@svgr/webpack": "^6.5.1",
@@ -49,6 +48,7 @@
     "typescript": "4.9.4"
   },
   "devDependencies": {
+    "@Alex-Kostenko/ui-filmgen-v2": "^0.0.23",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
     "babel-eslint": "^8.2.3",
