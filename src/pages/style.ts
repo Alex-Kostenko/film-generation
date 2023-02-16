@@ -17,28 +17,73 @@ export const CriteriasContainer = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  & .datePicker {
+  & .selectCategory {
     @media (max-width: 750px) {
-      order: 1;
+      width: 100%;
+    }
+    & .castom-select__control {
+      @media (max-width: 750px) {
+        width: 100% !important;
+      }
+    }
+  }
+  & .datePicker {
+    & div {
+      z-index: 2;
+    }
+    @media (max-width: 750px) {
+      width: 100%;
+    }
+    & input {
+      width: 180px;
+      @media (max-width: 750px) {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 750px) {
+      /* order: 1; */
     }
   }
 
-  @media (max-width: 1100px) {
-    justify-content: space-around;
-  }
   @media (max-width: 750px) {
-    flex-wrap: wrap;
+    /* flex-wrap: wrap;
     column-gap: 20px;
-    row-gap: 20px;
+    row-gap: 20px; */
+    flex-direction: column;
+    row-gap: 15px;
+  }
+`;
+export const WrapperBtn = styled.div`
+  width: 100%;
+  @media (max-width: 750px) {
+    display: block;
+    width: 250px;
   }
 `;
 
 export const SearchContainer = styled.div`
-  margin-top: 70px;
+  margin-top: 40px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  column-gap: 70px;
+  & .wrapperInput {
+    width: 415px;
+    @media (max-width: 750px) {
+      width: 100%;
+    }
+  }
+  & button {
+    @media (max-width: 750px) {
+      width: 100%;
+    }
+    width: 180px;
+    margin: 0px;
+  }
+  @media (max-width: 750px) {
+    flex-direction: column;
+    row-gap: 15px;
+  }
 `;
 
 export const DatePickerComponent = styled(DatePicker)``;
@@ -274,6 +319,8 @@ export const RightArroww = styled.div`
 `;
 
 export const NavigationForPages = styled.div`
+  display: flex;
+  justify-content: center;
   max-width: 640px;
   margin: 0 auto;
   margin-top: 50px;
