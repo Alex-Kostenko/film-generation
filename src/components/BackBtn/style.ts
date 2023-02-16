@@ -1,20 +1,26 @@
+import Image from 'next/image';
 import styled from 'styled-components';
 
 import { PALETTE } from '@/palette';
 
-export const Button = styled.button`
+export const Img = styled(Image)`
   position: absolute;
   left: 60px;
   top: 20px;
   font-size: 16px;
   background: transparent;
   cursor: pointer;
-  color: ${PALETTE.crimson};
   border: none;
+  stroke: ${PALETTE.crimson}
   transition: 0.4s;
+  -webkit-transition: 0.4s;
 
   &:hover {
-    color: ${PALETTE.beige};
     transition: 0.4s;
+    transform: scale(1.2);
+  }
+
+   @media (max-width: 600px) {
+    left: 10px;
   }
 `;
