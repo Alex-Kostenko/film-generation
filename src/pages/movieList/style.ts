@@ -1,4 +1,4 @@
-import { MovieCard, Tag } from '@Alex-Kostenko/ui-filmgen-v2';
+import { MovieCard, Tag } from 'alex-unicode';
 import styled from 'styled-components';
 
 import { PALETTE } from '@/palette';
