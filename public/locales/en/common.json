@@ -1,0 +1,20 @@
+{
+  "main": {
+    "back": "Back",
+    "genre": "Genre",
+    "studio": "Studio",
+    "search": "Search"
+  },
+
+  "filmPage": {
+    "name": "name",
+    "year": "year",
+    "country": "country",
+    "genre": "genre",
+    "time": "time",
+    "voiceActing": "voice acting",
+    "director": "director",
+    "starring": "starring",
+    "links": "Links to watch this movie"
+  }
+}

@@ -1,6 +1,8 @@
 import { Button, Input } from '@Alex-Kostenko/ui-filmgen-v2';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import React, { useState } from 'react';
 
 import queryMovie from '@/Services/queryMovies';
@@ -28,6 +30,7 @@ import {
 } from './style';
 
 const HomePage = () => {
+  const { t } = useTranslation();
   const router = useRouter();
 
   const [isModalOpen, openModal, closeModal] = useToggle();
@@ -64,7 +67,7 @@ const HomePage = () => {
           <CriteriasContainer>
             <Select
               className="selectCategory"
-              placeholder="Genre"
+              placeholder={t('main.genre')}
               onChange={(name: IName, criteria: ICriteria) =>
                 changeCriteria(name, criteria)
               }
@@ -74,7 +77,7 @@ const HomePage = () => {
             <DatePickerComponent className="datePicker" />
             <Select
               className="selectFilmCompany"
-              placeholder="Studio"
+              placeholder={t('main.studio')}
               onChange={(name: IName, criteria: ICriteria) =>
                 changeCriteria(name, criteria)
               }
@@ -83,8 +86,8 @@ const HomePage = () => {
             />
           </CriteriasContainer>
           <SearchContainer>
-            <Input />
-            <Button label="Search" onClick={redirect} />
+            <Input label={t('main.search')} />
+            <Button label={t('main.search')} onClick={redirect} />
           </SearchContainer>
 
           {/* <SiderBar>
@@ -160,11 +163,12 @@ const HomePage = () => {
 
 export default HomePage;
 
-export const getStaticProps = async () => {
+export const getStaticProps = async ({ locale }: any) => {
   const allFilters = await queryMovie.getAllFilter();
 
   return {
     props: {
+      ...(await serverSideTranslations(locale)),
       allFilters: allFilters,
     },
   };

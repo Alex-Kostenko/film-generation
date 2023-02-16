@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { FC } from 'react';
 
 import BackBtn from '@/components/BackBtn';
@@ -42,8 +43,13 @@ const MovieList: FC<IMovieListProps> = ({ MOVIES }) => {
   );
 };
 
-export async function getServerSideProps() {
-  return { props: { MOVIES } };
+export async function getServerSideProps({ locale }: any) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale)),
+      MOVIES,
+    },
+  };
 }
 
 export default MovieList;

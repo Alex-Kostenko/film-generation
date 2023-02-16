@@ -15,16 +15,20 @@ export const optionsStudio = [
 
 export const dateForSlider = [
   {
-    description: 'cit odun',
-    img: <img src="http://placekitten.com/g/400/201" />,
+    description: 'img',
+    img: <img src="https://i.ytimg.com/vi/Hi-kQn3ze4o/maxresdefault.jpg" />,
   },
   {
-    description: 'cit dwa',
-    img: <img src="http://placekitten.com/g/400/200" />,
+    description: 'img',
+    img: (
+      <img src="https://gamemag.ru/images/cache/News/News163887/5866ce5093-1_1390x600.jpg" />
+    ),
   },
   {
-    description: 'cit tru',
-    img: <img src="http://placekitten.com/g/400/204" />,
+    description: 'img',
+    img: (
+      <img src="https://gamemag.ru/images/cache/News/News172090/a04e2254d8-2_1390x600.jpg" />
+    ),
   },
 ];
 

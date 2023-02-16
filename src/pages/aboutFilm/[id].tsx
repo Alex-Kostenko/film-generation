@@ -1,3 +1,5 @@
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { FC } from 'react';
 
 import BackBtn from '@/components/BackBtn';
@@ -19,6 +21,7 @@ const AboutFilm: FC<IAboutFilmProps> = ({
   dataVideo,
   filmName,
 }) => {
+  const { t } = useTranslation();
   return (
     <>
       <BackBtn />
@@ -54,7 +57,7 @@ const AboutFilm: FC<IAboutFilmProps> = ({
         Best Screenplay Based on Material Previously Produced or Published.
       </AboutFilms>
       <LinkConteiner>
-        <LinkTitle>Links to watch this movie:</LinkTitle>
+        <LinkTitle>{t('filmPage.links')}:</LinkTitle>
         <Link href="https://www.google.com/search?q=ptktyfz+vbkz&oq=ptktyfz+vbkz&aqs=chrome..69i57j46i10i512j0i10i22i30i625l5.2979j0j15&sourceid=chrome&ie=UTF-8">
           first link
         </Link>
@@ -66,7 +69,7 @@ const AboutFilm: FC<IAboutFilmProps> = ({
   );
 };
 
-export async function getServerSideProps() {
+export async function getServerSideProps({ locale }: any) {
   const dataVideo = {
     src: '',
     poster:
@@ -85,7 +88,14 @@ export async function getServerSideProps() {
 
   const filmName = 'The green mile';
 
-  return { props: { dataVideo, description, filmName } };
+  return {
+    props: {
+      ...(await serverSideTranslations(locale)),
+      dataVideo,
+      description,
+      filmName,
+    },
+  };
 }
 
 export default AboutFilm;
