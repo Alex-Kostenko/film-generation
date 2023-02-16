@@ -3,37 +3,13 @@ import Slider from 'react-slick';
 
 import LeftArrow from '@/icons/LeftArrow';
 import RightArrow from '@/icons/RightArrow';
+import { IDescroptionSlider } from '@/interfaces';
+import { dateForSlider, settingsSlider } from '@/utils/constants';
 
 import { LeftArroww, ReactSlick, RightArroww } from './style';
 
-interface descriptionSlider {
-  img: any;
-  description: string;
-}
-
 const SliderSlick = () => {
   const sliderRef = useRef<any>(null);
-
-  const settings = {
-    dots: true,
-    arrows: false,
-    autoplay: true,
-  };
-
-  const dateForSlider = [
-    {
-      description: 'cit odun',
-      img: <img src="http://placekitten.com/g/400/201" />,
-    },
-    {
-      description: 'cit dwa',
-      img: <img src="http://placekitten.com/g/400/200" />,
-    },
-    {
-      description: 'cit tru',
-      img: <img src="http://placekitten.com/g/400/204" />,
-    },
-  ];
 
   return (
     <ReactSlick>
@@ -47,8 +23,8 @@ const SliderSlick = () => {
           <RightArrow />
         </div>
       </RightArroww>
-      <Slider ref={sliderRef} {...settings}>
-        {dateForSlider?.map((item: descriptionSlider, index: number) => (
+      <Slider ref={sliderRef} {...settingsSlider}>
+        {dateForSlider?.map((item: IDescroptionSlider, index: number) => (
           <div key={index}>{item.img}</div>
         ))}
       </Slider>

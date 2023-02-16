@@ -35,9 +35,12 @@
     "eslint": "^7.2.0",
     "eslint-config-next": "13.1.2",
     "eslint-config-prettier": "^8.6.0",
+    "i18next": "^22.4.9",
     "next": "13.1.2",
+    "next-i18next": "^13.1.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-i18next": "^12.1.5",
     "react-redux": "^8.0.5",
     "react-slick": "^0.29.0",
     "slick-carousel": "^1.8.1",
@@ -45,7 +48,7 @@
     "typescript": "4.9.4"
   },
   "devDependencies": {
-    "@Alex-Kostenko/ui-filmgen-v2": "^0.0.22",
+    "@Alex-Kostenko/ui-filmgen-v2": "^0.0.23",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
     "babel-eslint": "^8.2.3",
@@ -62,5 +65,10 @@
     "husky": "^8.0.0",
     "lint-staged": "^13.1.0",
     "prettier": "^2.8.3"
+  },
+  "browser": {
+    "fs": false,
+    "os": false,
+    "path": false
   }
 }
