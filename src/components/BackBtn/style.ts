@@ -7,6 +7,7 @@ export const Img = styled(Image)`
   position: absolute;
   left: 60px;
   top: 20px;
+  z-index: 9999;
   font-size: 16px;
   background: transparent;
   cursor: pointer;
