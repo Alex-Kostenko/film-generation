@@ -16,7 +16,6 @@ import BurgerM from '../../public/burgerM.svg';
 import CinemaLine from '../../public/cinemaLine.svg';
 import Home from '../../public/home.svg';
 import Star from '../../public/star.svg';
-
 import {
   DatePickerComponent,
   NavigationForPages,
