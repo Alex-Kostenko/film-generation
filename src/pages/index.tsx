@@ -28,7 +28,7 @@ import {
   Select,
   Root,
   WrapperBtn,
-} from './style';
+} from '../styles/indexStyles/style';
 
 const HomePage = () => {
   const { t } = useTranslation();
