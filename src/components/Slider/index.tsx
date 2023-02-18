@@ -6,22 +6,19 @@ import RightArrow from '@/icons/RightArrow';
 import { IDescroptionSlider } from '@/interfaces';
 import { dateForSlider, settingsSlider } from '@/utils/constants';
 
-import { LeftArroww, ReactSlick, RightArroww } from './style';
+import { LeftArroww, Mask, ReactSlick, RightArroww } from './style';
 
 const SliderSlick = () => {
   const sliderRef = useRef<any>(null);
 
   return (
     <ReactSlick>
+      <Mask />
       <LeftArroww onClick={() => sliderRef.current.slickPrev()}>
-        <div>
-          <LeftArrow />
-        </div>
+        <LeftArrow />
       </LeftArroww>
       <RightArroww onClick={() => sliderRef.current.slickNext()}>
-        <div>
-          <RightArrow />
-        </div>
+        <RightArrow />
       </RightArroww>
       <Slider ref={sliderRef} {...settingsSlider}>
         {dateForSlider?.map((item: IDescroptionSlider, index: number) => (
