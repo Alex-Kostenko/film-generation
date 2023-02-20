@@ -1,6 +1,7 @@
-import { PALETTE } from '@/palette';
 import { MovieCard, Tag } from 'alex-unicode';
 import styled from 'styled-components';
+
+import { PALETTE } from '@/palette';
 
 interface StyleProps {
   colorStyle?: string;

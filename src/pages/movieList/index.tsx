@@ -3,11 +3,8 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { FC, useEffect, useRef, useState } from 'react';
 import ReactPaginate from 'react-paginate';
 
-import Reload from '../../../public/reload.svg';
-
 import BackBtn from '@/components/BackBtn';
 import { IMovieListProps, IMovie } from '@/interfaces';
-
 import {
   SearchCriteria,
   CardComponent,
@@ -16,7 +13,10 @@ import {
   WrapperReload,
   Root,
 } from '@/styles/movieListStyles/style';
-import queryMovie from '@/Services/queryMovies';
+
+import Reload from '../../../public/reload.svg';
+
+// import queryMovie from '@/Services/queryMovies';
 
 const MovieList: FC<IMovieListProps> = ({ MOVIES }) => {
   const router = useRouter();
@@ -26,7 +26,9 @@ const MovieList: FC<IMovieListProps> = ({ MOVIES }) => {
     router.push(`/aboutFilm/${id}`);
   };
 
+  // eslint-disable-next-line
   const [styless, setStyless] = useState(`a[aria-label='Page -1']`);
+
   // useEffect(() => {
   //   if (document) {
   //     const a: any = document.getElementsByTagName('li');
@@ -48,10 +50,10 @@ const MovieList: FC<IMovieListProps> = ({ MOVIES }) => {
   //   }
   // }, []);
 
-  const itemsPerPage = 4;
+  // const itemsPerPage = 4;
   const [currentPage, setCurrentPage] = useState(0);
-  const [pageCount, setPageCount] = useState(40);
-  const [content, setContent] = useState(0);
+  // const [pageCount, setPageCount] = useState(40);
+  // const [content, setContent] = useState(0);
   const [arrowUpload, setArrowUpload] = useState(false);
   // useEffect(() => {
   //   (async () => {
@@ -64,29 +66,29 @@ const MovieList: FC<IMovieListProps> = ({ MOVIES }) => {
   //   })();
   // }, [, /*itemOffset*/ currentPage]);
   const refA = useRef(null);
-  useEffect(() => {
-    (async () => {
-      const allFilters = await queryMovie.pagination(4, 1, {
-        filters: [],
-      });
-      // console.log(allFilters);
-    })();
-    (async () => {
-      const all = await queryMovie.getAllFilter();
-      // console.log(all);
-    })();
-  }, []);
+  // useEffect(() => {
+  //   (async () => {
+  //     const allFilters = await queryMovie.pagination(4, 1, {
+  //       filters: [],
+  //     });
+  //     // console.log(allFilters);
+  //   })();
+  //   (async () => {
+  //     const all = await queryMovie.getAllFilter();
+  //     // console.log(all);
+  //   })();
+  // }, []);
 
   useEffect(() => {
-    console.log('Первий рендер', currentPage);
-
     if (arrowUpload) {
+      // eslint-disable-next-line
       if (styless === `a[aria-label='Page -1']`) {
         setStyless(`a[aria-label='Page ${currentPage}']`);
       } else {
         setStyless(styless + `,a[aria-label='Page ${currentPage}']`);
       }
     } else {
+      // eslint-disable-next-line
       setStyless(`a[aria-label='Page -1']`);
     }
   }, [currentPage]);
@@ -94,7 +96,7 @@ const MovieList: FC<IMovieListProps> = ({ MOVIES }) => {
   const handlePageClick = async (event: any) => {
     setArrowUpload(false);
     setCurrentPage(event.selected);
-    console.log(event);
+    // console.log(event);
   };
 
   return (
@@ -136,7 +138,7 @@ const MovieList: FC<IMovieListProps> = ({ MOVIES }) => {
         ref={refA}
         onPageChange={handlePageClick}
         pageRangeDisplayed={5}
-        pageCount={pageCount}
+        pageCount={/*pageCount*/ 40}
         previousLabel="<"
         className="paginateClass"
         activeClassName="active"
