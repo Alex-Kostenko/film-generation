@@ -52,7 +52,7 @@ export const Root = styled.div<StyleProps>`
       }
       & ${(props) => props.colorStyle} {
         padding: 8px 16px;
-        border: 1px solid ${PALETTE.crimson};
+        border: 1px solid ${PALETTE.crimson.middle};
         border-radius: 6px;
       }
     }
@@ -64,7 +64,7 @@ export const Root = styled.div<StyleProps>`
   }
 
   & .active {
-    border: 1px solid ${PALETTE.crimson};
+    border: 1px solid ${PALETTE.crimson.middle};
     border-radius: 6px;
   }
   & .reload {
@@ -73,7 +73,7 @@ export const Root = styled.div<StyleProps>`
     transition: all 1s ease-in-out;
     cursor: pointer;
     & path {
-      fill: ${PALETTE.crimson} !important;
+      fill: ${PALETTE.crimson.middle} !important;
     }
   }
 `;
