@@ -28,7 +28,7 @@ export const WrapperSvg = styled.div`
     pointer-events: all;
     transition: all 0.3s;
     &:hover {
-      fill: ${PALETTE.crimson};
+      fill: ${PALETTE.crimson.middle};
     }
   }
 `;

@@ -14,7 +14,7 @@ export const Line = styled.div`
   width: 360px;
   height: 2px;
   margin: 20px auto;
-  background-color: ${PALETTE.crimsonLite};
+  background-color: ${PALETTE.crimson.lite};
 `;
 
 export const TagComponent = styled(Tag)`

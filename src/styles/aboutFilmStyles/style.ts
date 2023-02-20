@@ -17,7 +17,7 @@ export const Title = styled.h1`
   margin: 0 auto;
   padding-top: 15px;
   font-size: 25px;
-  color: ${PALETTE.crimson};
+  color: ${PALETTE.crimson.middle};
 `;
 
 export const AboutFilms = styled.p`
@@ -60,6 +60,6 @@ export const Link = styled.a`
   width: fit-content;
   margin: 10px 0;
   cursor: pointer;
-  color: ${PALETTE.crimson};
+  color: ${PALETTE.crimson.middle};
   text-decoration: none;
 `;

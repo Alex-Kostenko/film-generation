@@ -7,12 +7,12 @@ export const Img = styled(Image)`
   position: absolute;
   left: 60px;
   top: 20px;
-  z-index: 9999;
+  z-index: 50;
   font-size: 16px;
   background: transparent;
   cursor: pointer;
   border: none;
-  stroke: ${PALETTE.crimson}
+  stroke: ${PALETTE.crimson.middle}
   transition: 0.4s;
   -webkit-transition: 0.4s;
 

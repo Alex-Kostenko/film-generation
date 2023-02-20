@@ -8,6 +8,14 @@ const queryMovie = {
       return res.data;
     } catch (error) {}
   },
+
+  async getPopularMovie() {
+    try {
+      const res = await api.get('/movies/last-popular?moviesAmount=5');
+
+      return res.data;
+    } catch (error) {}
+  },
 };
 
 export default queryMovie;
