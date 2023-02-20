@@ -1,7 +1,10 @@
+import { PALETTE } from '@/palette';
 import { MovieCard, Tag } from 'alex-unicode';
 import styled from 'styled-components';
 
-import { PALETTE } from '@/palette';
+interface StyleProps {
+  colorStyle?: string;
+}
 
 export const SearchCriteria = styled.div`
   display: flex;
@@ -24,7 +27,7 @@ export const TagComponent = styled(Tag)`
 export const CardComponent = styled(MovieCard)`
   margin: 30px 0;
 `;
-export const Root = styled.div`
+export const Root = styled.div<StyleProps>`
   & .paginateClass {
     display: flex;
     position: relative;
@@ -46,7 +49,7 @@ export const Root = styled.div`
         align-items: center;
         padding: 8px 8px;
       }
-      & a[arial-label='Page 5'] {
+      & ${(props) => props.colorStyle} {
         background-color: red;
       }
     }
@@ -57,8 +60,6 @@ export const Root = styled.div`
     }
   }
 
-  & .liItem {
-  }
   & .active {
     border: 1px solid ${PALETTE.crimson};
     border-radius: 6px;

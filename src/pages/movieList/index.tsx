@@ -27,33 +27,33 @@ const MovieList: FC<IMovieListProps> = ({ MOVIES }) => {
     router.push(`/aboutFilm/${id}`);
   };
 
-  useEffect(() => {
-    if (document) {
-      const a: any = document.getElementsByTagName('li');
-      var arr = [].slice.call(a);
+  const [styless, setStyless] = useState(`a[aria-label='Page -1']`);
+  // useEffect(() => {
+  //   if (document) {
+  //     const a: any = document.getElementsByTagName('li');
+  //     var arr = [].slice.call(a);
 
-      const b = arr.map((item: HTMLElement, i: number) => {
-        if (i >= 3 && i <= 6) {
-          item.style.background = 'yellow';
-          item.style.color = 'green';
-          const b = item.children;
+  //     const b = arr.map((item: HTMLElement, i: number) => {
+  //       if (i >= 3 && i <= 6) {
+  //         item.style.background = 'yellow';
+  //         item.style.color = 'green';
+  //         const b = item.children;
 
-          var arr1 = [].slice.call(b);
-          arr1.map((item: HTMLElement) => {
-            item.style.background = 'black';
-            item.style.color = 'green';
-          });
-        }
-      });
-    }
-  }, []);
+  //         var arr1 = [].slice.call(b);
+  //         arr1.map((item: HTMLElement) => {
+  //           item.style.background = 'black';
+  //           item.style.color = 'green';
+  //         });
+  //       }
+  //     });
+  //   }
+  // }, []);
 
-  const paginRef = useRef(null);
   const itemsPerPage = 4;
   const [currentPage, setCurrentPage] = useState(0);
   const [pageCount, setPageCount] = useState(40);
   const [content, setContent] = useState(0);
-  // paginRef.current.state.selected.style.background = 'red';
+  const [arrowUpload, setArrowUpload] = useState(false);
   // useEffect(() => {
   //   (async () => {
   //     const allFilters = await queryMovie.pagination(4, 1, {
@@ -78,15 +78,28 @@ const MovieList: FC<IMovieListProps> = ({ MOVIES }) => {
     })();
   }, []);
 
+  useEffect(() => {
+    console.log('Первий рендер', currentPage);
+
+    if (arrowUpload) {
+      if (styless === `a[aria-label='Page -1']`) {
+        setStyless(`a[aria-label='Page ${currentPage}']`);
+      } else {
+        setStyless(styless + `,a[aria-label='Page ${currentPage}']`);
+      }
+    } else {
+      setStyless(`a[aria-label='Page -1']`);
+    }
+  }, [currentPage]);
+
   const handlePageClick = async (event: any) => {
+    setArrowUpload(false);
     setCurrentPage(event.selected);
     console.log(event);
   };
 
-  const handleLabelBuilder = (label: any) => {};
-
   return (
-    <Root>
+    <Root colorStyle={styless}>
       <BackBtn />
       <div>
         <SearchCriteria>
@@ -112,7 +125,9 @@ const MovieList: FC<IMovieListProps> = ({ MOVIES }) => {
         <Reload
           className="reload"
           aria-label="Reload"
-          onClick={() => setCurrentPage(currentPage + 1)}
+          onClick={() => {
+            setCurrentPage(currentPage + 1), setArrowUpload(true);
+          }}
         />
       </WrapperReload>
 
@@ -128,8 +143,6 @@ const MovieList: FC<IMovieListProps> = ({ MOVIES }) => {
         activeClassName="active"
         containerClassName="container"
         forcePage={currentPage}
-        breakClassName={'liItem'}
-        ariaLabelBuilder={handleLabelBuilder}
       />
     </Root>
   );
