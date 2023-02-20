@@ -16,6 +16,17 @@ const queryMovie = {
       return res.data;
     } catch (error) {}
   },
+
+  async pagination(pageSize: number, page: number, body: any) {
+    try {
+      const res = await api.post(
+        `/movies/pagination?pageSize=${pageSize}&page=${page}`,
+        body,
+      );
+
+      return res.data;
+    } catch (error) {}
+  },
 };
 
 export default queryMovie;
