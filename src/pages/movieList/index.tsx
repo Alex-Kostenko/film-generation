@@ -10,13 +10,14 @@ import {
   CardComponent,
   TagComponent,
   Line,
-  WrapperReload,
+  Text,
   Root,
+  ArrowUploadWrapper,
 } from '@/styles/movieListStyles/style';
 
 import Reload from '../../../public/reload.svg';
 
-// import queryMovie from '@/Services/queryMovies';
+import queryMovie from '@/Services/queryMovies';
 
 const MovieList: FC<IMovieListProps> = ({ MOVIES }) => {
   const router = useRouter();
@@ -26,58 +27,30 @@ const MovieList: FC<IMovieListProps> = ({ MOVIES }) => {
     router.push(`/aboutFilm/${id}`);
   };
 
+  const reloadRef: any = useRef(null);
+
   // eslint-disable-next-line
   const [styless, setStyless] = useState(`a[aria-label='Page -1']`);
 
-  // useEffect(() => {
-  //   if (document) {
-  //     const a: any = document.getElementsByTagName('li');
-  //     var arr = [].slice.call(a);
-
-  //     const b = arr.map((item: HTMLElement, i: number) => {
-  //       if (i >= 3 && i <= 6) {
-  //         item.style.background = 'yellow';
-  //         item.style.color = 'green';
-  //         const b = item.children;
-
-  //         var arr1 = [].slice.call(b);
-  //         arr1.map((item: HTMLElement) => {
-  //           item.style.background = 'black';
-  //           item.style.color = 'green';
-  //         });
-  //       }
-  //     });
-  //   }
-  // }, []);
-
-  // const itemsPerPage = 4;
+  const itemsPerPage = 4;
   const [currentPage, setCurrentPage] = useState(0);
-  // const [pageCount, setPageCount] = useState(40);
-  // const [content, setContent] = useState(0);
+  const [count, setCount] = useState(40);
+  const [content, setContent] = useState([]);
   const [arrowUpload, setArrowUpload] = useState(false);
-  // useEffect(() => {
-  //   (async () => {
-  //     const allFilters = await queryMovie.pagination(4, 1, {
-  //       filters: [],
-  //     });
-  //     setPageCount(allFilters.total_pages);
-  //     setContent(allFilters);
-  //     // console.log(allFilters);
-  //   })();
-  // }, [, /*itemOffset*/ currentPage]);
-  const refA = useRef(null);
-  // useEffect(() => {
-  //   (async () => {
-  //     const allFilters = await queryMovie.pagination(4, 1, {
-  //       filters: [],
-  //     });
-  //     // console.log(allFilters);
-  //   })();
-  //   (async () => {
-  //     const all = await queryMovie.getAllFilter();
-  //     // console.log(all);
-  //   })();
-  // }, []);
+
+  useEffect(() => {
+    (async () => {
+      const allFilters = await queryMovie.pagination(
+        itemsPerPage,
+        currentPage + 1,
+        {
+          filters: [],
+        },
+      );
+      setCount(allFilters.data.total_pages);
+      setContent(allFilters.data.results);
+    })();
+  }, [currentPage]);
 
   useEffect(() => {
     if (arrowUpload) {
@@ -96,8 +69,9 @@ const MovieList: FC<IMovieListProps> = ({ MOVIES }) => {
   const handlePageClick = async (event: any) => {
     setArrowUpload(false);
     setCurrentPage(event.selected);
-    // console.log(event);
   };
+
+  const [counter, setCounter] = useState(360);
 
   return (
     <Root colorStyle={styless}>
@@ -108,37 +82,45 @@ const MovieList: FC<IMovieListProps> = ({ MOVIES }) => {
           <TagComponent className="tag-large" label={filmByCompany} />
         </SearchCriteria>
       </div>
-      {MOVIES.map((movie: IMovie) => (
+      {content.map((movie: any) => (
         <div key={movie.id}>
           <CardComponent
-            img={movie.img}
-            title={movie.engTitle}
-            subtitle={movie.rusTitle}
+            img={
+              movie.poster_path &&
+              `https://www.themoviedb.org/t/p/w300_and_h450_bestv2${movie.poster_path}`
+            }
+            title={movie.original_title}
+            subtitle={movie.title}
             labels={movie.lables}
-            date={movie.date}
-            description={movie.description}
+            date={movie.release_date}
+            description={movie.overview}
             action={() => redirect(movie.id)}
           />
-          {MOVIES.length === movie.id ? null : <Line />}
+          {content.length === movie.id ? null : <Line />}
         </div>
       ))}
-      <WrapperReload>
-        <Reload
-          className="reload"
-          aria-label="Reload"
-          onClick={() => {
-            setCurrentPage(currentPage + 1), setArrowUpload(true);
-          }}
-        />
-      </WrapperReload>
+      <ArrowUploadWrapper>
+        <div ref={reloadRef}>
+          <Reload
+            className="reload"
+            aria-label="Reload"
+            onClick={() => {
+              reloadRef.current.style.transform = `rotate(${counter}deg)`;
+              reloadRef.current.style.transition = 'all 1s ease-in-out';
+              setCounter(counter + 360);
+              setCurrentPage(currentPage + 1), setArrowUpload(true);
+            }}
+          />
+        </div>
+        <Text>Show More</Text>
+      </ArrowUploadWrapper>
 
       <ReactPaginate
         breakLabel="..."
         nextLabel={'>'}
-        ref={refA}
         onPageChange={handlePageClick}
         pageRangeDisplayed={5}
-        pageCount={/*pageCount*/ 40}
+        pageCount={count}
         previousLabel="<"
         className="paginateClass"
         activeClassName="active"

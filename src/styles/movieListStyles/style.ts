@@ -44,14 +44,16 @@ export const Root = styled.div<StyleProps>`
       font-family: Urbanist;
       font-weight: 700;
       box-sizing: border-box;
-      padding: 5px 5px;
 
       & a {
         align-items: center;
-        padding: 8px 8px;
+        padding: 8px 16px;
+        display: block;
       }
       & ${(props) => props.colorStyle} {
-        background-color: red;
+        padding: 8px 16px;
+        border: 1px solid ${PALETTE.crimson};
+        border-radius: 6px;
       }
     }
     & li:hover {
@@ -68,11 +70,25 @@ export const Root = styled.div<StyleProps>`
   & .reload {
     width: 35px;
     height: 35px;
+    transition: all 1s ease-in-out;
     cursor: pointer;
     & path {
-      fill: pink !important;
+      fill: ${PALETTE.crimson} !important;
     }
   }
 `;
 
-export const WrapperReload = styled.div``;
+export const ArrowUploadWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 1s ease-in-out;
+`;
+
+export const Text = styled.div`
+  font-family: Urbanist;
+  font-weight: 700;
+  font-size: 18px;
+  color: ${PALETTE.white};
+  margin-left: 20px;
+`;
