@@ -14,7 +14,7 @@ import {
   Video,
   Title,
   Link,
-} from './style';
+} from '../../styles/aboutFilmStyles/style';
 
 const AboutFilm: FC<IAboutFilmProps> = ({
   description,

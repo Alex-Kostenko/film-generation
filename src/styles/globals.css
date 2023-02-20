@@ -15,14 +15,3 @@ body {
   overflow-x: hidden;
   font-family: SFProDisplay;
 }
-
-.movie-title {
-  text-align: center;
-  margin-right: 0 !important;
-}
-
-@media (max-width: 750px) {
-  .castom-select__menu {
-    width: 250px !important;
-  }
-}
