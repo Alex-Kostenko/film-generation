@@ -2,7 +2,8 @@
   "main": {
     "genre": "Жанр",
     "studio": "Студия",
-    "search": "Поиск"
+    "search": "Поиск",
+    "go": "К фильму"
   },
 
   "filmPage": {

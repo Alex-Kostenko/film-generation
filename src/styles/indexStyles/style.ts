@@ -116,7 +116,7 @@ export const Select = styled(SelectComponent)``;
 //     pointer-events: all;
 //     transition: all 0.3s;
 //     &:hover {
-//       fill: ${PALETTE.crimson};
+//       fill: ${PALETTE.crimson.middle};
 //     }
 //   }
 // `;
@@ -190,11 +190,12 @@ export const Root = styled.div`
   }
 
   li.slick-active > button::before {
-    color: ${PALETTE.crimson} !important;
+    color: ${PALETTE.crimson.middle} !important;
   }
   .slick-slide img {
     width: 100%;
     height: 450px;
+    object-fit: fill;
     @media (max-width: 1340px) {
       height: 400px;
     }
@@ -286,7 +287,7 @@ export const WrapperRow = styled.div`
   cursor: pointer;
   &:hover {
     & .triangle {
-      fill: ${PALETTE.crimson};
+      fill: ${PALETTE.crimson.middle};
     }
   }
   height: 30px;

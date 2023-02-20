@@ -27,8 +27,20 @@ export const Mask = styled.div`
   z-index: 9;
   left: 0;
   width: 100%;
-  height: 100%;
-  background: linear-gradient(to right, rgb(0, 0, 0, 0.7), rgb(0, 0, 0, 0.1));
+  height: 450px;
+  background: rgb(0, 0, 0, 7%);
+
+  @media (max-width: 1340px) {
+    height: 400px;
+  }
+
+  @media (max-width: 900px) {
+    height: 350px;
+  }
+
+  @media (max-width: 600px) {
+    height: 250px;
+  }
 `;
 
 export const LeftArroww = styled.div`
