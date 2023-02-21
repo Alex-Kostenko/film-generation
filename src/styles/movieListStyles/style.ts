@@ -13,13 +13,13 @@ export const SearchCriteria = styled.div`
   margin: 20px auto;
 `;
 
-export const Line = styled.div`
-  display: block;
-  width: 360px;
-  height: 2px;
-  margin: 20px auto;
-  background-color: ${PALETTE.crimson.lite};
-`;
+// export const Line = styled.div`
+//   display: block;
+//   width: 360px;
+//   height: 2px;
+//   margin: 20px auto;
+//   background-color: ${PALETTE.crimson.lite};
+// `;
 
 export const TagComponent = styled(Tag)`
   margin: 0 10px;
