@@ -1,5 +1,4 @@
 import { useRouter } from 'next/router';
-// import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { FC, useEffect, useRef, useState } from 'react';
 import ReactPaginate from 'react-paginate';
 
@@ -7,13 +6,12 @@ import queryMovie from '@/Services/queryMovies';
 import BackBtn from '@/components/BackBtn';
 import { IMovieListProps } from '@/interfaces';
 import {
+  ArrowUploadWrapper,
   SearchCriteria,
   CardComponent,
   TagComponent,
-  Line,
   Text,
   Root,
-  ArrowUploadWrapper,
 } from '@/styles/movieListStyles/style';
 
 import Reload from '../../../public/reload.svg';
@@ -95,7 +93,6 @@ const MovieList: FC<IMovieListProps> = () => {
             description={movie.overview}
             action={() => redirect(movie.id)}
           />
-          {content.length === movie.id ? null : <Line />}
         </div>
       ))}
       <ArrowUploadWrapper>
