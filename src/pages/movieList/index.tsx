@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
-// import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { FC, useEffect, useRef, useState } from 'react';
+
 import ReactPaginate from 'react-paginate';
 
 import queryMovie from '@/Services/queryMovies';
@@ -17,6 +17,7 @@ import {
 } from '@/styles/movieListStyles/style';
 
 import Reload from '../../../public/reload.svg';
+import classNames from 'classnames';
 
 const MovieList: FC<IMovieListProps> = () => {
   const router = useRouter();
@@ -36,9 +37,11 @@ const MovieList: FC<IMovieListProps> = () => {
   const [count, setCount] = useState(40);
   const [content, setContent] = useState([]);
   const [arrowUpload, setArrowUpload] = useState(false);
+  const [isLoading, setIsloading] = useState(false);
 
   useEffect(() => {
     (async () => {
+      setIsloading(true);
       const allFilters = await queryMovie.pagination(
         itemsPerPage,
         currentPage + 1,
@@ -48,6 +51,7 @@ const MovieList: FC<IMovieListProps> = () => {
       );
       setCount(allFilters.data.total_pages);
       setContent(allFilters.data.results);
+      setIsloading(false);
     })();
   }, [currentPage]);
 
@@ -71,6 +75,8 @@ const MovieList: FC<IMovieListProps> = () => {
   };
 
   const [counter, setCounter] = useState(360);
+
+  console.log(isLoading);
 
   return (
     <Root colorStyle={styless}>
@@ -101,19 +107,21 @@ const MovieList: FC<IMovieListProps> = () => {
       <ArrowUploadWrapper>
         <div ref={reloadRef}>
           <Reload
-            className="reload"
+            className={classNames('reload', {
+              loading: isLoading,
+            })}
             aria-label="Reload"
             onClick={() => {
-              reloadRef.current.style.transform = `rotate(${counter}deg)`;
-              reloadRef.current.style.transition = 'all 1s ease-in-out';
-              setCounter(counter + 360);
+              // reloadRef.current.style.transform = `rotate(${counter}deg)`;
+              // reloadRef.current.style.transition = 'all 1s ease-in-out';
+              // setCounter(counter + 360);
+
               setCurrentPage(currentPage + 1), setArrowUpload(true);
             }}
           />
         </div>
         <Text>Show More</Text>
       </ArrowUploadWrapper>
-
       <ReactPaginate
         breakLabel="..."
         nextLabel={'>'}
