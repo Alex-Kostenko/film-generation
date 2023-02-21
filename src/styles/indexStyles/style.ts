@@ -18,11 +18,11 @@ export const CriteriasContainer = styled.div`
   align-items: center;
 
   & .selectCategory {
-    @media (max-width: 750px) {
+    @media (max-width: 968px) {
       width: 100%;
     }
     & .castom-select__control {
-      @media (max-width: 750px) {
+      @media (max-width: 968px) {
         width: 100% !important;
       }
     }
@@ -31,22 +31,22 @@ export const CriteriasContainer = styled.div`
     & div {
       z-index: 2;
     }
-    @media (max-width: 750px) {
+    @media (max-width: 968px) {
       width: 100%;
     }
     & input {
       width: 180px;
-      @media (max-width: 750px) {
+      @media (max-width: 968px) {
         width: 100%;
       }
     }
 
-    @media (max-width: 750px) {
+    @media (max-width: 968px) {
       /* order: 1; */
     }
   }
 
-  @media (max-width: 750px) {
+  @media (max-width: 968px) {
     /* flex-wrap: wrap;
     column-gap: 20px;
     row-gap: 20px; */
@@ -55,10 +55,25 @@ export const CriteriasContainer = styled.div`
   }
 `;
 export const WrapperBtn = styled.div`
-  width: 100%;
-  @media (max-width: 750px) {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  bottom: 15%;
+  z-index: 2;
+  width: 700px;
+  padding: 40px;
+  background-color: rgb(0, 0, 0, 20%);
+
+  @media (max-width: 968px) {
     display: block;
-    width: 250px;
+    width: 400px;
+    padding: 30px;
+  }
+
+  @media (max-width: 600px) {
+    display: block;
+    width: 300px;
+    padding: 20px;
   }
 `;
 
@@ -69,18 +84,18 @@ export const SearchContainer = styled.div`
   align-items: center;
   & .wrapperInput {
     width: 415px;
-    @media (max-width: 750px) {
+    @media (max-width: 968px) {
       width: 100%;
     }
   }
   & button {
-    @media (max-width: 750px) {
+    @media (max-width: 968px) {
       width: 100%;
     }
     width: 180px;
     margin: 0px;
   }
-  @media (max-width: 750px) {
+  @media (max-width: 968px) {
     flex-direction: column;
     row-gap: 15px;
   }
@@ -90,147 +105,24 @@ export const DatePickerComponent = styled(DatePicker)``;
 
 export const Select = styled(SelectComponent)``;
 
-// export const SiderBar = styled.div`
-//   width: 50px;
-//   height: 100%;
-//   background: ${PALETTE.siderBarGradient};
-//   position: absolute;
-//   z-index: 2;
-//   top: 0%;
-//   left: 0%;
-//   position: fixed;
-//   @media (max-width: 600px) {
-//     display: none;
-//   }
-// `;
-
-// export const WrapperSvg = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   row-gap: 50px;
-//   & .triangle {
-//     margin-top: 40px;
-//     cursor: pointer;
-//     fill: rgba(29, 29, 29, 1);
-//     pointer-events: all;
-//     transition: all 0.3s;
-//     &:hover {
-//       fill: ${PALETTE.crimson.middle};
-//     }
-//   }
-// `;
-
 export const Root = styled.div`
-  & .ellipse_4 {
-    position: absolute;
-    top: 16%;
-    left: -8%;
-    z-index: -1;
-    @media (max-width: 1600px) {
-      top: 25%;
-      scale: 0.7;
-    }
-    @media (max-width: 1340px) {
-      scale: 0.5;
-      left: -12%;
-    }
-    @media (max-width: 1070px) {
-      scale: 0.3;
-      left: -17%;
-    }
-    @media (max-width: 840px) {
-      left: -20%;
-    }
-    @media (max-width: 700px) {
-      left: -25%;
-    }
-    @media (max-width: 600px) {
-      left: -30%;
-    }
-    @media (max-width: 490px) {
-      left: -35%;
-    }
-    @media (max-width: 420px) {
-      left: -45%;
-    }
-  }
-  & .ellipse_4_1 {
-    position: absolute;
-    top: 56%;
-    right: -9%;
-    z-index: -1;
-    transform: rotate(180deg);
-    @media (max-width: 1600px) {
-      scale: 0.7;
-    }
-    @media (max-width: 1340px) {
-      scale: 0.5;
-      right: -13%;
-    }
-    @media (max-width: 1070px) {
-      scale: 0.3;
-      right: -17%;
-    }
-    @media (max-width: 840px) {
-      right: -20%;
-    }
-    @media (max-width: 700px) {
-      right: -25%;
-    }
-    @media (max-width: 600px) {
-      right: -30%;
-    }
-    @media (max-width: 490px) {
-      right: -35%;
-    }
-    @media (max-width: 420px) {
-      right: -45%;
-    }
-  }
+  height: 100vh;
+  overflow: clip;
 
   li.slick-active > button::before {
     color: ${PALETTE.crimson.middle} !important;
   }
+
   .slick-slide img {
     width: 100%;
-    height: 450px;
-    object-fit: fill;
-    @media (max-width: 1340px) {
-      height: 400px;
-    }
-    @media (max-width: 900px) {
-      height: 350px;
-    }
-    @media (max-width: 600px) {
-      height: 250px;
-    }
+    height: 100vh;
+    object-fit: cover;
   }
 
   .slick-dots {
     bottom: 10px;
   }
 `;
-
-// export const ReactSlick = styled.div`
-//   position: relative;
-//   z-index: 2;
-//   display: block;
-//   height: 450px;
-//   width: 100%;
-//   left: 0px;
-//   top: 0px;
-
-//   @media (max-width: 1340px) {
-//     height: 400px;
-//   }
-//   @media (max-width: 900px) {
-//     height: 350px;
-//   }
-//   @media (max-width: 600px) {
-//     height: 250px;
-//   }
-// `;
 
 export const BurgerHeader = styled.div`
   display: none;
@@ -325,7 +217,7 @@ export const NavigationForPages = styled.div`
   max-width: 640px;
   margin: 0 auto;
   margin-top: 50px;
-  @media (max-width: 750px) {
+  @media (max-width: 968px) {
     margin: 0 50px;
     margin-top: 50px;
   }

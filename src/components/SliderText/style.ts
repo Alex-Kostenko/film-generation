@@ -4,13 +4,17 @@ import { PALETTE } from '@/palette';
 
 export const Container = styled.div`
   position: absolute;
-  top: 80px;
+  top: 5%;
   z-index: 20;
+
+  @media (max-width: 600px) {
+    display: none;
+  }
 `;
 
 export const Title = styled.h1`
   max-width: 500px;
-  margin-left: 140px;
+  margin-left: 20%;
   font-size: 30px;
   user-select: none;
   color: ${PALETTE.white};
@@ -18,10 +22,6 @@ export const Title = styled.h1`
     max-width: 400px;
     font-size: 25px;
     margin-left: 120px;
-  }
-
-  @media (max-width: 600px) {
-    display: none;
   }
 `;
 
@@ -33,7 +33,7 @@ export const Description = styled.p`
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  margin: 20px 0 0 140px;
+  margin: 20px 0 0 20%;
   font-size: 16px;
   user-select: none;
   color: ${PALETTE.white};
@@ -43,17 +43,13 @@ export const Description = styled.p`
     font-size: 15px;
     margin-left: 120px;
   }
-
-  @media (max-width: 600px) {
-    display: none;
-  }
 `;
 
 export const Button = styled.button`
   width: 180px;
   height: 38px;
   margin-top: 20px;
-  margin-left: 140px;
+  margin-left: 20%;
   font-family: 'Urbanist';
   background: ${PALETTE.crimson.middle};
   font-weight: 600;
@@ -71,8 +67,10 @@ export const Button = styled.button`
   @media (max-width: 960px) {
     margin-left: 120px;
   }
-
-  @media (max-width: 600px) {
-    display: none;
-  }
 `;
+
+// @media (max-width: 600px) {
+//     display: block;
+//     max-width: 300px;
+//     margin-left: 15%;
+//   }

@@ -6,20 +6,8 @@ export const ReactSlick = styled.div`
   position: relative;
   z-index: 2;
   display: block;
-  height: 450px;
   width: 100%;
-  left: 0px;
-  top: 0px;
-
-  @media (max-width: 1340px) {
-    height: 400px;
-  }
-  @media (max-width: 900px) {
-    height: 350px;
-  }
-  @media (max-width: 600px) {
-    height: 250px;
-  }
+  height: 100vh;
 `;
 
 export const Mask = styled.div`
@@ -27,20 +15,8 @@ export const Mask = styled.div`
   z-index: 9;
   left: 0;
   width: 100%;
-  height: 450px;
+  height: 100vh;
   background: rgb(0, 0, 0, 7%);
-
-  @media (max-width: 1340px) {
-    height: 400px;
-  }
-
-  @media (max-width: 900px) {
-    height: 350px;
-  }
-
-  @media (max-width: 600px) {
-    height: 250px;
-  }
 `;
 
 export const LeftArroww = styled.div`
@@ -56,7 +32,7 @@ export const LeftArroww = styled.div`
   align-items: center;
 
   @media (max-width: 600px) {
-    width: 100px;
+    display: none;
   }
 `;
 
@@ -71,4 +47,8 @@ export const RightArroww = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 600px) {
+    display: none;
+  }
 `;

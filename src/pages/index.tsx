@@ -23,10 +23,10 @@ import {
   SearchContainer,
   ModalContent,
   BurgerHeader,
+  WrapperBtn,
   WrapperRow,
   Select,
   Root,
-  WrapperBtn,
 } from '../styles/indexStyles/style';
 
 const HomePage = () => {
@@ -91,7 +91,7 @@ const HomePage = () => {
               <Button label={t('main.search')} onClick={redirect} />
             </SearchContainer>
           </WrapperBtn>
-          <Image
+          {/* <Image
             className="ellipse_4"
             src={'/ellipse_4.svg'}
             height={400}
@@ -108,7 +108,7 @@ const HomePage = () => {
             alt={'ellipse_4'}
             blurDataURL={'/ellipse_4_1.svg'}
             priority={true}
-          />
+          /> */}
         </NavigationForPages>
       </Root>
       <BurgerHeader>
