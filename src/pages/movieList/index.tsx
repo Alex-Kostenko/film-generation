@@ -49,8 +49,14 @@ const MovieList: FC<IMovieListProps> = () => {
           filters: [],
         },
       );
+
+      if (arrowUpload) {
+        setContent(content.concat(allFilters.data.results));
+      } else {
+        setContent(allFilters.data.results);
+      }
+
       setCount(allFilters.data.total_pages);
-      setContent(allFilters.data.results);
       setIsloading(false);
     })();
   }, [currentPage]);
@@ -112,10 +118,6 @@ const MovieList: FC<IMovieListProps> = () => {
             })}
             aria-label="Reload"
             onClick={() => {
-              // reloadRef.current.style.transform = `rotate(${counter}deg)`;
-              // reloadRef.current.style.transition = 'all 1s ease-in-out';
-              // setCounter(counter + 360);
-
               setCurrentPage(currentPage + 1), setArrowUpload(true);
             }}
           />
