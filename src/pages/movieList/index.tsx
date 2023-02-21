@@ -1,6 +1,6 @@
+import classNames from 'classnames';
 import { useRouter } from 'next/router';
 import { FC, useEffect, useRef, useState } from 'react';
-
 import ReactPaginate from 'react-paginate';
 
 import queryMovie from '@/Services/queryMovies';
@@ -17,7 +17,6 @@ import {
 } from '@/styles/movieListStyles/style';
 
 import Reload from '../../../public/reload.svg';
-import classNames from 'classnames';
 
 const MovieList: FC<IMovieListProps> = () => {
   const router = useRouter();
@@ -79,10 +78,6 @@ const MovieList: FC<IMovieListProps> = () => {
     setArrowUpload(false);
     setCurrentPage(event.selected);
   };
-
-  const [counter, setCounter] = useState(360);
-
-  console.log(isLoading);
 
   return (
     <Root colorStyle={styless}>

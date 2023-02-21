@@ -149,13 +149,13 @@ const HomePage = () => {
 
 export default HomePage;
 
-// export const getStaticProps = async ({ locale }: any) => {
-//   const allFilters = await queryMovie.getAllFilter();
+export const getStaticProps = async ({ locale }: any) => {
+  const allFilters = await queryMovie.getAllFilter();
 
-//   return {
-//     props: {
-//       ...(await serverSideTranslations(locale)),
-//       allFilters: allFilters,
-//     },
-//   };
-// };
+  return {
+    props: {
+      ...(await serverSideTranslations(locale)),
+      allFilters: allFilters,
+    },
+  };
+};
