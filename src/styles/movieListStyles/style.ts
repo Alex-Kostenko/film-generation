@@ -76,6 +76,17 @@ export const Root = styled.div<StyleProps>`
       fill: ${PALETTE.crimson.middle} !important;
     }
   }
+  & .loading {
+    animation: rotation 1s infinite linear;
+  }
+  @keyframes rotation {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(359deg);
+    }
+  }
 `;
 
 export const ArrowUploadWrapper = styled.div`
