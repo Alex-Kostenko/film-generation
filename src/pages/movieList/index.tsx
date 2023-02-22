@@ -1,3 +1,4 @@
+import { SelectComponent } from 'alex-unicode';
 import classNames from 'classnames';
 import { useRouter } from 'next/router';
 import { FC, useEffect, useRef, useState } from 'react';
@@ -5,7 +6,7 @@ import ReactPaginate from 'react-paginate';
 
 import queryMovie from '@/Services/queryMovies';
 import BackBtn from '@/components/BackBtn';
-import { IMovieListProps } from '@/interfaces';
+import { IMovieListProps, IName } from '@/interfaces';
 import {
   ArrowUploadWrapper,
   SearchCriteria,
@@ -14,6 +15,7 @@ import {
   Text,
   Root,
 } from '@/styles/movieListStyles/style';
+import { optionSize } from '@/utils/constants';
 
 import Reload from '../../../public/reload.svg';
 
@@ -21,6 +23,11 @@ const MovieList: FC<IMovieListProps> = () => {
   const router = useRouter();
   const { categories }: any = router.query;
   const arrayCategories = categories.split(',');
+
+  const handleScrollTotop = () => {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  };
 
   const redirect = (id: number) => {
     router.push(`/aboutFilm/${id}`);
@@ -31,52 +38,58 @@ const MovieList: FC<IMovieListProps> = () => {
   // eslint-disable-next-line
   const [styless, setStyless] = useState(`a[aria-label='Page -1']`);
 
-  const itemsPerPage = 4;
-  const [currentPage, setCurrentPage] = useState(0);
-  const [count, setCount] = useState(40);
   const [content, setContent] = useState([]);
-  const [arrowUpload, setArrowUpload] = useState(false);
-  const [isLoading, setIsloading] = useState(false);
+
+  const [query, setQuery] = useState({
+    currentPage: 0,
+    count: 40,
+    arrowUpload: false,
+    isLoading: false,
+    pageSize: 4,
+  });
 
   useEffect(() => {
     (async () => {
-      setIsloading(true);
+      setQuery({ ...query, isLoading: true });
       const allFilters = await queryMovie.pagination(
-        itemsPerPage,
-        currentPage + 1,
+        query.pageSize,
+        query.currentPage + 1,
         {
           filters: [],
         },
       );
 
-      if (arrowUpload) {
+      if (query.arrowUpload) {
         setContent(content.concat(allFilters.data.results));
       } else {
         setContent(allFilters.data.results);
+        handleScrollTotop();
       }
 
-      setCount(allFilters.data.total_pages);
-      setIsloading(false);
+      setQuery({
+        ...query,
+        count: allFilters.data.total_pages,
+        isLoading: false,
+      });
     })();
-  }, [currentPage]);
+  }, [query.currentPage, query.pageSize]);
 
   useEffect(() => {
-    if (arrowUpload) {
+    if (query.arrowUpload) {
       // eslint-disable-next-line
       if (styless === `a[aria-label='Page -1']`) {
-        setStyless(`a[aria-label='Page ${currentPage}']`);
+        setStyless(`a[aria-label='Page ${query.currentPage}']`);
       } else {
-        setStyless(styless + `,a[aria-label='Page ${currentPage}']`);
+        setStyless(styless + `,a[aria-label='Page ${query.currentPage}']`);
       }
     } else {
       // eslint-disable-next-line
       setStyless(`a[aria-label='Page -1']`);
     }
-  }, [currentPage]);
+  }, [query.currentPage]);
 
   const handlePageClick = async (event: any) => {
-    setArrowUpload(false);
-    setCurrentPage(event.selected);
+    setQuery({ ...query, arrowUpload: false, currentPage: event.selected });
   };
 
   return (
@@ -89,6 +102,7 @@ const MovieList: FC<IMovieListProps> = () => {
           ))}
         </SearchCriteria>
       </div>
+
       {content.map((movie: any) => (
         <div key={movie.id}>
           <CardComponent
@@ -109,27 +123,39 @@ const MovieList: FC<IMovieListProps> = () => {
         <div ref={reloadRef}>
           <Reload
             className={classNames('reload', {
-              loading: isLoading,
+              loading: query.isLoading,
             })}
             aria-label="Reload"
             onClick={() => {
-              setCurrentPage(currentPage + 1), setArrowUpload(true);
+              setQuery({
+                ...query,
+                currentPage: query.currentPage + 1,
+                arrowUpload: true,
+              });
             }}
           />
         </div>
         <Text>Show More</Text>
+        <SelectComponent
+          className="selectCategory"
+          placeholder={'PageSize'}
+          onChange={(name: IName) => {
+            setQuery({ ...query, pageSize: Number(name.label) });
+          }}
+          options={optionSize}
+        />
       </ArrowUploadWrapper>
       <ReactPaginate
         breakLabel="..."
         nextLabel={'>'}
         onPageChange={handlePageClick}
         pageRangeDisplayed={5}
-        pageCount={count}
+        pageCount={query.count}
         previousLabel="<"
         className="paginateClass"
         activeClassName="active"
         containerClassName="container"
-        forcePage={currentPage}
+        forcePage={query.currentPage}
       />
     </Root>
   );
