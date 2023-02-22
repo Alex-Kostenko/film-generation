@@ -1,3 +1,4 @@
+import { SelectComponent } from 'alex-unicode';
 import classNames from 'classnames';
 import { useRouter } from 'next/router';
 import { FC, useEffect, useRef, useState } from 'react';
@@ -14,10 +15,9 @@ import {
   Text,
   Root,
 } from '@/styles/movieListStyles/style';
+import { optionSize } from '@/utils/constants';
 
 import Reload from '../../../public/reload.svg';
-import { SelectComponent } from 'alex-unicode';
-import { optionSize } from '@/utils/constants';
 
 const MovieList: FC<IMovieListProps> = () => {
   const router = useRouter();
@@ -36,13 +36,6 @@ const MovieList: FC<IMovieListProps> = () => {
 
   // eslint-disable-next-line
   const [styless, setStyless] = useState(`a[aria-label='Page -1']`);
-
-  // const [currentPage, setCurrentPage] = useState(0);
-  // const [count, setCount] = useState(40);
-  // const [content, setContent] = useState([]);
-  // const [arrowUpload, setArrowUpload] = useState(false);
-  // const [isLoading, setIsloading] = useState(false);
-  // const [pageSize, setPageSize] = useState<number>(4);
 
   const [query, setQuery] = useState({
     currentPage: 0,
