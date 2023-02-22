@@ -37,10 +37,11 @@ const MovieList: FC<IMovieListProps> = () => {
   // eslint-disable-next-line
   const [styless, setStyless] = useState(`a[aria-label='Page -1']`);
 
+  const [content, setContent] = useState([]);
+
   const [query, setQuery] = useState({
     currentPage: 0,
     count: 40,
-    content: [],
     arrowUpload: false,
     isLoading: false,
     pageSize: 4,
@@ -58,22 +59,17 @@ const MovieList: FC<IMovieListProps> = () => {
       );
 
       if (query.arrowUpload) {
-        setQuery({
-          ...query,
-          content: query.content.concat(allFilters.data.results),
-        });
+        setContent(content.concat(allFilters.data.results));
       } else {
-        setQuery({
-          ...query,
-          content: allFilters.data.results,
-        });
+        setContent(allFilters.data.results);
+        handleScrollTotop();
       }
 
-      // setCount(allFilters.data.total_pages);
-      setQuery({ ...query, count: allFilters.data.total_pages });
-      setQuery({ ...query, isLoading: false });
-
-      handleScrollTotop();
+      setQuery({
+        ...query,
+        count: allFilters.data.total_pages,
+        isLoading: false,
+      });
     })();
   }, [query.currentPage, query.pageSize]);
 
@@ -92,8 +88,7 @@ const MovieList: FC<IMovieListProps> = () => {
   }, [query.currentPage]);
 
   const handlePageClick = async (event: any) => {
-    setQuery({ ...query, arrowUpload: false });
-    setQuery({ ...query, currentPage: event.selected });
+    setQuery({ ...query, arrowUpload: false, currentPage: event.selected });
   };
 
   return (
@@ -106,7 +101,7 @@ const MovieList: FC<IMovieListProps> = () => {
         </SearchCriteria>
       </div>
 
-      {query.content.map((movie: any) => (
+      {content.map((movie: any) => (
         <div key={movie.id}>
           <CardComponent
             img={
@@ -130,8 +125,11 @@ const MovieList: FC<IMovieListProps> = () => {
             })}
             aria-label="Reload"
             onClick={() => {
-              setQuery({ ...query, currentPage: query.currentPage + 1 }),
-                setQuery({ ...query, arrowUpload: true });
+              setQuery({
+                ...query,
+                currentPage: query.currentPage + 1,
+                arrowUpload: true,
+              });
             }}
           />
         </div>
