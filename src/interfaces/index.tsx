@@ -39,15 +39,9 @@ export interface IAboutFilmProps {
   filmName: string;
 }
 
-export interface IName {
+export interface ISelectedFilms {
   value: string;
   label: string;
-}
-
-export interface ICriteria {
-  option: any;
-  action: string;
-  name: string;
 }
 
 export interface IMovie {
@@ -83,4 +77,11 @@ export interface IMovieData {
 
 export interface ISliderTextProps {
   movieData: IMovieData;
+}
+
+export interface ISelectOptions {
+  id?: number;
+  name?: string;
+  label?: string;
+  value?: number;
 }
