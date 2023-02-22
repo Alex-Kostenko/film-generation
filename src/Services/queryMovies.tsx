@@ -30,7 +30,7 @@ const queryMovie = {
 
   async getGenres() {
     try {
-      const res = await api.get(`/genres/all`);
+      const res = await api.get('/genres/all');
 
       return res.data;
     } catch (error) {}
