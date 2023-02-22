@@ -19,7 +19,8 @@ import Reload from '../../../public/reload.svg';
 
 const MovieList: FC<IMovieListProps> = () => {
   const router = useRouter();
-  const { category, filmByCompany } = router.query;
+  const { categories }: any = router.query;
+  const arrayCategories = categories.split(',');
 
   const redirect = (id: number) => {
     router.push(`/aboutFilm/${id}`);
@@ -83,8 +84,9 @@ const MovieList: FC<IMovieListProps> = () => {
       <BackBtn />
       <div>
         <SearchCriteria>
-          <TagComponent className="tag-large" label={category} />
-          <TagComponent className="tag-large" label={filmByCompany} />
+          {arrayCategories.map((movie: string) => (
+            <TagComponent className="tag-large" label={movie} />
+          ))}
         </SearchCriteria>
       </div>
       {content.map((movie: any) => (

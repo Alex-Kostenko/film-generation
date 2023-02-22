@@ -3,13 +3,12 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import queryMovie from '@/Services/queryMovies';
 import ModalComponent from '@/components/ModalComponent';
 import SliderSlick from '@/components/Slider';
-import { ICriteria, IName } from '@/interfaces';
-import { optionsStudio, optionsGenre } from '@/utils/constants';
+import { ISelectOptions, ISelectedFilms } from '@/interfaces';
 import useToggle from '@/utils/hooks/useToggle';
 
 import BurgerM from '../../public/burgerM.svg';
@@ -30,34 +29,35 @@ import {
 } from '../styles/indexStyles/style';
 
 const HomePage = () => {
+  const [searchGenre, setSearchGenre] = useState<ISelectedFilms[]>([]);
+  const [isModalOpen, openModal, closeModal] = useToggle();
+  const [genres, setGenres] = useState([]);
   const { t } = useTranslation();
   const router = useRouter();
 
-  const [isModalOpen, openModal, closeModal] = useToggle();
+  useEffect(() => {
+    (async () => {
+      const genres = await queryMovie.getGenres();
+      genres.forEach(
+        (n: ISelectOptions) => (
+          (n.value = n.id), (n.label = n.name), delete n.name, delete n.id
+        ),
+      );
+      setGenres(genres);
+    })();
+  }, []);
 
-  const [searchCriteria, setSearchCriteria] = useState({
-    category: 'horor',
-    filmByCompany: 'netflix',
-  });
-
-  const changeCriteria = (name: IName, criteria: ICriteria) => {
-    setSearchCriteria((prev) => {
-      return { ...prev, [criteria.name]: name.value };
-    });
+  const changeGenre = (selectedFilms: ISelectedFilms[]) => {
+    setSearchGenre(selectedFilms);
   };
 
   const redirect = () => {
     router.push(
-      `/movieList?category=${searchCriteria.category}&filmByCompany=${searchCriteria.filmByCompany}`,
+      `/movieList?categories=${searchGenre.map(
+        (element: ISelectedFilms) => element.label,
+      )}`,
     );
   };
-
-  // useEffect(() => {
-  //   (async () => {
-  //     const companies = await queryMovie.getAllFilter();
-  //     console.log(companies);
-  //   })();
-  // }, []);
 
   return (
     <>
@@ -69,46 +69,18 @@ const HomePage = () => {
               <Select
                 className="selectCategory"
                 placeholder={t('main.genre')}
-                onChange={(name: IName, criteria: ICriteria) =>
-                  changeCriteria(name, criteria)
+                onChange={(selectedFilms: ISelectedFilms[]) =>
+                  changeGenre(selectedFilms)
                 }
-                options={optionsGenre}
-                name="category"
+                options={genres}
               />
               <DatePickerComponent className="datePicker" />
-              <Select
-                className="selectCategory"
-                placeholder={t('main.studio')}
-                onChange={(name: IName, criteria: ICriteria) =>
-                  changeCriteria(name, criteria)
-                }
-                options={optionsStudio}
-                name="filmByCompany"
-              />
             </CriteriasContainer>
             <SearchContainer>
               <Input label={t('main.search')} />
               <Button label={t('main.search')} onClick={redirect} />
             </SearchContainer>
           </WrapperBtn>
-          {/* <Image
-            className="ellipse_4"
-            src={'/ellipse_4.svg'}
-            height={400}
-            width={400}
-            alt={'ellipse_4'}
-            blurDataURL={'/ellipse_4.svg'}
-            priority={true}
-          />
-          <Image
-            className="ellipse_4_1"
-            src={'/ellipse_4_1.svg'}
-            height={400}
-            width={400}
-            alt={'ellipse_4'}
-            blurDataURL={'/ellipse_4_1.svg'}
-            priority={true}
-          /> */}
         </NavigationForPages>
       </Root>
       <BurgerHeader>
