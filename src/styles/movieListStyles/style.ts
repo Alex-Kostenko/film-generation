@@ -102,4 +102,5 @@ export const Text = styled.div`
   font-size: 18px;
   color: ${PALETTE.white};
   margin-left: 20px;
+  margin-right: 20px;
 `;
