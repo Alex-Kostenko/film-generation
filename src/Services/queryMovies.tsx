@@ -51,6 +51,14 @@ const queryMovie = {
       return res.data;
     } catch (error) {}
   },
+
+  async getGenres() {
+    try {
+      const res = await api.get('/genres/all');
+
+      return res.data;
+    } catch (error) {}
+  },
 };
 
 export default queryMovie;

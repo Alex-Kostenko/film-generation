@@ -1,3 +1,4 @@
+import React from 'react';
 interface Production_companies {
   id: number;
   logo_path: string;
@@ -80,16 +81,14 @@ export interface IAboutFilmProps {
   rezkaLink: getrezka;
   microsoftLink: microsoft;
 }
-
 export interface IName {
   value: string;
   label: string;
 }
 
-export interface ICriteria {
-  option: any;
-  action: string;
-  name: string;
+export interface ISelectedFilms {
+  value: string;
+  label: string;
 }
 
 export interface IMovie {
@@ -125,4 +124,15 @@ export interface IMovieData {
 
 export interface ISliderTextProps {
   movieData: IMovieData;
+}
+
+export interface ISelectOptions {
+  id?: number;
+  name?: string;
+  label?: string;
+  value?: number;
+}
+
+export interface IStars {
+  setRating: React.Dispatch<React.SetStateAction<number>>;
 }

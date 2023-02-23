@@ -1836,10 +1836,10 @@ ajv@^8.0.1:
     require-from-string "^2.0.2"
     uri-js "^4.2.2"
 
-alex-unicode@^0.0.30:
-  version "0.0.30"
-  resolved "https://registry.yarnpkg.com/alex-unicode/-/alex-unicode-0.0.30.tgz#ab0cac498bd8ae7e05e7a379abe85d2ea92008f9"
-  integrity sha512-ULfwj6c6hO5JihxkpbrkRoxSsiNfby7Gx4W3EiTiMLTorQRpWKbQHLIRPcyNBR971i9mrEYBbNjP13qejStIRg==
+alex-unicode@^0.0.31:
+  version "0.0.31"
+  resolved "https://registry.yarnpkg.com/alex-unicode/-/alex-unicode-0.0.31.tgz#6574976e88e662bb06dab433f976e9c218b9b7ad"
+  integrity sha512-DjuC9VOvRZ+HqWlBIIhdaoUMTmxBt8v6nd+vc74jJqfTfuHU/P09SfmsJ+zSp+3c0lXN9MEMpJu18KHNi0OahQ==
   dependencies:
     "@babel/plugin-proposal-class-properties" "^7.18.6"
     "@babel/plugin-proposal-nullish-coalescing-operator" "^7.18.6"
@@ -4798,6 +4798,11 @@ react-select@^5.7.0:
     prop-types "^15.6.0"
     react-transition-group "^4.3.0"
     use-isomorphic-layout-effect "^1.1.2"
+
+react-simple-star-rating@^5.1.7:
+  version "5.1.7"
+  resolved "https://registry.yarnpkg.com/react-simple-star-rating/-/react-simple-star-rating-5.1.7.tgz#5406ade8d0e117a654e979ebd702d89389876c29"
+  integrity sha512-NTFkW8W3uwvI82Fv7JW5i7gmDjEZKxJmj+Z9vn+BjYIXT6ILdnU9qnSUP2cWrWN/WAUlue81f9SgM4CQcenltQ==
 
 react-slick@^0.29.0:
   version "0.29.0"
