@@ -33,7 +33,7 @@ export const AboutFilms = styled.p`
   }
 `;
 
-export const Video = styled.video`
+export const FilmImage = styled.div`
   width: 45%;
   @media (max-width: 991px) {
     display: block;

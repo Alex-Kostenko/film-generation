@@ -11,9 +11,9 @@ import {
 } from './style';
 
 const FilmInfo: FC<IFilmInfoProps> = ({
-  voiceActing,
-  director,
-  starring,
+  voteAverage,
+  budget,
+  studio,
   country,
   genre,
   name,
@@ -27,9 +27,9 @@ const FilmInfo: FC<IFilmInfoProps> = ({
     { name: t('filmPage.country'), text: `${country}` },
     { name: t('filmPage.genre'), text: `${genre}` },
     { name: t('filmPage.time'), text: `${time}` },
-    { name: t('filmPage.voiceActing'), text: `${voiceActing}` },
-    { name: t('filmPage.director'), text: `${director}` },
-    { name: t('filmPage.starring'), text: `${starring}` },
+    { name: t('filmPage.studio'), text: `${studio}` },
+    { name: t('filmPage.budget'), text: `${budget}` },
+    { name: t('filmPage.voteAverage'), text: `${voteAverage}` },
   ];
   return (
     <DescriptionContainer>
