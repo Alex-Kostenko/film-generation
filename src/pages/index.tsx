@@ -8,6 +8,7 @@ import React, { useEffect, useState } from 'react';
 import queryMovie from '@/Services/queryMovies';
 import ModalComponent from '@/components/ModalComponent';
 import SliderSlick from '@/components/Slider';
+import Stars from '@/components/Stars';
 import { ISelectOptions, ISelectedFilms } from '@/interfaces';
 import useToggle from '@/utils/hooks/useToggle';
 
@@ -31,6 +32,7 @@ import {
 const HomePage = () => {
   const [searchGenre, setSearchGenre] = useState<ISelectedFilms[]>([]);
   const [isModalOpen, openModal, closeModal] = useToggle();
+  const [rating, setRating] = useState(0);
   const [genres, setGenres] = useState([]);
   const { t } = useTranslation();
   const router = useRouter();
@@ -55,7 +57,7 @@ const HomePage = () => {
     router.push(
       `/movieList?categories=${searchGenre.map(
         (element: ISelectedFilms) => element.label,
-      )}`,
+      )}&rating=${rating}`,
     );
   };
 
@@ -75,6 +77,7 @@ const HomePage = () => {
                 options={genres}
               />
               <DatePickerComponent className="datePicker" />
+              <Stars setRating={setRating} />
             </CriteriasContainer>
             <SearchContainer>
               <Input label={t('main.search')} />

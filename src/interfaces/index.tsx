@@ -1,3 +1,5 @@
+import React from 'react';
+
 export interface IFilmInfoProps {
   voiceActing: string;
   director: string;
@@ -37,6 +39,10 @@ export interface IAboutFilmProps {
   description: IDescription;
   dataVideo: IVideo;
   filmName: string;
+}
+export interface IName {
+  value: string;
+  label: string;
 }
 
 export interface ISelectedFilms {
@@ -84,4 +90,8 @@ export interface ISelectOptions {
   name?: string;
   label?: string;
   value?: number;
+}
+
+export interface IStars {
+  setRating: React.Dispatch<React.SetStateAction<number>>;
 }

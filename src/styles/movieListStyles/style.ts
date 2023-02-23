@@ -11,18 +11,11 @@ export const SearchCriteria = styled.div`
   display: flex;
   width: fit-content;
   margin: 20px auto;
+  flex-wrap: wrap;
 `;
 
-// export const Line = styled.div`
-//   display: block;
-//   width: 360px;
-//   height: 2px;
-//   margin: 20px auto;
-//   background-color: ${PALETTE.crimson.lite};
-// `;
-
 export const TagComponent = styled(Tag)`
-  margin: 0 10px;
+  margin: 5px 10px;
 `;
 
 export const CardComponent = styled(MovieCard)`
