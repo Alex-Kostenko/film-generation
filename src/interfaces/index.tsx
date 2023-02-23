@@ -6,7 +6,7 @@ interface Production_companies {
   origin_country: string;
 }
 
-interface MovieEntity {
+export interface MovieEntity {
   id: number;
   default: 34234;
   adult: boolean;
@@ -64,22 +64,9 @@ export interface IVideo {
   src: string;
 }
 
-interface getrezka {
-  link: string;
-  site: string;
-}
-
-interface microsoft {
-  link: string;
-  site: string;
-}
-
 export interface IAboutFilmProps {
-  description: IDescription;
-  dataVideo: IVideo;
-  resultFilmID: MovieEntity;
-  rezkaLink: getrezka;
-  microsoftLink: microsoft;
+  movie: MovieEntity;
+  id: string;
 }
 export interface IName {
   value: string;

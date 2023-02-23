@@ -20,10 +20,8 @@ export const DescriptionItem = styled.div`
   }
 `;
 
-export const DescriptionName = styled.span`
-  display: block;
-  width: 100px;
-  margin-right: 50px;
+export const DescriptionName = styled.div`
+  margin-right: 20px;
   font-size: 15px;
   letter-spacing: 1px;
   color: ${PALETTE.beige};
@@ -34,7 +32,7 @@ export const DescriptionName = styled.span`
   }
 `;
 
-export const DescriptionText = styled.span`
+export const DescriptionText = styled.div`
   letter-spacing: 1px;
   font-size: 16px;
   color: ${PALETTE.white};
