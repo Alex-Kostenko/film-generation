@@ -12,9 +12,9 @@
     "country": "country",
     "genre": "genre",
     "time": "time",
-    "voiceActing": "voice acting",
-    "director": "director",
-    "starring": "starring",
+    "studio": "name studio",
+    "budget": "budget",
+    "voteAverage": "vote average",
     "links": "Links to watch this movie"
   }
 }

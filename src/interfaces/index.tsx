@@ -1,13 +1,42 @@
 import React from 'react';
+interface Production_companies {
+  id: number;
+  logo_path: string;
+  name: string;
+  origin_country: string;
+}
+
+interface MovieEntity {
+  id: number;
+  default: 34234;
+  adult: boolean;
+  backdrop_path: string;
+  budget: number;
+  genre_ids: number[];
+  imdb_id: string;
+  original_language: string;
+  original_title: string;
+  overview: string;
+  popularity: number;
+  poster_path: string;
+  production_companies: Production_companies[];
+  release_date: string;
+  runtime: number;
+  status: string;
+  title: string;
+  video: boolean;
+  vote_average: number;
+  vote_count: number;
+}
 
 export interface IFilmInfoProps {
-  voiceActing: string;
-  director: string;
-  starring: string;
+  voteAverage: number;
+  budget: number;
+  studio: string;
   country: string;
   name: string;
   year: string;
-  genre: string;
+  genre: number[];
   time: string;
 }
 
@@ -35,10 +64,22 @@ export interface IVideo {
   src: string;
 }
 
+interface getrezka {
+  link: string;
+  site: string;
+}
+
+interface microsoft {
+  link: string;
+  site: string;
+}
+
 export interface IAboutFilmProps {
   description: IDescription;
   dataVideo: IVideo;
-  filmName: string;
+  resultFilmID: MovieEntity;
+  rezkaLink: getrezka;
+  microsoftLink: microsoft;
 }
 export interface IName {
   value: string;
