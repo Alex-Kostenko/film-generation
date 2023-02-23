@@ -40,11 +40,13 @@ const HomePage = () => {
   useEffect(() => {
     (async () => {
       const genres = await queryMovie.getGenres();
+
       genres.forEach(
         (n: ISelectOptions) => (
           (n.value = n.id), (n.label = n.name), delete n.name, delete n.id
         ),
       );
+
       setGenres(genres);
     })();
   }, []);
