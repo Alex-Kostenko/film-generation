@@ -1,15 +1,11 @@
-import { Button, Input } from 'alex-unicode';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
-import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import queryMovie from '@/Services/queryMovies';
 import ModalComponent from '@/components/ModalComponent';
+import SearchPanel from '@/components/SearchPanel';
 import SliderSlick from '@/components/Slider';
-import Stars from '@/components/Stars';
-import { ISelectOptions, ISelectedFilms } from '@/interfaces';
 import useToggle from '@/utils/hooks/useToggle';
 
 import BurgerM from '../../public/burgerM.svg';
@@ -17,76 +13,23 @@ import CinemaLine from '../../public/cinemaLine.svg';
 import Home from '../../public/home.svg';
 import Star from '../../public/star.svg';
 import {
-  DatePickerComponent,
-  NavigationForPages,
-  CriteriasContainer,
-  SearchContainer,
   ModalContent,
   BurgerHeader,
-  WrapperBtn,
+  PanelWrapper,
   WrapperRow,
-  Select,
   Root,
 } from '../styles/indexStyles/style';
 
 const HomePage = () => {
-  const [searchGenre, setSearchGenre] = useState<ISelectedFilms[]>([]);
   const [isModalOpen, openModal, closeModal] = useToggle();
-  const [rating, setRating] = useState(0.5);
-  const [genres, setGenres] = useState([]);
-  const { t } = useTranslation();
-  const router = useRouter();
-
-  useEffect(() => {
-    (async () => {
-      const genres = await queryMovie.getGenres();
-
-      genres.forEach(
-        (n: ISelectOptions) => (
-          (n.value = n.id), (n.label = n.name), delete n.name, delete n.id
-        ),
-      );
-
-      setGenres(genres);
-    })();
-  }, []);
-
-  const changeGenre = (selectedFilms: ISelectedFilms[]) => {
-    setSearchGenre(selectedFilms);
-  };
-
-  const redirect = () => {
-    router.push(
-      `/movieList?categories=${searchGenre.map(
-        (element: ISelectedFilms) => element.label,
-      )}&rating=${rating}`,
-    );
-  };
 
   return (
     <>
       <Root>
         <SliderSlick />
-        <NavigationForPages>
-          <WrapperBtn>
-            <CriteriasContainer>
-              <Select
-                className="selectCategory"
-                placeholder={t('main.genre')}
-                onChange={(selectedFilms: ISelectedFilms[]) =>
-                  changeGenre(selectedFilms)
-                }
-                options={genres}
-              />
-              <DatePickerComponent className="datePicker" />
-              <Stars setRating={setRating} />
-            </CriteriasContainer>
-            <SearchContainer>
-              <Input label={t('main.search')} />
-              <Button label={t('main.search')} onClick={redirect} />
-            </SearchContainer>
-          </WrapperBtn>
-        </NavigationForPages>
+        <PanelWrapper>
+          <SearchPanel />
+        </PanelWrapper>
       </Root>
       <BurgerHeader>
         <Image

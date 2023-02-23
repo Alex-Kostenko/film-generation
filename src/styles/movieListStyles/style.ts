@@ -14,6 +14,24 @@ export const SearchCriteria = styled.div`
   flex-wrap: wrap;
 `;
 
+export const PanelWrapper = styled.div`
+  width: 700px;
+  margin: 0 auto;
+  padding: 40px;
+
+  @media (max-width: 968px) {
+    display: block;
+    width: 400px;
+    padding: 30px;
+  }
+
+  @media (max-width: 600px) {
+    display: block;
+    width: 300px;
+    padding: 20px;
+  }
+`;
+
 export const TagComponent = styled(Tag)`
   margin: 5px 10px;
 `;
