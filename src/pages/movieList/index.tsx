@@ -26,6 +26,7 @@ const MovieList: FC<IMovieListProps> = () => {
   const router = useRouter();
   const { categories, rating }: any = router.query;
   const arrayCategories = categories && categories.split(',');
+
   const reloadRef: any = useRef(null);
   // eslint-disable-next-line
   const [styless, setStyless] = useState(`a[aria-label='Page -1']`);
@@ -54,14 +55,8 @@ const MovieList: FC<IMovieListProps> = () => {
         query.pageSize,
         query.currentPage + 1,
         {
-          filters: [
-            {
-              to: 10,
-              from: rating * 2,
-              field: 'vote_average',
-              genres_ids: [],
-            },
-          ],
+          genres_ids: [],
+          voteAvarageFrom: Number(rating),
         },
       );
 
@@ -105,7 +100,7 @@ const MovieList: FC<IMovieListProps> = () => {
         <SearchCriteria>
           <TagComponent
             className="tag-large"
-            label={`рейтинг не меньше ${String(rating * 2)}`}
+            label={`рейтинг не меньше ${rating}`}
           />
           {categories &&
             arrayCategories.map((movie: string) => (

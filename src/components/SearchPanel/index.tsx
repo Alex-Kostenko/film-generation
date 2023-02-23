@@ -28,8 +28,11 @@ const SearchPanel = () => {
       const genres = await queryMovie.getGenres();
 
       genres.forEach(
-        (n: ISelectOptions) => (
-          (n.value = n.id), (n.label = n.name), delete n.name, delete n.id
+        (option: ISelectOptions) => (
+          (option.value = option.id),
+          (option.label = option.name),
+          delete option.name,
+          delete option.id
         ),
       );
 
@@ -45,7 +48,7 @@ const SearchPanel = () => {
     router.push(
       `/movieList?categories=${searchGenre.map(
         (element: ISelectedFilms) => element.label,
-      )}&rating=${rating}`,
+      )}&rating=${rating * 2}`,
     );
   };
   return (
