@@ -21,8 +21,9 @@ import Reload from '../../../public/reload.svg';
 
 const MovieList: FC<IMovieListProps> = () => {
   const router = useRouter();
-  const { categories }: any = router.query;
-  const arrayCategories = categories.split(',');
+  const { categories, rating }: any = router.query;
+
+  const arrayCategories = categories && categories.split(',');
 
   const handleScrollTotop = () => {
     document.body.scrollTop = 0;
@@ -97,9 +98,14 @@ const MovieList: FC<IMovieListProps> = () => {
       <BackBtn />
       <div>
         <SearchCriteria>
-          {arrayCategories.map((movie: string) => (
-            <TagComponent className="tag-large" label={movie} />
-          ))}
+          <TagComponent
+            className="tag-large"
+            label={`рейтинг не меньше ${String(rating * 2)}`}
+          />
+          {categories &&
+            arrayCategories.map((movie: string) => (
+              <TagComponent className="tag-large" label={movie} />
+            ))}
         </SearchCriteria>
       </div>
 
