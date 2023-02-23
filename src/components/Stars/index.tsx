@@ -12,6 +12,9 @@ const Stars: FC<IStars> = ({ setRating }) => {
   return (
     <div className="App">
       <Rating
+        allowFraction={true}
+        transition={true}
+        initialValue={0.5}
         size={31}
         fillColor={PALETTE.crimson.middle}
         onClick={handleRating}

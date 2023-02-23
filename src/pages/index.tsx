@@ -32,7 +32,7 @@ import {
 const HomePage = () => {
   const [searchGenre, setSearchGenre] = useState<ISelectedFilms[]>([]);
   const [isModalOpen, openModal, closeModal] = useToggle();
-  const [rating, setRating] = useState(0);
+  const [rating, setRating] = useState(0.5);
   const [genres, setGenres] = useState([]);
   const { t } = useTranslation();
   const router = useRouter();

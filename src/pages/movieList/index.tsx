@@ -51,7 +51,14 @@ const MovieList: FC<IMovieListProps> = () => {
         query.pageSize,
         query.currentPage + 1,
         {
-          filters: [],
+          filters: [
+            {
+              to: 10,
+              from: rating * 2,
+              field: 'vote_average',
+              genres_ids: [],
+            },
+          ],
         },
       );
 
@@ -68,7 +75,7 @@ const MovieList: FC<IMovieListProps> = () => {
         isLoading: false,
       });
     })();
-  }, [query.currentPage, query.pageSize]);
+  }, [query.currentPage, query.pageSize, rating]);
 
   useEffect(() => {
     if (query.arrowUpload) {
@@ -93,12 +100,10 @@ const MovieList: FC<IMovieListProps> = () => {
       <BackBtn />
       <div>
         <SearchCriteria>
-          {rating !== '0' && (
-            <TagComponent
-              className="tag-large"
-              label={`рейтинг не меньше ${String(rating * 2)}`}
-            />
-          )}
+          <TagComponent
+            className="tag-large"
+            label={`рейтинг не меньше ${String(rating * 2)}`}
+          />
           {categories &&
             arrayCategories.map((movie: string) => (
               <TagComponent className="tag-large" label={movie} />
