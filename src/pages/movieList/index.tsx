@@ -1,16 +1,19 @@
 import { SelectComponent } from 'alex-unicode';
 import classNames from 'classnames';
 import { useRouter } from 'next/router';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { FC, useEffect, useRef, useState } from 'react';
 import ReactPaginate from 'react-paginate';
 
 import queryMovie from '@/Services/queryMovies';
 import BackBtn from '@/components/BackBtn';
+import SearchPanel from '@/components/SearchPanel';
 import { IMovieListProps, IName } from '@/interfaces';
 import {
   ArrowUploadWrapper,
   SearchCriteria,
   CardComponent,
+  PanelWrapper,
   TagComponent,
   Text,
   Root,
@@ -110,7 +113,9 @@ const MovieList: FC<IMovieListProps> = () => {
             ))}
         </SearchCriteria>
       </div>
-
+      <PanelWrapper>
+        <SearchPanel />
+      </PanelWrapper>
       {content.map((movie: any) => (
         <div key={movie.id}>
           <CardComponent
@@ -167,6 +172,17 @@ const MovieList: FC<IMovieListProps> = () => {
       />
     </Root>
   );
+};
+
+export const getStaticProps = async ({ locale }: any) => {
+  const allFilters = await queryMovie.getAllFilter();
+
+  return {
+    props: {
+      ...(await serverSideTranslations(locale)),
+      allFilters: allFilters,
+    },
+  };
 };
 
 export default MovieList;
