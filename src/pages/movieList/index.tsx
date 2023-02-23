@@ -22,8 +22,18 @@ import Reload from '../../../public/reload.svg';
 const MovieList: FC<IMovieListProps> = () => {
   const router = useRouter();
   const { categories, rating }: any = router.query;
-
   const arrayCategories = categories && categories.split(',');
+  const reloadRef: any = useRef(null);
+  // eslint-disable-next-line
+  const [styless, setStyless] = useState(`a[aria-label='Page -1']`);
+  const [content, setContent] = useState([]);
+  const [query, setQuery] = useState({
+    currentPage: 0,
+    count: 40,
+    arrowUpload: false,
+    isLoading: false,
+    pageSize: 4,
+  });
 
   const handleScrollTotop = () => {
     document.body.scrollTop = 0;
@@ -33,21 +43,6 @@ const MovieList: FC<IMovieListProps> = () => {
   const redirect = (id: number) => {
     router.push(`/aboutFilm/${id}`);
   };
-
-  const reloadRef: any = useRef(null);
-
-  // eslint-disable-next-line
-  const [styless, setStyless] = useState(`a[aria-label='Page -1']`);
-
-  const [content, setContent] = useState([]);
-
-  const [query, setQuery] = useState({
-    currentPage: 0,
-    count: 40,
-    arrowUpload: false,
-    isLoading: false,
-    pageSize: 4,
-  });
 
   useEffect(() => {
     (async () => {
@@ -98,10 +93,12 @@ const MovieList: FC<IMovieListProps> = () => {
       <BackBtn />
       <div>
         <SearchCriteria>
-          <TagComponent
-            className="tag-large"
-            label={`рейтинг не меньше ${String(rating * 2)}`}
-          />
+          {rating !== '0' && (
+            <TagComponent
+              className="tag-large"
+              label={`рейтинг не меньше ${String(rating * 2)}`}
+            />
+          )}
           {categories &&
             arrayCategories.map((movie: string) => (
               <TagComponent className="tag-large" label={movie} />

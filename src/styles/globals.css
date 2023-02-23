@@ -14,3 +14,17 @@ body {
   overflow-x: hidden;
   font-family: SFProDisplay;
 }
+
+body::-webkit-scrollbar {
+  width: 5px;
+}
+
+body::-webkit-scrollbar-track {
+  background: #0d0d0d;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #f33f3f;
+  border-radius: 20px;
+  border: 3px solid #f33f3f;
+}
