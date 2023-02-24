@@ -153,6 +153,8 @@ const MovieList: FC<IMovieListProps> = () => {
             setQuery({ ...query, pageSize: Number(name.label) });
           }}
           options={optionSize}
+          multi={false}
+          closeMenu={true}
         />
       </ArrowUploadWrapper>
       <ReactPaginate
