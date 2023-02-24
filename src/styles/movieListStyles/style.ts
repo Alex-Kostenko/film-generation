@@ -38,6 +38,14 @@ export const TagComponent = styled(Tag)`
 
 export const CardComponent = styled(MovieCard)`
   margin: 30px 0;
+  & .movie-title_rus {
+    font-weight: 500;
+  }
+  & .movie-text {
+    font-family: 'Roboto';
+    font-weight: 400;
+    letter-spacing: 1px;
+  }
 `;
 export const Root = styled.div<StyleProps>`
   & .paginateClass {

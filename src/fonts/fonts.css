@@ -23,8 +23,16 @@
 }
 
 @font-face {
-  font-family: 'Noah';
-  src: local('Noah'), url('./Noah/Noah.ttf') format('truetype');
+  font-family: 'Roboto';
+  src: local('Roboto-Regular'),
+    url('./Roboto/Roboto-Regular.ttf') format('truetype');
   font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Roboto';
+  src: local('Roboto-Medium'),
+    url('./Roboto/Roboto-Medium.ttf') format('truetype');
+  font-weight: 500;
   font-style: normal;
 }
