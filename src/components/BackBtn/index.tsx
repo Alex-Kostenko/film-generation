@@ -1,16 +1,14 @@
-import { useRouter } from 'next/router';
+import { FC } from 'react';
+
+import { IBackBtn } from '@/interfaces';
 
 import { Img } from './style';
 
-const BackBtn = () => {
-  const router = useRouter();
-  const redirectBack = () => {
-    router.back();
-  };
+const BackBtn: FC<IBackBtn> = ({ onClick }) => {
   return (
     <>
       <Img
-        onClick={redirectBack}
+        onClick={onClick}
         src={'/arrowBack.svg'}
         width={'20'}
         height={'20'}
