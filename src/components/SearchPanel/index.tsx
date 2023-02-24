@@ -6,6 +6,7 @@ import { FC, useEffect, useState } from 'react';
 import queryMovie from '@/Services/queryMovies';
 import { ISelectedFilms, ISelectOptions, ISearchPanel } from '@/interfaces';
 
+import Option from '../Checkbox';
 import Stars from '../Stars';
 
 import {
@@ -57,10 +58,13 @@ const SearchPanel: FC<ISearchPanel> = ({ movieRating, setMovieRating }) => {
         <Select
           className="selectCategory"
           placeholder={t('main.genre')}
+          options={genres}
+          multi={true}
+          closeMenu={false}
+          checkbox={{ Option }}
           onChange={(selectedFilms: ISelectedFilms[]) =>
             changeGenre(selectedFilms)
           }
-          options={genres}
         />
         <DatePickerComponent className="datePicker" />
         <Stars movieRating={movieRating} setMovieRating={setMovieRating} />
