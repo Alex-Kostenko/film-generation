@@ -100,10 +100,10 @@ const MovieList: FC<IMovieListProps> = () => {
       <BackBtn onClick={() => router.push('/')} />
       <div>
         <SearchCriteria>
-          <TagComponent className="tag-large" label={`рейтинг от ${rating}`} />
+          <TagComponent className="tag-medium" label={`рейтинг от ${rating}`} />
           {categories &&
             arrayCategories.map((movie: string) => (
-              <TagComponent className="tag-large" label={movie} />
+              <TagComponent className="tag-medium" label={movie} />
             ))}
         </SearchCriteria>
       </div>
