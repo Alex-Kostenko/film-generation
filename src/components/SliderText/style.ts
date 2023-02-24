@@ -1,3 +1,4 @@
+import { Button } from 'alex-unicode';
 import styled from 'styled-components';
 
 import { PALETTE } from '@/palette';
@@ -6,6 +7,8 @@ export const Container = styled.div`
   position: absolute;
   top: 5%;
   z-index: 20;
+  padding: 20px;
+  background: rgb(0, 0, 0, 10%);
 
   @media (max-width: 600px) {
     display: none;
@@ -45,24 +48,9 @@ export const Description = styled.p`
   }
 `;
 
-export const Button = styled.button`
-  width: 180px;
-  height: 38px;
+export const Btn = styled(Button)`
   margin-top: 20px;
   margin-left: 20%;
-  font-family: 'Urbanist';
-  background: ${PALETTE.crimson.middle};
-  font-weight: 600;
-  letter-spacing: 1.8px;
-  color: ${PALETTE.white};
-  border: none;
-  cursor: pointer;
-  transition: 0.4s;
-
-  &:hover {
-    transition: 0.4s;
-    background: ${PALETTE.crimson.dark};
-  }
 
   @media (max-width: 960px) {
     margin-left: 120px;

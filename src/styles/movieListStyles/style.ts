@@ -15,9 +15,10 @@ export const SearchCriteria = styled.div`
 `;
 
 export const PanelWrapper = styled.div`
+  position: relative;
   width: 700px;
   margin: 0 auto;
-  padding: 40px;
+  padding: 30px;
 
   @media (max-width: 968px) {
     display: block;

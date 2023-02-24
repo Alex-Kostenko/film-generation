@@ -4,13 +4,16 @@ import { Rating } from 'react-simple-star-rating';
 import { IStars } from '@/interfaces';
 import { PALETTE } from '@/palette';
 
+import { Wrapper, Title } from './style';
+
 const Stars: FC<IStars> = ({ setMovieRating, movieRating }) => {
   const handleRating = (rate: number) => {
     setMovieRating(rate);
   };
 
   return (
-    <div className="App">
+    <Wrapper>
+      <Title>Rating</Title>
       <Rating
         allowFraction={true}
         transition={true}
@@ -19,7 +22,7 @@ const Stars: FC<IStars> = ({ setMovieRating, movieRating }) => {
         fillColor={PALETTE.crimson.middle}
         onClick={handleRating}
       />
-    </div>
+    </Wrapper>
   );
 };
 
