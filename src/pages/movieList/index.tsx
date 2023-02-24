@@ -24,9 +24,10 @@ import Reload from '../../../public/reload.svg';
 
 const MovieList: FC<IMovieListProps> = () => {
   const router = useRouter();
-  const { categories, rating }: any = router.query;
+  const { categories, categoriesId, rating }: any = router.query;
   const arrayCategories = categories && categories.split(',');
-
+  const arrayCategoriesId =
+    categoriesId && categoriesId.split(',').map((id: string) => Number(id));
   const reloadRef: any = useRef(null);
   // eslint-disable-next-line
   const [styless, setStyless] = useState(`a[aria-label='Page -1']`);
@@ -55,7 +56,7 @@ const MovieList: FC<IMovieListProps> = () => {
         query.pageSize,
         query.currentPage + 1,
         {
-          genres_ids: [],
+          genres_ids: arrayCategoriesId,
           voteAvarageFrom: Number(rating),
         },
       );
@@ -73,7 +74,7 @@ const MovieList: FC<IMovieListProps> = () => {
         isLoading: false,
       });
     })();
-  }, [query.currentPage, query.pageSize, rating]);
+  }, [query.currentPage, query.pageSize, rating, categoriesId]);
 
   useEffect(() => {
     if (query.arrowUpload) {
