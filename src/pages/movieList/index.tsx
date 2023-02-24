@@ -56,7 +56,7 @@ const MovieList: FC<IMovieListProps> = () => {
         query.pageSize,
         query.currentPage + 1,
         {
-          genres_ids: arrayCategoriesId,
+          genres_ids: arrayCategoriesId ? arrayCategoriesId : [],
           voteAvarageFrom: Number(rating),
         },
       );
