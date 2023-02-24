@@ -127,5 +127,11 @@ export interface ISliderTextProps {
 // }
 
 export interface IStars {
-  setRating: React.Dispatch<React.SetStateAction<number>>;
+  movieRating: number;
+  setMovieRating: React.Dispatch<React.SetStateAction<number>>;
+}
+
+export interface ISearchPanel {
+  movieRating: number;
+  setMovieRating: React.Dispatch<React.SetStateAction<number>>;
 }

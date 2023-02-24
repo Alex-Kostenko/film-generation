@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 
 import queryMovie from '@/Services/queryMovies';
 import ModalComponent from '@/components/ModalComponent';
@@ -27,6 +27,7 @@ interface IHomePage {
 }
 
 const HomePage: FC<IHomePage> = ({ popylarMovies, genres }) => {
+  const [movieRating, setMovieRating] = useState(0.5);
   const [isModalOpen, openModal, closeModal] = useToggle();
 
   return (
@@ -34,7 +35,11 @@ const HomePage: FC<IHomePage> = ({ popylarMovies, genres }) => {
       <Root>
         <SliderSlick propMovies={popylarMovies} />
         <PanelWrapper>
-          <SearchPanel propsGenres={genres} />
+          <SearchPanel
+            propsGenres={genres}
+            movieRating={movieRating}
+            setMovieRating={setMovieRating}
+          />
         </PanelWrapper>
       </Root>
       <BurgerHeader>
@@ -73,8 +78,6 @@ const HomePage: FC<IHomePage> = ({ popylarMovies, genres }) => {
   );
 };
 
-export default HomePage;
-
 export const getStaticProps = async ({ locale }: any) => {
   const allFilters = await queryMovie.getAllFilter();
   const popylarMovies = await queryMovie.getPopularMovie();
@@ -89,3 +92,5 @@ export const getStaticProps = async ({ locale }: any) => {
     },
   };
 };
+
+export default HomePage;

@@ -14,16 +14,21 @@ import {
   Select,
 } from './style';
 
-interface IHomePage {
+interface ISearchPanel {
   propsGenres: ISelectedFilms[];
+  movieRating: number;
+  setMovieRating: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const SearchPanel: FC<IHomePage> = ({ propsGenres }) => {
+const SearchPanel: FC<ISearchPanel> = ({
+  propsGenres,
+  movieRating,
+  setMovieRating,
+}) => {
   const { t } = useTranslation();
   const router = useRouter();
 
   const [searchGenre, setSearchGenre] = useState<ISelectedFilms[]>([]);
-  const [rating, setRating] = useState(0.5);
   const [genres, setGenres] = useState<ISelectedFilms[]>([]);
 
   useEffect(() => {
@@ -48,7 +53,7 @@ const SearchPanel: FC<IHomePage> = ({ propsGenres }) => {
         (element: ISelectedFilms) => element.label,
       )}&categoriesId=${searchGenre.map(
         (element: ISelectedFilms) => element.id,
-      )}&rating=${rating * 2}`,
+      )}&rating=${movieRating * 2}`,
     );
   };
   return (
@@ -63,7 +68,7 @@ const SearchPanel: FC<IHomePage> = ({ propsGenres }) => {
           options={genres}
         />
         <DatePickerComponent className="datePicker" />
-        <Stars setRating={setRating} />
+        <Stars movieRating={movieRating} setMovieRating={setMovieRating} />
       </CriteriasContainer>
       <SearchContainer>
         <Input label={t('main.search')} />
