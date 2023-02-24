@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { FC, useEffect, useState } from 'react';
@@ -21,6 +22,7 @@ import {
 } from '../../styles/aboutFilmStyles/style';
 
 const AboutFilm: FC<IAboutFilmProps> = ({ movie, id }) => {
+  const router = useRouter();
   const [rezkaLink, setRezkaLink] = useState('');
   const [microsoftLink, setMicrosoftLink] = useState('');
   const {
@@ -63,7 +65,7 @@ const AboutFilm: FC<IAboutFilmProps> = ({ movie, id }) => {
 
   return (
     <>
-      <BackBtn />
+      <BackBtn onClick={() => router.back()} />
       <Title>{title}</Title>
       <Container>
         <FilmImage>

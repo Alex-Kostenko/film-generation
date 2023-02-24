@@ -93,6 +93,10 @@ export interface IMovieListProps {
   MOVIES: IMovie[];
 }
 
+export interface IBackBtn {
+  onClick: () => void;
+}
+
 export interface IMovieData {
   adult: boolean;
   backdrop_path: string;
