@@ -8,7 +8,7 @@ import ReactPaginate from 'react-paginate';
 import queryMovie from '@/Services/queryMovies';
 import BackBtn from '@/components/BackBtn';
 import SearchPanel from '@/components/SearchPanel';
-import { IMovieListProps, IName } from '@/interfaces';
+import { IName, ISelectedFilms } from '@/interfaces';
 import {
   ArrowUploadWrapper,
   SearchCriteria,
@@ -22,9 +22,14 @@ import { optionSize } from '@/utils/constants';
 
 import Reload from '../../../public/reload.svg';
 
-const MovieList: FC<IMovieListProps> = () => {
+interface IMovieList {
+  genres: ISelectedFilms[];
+}
+
+const MovieList: FC<IMovieList> = ({ genres }) => {
   const router = useRouter();
   const { categories, categoriesId, rating }: any = router.query;
+
   const [movieRating, setMovieRating] = useState(rating / 2);
   const arrayCategories = categories && categories.split(',');
   const arrayCategoriesId =
@@ -109,6 +114,7 @@ const MovieList: FC<IMovieListProps> = () => {
       </div>
       <PanelWrapper>
         <SearchPanel
+          propsGenres={genres}
           setMovieRating={setMovieRating}
           movieRating={movieRating}
         />
@@ -175,11 +181,13 @@ const MovieList: FC<IMovieListProps> = () => {
 
 export const getStaticProps = async ({ locale }: any) => {
   const allFilters = await queryMovie.getAllFilter();
+  const genres = await queryMovie.getGenres();
 
   return {
     props: {
       ...(await serverSideTranslations(locale)),
       allFilters: allFilters,
+      genres,
     },
   };
 };

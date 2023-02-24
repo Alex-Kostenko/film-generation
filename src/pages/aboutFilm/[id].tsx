@@ -8,6 +8,7 @@ import queryMovie from '@/Services/queryMovies';
 import BackBtn from '@/components/BackBtn';
 import FilmInfo from '@/components/FilmInfo';
 import { IAboutFilmProps } from '@/interfaces';
+import { Genres } from '@/utils/genres';
 
 import {
   LinkConteiner,
@@ -82,10 +83,10 @@ const AboutFilm: FC<IAboutFilmProps> = ({ movie, id }) => {
         <FilmInfo
           name={original_title}
           year={release_date}
-          country={production_companies[0].origin_country}
-          genre={genre_ids}
+          country={production_companies![0].origin_country}
+          genre={genre_ids.map((item: number) => ' ' + Genres[item])}
           time={String(runtime / 60)}
-          studio={production_companies[0].name}
+          studio={production_companies![0].name}
           budget={budget}
           voteAverage={vote_average / 2}
         />

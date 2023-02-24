@@ -8,7 +8,7 @@ interface Production_companies {
 
 export interface MovieEntity {
   id: number;
-  default: 34234;
+  default?: 34234;
   adult: boolean;
   backdrop_path: string;
   budget: number;
@@ -19,7 +19,7 @@ export interface MovieEntity {
   overview: string;
   popularity: number;
   poster_path: string;
-  production_companies: Production_companies[];
+  production_companies?: Production_companies[];
   release_date: string;
   runtime: number;
   status: string;
@@ -36,7 +36,7 @@ export interface IFilmInfoProps {
   country: string;
   name: string;
   year: string;
-  genre: number[];
+  genre: string[];
   time: string;
 }
 
@@ -74,9 +74,10 @@ export interface IName {
 }
 
 export interface ISelectedFilms {
-  value: string;
-  label: string;
-  id?: number;
+  value?: number;
+  label?: string;
+  id: number;
+  name?: string;
 }
 
 export interface IMovie {
@@ -87,10 +88,6 @@ export interface IMovie {
   img: string;
   lables: Array<string>;
   date: string;
-}
-
-export interface IMovieListProps {
-  MOVIES: IMovie[];
 }
 
 export interface IBackBtn {
@@ -118,19 +115,12 @@ export interface ISliderTextProps {
   movieData: IMovieData;
 }
 
-export interface ISelectOptions {
-  id?: number;
-  name?: string;
-  label?: string;
-  value?: number;
-}
-
 export interface IStars {
   movieRating: number;
   setMovieRating: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export interface ISearchPanel {
-  movieRating: number;
-  setMovieRating: React.Dispatch<React.SetStateAction<number>>;
-}
+// export interface ISearchPanel {
+//   movieRating: number;
+//   setMovieRating: React.Dispatch<React.SetStateAction<number>>;
+// }

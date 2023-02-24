@@ -3,8 +3,7 @@ import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { FC, useEffect, useState } from 'react';
 
-import queryMovie from '@/Services/queryMovies';
-import { ISelectedFilms, ISelectOptions, ISearchPanel } from '@/interfaces';
+import { ISelectedFilms } from '@/interfaces';
 
 import Option from '../Checkbox';
 import Stars from '../Stars';
@@ -16,27 +15,33 @@ import {
   Select,
 } from './style';
 
-const SearchPanel: FC<ISearchPanel> = ({ movieRating, setMovieRating }) => {
+interface ISearchPanel {
+  propsGenres: ISelectedFilms[];
+  movieRating: number;
+  setMovieRating: React.Dispatch<React.SetStateAction<number>>;
+}
+
+const SearchPanel: FC<ISearchPanel> = ({
+  propsGenres,
+  movieRating,
+  setMovieRating,
+}) => {
   const { t } = useTranslation();
   const router = useRouter();
 
   const [searchGenre, setSearchGenre] = useState<ISelectedFilms[]>([]);
-  const [genres, setGenres] = useState([]);
+  const [genres, setGenres] = useState<ISelectedFilms[]>([]);
 
   useEffect(() => {
-    (async () => {
-      const genres = await queryMovie.getGenres();
+    propsGenres.forEach(
+      (option: ISelectedFilms) => (
+        (option.value = option.id),
+        (option.label = option.name),
+        delete option.name
+      ),
+    );
 
-      genres.forEach(
-        (option: ISelectOptions) => (
-          (option.value = option.id),
-          (option.label = option.name),
-          delete option.name
-        ),
-      );
-
-      setGenres(genres);
-    })();
+    setGenres(propsGenres);
   }, []);
 
   const changeGenre = (selectedFilms: ISelectedFilms[]) => {
