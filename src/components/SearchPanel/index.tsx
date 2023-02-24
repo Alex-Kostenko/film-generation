@@ -31,8 +31,7 @@ const SearchPanel = () => {
         (option: ISelectOptions) => (
           (option.value = option.id),
           (option.label = option.name),
-          delete option.name,
-          delete option.id
+          delete option.name
         ),
       );
 
@@ -48,6 +47,8 @@ const SearchPanel = () => {
     router.push(
       `/movieList?categories=${searchGenre.map(
         (element: ISelectedFilms) => element.label,
+      )}&categoriesId=${searchGenre.map(
+        (element: ISelectedFilms) => element.id,
       )}&rating=${rating * 2}`,
     );
   };
