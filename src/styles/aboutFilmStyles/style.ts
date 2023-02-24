@@ -22,15 +22,26 @@ export const Title = styled.h1`
 
 export const AboutFilms = styled.p`
   margin-top: 30px;
-  font-size: 15px;
-  font-family: SFProDisplay-Light;
-  letter-spacing: 3px;
+  font-size: 16px;
+  font-family: 'Roboto';
+  letter-spacing: 1px;
   line-height: 20px;
   color: ${PALETTE.beige};
   @media (max-width: 991px) {
     padding: 0 15px;
     font-size: 13px;
   }
+`;
+export const FirstColorOfletter = styled.p`
+  &::first-letter {
+    font-size: 1.3rem;
+    color: ${PALETTE.crimson.middle};
+  }
+`;
+
+export const ColorOfLastElement = styled.span`
+  font-size: 1.3rem;
+  color: ${PALETTE.crimson.middle};
 `;
 
 export const FilmImage = styled.div`
@@ -51,7 +62,9 @@ export const LinkConteiner = styled.div`
 `;
 
 export const LinkTitle = styled.h3`
+  font-family: 'Roboto';
   letter-spacing: 1px;
+  font-weight: 500;
   color: ${PALETTE.beige};
 `;
 

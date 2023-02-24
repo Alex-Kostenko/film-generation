@@ -16,12 +16,13 @@ import {
   FilmImage,
   Title,
   Link,
+  ColorOfLastElement,
+  FirstColorOfletter,
 } from '../../styles/aboutFilmStyles/style';
 
 const AboutFilm: FC<IAboutFilmProps> = ({ movie, id }) => {
   const [rezkaLink, setRezkaLink] = useState('');
   const [microsoftLink, setMicrosoftLink] = useState('');
-
   const {
     title,
     release_date,
@@ -31,7 +32,20 @@ const AboutFilm: FC<IAboutFilmProps> = ({ movie, id }) => {
     vote_average,
     production_companies,
     overview,
+    original_title,
   } = movie;
+
+  const handleSetColorLastElem = (overview: string) => {
+    const res = overview.split(' ');
+    const secondContent = res.splice(-1, 1).join('').split('');
+    const resultSecondContent = secondContent.splice(-1, 1);
+    return (
+      <>
+        <FirstColorOfletter>{res.join(' ')}</FirstColorOfletter> {secondContent}
+        <ColorOfLastElement>{resultSecondContent}</ColorOfLastElement>
+      </>
+    );
+  };
 
   const { t } = useTranslation();
   const src: any =
@@ -41,16 +55,16 @@ const AboutFilm: FC<IAboutFilmProps> = ({ movie, id }) => {
   useEffect(() => {
     (async () => {
       const rezkaLink = await queryMovie.getRezka(id);
-      setRezkaLink(rezkaLink.link);
+      setRezkaLink(rezkaLink?.link);
       const microsoftLink = await queryMovie.getMicrosoft(id);
-      setMicrosoftLink(microsoftLink.link);
+      setMicrosoftLink(microsoftLink?.link);
     })();
   }, []);
 
   return (
     <>
       <BackBtn />
-      <Title>{movie.original_title}</Title>
+      <Title>{title}</Title>
       <Container>
         <FilmImage>
           <Image
@@ -64,17 +78,17 @@ const AboutFilm: FC<IAboutFilmProps> = ({ movie, id }) => {
         </FilmImage>
 
         <FilmInfo
-          name={title}
+          name={original_title}
           year={release_date}
           country={production_companies[0].origin_country}
           genre={genre_ids}
           time={String(runtime / 60)}
           studio={production_companies[0].name}
           budget={budget}
-          voteAverage={vote_average}
+          voteAverage={vote_average / 2}
         />
       </Container>
-      <AboutFilms>{overview}</AboutFilms>
+      <AboutFilms>{handleSetColorLastElem(overview)}</AboutFilms>
       <LinkConteiner>
         <LinkTitle>{t('filmPage.links')}:</LinkTitle>
         <Link href={rezkaLink}>first link</Link>

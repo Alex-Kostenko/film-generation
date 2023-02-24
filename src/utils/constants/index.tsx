@@ -1,9 +1,9 @@
 export const optionSize = [
-  { value: 'four', label: '4' },
   { value: 'five', label: '5' },
-  { value: 'six', label: '6' },
   { value: 'ten', label: '10' },
-  { value: 'fifteen', label: '15' },
+  { value: 'twentyFive ', label: '25' },
+  { value: 'thirtyFive', label: '35' },
+  { value: 'fifty', label: '50' },
 ];
 
 export const settingsSlider = {
