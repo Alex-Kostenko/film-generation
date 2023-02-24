@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import React from 'react';
+import React, { useState } from 'react';
 
 import queryMovie from '@/Services/queryMovies';
 import ModalComponent from '@/components/ModalComponent';
@@ -21,6 +21,7 @@ import {
 } from '../styles/indexStyles/style';
 
 const HomePage = () => {
+  const [movieRating, setMovieRating] = useState(0.5);
   const [isModalOpen, openModal, closeModal] = useToggle();
 
   return (
@@ -28,7 +29,10 @@ const HomePage = () => {
       <Root>
         <SliderSlick />
         <PanelWrapper>
-          <SearchPanel />
+          <SearchPanel
+            movieRating={movieRating}
+            setMovieRating={setMovieRating}
+          />
         </PanelWrapper>
       </Root>
       <BurgerHeader>
