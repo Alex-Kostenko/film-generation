@@ -4,9 +4,9 @@ import { Rating } from 'react-simple-star-rating';
 import { IStars } from '@/interfaces';
 import { PALETTE } from '@/palette';
 
-const Stars: FC<IStars> = ({ setRating }) => {
+const Stars: FC<IStars> = ({ setMovieRating, movieRating }) => {
   const handleRating = (rate: number) => {
-    setRating(rate);
+    setMovieRating(rate);
   };
 
   return (
@@ -14,7 +14,7 @@ const Stars: FC<IStars> = ({ setRating }) => {
       <Rating
         allowFraction={true}
         transition={true}
-        initialValue={0.5}
+        initialValue={movieRating}
         size={31}
         fillColor={PALETTE.crimson.middle}
         onClick={handleRating}

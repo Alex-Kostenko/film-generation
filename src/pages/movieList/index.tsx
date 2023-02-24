@@ -25,6 +25,7 @@ import Reload from '../../../public/reload.svg';
 const MovieList: FC<IMovieListProps> = () => {
   const router = useRouter();
   const { categories, categoriesId, rating }: any = router.query;
+  const [movieRating, setMovieRating] = useState(rating / 2);
   const arrayCategories = categories && categories.split(',');
   const arrayCategoriesId =
     categoriesId && categoriesId.split(',').map((id: string) => Number(id));
@@ -107,7 +108,10 @@ const MovieList: FC<IMovieListProps> = () => {
         </SearchCriteria>
       </div>
       <PanelWrapper>
-        <SearchPanel />
+        <SearchPanel
+          setMovieRating={setMovieRating}
+          movieRating={movieRating}
+        />
       </PanelWrapper>
       {content.map((movie: any) => (
         <div key={movie.id}>

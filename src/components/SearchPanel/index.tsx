@@ -1,10 +1,10 @@
 import { Button, Input } from 'alex-unicode';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
-import { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 
 import queryMovie from '@/Services/queryMovies';
-import { ISelectedFilms, ISelectOptions } from '@/interfaces';
+import { ISelectedFilms, ISelectOptions, ISearchPanel } from '@/interfaces';
 
 import Stars from '../Stars';
 
@@ -15,12 +15,11 @@ import {
   Select,
 } from './style';
 
-const SearchPanel = () => {
+const SearchPanel: FC<ISearchPanel> = ({ movieRating, setMovieRating }) => {
   const { t } = useTranslation();
   const router = useRouter();
 
   const [searchGenre, setSearchGenre] = useState<ISelectedFilms[]>([]);
-  const [rating, setRating] = useState(0.5);
   const [genres, setGenres] = useState([]);
 
   useEffect(() => {
@@ -49,7 +48,7 @@ const SearchPanel = () => {
         (element: ISelectedFilms) => element.label,
       )}&categoriesId=${searchGenre.map(
         (element: ISelectedFilms) => element.id,
-      )}&rating=${rating * 2}`,
+      )}&rating=${movieRating * 2}`,
     );
   };
   return (
@@ -64,7 +63,7 @@ const SearchPanel = () => {
           options={genres}
         />
         <DatePickerComponent className="datePicker" />
-        <Stars setRating={setRating} />
+        <Stars movieRating={movieRating} setMovieRating={setMovieRating} />
       </CriteriasContainer>
       <SearchContainer>
         <Input label={t('main.search')} />
