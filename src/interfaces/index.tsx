@@ -90,10 +90,6 @@ export interface IMovie {
   date: string;
 }
 
-export interface IMovieListProps {
-  MOVIES: IMovie[];
-}
-
 export interface IBackBtn {
   onClick: () => void;
 }
@@ -119,19 +115,12 @@ export interface ISliderTextProps {
   movieData: IMovieData;
 }
 
-// export interface ISelectOptions {
-//   id?: number;
-//   name?: string;
-//   label?: string;
-//   value?: number;
-// }
-
 export interface IStars {
   movieRating: number;
   setMovieRating: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export interface ISearchPanel {
-  movieRating: number;
-  setMovieRating: React.Dispatch<React.SetStateAction<number>>;
-}
+// export interface ISearchPanel {
+//   movieRating: number;
+//   setMovieRating: React.Dispatch<React.SetStateAction<number>>;
+// }
