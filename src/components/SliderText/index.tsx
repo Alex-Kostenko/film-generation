@@ -1,20 +1,26 @@
+import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { FC } from 'react';
 
 import { ISliderTextProps } from '@/interfaces';
 
-import { Description, Container, Button, Title } from './style';
+import { Description, Container, Btn, Title } from './style';
 
 const SliderText: FC<ISliderTextProps> = ({ movieData }) => {
   const { t } = useTranslation();
+  const router = useRouter();
+
+  const redirect = (id: number) => {
+    router.push(`/aboutFilm/${id}`);
+  };
 
   return (
     <>
       <Container>
         <Title>{movieData.title}</Title>
         <Description>{movieData.overview}</Description>
-        <Button>{t('main.go')}</Button>
+        <Btn label={t('main.go')} onClick={() => redirect(movieData.id)}></Btn>
       </Container>
     </>
   );

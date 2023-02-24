@@ -9,8 +9,8 @@ export const PanelWrapper = styled.div`
   bottom: 15%;
   z-index: 2;
   width: 700px;
-  padding: 40px;
-  background-color: rgb(0, 0, 0, 20%);
+  padding: 30px;
+  background-color: rgb(0, 0, 0, 10%);
 
   @media (max-width: 968px) {
     display: block;
