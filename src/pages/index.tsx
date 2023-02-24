@@ -1,11 +1,12 @@
 import Image from 'next/image';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import React from 'react';
+import React, { FC } from 'react';
 
 import queryMovie from '@/Services/queryMovies';
 import ModalComponent from '@/components/ModalComponent';
 import SearchPanel from '@/components/SearchPanel';
 import SliderSlick from '@/components/Slider';
+import { ISelectedFilms, MovieEntity } from '@/interfaces';
 import useToggle from '@/utils/hooks/useToggle';
 
 import BurgerM from '../../public/burgerM.svg';
@@ -20,15 +21,20 @@ import {
   Root,
 } from '../styles/indexStyles/style';
 
-const HomePage = () => {
+interface IHomePage {
+  popylarMovies: MovieEntity[];
+  genres: ISelectedFilms[];
+}
+
+const HomePage: FC<IHomePage> = ({ popylarMovies, genres }) => {
   const [isModalOpen, openModal, closeModal] = useToggle();
 
   return (
     <>
       <Root>
-        <SliderSlick />
+        <SliderSlick propMovies={popylarMovies} />
         <PanelWrapper>
-          <SearchPanel />
+          <SearchPanel propsGenres={genres} />
         </PanelWrapper>
       </Root>
       <BurgerHeader>
@@ -71,11 +77,15 @@ export default HomePage;
 
 export const getStaticProps = async ({ locale }: any) => {
   const allFilters = await queryMovie.getAllFilter();
+  const popylarMovies = await queryMovie.getPopularMovie();
+  const genres = await queryMovie.getGenres();
 
   return {
     props: {
       ...(await serverSideTranslations(locale)),
       allFilters: allFilters,
+      popylarMovies,
+      genres,
     },
   };
 };

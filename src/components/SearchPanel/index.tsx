@@ -1,10 +1,9 @@
 import { Button, Input } from 'alex-unicode';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
-import { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 
-import queryMovie from '@/Services/queryMovies';
-import { ISelectedFilms, ISelectOptions } from '@/interfaces';
+import { ISelectedFilms } from '@/interfaces';
 
 import Stars from '../Stars';
 
@@ -15,28 +14,28 @@ import {
   Select,
 } from './style';
 
-const SearchPanel = () => {
+interface IHomePage {
+  propsGenres: ISelectedFilms[];
+}
+
+const SearchPanel: FC<IHomePage> = ({ propsGenres }) => {
   const { t } = useTranslation();
   const router = useRouter();
 
   const [searchGenre, setSearchGenre] = useState<ISelectedFilms[]>([]);
   const [rating, setRating] = useState(0.5);
-  const [genres, setGenres] = useState([]);
+  const [genres, setGenres] = useState<ISelectedFilms[]>([]);
 
   useEffect(() => {
-    (async () => {
-      const genres = await queryMovie.getGenres();
+    propsGenres.forEach(
+      (option: ISelectedFilms) => (
+        (option.value = option.id),
+        (option.label = option.name),
+        delete option.name
+      ),
+    );
 
-      genres.forEach(
-        (option: ISelectOptions) => (
-          (option.value = option.id),
-          (option.label = option.name),
-          delete option.name
-        ),
-      );
-
-      setGenres(genres);
-    })();
+    setGenres(propsGenres);
   }, []);
 
   const changeGenre = (selectedFilms: ISelectedFilms[]) => {
