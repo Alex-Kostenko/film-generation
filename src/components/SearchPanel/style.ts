@@ -25,6 +25,7 @@ export const CriteriasContainer = styled.div`
     }
     @media (max-width: 968px) {
       width: 100%;
+      margin-bottom: 20px;
     }
     & input {
       width: 180px;
@@ -52,6 +53,11 @@ export const SearchContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: 968px) {
+    margin-top: 20px;
+  }
+
   & .wrapperInput {
     width: 415px;
     @media (max-width: 968px) {
