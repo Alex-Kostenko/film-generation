@@ -19,6 +19,7 @@ import {
   Root,
 } from '@/styles/movieListStyles/style';
 import { optionSize } from '@/utils/constants';
+import { Genres } from '@/utils/genres';
 
 import Reload from '../../../public/reload.svg';
 
@@ -38,6 +39,7 @@ const MovieList: FC<IMovieList> = ({ genres }) => {
   // eslint-disable-next-line
   const [styless, setStyless] = useState(`a[aria-label='Page -1']`);
   const [content, setContent] = useState([]);
+
   const [query, setQuery] = useState({
     currentPage: 0,
     count: 40,
@@ -128,10 +130,10 @@ const MovieList: FC<IMovieList> = ({ genres }) => {
             }
             title={movie.original_title}
             subtitle={movie.title}
-            labels={movie.lables}
             date={movie.release_date}
             description={movie.overview}
             action={() => redirect(movie.id)}
+            labels={movie.genre_ids.map((item: number) => ' ' + Genres[item])}
           />
         </div>
       ))}

@@ -1,4 +1,4 @@
-import { Button } from 'alex-unicode';
+import { Tag, Button } from 'alex-unicode';
 import styled from 'styled-components';
 
 import { PALETTE } from '@/palette';
@@ -13,6 +13,18 @@ export const Container = styled.div`
   @media (max-width: 600px) {
     display: none;
   }
+`;
+
+export const TagContainer = styled.div`
+  max-width: 540px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 20%;
+`;
+
+export const TagComponent = styled(Tag)`
+  margin: 10px 10px 0 0;
+  margin-top: 10px;
 `;
 
 export const Title = styled.h1`
