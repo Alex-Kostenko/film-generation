@@ -126,6 +126,12 @@ export const Text = styled.div`
   margin-right: 20px;
   user-select: none;
   cursor: pointer;
+  transition: 0.3s all;
+
+  &:hover {
+    transition: 0.3s all;
+    color: ${PALETTE.crimson.middle};
+  }
 `;
 
 export const Select = styled(SelectComponent)`
