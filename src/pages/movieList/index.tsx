@@ -1,4 +1,3 @@
-import { SelectComponent } from 'alex-unicode';
 import classNames from 'classnames';
 import { useRouter } from 'next/router';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -15,6 +14,7 @@ import {
   CardComponent,
   PanelWrapper,
   TagComponent,
+  Select,
   Text,
   Root,
 } from '@/styles/movieListStyles/style';
@@ -153,8 +153,18 @@ const MovieList: FC<IMovieList> = ({ genres }) => {
             }}
           />
         </div>
-        <Text>Show More</Text>
-        <SelectComponent
+        <Text
+          onClick={() => {
+            setQuery({
+              ...query,
+              currentPage: query.currentPage + 1,
+              arrowUpload: true,
+            });
+          }}
+        >
+          Show More
+        </Text>
+        <Select
           className="selectCategory"
           placeholder={'PageSize'}
           onChange={(name: IName) => {

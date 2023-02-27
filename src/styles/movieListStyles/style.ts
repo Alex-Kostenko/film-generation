@@ -1,4 +1,4 @@
-import { MovieCard, Tag } from 'alex-unicode';
+import { SelectComponent, MovieCard, Tag } from 'alex-unicode';
 import styled from 'styled-components';
 
 import { PALETTE } from '@/palette';
@@ -110,6 +110,7 @@ export const Root = styled.div<StyleProps>`
 `;
 
 export const ArrowUploadWrapper = styled.div`
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -123,4 +124,12 @@ export const Text = styled.div`
   color: ${PALETTE.white};
   margin-left: 20px;
   margin-right: 20px;
+  user-select: none;
+  cursor: pointer;
+`;
+
+export const Select = styled(SelectComponent)`
+  position: absolute !important;
+  right: 0;
+  top: 0;
 `;
