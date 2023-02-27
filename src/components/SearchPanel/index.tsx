@@ -37,6 +37,9 @@ const SearchPanel: FC<ISearchPanel> = ({
       (option: ISelectedFilms) => (
         (option.value = option.id),
         (option.label = option.name),
+        (option.label =
+          option.label &&
+          option.label.charAt(0).toUpperCase() + option.label.slice(1)),
         delete option.name
       ),
     );
