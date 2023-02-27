@@ -132,4 +132,10 @@ export const Select = styled(SelectComponent)`
   position: absolute !important;
   right: 0;
   top: 0;
+  & .castom-select__control {
+    width: fit-content !important;
+  }
+  & .castom-select__menu {
+    width: 100% !important;
+  }
 `;
