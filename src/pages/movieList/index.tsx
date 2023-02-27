@@ -129,7 +129,7 @@ const MovieList: FC<IMovieList> = ({ genres }) => {
               `https://www.themoviedb.org/t/p/w300_and_h450_bestv2${movie.poster_path}`
             }
             title={movie.original_title}
-            subtitle={movie.title}
+            subtitle={movie.original_title === movie.title ? null : movie.title}
             date={movie.release_date}
             description={movie.overview}
             action={() => redirect(movie.id)}
