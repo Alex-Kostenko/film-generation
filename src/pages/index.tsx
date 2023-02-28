@@ -29,6 +29,7 @@ interface IHomePage {
 const HomePage: FC<IHomePage> = ({ popylarMovies, genres }) => {
   const [movieRating, setMovieRating] = useState(0.5);
   const [isModalOpen, openModal, closeModal] = useToggle();
+  const [searchTerm, setSearchTerm] = useState('');
 
   return (
     <>
@@ -36,6 +37,8 @@ const HomePage: FC<IHomePage> = ({ popylarMovies, genres }) => {
         <SliderSlick propMovies={popylarMovies} />
         <PanelWrapper>
           <SearchPanel
+            searchTerm={searchTerm}
+            setSearchTerm={setSearchTerm}
             propsGenres={genres}
             movieRating={movieRating}
             setMovieRating={setMovieRating}

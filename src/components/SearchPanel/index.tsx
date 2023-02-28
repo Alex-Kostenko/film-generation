@@ -19,16 +19,19 @@ interface ISearchPanel {
   propsGenres: ISelectedFilms[];
   movieRating: number;
   setMovieRating: React.Dispatch<React.SetStateAction<number>>;
+  setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
+  searchTerm?: string;
 }
 
 const SearchPanel: FC<ISearchPanel> = ({
+  setMovieRating,
+  setSearchTerm,
   propsGenres,
   movieRating,
-  setMovieRating,
+  searchTerm,
 }) => {
   const { t } = useTranslation();
   const router = useRouter();
-
   const [searchGenre, setSearchGenre] = useState<ISelectedFilms[]>([]);
   const [genres, setGenres] = useState<ISelectedFilms[]>([]);
 
@@ -57,9 +60,10 @@ const SearchPanel: FC<ISearchPanel> = ({
         (element: ISelectedFilms) => element.label,
       )}&categoriesId=${searchGenre.map(
         (element: ISelectedFilms) => element.id,
-      )}&rating=${movieRating * 2}`,
+      )}&rating=${movieRating * 2}&search=${searchTerm}`,
     );
   };
+
   return (
     <>
       <CriteriasContainer>
@@ -78,7 +82,10 @@ const SearchPanel: FC<ISearchPanel> = ({
         <Stars movieRating={movieRating} setMovieRating={setMovieRating} />
       </CriteriasContainer>
       <SearchContainer>
-        <Input label={t('main.search')} />
+        <Input
+          label={t('main.search')}
+          onBlur={(event: any) => setSearchTerm(event.target.value)}
+        />
         <Button label={t('main.search')} onClick={redirect} />
       </SearchContainer>
     </>
