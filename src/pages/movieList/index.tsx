@@ -25,7 +25,7 @@ import Reload from '../../../public/reload.svg';
 
 const MovieList = () => {
   const router = useRouter();
-  const { categories, categoriesId, rating }: any = router.query;
+  const { categories, categoriesId, rating, search }: any = router.query;
 
   const [movieRating, setMovieRating] = useState(rating / 2);
   const arrayCategories = categories && categories.split(',');
@@ -35,6 +35,7 @@ const MovieList = () => {
   // eslint-disable-next-line
   const [styless, setStyless] = useState(`a[aria-label='Page -1']`);
   const [content, setContent] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
 
   const [query, setQuery] = useState({
     currentPage: 0,
@@ -54,11 +55,16 @@ const MovieList = () => {
   };
 
   useEffect(() => {
+    setSearchTerm(search);
+  }, [search]);
+
+  useEffect(() => {
     (async () => {
       setQuery({ ...query, isLoading: true });
       const allFilters = await queryMovie.pagination(
         query.pageSize,
         query.currentPage + 1,
+        searchTerm,
         {
           genres_ids: arrayCategoriesId ? arrayCategoriesId : [],
           voteAvarageFrom: Number(rating),
@@ -78,7 +84,7 @@ const MovieList = () => {
         isLoading: false,
       });
     })();
-  }, [query.currentPage, query.pageSize, rating, categoriesId]);
+  }, [query.currentPage, query.pageSize, rating, categoriesId, searchTerm]);
 
   useEffect(() => {
     if (query.arrowUpload) {
@@ -104,6 +110,7 @@ const MovieList = () => {
       <div>
         <SearchCriteria>
           <TagComponent className="tag-medium" label={`рейтинг от ${rating}`} />
+          {search && <TagComponent className="tag-medium" label={search} />}
           {categories &&
             arrayCategories.map((movie: string) => (
               <TagComponent className="tag-medium" label={movie} />
@@ -112,6 +119,8 @@ const MovieList = () => {
       </div>
       <PanelWrapper>
         <SearchPanel
+          setSearchTerm={setSearchTerm}
+          searchTerm={searchTerm}
           setMovieRating={setMovieRating}
           movieRating={movieRating}
         />

@@ -25,10 +25,15 @@ const queryMovie = {
     } catch (error) {}
   },
 
-  async pagination(pageSize: number, page: number, body: any) {
+  async pagination(
+    pageSize: number,
+    page: number,
+    searchTerm: string,
+    body: any,
+  ) {
     try {
       const res = await api.post(
-        `/movies/pagination?pageSize=${pageSize}&page=${page}`,
+        `/movies/pagination?pageSize=${pageSize}&page=${page}&searchTerm=${searchTerm}`,
         body,
       );
 

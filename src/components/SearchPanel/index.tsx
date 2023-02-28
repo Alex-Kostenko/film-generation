@@ -20,12 +20,18 @@ interface ISearchPanel {
   // propsGenres: ISelectedFilms[];
   movieRating: number;
   setMovieRating: React.Dispatch<React.SetStateAction<number>>;
+  setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
+  searchTerm?: string;
 }
 
-const SearchPanel: FC<ISearchPanel> = ({ movieRating, setMovieRating }) => {
+const SearchPanel: FC<ISearchPanel> = ({
+  setMovieRating,
+  setSearchTerm,
+  movieRating,
+  searchTerm,
+}) => {
   const { t } = useTranslation();
   const router = useRouter();
-
   const [searchGenre, setSearchGenre] = useState<ISelectedFilms[]>([]);
 
   const [resultGenres, setResultGenres] = useState<ISelectedFilms[]>([]);
@@ -63,9 +69,10 @@ const SearchPanel: FC<ISearchPanel> = ({ movieRating, setMovieRating }) => {
         (element: ISelectedFilms) => element.label,
       )}&categoriesId=${searchGenre.map(
         (element: ISelectedFilms) => element.id,
-      )}&rating=${movieRating * 2}`,
+      )}&rating=${movieRating * 2}&search=${searchTerm}`,
     );
   };
+
   return (
     <>
       <CriteriasContainer>
@@ -84,7 +91,10 @@ const SearchPanel: FC<ISearchPanel> = ({ movieRating, setMovieRating }) => {
         <Stars movieRating={movieRating} setMovieRating={setMovieRating} />
       </CriteriasContainer>
       <SearchContainer>
-        <Input label={t('main.search')} />
+        <Input
+          label={t('main.search')}
+          onBlur={(event: any) => setSearchTerm(event.target.value)}
+        />
         <Button label={t('main.search')} onClick={redirect} />
       </SearchContainer>
     </>
