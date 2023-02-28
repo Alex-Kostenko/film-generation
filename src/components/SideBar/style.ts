@@ -11,9 +11,28 @@ export const SiderBar = styled.div`
   top: 0%;
   left: 0%;
   position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   @media (max-width: 600px) {
     display: none;
   }
+  & .svgLanguage {
+    width: 30px;
+    cursor: pointer;
+    height: 25px;
+  }
+  & .blur {
+    filter: blur(2px);
+  }
+`;
+
+export const WarpperLanguage = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 20px;
+  margin-bottom: 100px;
 `;
 
 export const WrapperSvg = styled.div`
