@@ -6,7 +6,7 @@ import queryMovie from '@/Services/queryMovies';
 import ModalComponent from '@/components/ModalComponent';
 import SearchPanel from '@/components/SearchPanel';
 import SliderSlick from '@/components/Slider';
-import { ISelectedFilms, MovieEntity } from '@/interfaces';
+import { MovieEntity } from '@/interfaces';
 import useToggle from '@/utils/hooks/useToggle';
 
 import BurgerM from '../../public/burgerM.svg';
@@ -23,10 +23,9 @@ import {
 
 interface IHomePage {
   popylarMovies: MovieEntity[];
-  genres: ISelectedFilms[];
 }
 
-const HomePage: FC<IHomePage> = ({ popylarMovies, genres }) => {
+const HomePage: FC<IHomePage> = ({ popylarMovies }) => {
   const [movieRating, setMovieRating] = useState(0.5);
   const [isModalOpen, openModal, closeModal] = useToggle();
   const [searchTerm, setSearchTerm] = useState('');
@@ -39,7 +38,6 @@ const HomePage: FC<IHomePage> = ({ popylarMovies, genres }) => {
           <SearchPanel
             searchTerm={searchTerm}
             setSearchTerm={setSearchTerm}
-            propsGenres={genres}
             movieRating={movieRating}
             setMovieRating={setMovieRating}
           />
@@ -82,16 +80,14 @@ const HomePage: FC<IHomePage> = ({ popylarMovies, genres }) => {
 };
 
 export const getStaticProps = async ({ locale }: any) => {
-  const allFilters = await queryMovie.getAllFilter();
+  // const allFilters = await queryMovie.getAllFilter();
   const popylarMovies = await queryMovie.getPopularMovie();
-  const genres = await queryMovie.getGenres();
 
   return {
     props: {
       ...(await serverSideTranslations(locale)),
-      allFilters: allFilters,
+      // allFilters: allFilters,
       popylarMovies,
-      genres,
     },
   };
 };

@@ -1,13 +1,13 @@
 import classNames from 'classnames';
 import { useRouter } from 'next/router';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { FC, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import ReactPaginate from 'react-paginate';
 
 import queryMovie from '@/Services/queryMovies';
 import BackBtn from '@/components/BackBtn';
 import SearchPanel from '@/components/SearchPanel';
-import { IName, ISelectedFilms } from '@/interfaces';
+import { IName } from '@/interfaces';
 import {
   ArrowUploadWrapper,
   SearchCriteria,
@@ -23,11 +23,7 @@ import { Genres } from '@/utils/genres';
 
 import Reload from '../../../public/reload.svg';
 
-interface IMovieList {
-  genres: ISelectedFilms[];
-}
-
-const MovieList: FC<IMovieList> = ({ genres }) => {
+const MovieList = () => {
   const router = useRouter();
   const { categories, categoriesId, rating, search }: any = router.query;
 
@@ -125,7 +121,6 @@ const MovieList: FC<IMovieList> = ({ genres }) => {
         <SearchPanel
           setSearchTerm={setSearchTerm}
           searchTerm={searchTerm}
-          propsGenres={genres}
           setMovieRating={setMovieRating}
           movieRating={movieRating}
         />
@@ -201,14 +196,9 @@ const MovieList: FC<IMovieList> = ({ genres }) => {
 };
 
 export const getStaticProps = async ({ locale }: any) => {
-  const allFilters = await queryMovie.getAllFilter();
-  const genres = await queryMovie.getGenres();
-
   return {
     props: {
       ...(await serverSideTranslations(locale)),
-      allFilters: allFilters,
-      genres,
     },
   };
 };
