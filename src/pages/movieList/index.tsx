@@ -25,7 +25,7 @@ import Reload from '../../../public/reload.svg';
 
 const MovieList = () => {
   const router = useRouter();
-  const { categories, categoriesId, rating, search }: any = router.query;
+  const { categories, categoriesId, rating }: any = router.query;
 
   const [movieRating, setMovieRating] = useState(rating / 2);
   const arrayCategories = categories && categories.split(',');
@@ -36,6 +36,9 @@ const MovieList = () => {
   const [styless, setStyless] = useState(`a[aria-label='Page -1']`);
   const [content, setContent] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+
+  const [valueFilter, setValueFilter] = useState('popularity');
+  const [ascDesc, setAscDesc] = useState('desc');
 
   const [query, setQuery] = useState({
     currentPage: 0,
@@ -55,8 +58,8 @@ const MovieList = () => {
   };
 
   useEffect(() => {
-    setSearchTerm(search);
-  }, [search]);
+    setSearchTerm(searchTerm);
+  }, [searchTerm]);
 
   useEffect(() => {
     (async () => {
@@ -68,6 +71,8 @@ const MovieList = () => {
         {
           genres_ids: arrayCategoriesId ? arrayCategoriesId : [],
           voteAvarageFrom: Number(rating),
+          orderBy: valueFilter,
+          dir: ascDesc,
         },
       );
 
@@ -84,7 +89,15 @@ const MovieList = () => {
         isLoading: false,
       });
     })();
-  }, [query.currentPage, query.pageSize, rating, categoriesId, searchTerm]);
+  }, [
+    query.currentPage,
+    query.pageSize,
+    rating,
+    categoriesId,
+    searchTerm,
+    valueFilter,
+    ascDesc,
+  ]);
 
   useEffect(() => {
     if (query.arrowUpload) {
@@ -110,7 +123,9 @@ const MovieList = () => {
       <div>
         <SearchCriteria>
           <TagComponent className="tag-medium" label={`рейтинг от ${rating}`} />
-          {search && <TagComponent className="tag-medium" label={search} />}
+          {searchTerm && (
+            <TagComponent className="tag-medium" label={searchTerm} />
+          )}
           {categories &&
             arrayCategories.map((movie: string) => (
               <TagComponent className="tag-medium" label={movie} />
@@ -119,6 +134,9 @@ const MovieList = () => {
       </div>
       <PanelWrapper>
         <SearchPanel
+          ascDesc={ascDesc}
+          setAscDesc={setAscDesc}
+          setValueFilter={setValueFilter}
           setSearchTerm={setSearchTerm}
           searchTerm={searchTerm}
           setMovieRating={setMovieRating}

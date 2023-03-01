@@ -4,7 +4,8 @@ import { useTranslation } from 'next-i18next';
 import { FC, useEffect, useState } from 'react';
 
 import queryMovie from '@/Services/queryMovies';
-import { ISelectedFilms } from '@/interfaces';
+import { IName, ISelectedFilms } from '@/interfaces';
+import { filter } from '@/utils/constants';
 
 import Option from '../Checkbox';
 import Stars from '../Stars';
@@ -14,6 +15,10 @@ import {
   CriteriasContainer,
   SearchContainer,
   Select,
+  WrapperFilter,
+  TopArrow,
+  LeftArrow,
+  WrapperInArrowInFilter,
 } from './style';
 
 interface ISearchPanel {
@@ -22,6 +27,9 @@ interface ISearchPanel {
   setMovieRating: React.Dispatch<React.SetStateAction<number>>;
   setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
   searchTerm?: string;
+  setValueFilter?: any;
+  setAscDesc?: any;
+  ascDesc?: any;
 }
 
 const SearchPanel: FC<ISearchPanel> = ({
@@ -29,6 +37,9 @@ const SearchPanel: FC<ISearchPanel> = ({
   setSearchTerm,
   movieRating,
   searchTerm,
+  setValueFilter,
+  setAscDesc,
+  ascDesc,
 }) => {
   const { t } = useTranslation();
   const router = useRouter();
@@ -97,6 +108,25 @@ const SearchPanel: FC<ISearchPanel> = ({
         />
         <Button label={t('main.search')} onClick={redirect} />
       </SearchContainer>
+      <WrapperFilter>
+        <WrapperInArrowInFilter>
+          <TopArrow onClick={() => setAscDesc('desc')}>
+            {ascDesc === 'desc' ? <>&#9650;</> : <>&#9651;</>}
+          </TopArrow>
+          <LeftArrow onClick={() => setAscDesc('asc')}>
+            {ascDesc === 'desc' ? <>&#9661;</> : <>&#9660;</>}
+          </LeftArrow>
+        </WrapperInArrowInFilter>
+        <Select
+          className="selectFilter"
+          placeholder={'Filter'}
+          onChange={(name: IName) => setValueFilter(name.value)}
+          options={filter}
+          multi={false}
+          closeMenu={true}
+          hideSelected={true}
+        />
+      </WrapperFilter>
     </>
   );
 };
