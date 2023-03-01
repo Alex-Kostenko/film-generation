@@ -5,6 +5,7 @@ import { FC, useEffect, useState } from 'react';
 
 import queryMovie from '@/Services/queryMovies';
 import { ISelectedFilms } from '@/interfaces';
+import { useDebounce } from '@/utils/hooks/useDebounce';
 
 import Option from '../Checkbox';
 import Stars from '../Stars';
@@ -73,6 +74,12 @@ const SearchPanel: FC<ISearchPanel> = ({
     );
   };
 
+  const changeSearchTerm = (text: string) => {
+    setSearchTerm(text);
+  };
+
+  const debounce = useDebounce(changeSearchTerm);
+
   return (
     <>
       <CriteriasContainer>
@@ -93,8 +100,11 @@ const SearchPanel: FC<ISearchPanel> = ({
       <SearchContainer>
         <Input
           label={t('main.search')}
-          onBlur={(event: any) => setSearchTerm(event.target.value)}
+          debaunce={(event: any) => {
+            debounce(event.target.value);
+          }}
         />
+
         <Button label={t('main.search')} onClick={redirect} />
       </SearchContainer>
     </>
