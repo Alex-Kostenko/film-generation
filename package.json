@@ -52,7 +52,7 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
-    "alex-unicode": "^0.0.40",
+    "alex-unicode": "^0.0.42",
     "babel-eslint": "^8.2.3",
     "eslint-config-airbnb": "^18.2.0",
     "eslint-config-jest-enzyme": "^6.0.2",
