@@ -80,13 +80,11 @@ const HomePage: FC<IHomePage> = ({ popylarMovies }) => {
 };
 
 export const getStaticProps = async ({ locale }: any) => {
-  // const allFilters = await queryMovie.getAllFilter();
   const popylarMovies = await queryMovie.getPopularMovie();
 
   return {
     props: {
       ...(await serverSideTranslations(locale)),
-      // allFilters: allFilters,
       popylarMovies,
     },
   };
