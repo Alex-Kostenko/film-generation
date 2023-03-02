@@ -6,7 +6,7 @@ import ReactPaginate from 'react-paginate';
 
 import queryMovie from '@/Services/queryMovies';
 import BackBtn from '@/components/BackBtn';
-import SearchPanel from '@/components/SearchPanel';
+import SearchPanelLine from '@/components/SearchPanelLine';
 import { IName } from '@/interfaces';
 import {
   ArrowUploadWrapper,
@@ -35,7 +35,7 @@ const MovieList = () => {
   // eslint-disable-next-line
   const [styless, setStyless] = useState(`a[aria-label='Page -1']`);
   const [content, setContent] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState(search);
 
   const [query, setQuery] = useState({
     currentPage: 0,
@@ -55,8 +55,8 @@ const MovieList = () => {
   };
 
   useEffect(() => {
-    setSearchTerm(search);
-  }, [search]);
+    setSearchTerm(searchTerm);
+  }, [searchTerm]);
 
   useEffect(() => {
     (async () => {
@@ -110,7 +110,9 @@ const MovieList = () => {
       <div>
         <SearchCriteria>
           <TagComponent className="tag-medium" label={`рейтинг от ${rating}`} />
-          {search && <TagComponent className="tag-medium" label={search} />}
+          {searchTerm && (
+            <TagComponent className="tag-medium" label={searchTerm} />
+          )}
           {categories &&
             arrayCategories.map((movie: string) => (
               <TagComponent className="tag-medium" label={movie} />
@@ -118,7 +120,7 @@ const MovieList = () => {
         </SearchCriteria>
       </div>
       <PanelWrapper>
-        <SearchPanel
+        <SearchPanelLine
           setSearchTerm={setSearchTerm}
           searchTerm={searchTerm}
           setMovieRating={setMovieRating}

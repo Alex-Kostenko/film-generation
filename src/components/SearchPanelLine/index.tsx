@@ -1,20 +1,16 @@
-import { Button, Input } from 'alex-unicode';
+import { Input } from 'alex-unicode';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { FC, useEffect, useState } from 'react';
 
 import queryMovie from '@/Services/queryMovies';
 import { ISelectedFilms } from '@/interfaces';
+import { useDebounce } from '@/utils/hooks/useDebounce';
 
 import Option from '../Checkbox';
 import Stars from '../Stars';
 
-import {
-  DatePickerComponent,
-  CriteriasContainer,
-  SearchContainer,
-  Select,
-} from './style';
+import { DatePickerComponent, CriteriasContainer, Select } from './style';
 
 interface ISearchPanel {
   // propsGenres: ISelectedFilms[];
@@ -24,18 +20,14 @@ interface ISearchPanel {
   searchTerm?: string;
 }
 
-const SearchPanel: FC<ISearchPanel> = ({
-  setMovieRating,
-  setSearchTerm,
-  movieRating,
-  searchTerm,
-}) => {
+const SearchPanel: FC<ISearchPanel> = ({ setSearchTerm, searchTerm }) => {
   const { t } = useTranslation();
   const router = useRouter();
   const [searchGenre, setSearchGenre] = useState<ISelectedFilms[]>([]);
 
   const [resultGenres, setResultGenres] = useState<ISelectedFilms[]>([]);
   const [genres, setGenres] = useState<ISelectedFilms[]>([]);
+  const [movieRating, setMovieRating] = useState(0.5);
   const [valueInput, setValueInput] = useState('');
 
   useEffect(() => {
@@ -64,7 +56,7 @@ const SearchPanel: FC<ISearchPanel> = ({
     setSearchGenre(selectedFilms);
   };
 
-  const redirect = () => {
+  useEffect(() => {
     router.push(
       `/movieList?categories=${searchGenre.map(
         (element: ISelectedFilms) => element.label,
@@ -72,7 +64,13 @@ const SearchPanel: FC<ISearchPanel> = ({
         (element: ISelectedFilms) => element.id,
       )}&rating=${movieRating * 2}&search=${searchTerm}`,
     );
+  }, [searchGenre, searchTerm, movieRating]);
+
+  const changeSearchTerm = (text: string) => {
+    setSearchTerm(text);
   };
+
+  const debounce = useDebounce(changeSearchTerm);
 
   return (
     <>
@@ -89,17 +87,16 @@ const SearchPanel: FC<ISearchPanel> = ({
           }
         />
         <DatePickerComponent className="datePicker" />
-        <Stars movieRating={movieRating} setMovieRating={setMovieRating} />
-      </CriteriasContainer>
-      <SearchContainer>
         <Input
           label={t('main.search')}
           value={valueInput}
-          onChange={(event: any) => setValueInput(event.target.value)}
-          onBlur={(event: any) => setSearchTerm(event.target.value)}
+          onChange={(event: any) => {
+            debounce(event.target.value);
+            setValueInput(event.target.value);
+          }}
         />
-        <Button label={t('main.search')} onClick={redirect} />
-      </SearchContainer>
+        <Stars movieRating={movieRating} setMovieRating={setMovieRating} />
+      </CriteriasContainer>
     </>
   );
 };
