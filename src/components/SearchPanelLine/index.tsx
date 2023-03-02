@@ -104,7 +104,7 @@ const SearchPanel: FC<ISearchPanel> = ({
             changeGenre(selectedFilms)
           }
         />
-        <DatePickerComponent className="datePicker" />
+        <DatePickerComponent to={t('main.to')} className="datePicker" />
         <Input
           label={t('main.search')}
           value={valueInput}
@@ -124,7 +124,7 @@ const SearchPanel: FC<ISearchPanel> = ({
           </WrapperInArrowInFilter>
           <Select
             className="selectFilter"
-            placeholder={'Filter'}
+            placeholder={t('main.filter')}
             onChange={(name: IName) => setValueFilter(name.value)}
             options={filter}
             multi={false}
@@ -132,7 +132,11 @@ const SearchPanel: FC<ISearchPanel> = ({
             hideSelected={true}
           />
         </WrapperFilter>
-        <Stars movieRating={movieRating} setMovieRating={setMovieRating} />
+        <Stars
+          rating={t('main.rating')}
+          movieRating={movieRating}
+          setMovieRating={setMovieRating}
+        />
       </CriteriasContainer>
     </>
   );

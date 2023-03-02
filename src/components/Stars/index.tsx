@@ -6,14 +6,14 @@ import { PALETTE } from '@/palette';
 
 import { Wrapper, Title } from './style';
 
-const Stars: FC<IStars> = ({ setMovieRating, movieRating }) => {
+const Stars: FC<IStars> = ({ setMovieRating, movieRating, rating }) => {
   const handleRating = (rate: number) => {
     setMovieRating(rate);
   };
 
   return (
     <Wrapper>
-      <Title>Rating</Title>
+      <Title>{rating}</Title>
       <Rating
         allowFraction={true}
         transition={true}

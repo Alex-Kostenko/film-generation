@@ -3,7 +3,14 @@
     "genre": "Жанр",
     "studio": "Студия",
     "search": "Поиск",
-    "go": "К фильму"
+    "go": "К фильму",
+    "to": "до",
+    "rating": "Рейтинг",
+    "filter": "Фильтер"
+  },
+
+  "movieList": {
+    "release": "Дата релиза"
   },
 
   "filmPage": {
@@ -16,5 +23,27 @@
     "budget": "бюджет",
     "voteAverage": "Средний голос",
     "links": "Фильм можно посмотреть по этим ссылкам"
+  },
+
+  "genres": {
+    "action": "боевик",
+    "western": "вестерн",
+    "military": "военный",
+    "detective": "детектив",
+    "documentary": "документальный",
+    "drama": "драма",
+    "history": "история",
+    "comedy": "комедия",
+    "crime": "криминал",
+    "melodrama": "мелодрама",
+    "music": "музыка",
+    "cartoon": "мультфильм",
+    "adventures": "приключения",
+    "family": "семейный",
+    "television": "телевизионный",
+    "thriller": "триллер",
+    "horror": "хорор",
+    "fantastic": "фантастика",
+    "fantasy": "фэнтези"
   }
 }

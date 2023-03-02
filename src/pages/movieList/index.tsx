@@ -2,6 +2,7 @@ import classNames from 'classnames';
 import { useRouter } from 'next/router';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import ReactPaginate from 'react-paginate';
 
 import queryMovie from '@/Services/queryMovies';
@@ -24,6 +25,7 @@ import { Genres } from '@/utils/genres';
 import Reload from '../../../public/reload.svg';
 
 const MovieList = () => {
+  const { t } = useTranslation();
   const router = useRouter();
   const { categories, categoriesId, rating, search }: any = router.query;
 
@@ -121,7 +123,12 @@ const MovieList = () => {
     <Root colorStyle={styless}>
       <BackBtn onClick={() => router.push('/')} />
       <SearchContainer>
-        <TagComponent className="tag-medium" label={`рейтингОт${rating / 2}`} />
+        {rating && (
+          <TagComponent
+            className="tag-medium"
+            label={`рейтингОт${rating / 2}`}
+          />
+        )}
         {searchTerm && (
           <TagComponent className="tag-medium" label={searchTerm} />
         )}
@@ -157,10 +164,13 @@ const MovieList = () => {
                 ? null
                 : movie.title
             }
+            release={t('movieList.release')}
             date={movie.release_date}
             description={movie.overview}
             action={() => redirect(movie.id)}
-            labels={movie.genre_ids.map((item: number) => ' ' + Genres[item])}
+            labels={movie.genre_ids.map((item: number) =>
+              t(`genres.${Genres[item]}`),
+            )}
           />
         </div>
       ))}
