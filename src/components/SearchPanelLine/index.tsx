@@ -4,13 +4,22 @@ import { useTranslation } from 'next-i18next';
 import { FC, useEffect, useState } from 'react';
 
 import queryMovie from '@/Services/queryMovies';
-import { ISelectedFilms } from '@/interfaces';
+import { IName, ISelectedFilms } from '@/interfaces';
+import { filter } from '@/utils/constants';
 import { useDebounce } from '@/utils/hooks/useDebounce';
 
 import Option from '../Checkbox';
 import Stars from '../Stars';
 
-import { DatePickerComponent, CriteriasContainer, Select } from './style';
+import {
+  DatePickerComponent,
+  CriteriasContainer,
+  Select,
+  WrapperInArrowInFilter,
+  TopArrow,
+  LeftArrow,
+  WrapperFilter,
+} from './style';
 
 interface ISearchPanel {
   // propsGenres: ISelectedFilms[];
@@ -18,9 +27,18 @@ interface ISearchPanel {
   setMovieRating: React.Dispatch<React.SetStateAction<number>>;
   setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
   searchTerm?: string;
+  setValueFilter?: any;
+  setAscDesc?: any;
+  ascDesc?: any;
 }
 
-const SearchPanel: FC<ISearchPanel> = ({ setSearchTerm, searchTerm }) => {
+const SearchPanel: FC<ISearchPanel> = ({
+  setValueFilter,
+  setSearchTerm,
+  searchTerm,
+  setAscDesc,
+  ascDesc,
+}) => {
   const { t } = useTranslation();
   const router = useRouter();
   const [searchGenre, setSearchGenre] = useState<ISelectedFilms[]>([]);
@@ -95,6 +113,25 @@ const SearchPanel: FC<ISearchPanel> = ({ setSearchTerm, searchTerm }) => {
             setValueInput(event.target.value);
           }}
         />
+        <WrapperFilter>
+          <WrapperInArrowInFilter>
+            <TopArrow onClick={() => setAscDesc('desc')}>
+              {ascDesc === 'desc' ? <>&#9650;</> : <>&#9651;</>}
+            </TopArrow>
+            <LeftArrow onClick={() => setAscDesc('asc')}>
+              {ascDesc === 'desc' ? <>&#9661;</> : <>&#9660;</>}
+            </LeftArrow>
+          </WrapperInArrowInFilter>
+          <Select
+            className="selectFilter"
+            placeholder={'Filter'}
+            onChange={(name: IName) => setValueFilter(name.value)}
+            options={filter}
+            multi={false}
+            closeMenu={true}
+            hideSelected={true}
+          />
+        </WrapperFilter>
         <Stars movieRating={movieRating} setMovieRating={setMovieRating} />
       </CriteriasContainer>
     </>

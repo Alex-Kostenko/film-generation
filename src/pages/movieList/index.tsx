@@ -37,6 +37,9 @@ const MovieList = () => {
   const [content, setContent] = useState([]);
   const [searchTerm, setSearchTerm] = useState(search);
 
+  const [valueFilter, setValueFilter] = useState('popularity');
+  const [ascDesc, setAscDesc] = useState('desc');
+
   const [query, setQuery] = useState({
     currentPage: 0,
     count: 40,
@@ -68,6 +71,8 @@ const MovieList = () => {
         {
           genres_ids: arrayCategoriesId ? arrayCategoriesId : [],
           voteAvarageFrom: Number(rating),
+          orderBy: valueFilter,
+          dir: ascDesc,
         },
       );
 
@@ -84,7 +89,15 @@ const MovieList = () => {
         isLoading: false,
       });
     })();
-  }, [query.currentPage, query.pageSize, rating, categoriesId, searchTerm]);
+  }, [
+    query.currentPage,
+    query.pageSize,
+    rating,
+    categoriesId,
+    searchTerm,
+    valueFilter,
+    ascDesc,
+  ]);
 
   useEffect(() => {
     if (query.arrowUpload) {
@@ -121,6 +134,9 @@ const MovieList = () => {
       </div>
       <PanelWrapper>
         <SearchPanelLine
+          ascDesc={ascDesc}
+          setAscDesc={setAscDesc}
+          setValueFilter={setValueFilter}
           setSearchTerm={setSearchTerm}
           searchTerm={searchTerm}
           setMovieRating={setMovieRating}
