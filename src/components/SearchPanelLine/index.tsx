@@ -1,10 +1,12 @@
-import { Button, Input } from 'alex-unicode';
+import { Input } from 'alex-unicode';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { FC, useEffect, useState } from 'react';
 
 import queryMovie from '@/Services/queryMovies';
-import { ISelectedFilms } from '@/interfaces';
+import { IName, ISelectedFilms } from '@/interfaces';
+import { filter } from '@/utils/constants';
+import { useDebounce } from '@/utils/hooks/useDebounce';
 
 import Option from '../Checkbox';
 import Stars from '../Stars';
@@ -12,8 +14,11 @@ import Stars from '../Stars';
 import {
   DatePickerComponent,
   CriteriasContainer,
-  SearchContainer,
   Select,
+  WrapperInArrowInFilter,
+  TopArrow,
+  LeftArrow,
+  WrapperFilter,
 } from './style';
 
 interface ISearchPanel {
@@ -22,19 +27,17 @@ interface ISearchPanel {
   setMovieRating: React.Dispatch<React.SetStateAction<number>>;
   setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
   searchTerm?: string;
-  // setValueFilter?: any;
-  // setAscDesc?: any;
-  // ascDesc?: any;
+  setValueFilter?: any;
+  setAscDesc?: any;
+  ascDesc?: any;
 }
 
 const SearchPanel: FC<ISearchPanel> = ({
-  setMovieRating,
+  setValueFilter,
   setSearchTerm,
-  movieRating,
   searchTerm,
-  // setValueFilter,
-  // setAscDesc,
-  // ascDesc,
+  setAscDesc,
+  ascDesc,
 }) => {
   const { t } = useTranslation();
   const router = useRouter();
@@ -42,6 +45,7 @@ const SearchPanel: FC<ISearchPanel> = ({
 
   const [resultGenres, setResultGenres] = useState<ISelectedFilms[]>([]);
   const [genres, setGenres] = useState<ISelectedFilms[]>([]);
+  const [movieRating, setMovieRating] = useState(0.5);
   const [valueInput, setValueInput] = useState('');
 
   useEffect(() => {
@@ -70,7 +74,7 @@ const SearchPanel: FC<ISearchPanel> = ({
     setSearchGenre(selectedFilms);
   };
 
-  const redirect = () => {
+  useEffect(() => {
     router.push(
       `/movieList?categories=${searchGenre.map(
         (element: ISelectedFilms) => element.label,
@@ -78,7 +82,13 @@ const SearchPanel: FC<ISearchPanel> = ({
         (element: ISelectedFilms) => element.id,
       )}&rating=${movieRating * 2}&search=${searchTerm}`,
     );
+  }, [searchGenre, searchTerm, movieRating]);
+
+  const changeSearchTerm = (text: string) => {
+    setSearchTerm(text);
   };
+
+  const debounce = useDebounce(changeSearchTerm);
 
   return (
     <>
@@ -95,36 +105,35 @@ const SearchPanel: FC<ISearchPanel> = ({
           }
         />
         <DatePickerComponent className="datePicker" />
-        <Stars movieRating={movieRating} setMovieRating={setMovieRating} />
-      </CriteriasContainer>
-      <SearchContainer>
         <Input
           label={t('main.search')}
           value={valueInput}
-          onChange={(event: any) => setValueInput(event.target.value)}
-          onBlur={(event: any) => setSearchTerm(event.target.value)}
+          onChange={(event: any) => {
+            debounce(event.target.value);
+            setValueInput(event.target.value);
+          }}
         />
-        <Button label={t('main.search')} onClick={redirect} />
-      </SearchContainer>
-      {/* <WrapperFilter>
-        <WrapperInArrowInFilter>
-          <TopArrow onClick={() => setAscDesc('desc')}>
-            {ascDesc === 'desc' ? <>&#9650;</> : <>&#9651;</>}
-          </TopArrow>
-          <LeftArrow onClick={() => setAscDesc('asc')}>
-            {ascDesc === 'desc' ? <>&#9661;</> : <>&#9660;</>}
-          </LeftArrow>
-        </WrapperInArrowInFilter>
-        <Select
-          className="selectFilter"
-          placeholder={'Filter'}
-          onChange={(name: IName) => setValueFilter(name.value)}
-          options={filter}
-          multi={false}
-          closeMenu={true}
-          hideSelected={true}
-        />
-      </WrapperFilter> */}
+        <WrapperFilter>
+          <WrapperInArrowInFilter>
+            <TopArrow onClick={() => setAscDesc('desc')}>
+              {ascDesc === 'desc' ? <>&#9650;</> : <>&#9651;</>}
+            </TopArrow>
+            <LeftArrow onClick={() => setAscDesc('asc')}>
+              {ascDesc === 'desc' ? <>&#9661;</> : <>&#9660;</>}
+            </LeftArrow>
+          </WrapperInArrowInFilter>
+          <Select
+            className="selectFilter"
+            placeholder={'Filter'}
+            onChange={(name: IName) => setValueFilter(name.value)}
+            options={filter}
+            multi={false}
+            closeMenu={true}
+            hideSelected={true}
+          />
+        </WrapperFilter>
+        <Stars movieRating={movieRating} setMovieRating={setMovieRating} />
+      </CriteriasContainer>
     </>
   );
 };

@@ -16,9 +16,8 @@ export const SearchCriteria = styled.div`
 
 export const PanelWrapper = styled.div`
   position: relative;
-  width: 700px;
+  width: 100%;
   margin: 0 auto;
-  padding: 30px;
 
   @media (max-width: 968px) {
     display: block;
@@ -110,6 +109,7 @@ export const Root = styled.div<StyleProps>`
 `;
 
 export const ArrowUploadWrapper = styled.div`
+  margin-top: 30px;
   position: relative;
   display: flex;
   justify-content: center;

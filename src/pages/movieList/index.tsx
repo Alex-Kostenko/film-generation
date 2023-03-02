@@ -6,7 +6,7 @@ import ReactPaginate from 'react-paginate';
 
 import queryMovie from '@/Services/queryMovies';
 import BackBtn from '@/components/BackBtn';
-import SearchPanel from '@/components/SearchPanel';
+import SearchPanelLine from '@/components/SearchPanelLine';
 import { IName } from '@/interfaces';
 import {
   ArrowUploadWrapper,
@@ -25,7 +25,7 @@ import Reload from '../../../public/reload.svg';
 
 const MovieList = () => {
   const router = useRouter();
-  const { categories, categoriesId, rating }: any = router.query;
+  const { categories, categoriesId, rating, search }: any = router.query;
 
   const [movieRating, setMovieRating] = useState(rating / 2);
   const arrayCategories = categories && categories.split(',');
@@ -35,7 +35,7 @@ const MovieList = () => {
   // eslint-disable-next-line
   const [styless, setStyless] = useState(`a[aria-label='Page -1']`);
   const [content, setContent] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState(search ? search : '');
 
   const [valueFilter, setValueFilter] = useState('popularity');
   const [ascDesc, setAscDesc] = useState('desc');
@@ -133,7 +133,7 @@ const MovieList = () => {
         </SearchCriteria>
       </div>
       <PanelWrapper>
-        <SearchPanel
+        <SearchPanelLine
           ascDesc={ascDesc}
           setAscDesc={setAscDesc}
           setValueFilter={setValueFilter}
