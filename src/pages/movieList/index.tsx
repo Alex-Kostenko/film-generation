@@ -35,7 +35,7 @@ const MovieList = () => {
   // eslint-disable-next-line
   const [styless, setStyless] = useState(`a[aria-label='Page -1']`);
   const [content, setContent] = useState([]);
-  const [searchTerm, setSearchTerm] = useState(search);
+  const [searchTerm, setSearchTerm] = useState(search ? search : '');
 
   const [valueFilter, setValueFilter] = useState('popularity');
   const [ascDesc, setAscDesc] = useState('desc');
