@@ -10,7 +10,7 @@ import SearchPanelLine from '@/components/SearchPanelLine';
 import { IName } from '@/interfaces';
 import {
   ArrowUploadWrapper,
-  SearchCriteria,
+  SearchContainer,
   CardComponent,
   PanelWrapper,
   TagComponent,
@@ -120,18 +120,16 @@ const MovieList = () => {
   return (
     <Root colorStyle={styless}>
       <BackBtn onClick={() => router.push('/')} />
-      <div>
-        <SearchCriteria>
-          <TagComponent className="tag-medium" label={`рейтинг от ${rating}`} />
-          {searchTerm && (
-            <TagComponent className="tag-medium" label={searchTerm} />
-          )}
-          {categories &&
-            arrayCategories.map((movie: string) => (
-              <TagComponent className="tag-medium" label={movie} />
-            ))}
-        </SearchCriteria>
-      </div>
+      <SearchContainer>
+        <TagComponent className="tag-medium" label={`рейтингОт${rating / 2}`} />
+        {searchTerm && (
+          <TagComponent className="tag-medium" label={searchTerm} />
+        )}
+        {categories &&
+          arrayCategories.map((movie: string) => (
+            <TagComponent className="tag-medium" label={movie} />
+          ))}
+      </SearchContainer>
       <PanelWrapper>
         <SearchPanelLine
           ascDesc={ascDesc}
@@ -150,8 +148,15 @@ const MovieList = () => {
               movie.poster_path &&
               `https://www.themoviedb.org/t/p/w300_and_h450_bestv2${movie.poster_path}`
             }
-            title={movie.original_title}
-            subtitle={movie.original_title === movie.title ? null : movie.title}
+            title={
+              movie.original_title === null ? movie.title : movie.original_title
+            }
+            subtitle={
+              movie.original_title === null ||
+              movie.original_title === movie.title
+                ? null
+                : movie.title
+            }
             date={movie.release_date}
             description={movie.overview}
             action={() => redirect(movie.id)}
