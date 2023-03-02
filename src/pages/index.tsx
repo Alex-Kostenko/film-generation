@@ -69,7 +69,7 @@ const HomePage: FC<IHomePage> = ({ popylarMovies }) => {
               <CinemaLine className="triangle" aria-label="CinemaLine" />
             </WrapperRow>
             <WrapperRow>
-              <p style={{ color: 'white' }}>Star</p>{' '}
+              <p style={{ color: 'white' }}>Star</p>
               <Star className="triangle" aria-label="Star" />
             </WrapperRow>
           </ModalContent>

@@ -17,14 +17,10 @@ import {
 } from './style';
 
 interface ISearchPanel {
-  // propsGenres: ISelectedFilms[];
   movieRating: number;
   setMovieRating: React.Dispatch<React.SetStateAction<number>>;
   setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
   searchTerm?: string;
-  // setValueFilter?: any;
-  // setAscDesc?: any;
-  // ascDesc?: any;
 }
 
 const SearchPanel: FC<ISearchPanel> = ({
@@ -32,9 +28,6 @@ const SearchPanel: FC<ISearchPanel> = ({
   setSearchTerm,
   movieRating,
   searchTerm,
-  // setValueFilter,
-  // setAscDesc,
-  // ascDesc,
 }) => {
   const { t } = useTranslation();
   const router = useRouter();
@@ -94,8 +87,12 @@ const SearchPanel: FC<ISearchPanel> = ({
             changeGenre(selectedFilms)
           }
         />
-        <DatePickerComponent className="datePicker" />
-        <Stars movieRating={movieRating} setMovieRating={setMovieRating} />
+        <DatePickerComponent to={t('main.to')} className="datePicker" />
+        <Stars
+          rating={t('main.rating')}
+          movieRating={movieRating}
+          setMovieRating={setMovieRating}
+        />
       </CriteriasContainer>
       <SearchContainer>
         <Input
@@ -106,25 +103,6 @@ const SearchPanel: FC<ISearchPanel> = ({
         />
         <Button label={t('main.search')} onClick={redirect} />
       </SearchContainer>
-      {/* <WrapperFilter>
-        <WrapperInArrowInFilter>
-          <TopArrow onClick={() => setAscDesc('desc')}>
-            {ascDesc === 'desc' ? <>&#9650;</> : <>&#9651;</>}
-          </TopArrow>
-          <LeftArrow onClick={() => setAscDesc('asc')}>
-            {ascDesc === 'desc' ? <>&#9661;</> : <>&#9660;</>}
-          </LeftArrow>
-        </WrapperInArrowInFilter>
-        <Select
-          className="selectFilter"
-          placeholder={'Filter'}
-          onChange={(name: IName) => setValueFilter(name.value)}
-          options={filter}
-          multi={false}
-          closeMenu={true}
-          hideSelected={true}
-        />
-      </WrapperFilter> */}
     </>
   );
 };

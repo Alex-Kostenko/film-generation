@@ -29,7 +29,10 @@ const SliderText: FC<ISliderTextProps> = ({ movieData }) => {
         <Title>{movieData.title}</Title>
         <TagContainer>
           {movieData.genre_ids.map((movie) => (
-            <TagComponent className="tag-small" label={Genres[movie]} />
+            <TagComponent
+              className="tag-small"
+              label={t(`genres.${Genres[movie]}`)}
+            />
           ))}
         </TagContainer>
 

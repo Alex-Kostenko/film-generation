@@ -3,7 +3,14 @@
     "genre": "Genre",
     "studio": "Studio",
     "search": "Search",
-    "go": "Go to movie"
+    "go": "Go to movie",
+    "to": "to",
+    "rating": "Rating",
+    "filter": "Filter"
+  },
+
+  "movieList": {
+    "release": "Release date"
   },
 
   "filmPage": {
@@ -16,5 +23,27 @@
     "budget": "budget",
     "voteAverage": "vote average",
     "links": "Links to watch this movie"
+  },
+
+  "genres": {
+    "action": "actionMovie",
+    "western": "western",
+    "military": "military",
+    "detective": "detective",
+    "documentary": "documentary",
+    "drama": "drama",
+    "history": "history",
+    "comedy": "comedy",
+    "crime": "crime",
+    "melodrama": "melodrama",
+    "music": "music",
+    "cartoon": "cartoon",
+    "adventures": "adventures",
+    "family": "family",
+    "television": "television",
+    "thriller": "thriller",
+    "horror": "horror",
+    "fantastic": "fantastic",
+    "fantasy": "fantasy"
   }
 }
