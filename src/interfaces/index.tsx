@@ -74,10 +74,7 @@ export interface IName {
 }
 
 export interface ISelectedFilms {
-  value?: number;
-  label?: string;
-  id: number;
-  name?: string;
+  [index: string]: string | undefined;
 }
 
 export interface IMovie {

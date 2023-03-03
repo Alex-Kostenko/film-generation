@@ -45,19 +45,36 @@ const SearchPanel: FC<ISearchPanel> = ({
       })();
     }
 
+    const toUpperCase = (str: string | undefined) => {
+      return str && str.charAt(0).toUpperCase() + str.slice(1);
+    };
+
+    let genreLanguages: string;
+
+    switch (router.locale) {
+      case 'ru':
+        genreLanguages = 'name';
+        break;
+      case 'ua':
+        genreLanguages = 'name_ukr';
+        break;
+      default:
+        genreLanguages = 'name_eng';
+    }
+
     genres.forEach(
       (option: ISelectedFilms) => (
         (option.value = option.id),
-        (option.label = option.name),
-        (option.label =
-          option.label &&
-          option.label.charAt(0).toUpperCase() + option.label.slice(1)),
-        delete option.name
+        (option.label = option[genreLanguages]),
+        (option.label = toUpperCase(option.label)),
+        (option.name_eng = toUpperCase(option.name_eng)),
+        (option.name_ukr = toUpperCase(option.name_ukr)),
+        delete option[genreLanguages]
       ),
     );
 
     setResultGenres(genres);
-  }, [genres]);
+  }, [genres, router.locale]);
 
   const changeGenre = (selectedFilms: ISelectedFilms[]) => {
     setSearchGenre(selectedFilms);
