@@ -30,14 +30,14 @@ export interface MovieEntity {
 }
 
 export interface IFilmInfoProps {
-  voteAverage: number;
-  budget: number;
+  voteAverage: number | string;
+  budget: number | string;
   studio: string;
   country: string;
   name: string;
   year: string;
-  genre: string[];
-  time: string;
+  genre: number[];
+  time: number | string;
 }
 
 export interface PortalProps {
@@ -67,6 +67,7 @@ export interface IVideo {
 export interface IAboutFilmProps {
   movie: MovieEntity;
   id: string;
+  apiKey: string;
 }
 export interface IName {
   value: string;
