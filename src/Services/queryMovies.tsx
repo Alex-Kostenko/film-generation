@@ -49,9 +49,9 @@ const queryMovie = {
     } catch (error) {}
   },
 
-  async getMicrosoft(movieId: string) {
+  async getTrailer(movieId: string) {
     try {
-      const res = await api.get(`/movies/find-microsoft-url/${movieId}`);
+      const res = await api.get(`/movies/get-trailer/${movieId}`);
 
       return res.data;
     } catch (error) {}

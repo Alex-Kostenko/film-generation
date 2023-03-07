@@ -8,6 +8,7 @@ export const DescriptionContainer = styled.div`
   flex-direction: column;
   justify-content: space-between;
   margin-left: 30px;
+  user-select: none;
   @media (max-width: 991px) {
     width: fit-content;
     justify-content: start;

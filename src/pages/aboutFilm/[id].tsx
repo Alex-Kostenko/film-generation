@@ -9,6 +9,8 @@ import { FC, useEffect, useState } from 'react';
 import queryMovie from '@/Services/queryMovies';
 import BackBtn from '@/components/BackBtn';
 import FilmInfo from '@/components/FilmInfo';
+import Loader from '@/components/Loader';
+import VideoPlayer from '@/components/VideoPlayer';
 import { IAboutFilmProps } from '@/interfaces';
 import {
   cutString,
@@ -30,7 +32,7 @@ const AboutFilm: FC<IAboutFilmProps> = ({ movie, id, apiKey }) => {
   const { t } = useTranslation();
   const router = useRouter();
   const [rezkaLink, setRezkaLink] = useState('');
-  const [microsoftLink, setMicrosoftLink] = useState('');
+  const [trailerLink, setTrailerLink] = useState('');
   const [convertedText, setConvertedText] = useState('');
   const {
     title,
@@ -50,10 +52,11 @@ const AboutFilm: FC<IAboutFilmProps> = ({ movie, id, apiKey }) => {
 
   useEffect(() => {
     (async () => {
+      const trailerLink = await queryMovie.getTrailer(id);
+      setTrailerLink(trailerLink.key);
+
       const rezkaLink = await queryMovie.getRezka(id);
       setRezkaLink(rezkaLink?.link);
-      const microsoftLink = await queryMovie.getMicrosoft(id);
-      setMicrosoftLink(microsoftLink?.link);
     })();
   }, []);
 
@@ -114,10 +117,14 @@ const AboutFilm: FC<IAboutFilmProps> = ({ movie, id, apiKey }) => {
         />
       </Container>
       <AboutFilms>{handleSetColorLastElem(convertedText)}</AboutFilms>
+      {trailerLink ? <VideoPlayer link={trailerLink} /> : <Loader />}
       <LinkConteiner>
         <LinkTitle>{t('filmPage.links')}:</LinkTitle>
-        <Link href={rezkaLink}>first link</Link>
-        <Link href={microsoftLink}>second link</Link>
+        {rezkaLink && (
+          <Link href={rezkaLink}>{`${t('filmPage.watch')} "${title}" ${t(
+            'filmPage.on',
+          )} hdRezka`}</Link>
+        )}
       </LinkConteiner>
     </>
   );
