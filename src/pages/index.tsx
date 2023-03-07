@@ -26,7 +26,7 @@ interface IHomePage {
 }
 
 const HomePage: FC<IHomePage> = ({ popylarMovies }) => {
-  const [movieRating, setMovieRating] = useState(0.5);
+  const [movieRating, setMovieRating] = useState(1);
   const [isModalOpen, openModal, closeModal] = useToggle();
   const [searchTerm, setSearchTerm] = useState('');
 

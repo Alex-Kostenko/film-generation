@@ -39,13 +39,24 @@ export interface IFilmInfoProps {
   genre: string[];
   time: string;
 }
-
+export interface IError {
+  name: string;
+  message: string;
+  statusCode: number;
+  stack?: string;
+}
 export interface PortalProps {
   children: React.ReactNode;
 }
 
 export interface ILayoutProps {
   children: React.ReactNode;
+}
+
+export interface LinkQueries<T> {
+  label: string;
+  value: string | Array<T>;
+  key?: string;
 }
 
 export interface IDescription {

@@ -3,6 +3,8 @@ import { useRouter } from 'next/router';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useEffect, useRef, useState } from 'react';
 import ReactPaginate from 'react-paginate';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import queryMovie from '@/Services/queryMovies';
 import BackBtn from '@/components/BackBtn';
@@ -25,12 +27,29 @@ import Reload from '../../../public/reload.svg';
 
 const MovieList = () => {
   const router = useRouter();
-  const { categories, categoriesId, rating, search }: any = router.query;
 
-  const [movieRating, setMovieRating] = useState(rating / 2);
-  const arrayCategories = categories && categories.split(',');
-  const arrayCategoriesId =
-    categoriesId && categoriesId.split(',').map((id: string) => Number(id));
+  const notify = () =>
+    toast.error('🦄 УПС ХАЛЕПКА', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'light',
+    });
+  {
+  }
+
+  const { categoriesId, rating, search }: any = router.query;
+
+  const [movieRating, setMovieRating] = useState(Number(rating));
+
+  const [arrayCategoriesId, setArrayCategoriesId] = useState(
+    categoriesId ? categoriesId.split(',').map((id: string) => Number(id)) : [],
+  );
+
   const reloadRef: any = useRef(null);
   // eslint-disable-next-line
   const [styless, setStyless] = useState(`a[aria-label='Page -1']`);
@@ -53,47 +72,54 @@ const MovieList = () => {
     document.documentElement.scrollTop = 0;
   };
 
-  const redirect = (id: number) => {
-    router.push(`/aboutFilm/${id}`);
-  };
-
   useEffect(() => {
     setSearchTerm(searchTerm);
   }, [searchTerm]);
 
   useEffect(() => {
+    if (content === undefined) {
+      notify();
+    }
+  }, [content]);
+
+  useEffect(() => {
     (async () => {
       setQuery({ ...query, isLoading: true });
-      const allFilters = await queryMovie.pagination(
-        query.pageSize,
-        query.currentPage + 1,
-        searchTerm,
-        {
-          genres_ids: arrayCategoriesId ? arrayCategoriesId : [],
-          voteAvarageFrom: Number(rating),
-          orderBy: valueFilter,
-          dir: ascDesc,
-        },
-      );
 
-      if (query.arrowUpload) {
-        setContent(content.concat(allFilters.data.results));
-      } else {
-        setContent(allFilters.data.results);
-        handleScrollTotop();
+      try {
+        const allFilters = await queryMovie.pagination(
+          query.pageSize,
+          query.currentPage + 1,
+          searchTerm,
+          {
+            genres_ids: arrayCategoriesId
+              ? arrayCategoriesId.map((item: string) => Number(item))
+              : [],
+            voteAvarageFrom: movieRating,
+            orderBy: valueFilter,
+            dir: ascDesc,
+          },
+        );
+        if (query.arrowUpload) {
+          setContent(content.concat(allFilters.data.results));
+        } else {
+          setContent(allFilters.data.results);
+          handleScrollTotop();
+        }
+        setQuery({
+          ...query,
+          count: allFilters.data.total_pages,
+          isLoading: false,
+        });
+      } catch (error: any) {
+        notify();
       }
-
-      setQuery({
-        ...query,
-        count: allFilters.data.total_pages,
-        isLoading: false,
-      });
     })();
   }, [
     query.currentPage,
     query.pageSize,
-    rating,
-    categoriesId,
+    movieRating,
+    arrayCategoriesId,
     searchTerm,
     valueFilter,
     ascDesc,
@@ -117,6 +143,10 @@ const MovieList = () => {
     setQuery({ ...query, arrowUpload: false, currentPage: event.selected });
   };
 
+  const redirect = (id: number) => {
+    router.push(`/aboutFilm/${id}`);
+  };
+
   return (
     <Root colorStyle={styless}>
       <BackBtn onClick={() => router.push('/')} />
@@ -126,9 +156,9 @@ const MovieList = () => {
           {searchTerm && (
             <TagComponent className="tag-medium" label={searchTerm} />
           )}
-          {categories &&
-            arrayCategories.map((movie: string) => (
-              <TagComponent className="tag-medium" label={movie} />
+          {arrayCategoriesId &&
+            arrayCategoriesId.map((movie: number) => (
+              <TagComponent className="tag-medium" label={Genres[movie]} />
             ))}
         </SearchCriteria>
       </div>
@@ -141,6 +171,10 @@ const MovieList = () => {
           searchTerm={searchTerm}
           setMovieRating={setMovieRating}
           movieRating={movieRating}
+          arrayGenres={arrayCategoriesId}
+          setArrayGenres={setArrayCategoriesId}
+          arrayCategoriesId={arrayCategoriesId}
+          setArrayCategoriesId={setArrayCategoriesId}
         />
       </PanelWrapper>
       {content.map((movie: any) => (
@@ -209,11 +243,24 @@ const MovieList = () => {
         containerClassName="container"
         forcePage={query.currentPage}
       />
+      {/* <button onClick={notify}>Notify !</button> */}
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </Root>
   );
 };
 
-export const getStaticProps = async ({ locale }: any) => {
+export const getServerSideProps = async ({ locale }: any) => {
   return {
     props: {
       ...(await serverSideTranslations(locale)),

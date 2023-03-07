@@ -22,7 +22,6 @@ import {
 } from './style';
 
 interface ISearchPanel {
-  // propsGenres: ISelectedFilms[];
   movieRating: number;
   setMovieRating: React.Dispatch<React.SetStateAction<number>>;
   setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
@@ -30,6 +29,10 @@ interface ISearchPanel {
   setValueFilter?: any;
   setAscDesc?: any;
   ascDesc?: any;
+  arrayGenres: any;
+  setArrayGenres: any;
+  arrayCategoriesId: any;
+  setArrayCategoriesId: any;
 }
 
 const SearchPanel: FC<ISearchPanel> = ({
@@ -38,14 +41,16 @@ const SearchPanel: FC<ISearchPanel> = ({
   searchTerm,
   setAscDesc,
   ascDesc,
+  setMovieRating,
+  movieRating,
+  arrayCategoriesId,
+  setArrayCategoriesId,
 }) => {
-  const { t } = useTranslation();
   const router = useRouter();
-  const [searchGenre, setSearchGenre] = useState<ISelectedFilms[]>([]);
+  const { t } = useTranslation();
 
   const [resultGenres, setResultGenres] = useState<ISelectedFilms[]>([]);
   const [genres, setGenres] = useState<ISelectedFilms[]>([]);
-  const [movieRating, setMovieRating] = useState(0.5);
   const [valueInput, setValueInput] = useState('');
 
   useEffect(() => {
@@ -71,24 +76,31 @@ const SearchPanel: FC<ISearchPanel> = ({
   }, [genres]);
 
   const changeGenre = (selectedFilms: ISelectedFilms[]) => {
-    setSearchGenre(selectedFilms);
+    setArrayCategoriesId(selectedFilms.map((item) => String(item.id)));
   };
-
-  useEffect(() => {
-    router.push(
-      `/movieList?categories=${searchGenre.map(
-        (element: ISelectedFilms) => element.label,
-      )}&categoriesId=${searchGenre.map(
-        (element: ISelectedFilms) => element.id,
-      )}&rating=${movieRating * 2}&search=${searchTerm}`,
-    );
-  }, [searchGenre, searchTerm, movieRating]);
-
   const changeSearchTerm = (text: string) => {
     setSearchTerm(text);
   };
 
   const debounce = useDebounce(changeSearchTerm);
+
+  useEffect(() => {
+    function handlePushWithoutRender() {
+      router.push(
+        {
+          pathname: '/movieList',
+          query: {
+            rating: `${movieRating}`,
+            search: `${searchTerm}`,
+            categoriesId: `${arrayCategoriesId && arrayCategoriesId.join(',')}`,
+          },
+        },
+        undefined,
+        { shallow: true },
+      );
+    }
+    handlePushWithoutRender();
+  }, [movieRating, searchTerm, arrayCategoriesId]);
 
   return (
     <>
@@ -104,8 +116,9 @@ const SearchPanel: FC<ISearchPanel> = ({
             changeGenre(selectedFilms)
           }
         />
-        <DatePickerComponent className="datePicker" />
+        <DatePickerComponent to={t('main.to')} className="datePicker" />
         <Input
+          defaultValue={'SODADA'}
           label={t('main.search')}
           value={valueInput}
           onChange={(event: any) => {
