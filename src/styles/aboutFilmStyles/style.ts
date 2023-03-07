@@ -90,5 +90,6 @@ export const Link = styled.a`
   margin: 10px 0;
   cursor: pointer;
   color: ${PALETTE.crimson.middle};
+  user-select: none;
   text-decoration: none;
 `;
