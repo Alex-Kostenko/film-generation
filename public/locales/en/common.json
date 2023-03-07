@@ -14,14 +14,14 @@
   },
 
   "filmPage": {
-    "name": "name",
-    "year": "year",
-    "country": "country",
-    "genre": "genre",
-    "time": "time",
-    "studio": "name studio",
-    "budget": "budget",
-    "voteAverage": "vote average",
+    "name": "Original name",
+    "year": "Year",
+    "country": "Country",
+    "genre": "Genre",
+    "time": "Time",
+    "studio": "Name studio",
+    "budget": "Budget",
+    "voteAverage": "Vote average",
     "links": "Links to watch this movie"
   },
 
