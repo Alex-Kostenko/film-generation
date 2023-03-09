@@ -8,12 +8,20 @@ export const DescriptionContainer = styled.div`
   flex-direction: column;
   justify-content: space-between;
   margin-left: 30px;
-  user-select: none;
   @media (max-width: 991px) {
     width: fit-content;
-    justify-content: start;
+    justify-content: space-around;
+    margin-left: 15px;
+    margin-top: 5px;
+  }
 
+  @media (max-width: 750px) {
+    width: fit-content;
     margin: 0 auto;
+  }
+
+  @media (max-width: 600px) {
+    padding-left: 30px;
   }
 `;
 
@@ -31,7 +39,7 @@ export const DescriptionName = styled.div`
   letter-spacing: 1px;
   color: ${PALETTE.beige};
   @media (max-width: 991px) {
-    width: 80px;
+    min-width: 150px;
     margin-right: 30px;
     font-size: 13px;
   }

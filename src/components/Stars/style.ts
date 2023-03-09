@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { PALETTE } from '@/palette';
 
 export const Wrapper = styled.div`
+  margin-top: 15px;
   position: relative;
 `;
 
