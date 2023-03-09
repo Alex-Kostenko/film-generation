@@ -6,8 +6,17 @@ export const Container = styled.div`
   display: flex;
   margin-top: 30px;
 
+  @media (max-width: 1120px) {
+    margin-left: 60px;
+  }
+
   @media (max-width: 991px) {
     flex-direction: column;
+  }
+
+  @media (max-width: 600px) {
+    width: fit-content;
+    margin: 0 auto;
   }
 `;
 
@@ -20,44 +29,51 @@ export const Title = styled.h1`
   color: ${PALETTE.crimson.middle};
 `;
 
-export const AboutFilms = styled.p`
+export const AboutFilms = styled.div`
   margin-top: 30px;
   font-size: 16px;
   font-family: 'Roboto';
   letter-spacing: 1px;
   line-height: 20px;
   color: ${PALETTE.beige};
+
+  @media (max-width: 1120px) {
+    margin-left: 50px;
+  }
+
   @media (max-width: 991px) {
     padding: 0 15px;
     font-size: 13px;
   }
-`;
-export const FirstColorOfletter = styled.p`
-  &::first-letter {
-    font-size: 1.3rem;
-    color: ${PALETTE.crimson.middle};
+
+  @media (max-width: 600px) {
+    width: fit-content;
+    margin: 0 auto;
   }
 `;
 
-export const ColorOfLastElement = styled.span`
-  font-size: 1.3rem;
-  color: ${PALETTE.crimson.middle};
-`;
-
 export const FilmImage = styled.div`
-  width: 45%;
   @media (max-width: 991px) {
     display: block;
     margin: 20px auto;
-    width: 100%;
   }
 `;
 
 export const LinkConteiner = styled.div`
   margin-top: 20px;
+
+  @media (max-width: 1120px) {
+    margin-left: 50px;
+  }
+
   @media (max-width: 991px) {
     margin-top: 10px;
     padding: 0 15px;
+  }
+
+  @media (max-width: 600px) {
+    width: fit-content;
+    margin: 10px auto;
   }
 `;
 
@@ -74,5 +90,6 @@ export const Link = styled.a`
   margin: 10px 0;
   cursor: pointer;
   color: ${PALETTE.crimson.middle};
+  user-select: none;
   text-decoration: none;
 `;

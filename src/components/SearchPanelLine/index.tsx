@@ -12,13 +12,13 @@ import Option from '../Checkbox';
 import Stars from '../Stars';
 
 import {
+  WrapperInArrowInFilter,
   DatePickerComponent,
   CriteriasContainer,
-  Select,
-  WrapperInArrowInFilter,
-  TopArrow,
-  LeftArrow,
   WrapperFilter,
+  LeftArrow,
+  TopArrow,
+  Select,
 } from './style';
 
 interface ISearchPanel {
@@ -61,19 +61,36 @@ const SearchPanel: FC<ISearchPanel> = ({
       })();
     }
 
+    const toUpperCase = (str: string | undefined) => {
+      return str && str.charAt(0).toUpperCase() + str.slice(1);
+    };
+
+    let genreLanguages: string;
+
+    switch (router.locale) {
+      case 'ru':
+        genreLanguages = 'name';
+        break;
+      case 'ua':
+        genreLanguages = 'name_ukr';
+        break;
+      default:
+        genreLanguages = 'name_eng';
+    }
+
     genres.forEach(
       (option: ISelectedFilms) => (
         (option.value = option.id),
-        (option.label = option.name),
-        (option.label =
-          option.label &&
-          option.label.charAt(0).toUpperCase() + option.label.slice(1)),
-        delete option.name
+        (option.label = option[genreLanguages]),
+        (option.label = toUpperCase(option.label)),
+        (option.name_eng = toUpperCase(option.name_eng)),
+        (option.name_ukr = toUpperCase(option.name_ukr)),
+        delete option[genreLanguages]
       ),
     );
 
     setResultGenres(genres);
-  }, [genres]);
+  }, [genres, router.locale]);
 
   const changeGenre = (selectedFilms: ISelectedFilms[]) => {
     setArrayCategoriesId(selectedFilms.map((item) => String(item.id)));
@@ -137,7 +154,7 @@ const SearchPanel: FC<ISearchPanel> = ({
           </WrapperInArrowInFilter>
           <Select
             className="selectFilter"
-            placeholder={'Filter'}
+            placeholder={t('main.filter')}
             onChange={(name: IName) => setValueFilter(name.value)}
             options={filter}
             multi={false}
@@ -145,7 +162,11 @@ const SearchPanel: FC<ISearchPanel> = ({
             hideSelected={true}
           />
         </WrapperFilter>
-        <Stars movieRating={movieRating} setMovieRating={setMovieRating} />
+        <Stars
+          rating={t('main.rating')}
+          movieRating={movieRating}
+          setMovieRating={setMovieRating}
+        />
       </CriteriasContainer>
     </>
   );

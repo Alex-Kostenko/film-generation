@@ -2,12 +2,15 @@ import { useTranslation } from 'next-i18next';
 import { FC } from 'react';
 
 import { IFilmInfoProps } from '@/interfaces';
+import { Genres } from '@/utils/genres';
 
 import {
   DescriptionContainer,
   DescriptionName,
   DescriptionItem,
   DescriptionText,
+  TagComponent,
+  TagBox,
 } from './style';
 
 const FilmInfo: FC<IFilmInfoProps> = ({
@@ -25,7 +28,19 @@ const FilmInfo: FC<IFilmInfoProps> = ({
     { name: t('filmPage.name'), text: `${name}` },
     { name: t('filmPage.year'), text: `${year}` },
     { name: t('filmPage.country'), text: `${country}` },
-    { name: t('filmPage.genre'), text: `${genre}` },
+    {
+      name: t('filmPage.genre'),
+      text: (
+        <TagBox>
+          {genre.map((item: any) => (
+            <TagComponent
+              className="tag-small"
+              label={t(`genres.${Genres[item]}`)}
+            />
+          ))}
+        </TagBox>
+      ),
+    },
     { name: t('filmPage.time'), text: `${time}` },
     { name: t('filmPage.studio'), text: `${studio}` },
     { name: t('filmPage.budget'), text: `${budget}` },

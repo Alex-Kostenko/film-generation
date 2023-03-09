@@ -30,14 +30,14 @@ export interface MovieEntity {
 }
 
 export interface IFilmInfoProps {
-  voteAverage: number;
-  budget: number;
+  voteAverage: number | string;
+  budget: number | string;
   studio: string;
   country: string;
   name: string;
   year: string;
-  genre: string[];
-  time: string;
+  genre: number[];
+  time: number | string;
 }
 export interface IError {
   name: string;
@@ -78,6 +78,7 @@ export interface IVideo {
 export interface IAboutFilmProps {
   movie: MovieEntity;
   id: string;
+  apiKey: string;
 }
 export interface IName {
   value: string;
@@ -85,10 +86,7 @@ export interface IName {
 }
 
 export interface ISelectedFilms {
-  value?: number;
-  label?: string;
-  id: number;
-  name?: string;
+  [index: string]: string | undefined;
 }
 
 export interface IMovie {
@@ -127,6 +125,7 @@ export interface ISliderTextProps {
 }
 
 export interface IStars {
+  rating: any;
   movieRating: number;
   setMovieRating: React.Dispatch<React.SetStateAction<number>>;
 }

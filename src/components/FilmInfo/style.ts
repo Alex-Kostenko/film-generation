@@ -1,3 +1,4 @@
+import { Tag } from 'alex-unicode';
 import styled from 'styled-components';
 
 import { PALETTE } from '@/palette';
@@ -7,14 +8,18 @@ export const DescriptionContainer = styled.div`
   flex-direction: column;
   justify-content: space-between;
   margin-left: 30px;
+  user-select: none;
   @media (max-width: 991px) {
+    width: fit-content;
     justify-content: start;
-    margin-left: 15px;
+
+    margin: 0 auto;
   }
 `;
 
 export const DescriptionItem = styled.div`
   display: flex;
+  align-items: baseline;
   @media (max-width: 991px) {
     margin-bottom: 15px;
   }
@@ -38,5 +43,18 @@ export const DescriptionText = styled.div`
   color: ${PALETTE.white};
   @media (max-width: 991px) {
     font-size: 14px;
+  }
+`;
+
+export const TagBox = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
+
+export const TagComponent = styled(Tag)`
+  margin: 0 10px 0 0;
+
+  @media (max-width: 991px) {
+    margin: 3px 10px 0 0;
   }
 `;

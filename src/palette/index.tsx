@@ -9,6 +9,7 @@ export const PALETTE = {
     middle: '#f33f3f',
     dark: '#9e2323',
   },
+  crimsonTransparent: 'rgb(243, 63, 63, 20%)',
   siderBarGradient: `linear-gradient(
     90deg,
     rgba(29, 29, 29, 0.4) 50%,

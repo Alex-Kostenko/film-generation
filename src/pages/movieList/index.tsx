@@ -2,6 +2,7 @@ import classNames from 'classnames';
 import { useRouter } from 'next/router';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import ReactPaginate from 'react-paginate';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -12,7 +13,7 @@ import SearchPanelLine from '@/components/SearchPanelLine';
 import { IName } from '@/interfaces';
 import {
   ArrowUploadWrapper,
-  SearchCriteria,
+  SearchContainer,
   CardComponent,
   PanelWrapper,
   TagComponent,
@@ -26,6 +27,7 @@ import { Genres } from '@/utils/genres';
 import Reload from '../../../public/reload.svg';
 
 const MovieList = () => {
+  const { t } = useTranslation();
   const router = useRouter();
 
   const notify = () =>
@@ -150,18 +152,22 @@ const MovieList = () => {
   return (
     <Root colorStyle={styless}>
       <BackBtn onClick={() => router.push('/')} />
-      <div>
-        <SearchCriteria>
-          <TagComponent className="tag-medium" label={`рейтинг от ${rating}`} />
-          {searchTerm && (
-            <TagComponent className="tag-medium" label={searchTerm} />
-          )}
-          {arrayCategoriesId &&
-            arrayCategoriesId.map((movie: number) => (
-              <TagComponent className="tag-medium" label={Genres[movie]} />
-            ))}
-        </SearchCriteria>
-      </div>
+      <div></div>
+      <SearchContainer>
+        {rating && (
+          <TagComponent
+            className="tag-medium"
+            label={`рейтингОт${rating / 2}`}
+          />
+        )}
+        {searchTerm && (
+          <TagComponent className="tag-medium" label={searchTerm} />
+        )}
+        {arrayCategoriesId &&
+          arrayCategoriesId.map((movie: number) => (
+            <TagComponent className="tag-medium" label={Genres[movie]} />
+          ))}
+      </SearchContainer>
       <PanelWrapper>
         <SearchPanelLine
           ascDesc={ascDesc}
@@ -184,12 +190,22 @@ const MovieList = () => {
               movie.poster_path &&
               `https://www.themoviedb.org/t/p/w300_and_h450_bestv2${movie.poster_path}`
             }
-            title={movie.original_title}
-            subtitle={movie.original_title === movie.title ? null : movie.title}
+            title={
+              movie.original_title === null ? movie.title : movie.original_title
+            }
+            subtitle={
+              movie.original_title === null ||
+              movie.original_title === movie.title
+                ? null
+                : movie.title
+            }
+            release={t('movieList.release')}
             date={movie.release_date}
             description={movie.overview}
             action={() => redirect(movie.id)}
-            labels={movie.genre_ids.map((item: number) => ' ' + Genres[item])}
+            labels={movie.genre_ids.map((item: number) =>
+              t(`genres.${Genres[item]}`),
+            )}
           />
         </div>
       ))}

@@ -7,10 +7,10 @@ interface StyleProps {
   colorStyle?: string;
 }
 
-export const SearchCriteria = styled.div`
+export const SearchContainer = styled.div`
   display: flex;
-  width: fit-content;
-  margin: 20px auto;
+  width: 100%;
+  margin: 10px 0 10px 0;
   flex-wrap: wrap;
 `;
 
@@ -18,6 +18,10 @@ export const PanelWrapper = styled.div`
   position: relative;
   width: 100%;
   margin: 0 auto;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  border-top: 2px solid ${PALETTE.crimsonTransparent};
+  border-bottom: 2px solid ${PALETTE.crimsonTransparent};
 
   @media (max-width: 968px) {
     display: block;
@@ -33,7 +37,10 @@ export const PanelWrapper = styled.div`
 `;
 
 export const TagComponent = styled(Tag)`
-  margin: 5px 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+  display: inline-block;
+  padding: 5px;
 `;
 
 export const CardComponent = styled(MovieCard)`
