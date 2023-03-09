@@ -5,14 +5,15 @@ import { PALETTE } from '@/palette';
 
 export const Img = styled(Image)`
   position: absolute;
-  left: 60px;
-  top: 20px;
+  left: 15px;
+  top: 10px;
   font-size: 16px;
   background: transparent;
   cursor: pointer;
   border: none;
   stroke: ${PALETTE.crimson.middle}
   transition: 0.4s;
+  z-index: 3;
   -webkit-transition: 0.4s;
 
   &:hover {
@@ -21,6 +22,6 @@ export const Img = styled(Image)`
   }
 
    @media (max-width: 600px) {
-    left: 10px;
+    left: 5px;
   }
 `;

@@ -9,17 +9,16 @@ export const Container = styled.div`
   z-index: 20;
   padding: 20px;
   background: rgb(0, 0, 0, 10%);
-
-  @media (max-width: 600px) {
-    display: none;
-  }
 `;
 
 export const TagContainer = styled.div`
-  max-width: 540px;
+  max-width: 550px;
   display: flex;
   flex-wrap: wrap;
   margin-left: 20%;
+  @media (max-width: 600px) {
+    display: none;
+  }
 `;
 
 export const TagComponent = styled(Tag)`
@@ -28,7 +27,7 @@ export const TagComponent = styled(Tag)`
 `;
 
 export const Title = styled.h1`
-  max-width: 500px;
+  max-width: 550px;
   margin-left: 20%;
   font-size: 30px;
   user-select: none;
@@ -36,19 +35,23 @@ export const Title = styled.h1`
   @media (max-width: 960px) {
     max-width: 400px;
     font-size: 25px;
-    margin-left: 120px;
+  }
+
+  @media (max-width: 600px) {
+    max-width: 320px;
+    margin-left: 10%;
   }
 `;
 
 export const Description = styled.p`
   display: -webkit-box;
-  max-width: 500px;
+  max-width: 550px;
   font-size: 20px;
-  -webkit-line-clamp: 5;
+  -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  margin: 20px 0 0 20%;
+  margin: 10px 0 0 20%;
   font-size: 16px;
   user-select: none;
   color: ${PALETTE.white};
@@ -56,21 +59,19 @@ export const Description = styled.p`
   @media (max-width: 960px) {
     max-width: 400px;
     font-size: 15px;
-    margin-left: 120px;
+  }
+
+  @media (max-width: 600px) {
+    max-width: 320px;
+    margin-left: 10%;
   }
 `;
 
 export const Btn = styled(Button)`
-  margin-top: 20px;
+  margin-top: 15px;
   margin-left: 20%;
 
-  @media (max-width: 960px) {
-    margin-left: 120px;
+  @media (max-width: 600px) {
+    margin-left: 10%;
   }
 `;
-
-// @media (max-width: 600px) {
-//     display: block;
-//     max-width: 300px;
-//     margin-left: 15%;
-//   }

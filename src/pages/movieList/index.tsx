@@ -152,7 +152,6 @@ const MovieList = () => {
   return (
     <Root colorStyle={styless}>
       <BackBtn onClick={() => router.push('/')} />
-      <div></div>
       <SearchContainer>
         {rating && (
           <TagComponent

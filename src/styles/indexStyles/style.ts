@@ -22,6 +22,7 @@ export const PanelWrapper = styled.div`
     display: block;
     width: 300px;
     padding: 20px;
+    bottom: 5%;
   }
 `;
 

@@ -16,6 +16,6 @@ export const filter = [
 export const settingsSlider = {
   dots: true,
   arrows: false,
-  autoplay: true,
+  autoplay: false,
   autoplaySpeed: 5000,
 };
