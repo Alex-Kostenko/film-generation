@@ -5,6 +5,7 @@ import { FC, useEffect, useState } from 'react';
 
 import queryMovie from '@/Services/queryMovies';
 import { ISelectedFilms } from '@/interfaces';
+import { generateQueries } from '@/utils/common';
 
 import Option from '../Checkbox';
 import Stars from '../Stars';
@@ -81,13 +82,13 @@ const SearchPanel: FC<ISearchPanel> = ({
   };
 
   const redirect = () => {
-    router.push(
-      `/movieList?categories=${searchGenre.map(
-        (element: ISelectedFilms) => element.label,
-      )}&categoriesId=${searchGenre.map(
-        (element: ISelectedFilms) => element.id,
-      )}&rating=${movieRating * 2}&search=${searchTerm}`,
-    );
+    const { result } = generateQueries<ISelectedFilms>('/movieList', [
+      { label: 'categoriesId', value: searchGenre, key: 'id' },
+      { label: 'rating', value: String(movieRating) },
+      { label: 'search', value: String(searchTerm) },
+    ]);
+
+    router.push(result);
   };
 
   return (

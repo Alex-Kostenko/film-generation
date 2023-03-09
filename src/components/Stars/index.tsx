@@ -8,7 +8,7 @@ import { Wrapper, Title } from './style';
 
 const Stars: FC<IStars> = ({ setMovieRating, movieRating, rating }) => {
   const handleRating = (rate: number) => {
-    setMovieRating(rate);
+    setMovieRating(rate * 2);
   };
 
   return (
@@ -17,7 +17,7 @@ const Stars: FC<IStars> = ({ setMovieRating, movieRating, rating }) => {
       <Rating
         allowFraction={true}
         transition={true}
-        initialValue={movieRating}
+        initialValue={movieRating / 2}
         size={31}
         fillColor={PALETTE.crimson.middle}
         onClick={handleRating}
