@@ -137,7 +137,7 @@ const AboutFilm: FC<IAboutFilmProps> = ({ movie, id, apiKey }) => {
   );
 };
 
-export async function getServerSideProps({ locale, query }: any) {
+export async function getStaticProps({ locale, query }: any) {
   const movie = await queryMovie.getByID(query.id);
 
   return {
