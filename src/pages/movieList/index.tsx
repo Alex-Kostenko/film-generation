@@ -27,7 +27,14 @@ import { Genres } from '@/utils/genres';
 import Reload from '../../../public/reload.svg';
 
 const MovieList = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation(['common', 'footer'], {
+    bindI18n: 'languageChanged loaded',
+  });
+
+  useEffect(() => {
+    i18n.reloadResources(i18n.resolvedLanguage, ['common', 'footer']);
+  }, []);
+
   const router = useRouter();
 
   const notify = () =>
@@ -271,12 +278,10 @@ const MovieList = () => {
   );
 };
 
-export const getServerSideProps = async ({ locale }: any) => {
-  return {
-    props: {
-      ...(await serverSideTranslations(locale)),
-    },
-  };
-};
+export const getStaticProps = async ({ locale }: any) => ({
+  props: {
+    ...(await serverSideTranslations(locale, ['common', 'footer'])),
+  },
+});
 
 export default MovieList;
