@@ -29,7 +29,14 @@ import {
 } from '../../styles/aboutFilmStyles/style';
 
 const AboutFilm: FC<IAboutFilmProps> = ({ movie, id, apiKey }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation(['common', 'footer'], {
+    bindI18n: 'languageChanged loaded',
+  });
+
+  useEffect(() => {
+    i18n.reloadResources(i18n.resolvedLanguage, ['common', 'footer']);
+  }, []);
+
   const router = useRouter();
   const [rezkaLink, setRezkaLink] = useState('');
   const [trailerLink, setTrailerLink] = useState('');
@@ -136,7 +143,7 @@ export async function getServerSideProps({ locale, query }: any) {
   return {
     props: {
       apiKey: process.env.GOOGLE_TRANSLATE_API_KEY,
-      ...(await serverSideTranslations(locale)),
+      ...(await serverSideTranslations(locale, ['common', 'footer'])),
       movie,
       id: query.id,
     },
