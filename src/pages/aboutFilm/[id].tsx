@@ -38,6 +38,7 @@ const AboutFilm: FC<IAboutFilmProps> = ({ movie, id, apiKey }) => {
   }, []);
 
   const router = useRouter();
+
   const [rezkaLink, setRezkaLink] = useState('');
   const [trailerLink, setTrailerLink] = useState('');
   const [convertedText, setConvertedText] = useState('');
@@ -137,16 +138,34 @@ const AboutFilm: FC<IAboutFilmProps> = ({ movie, id, apiKey }) => {
   );
 };
 
-export async function getStaticProps({ locale, query }: any) {
-  const movie = await queryMovie.getByID(query.id);
+export async function getStaticProps({ locale, params }: any) {
+  const movie = await queryMovie.getByID(params.id);
 
   return {
     props: {
       apiKey: process.env.GOOGLE_TRANSLATE_API_KEY,
       ...(await serverSideTranslations(locale, ['common', 'footer'])),
       movie,
-      id: query.id,
+      id: params.id,
     },
+  };
+}
+
+export async function getStaticPaths() {
+  const ids = await queryMovie.getAllId();
+
+  // const locales = ['en', 'ua', 'ru'];
+
+  const paths = ids.map((item: string) => {
+    return {
+      params: {
+        id: item.toString(),
+      },
+    };
+  });
+  return {
+    paths,
+    fallback: false,
   };
 }
 
