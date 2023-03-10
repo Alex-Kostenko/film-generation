@@ -151,18 +151,18 @@ export async function getStaticProps({ locale, params }: any) {
   };
 }
 
-export async function getStaticPaths() {
+export async function getStaticPaths({ locales }: any) {
   const ids = await queryMovie.getAllId();
 
-  // const locales = ['en', 'ua', 'ru'];
-
-  const paths = ids.map((item: string) => {
-    return {
-      params: {
-        id: item.toString(),
-      },
-    };
+  const paths = ids.flatMap((id: string) => {
+    return locales.map((locale: string) => {
+      return {
+        params: { id: id.toString() },
+        locale: locale,
+      };
+    });
   });
+
   return {
     paths,
     fallback: false,
