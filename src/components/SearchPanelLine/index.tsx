@@ -30,7 +30,6 @@ interface ISearchPanel {
   setAscDesc?: any;
   ascDesc?: any;
   arrayGenres: any;
-  setArrayGenres: any;
   arrayCategoriesId: any;
   setArrayCategoriesId: any;
 }
@@ -78,22 +77,18 @@ const SearchPanel: FC<ISearchPanel> = ({
         genreLanguages = 'name_eng';
     }
 
-    genres.forEach(
-      (option: ISelectedFilms) => (
-        (option.value = option.id),
-        (option.label = option[genreLanguages]),
-        (option.label = toUpperCase(option.label)),
-        (option.name_eng = toUpperCase(option.name_eng)),
-        (option.name_ukr = toUpperCase(option.name_ukr)),
-        delete option[genreLanguages]
-      ),
+    setResultGenres(
+      genres.map((option: ISelectedFilms) => {
+        return {
+          value: String(option.id),
+          label: toUpperCase(option[genreLanguages]),
+        };
+      }),
     );
-
-    setResultGenres(genres);
   }, [genres, router.locale]);
 
   const changeGenre = (selectedFilms: ISelectedFilms[]) => {
-    setArrayCategoriesId(selectedFilms.map((item) => String(item.id)));
+    setArrayCategoriesId(selectedFilms.map((item) => item.value));
   };
   const changeSearchTerm = (text: string) => {
     setSearchTerm(text);
@@ -132,8 +127,17 @@ const SearchPanel: FC<ISearchPanel> = ({
           onChange={(selectedFilms: ISelectedFilms[]) =>
             changeGenre(selectedFilms)
           }
+          defaultValue={
+            router.query.categoriesId &&
+            (router.query.categoriesId as string)
+              .split(',')
+              .map((item: any) => {
+                return { value: item };
+              })
+          }
         />
         <DatePickerComponent to={t('main.to')} className="datePicker" />
+
         <Input
           defaultValue={'SODADA'}
           label={t('main.search')}

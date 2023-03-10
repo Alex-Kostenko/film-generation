@@ -55,7 +55,7 @@ const SideBar = () => {
           className={classNames('svgLanguage', {
             blur: router.locale !== lngs[2],
           })}
-          src={'/rashka.png'}
+          src={'/okypant.jpg'}
           height={40}
           width={40}
           alt={'triangleClass'}

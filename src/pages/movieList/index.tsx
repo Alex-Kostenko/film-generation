@@ -178,7 +178,6 @@ const MovieList = () => {
           setMovieRating={setMovieRating}
           movieRating={movieRating}
           arrayGenres={arrayCategoriesId}
-          setArrayGenres={setArrayCategoriesId}
           arrayCategoriesId={arrayCategoriesId}
           setArrayCategoriesId={setArrayCategoriesId}
         />

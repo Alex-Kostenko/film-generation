@@ -20,10 +20,10 @@ export const SiderBar = styled.div`
   & .svgLanguage {
     width: 30px;
     cursor: pointer;
-    height: 25px;
+    height: 20px;
   }
   & .blur {
-    filter: blur(2px);
+    filter: blur(1px);
   }
 `;
 
@@ -32,7 +32,7 @@ export const WarpperLanguage = styled.div`
   flex-direction: column;
   align-items: center;
   row-gap: 20px;
-  margin-bottom: 100px;
+  margin-bottom: 52px;
 `;
 
 export const WrapperSvg = styled.div`
