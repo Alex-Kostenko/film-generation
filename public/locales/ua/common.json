@@ -10,7 +10,8 @@
   },
 
   "movieList": {
-    "release": "Дата релiзу"
+    "release": "Дата релiзу",
+    "countFilm": "Кіл-ть фільмів"
   },
 
   "filmPage": {

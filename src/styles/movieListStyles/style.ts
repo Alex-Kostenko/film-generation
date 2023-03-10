@@ -1,4 +1,5 @@
 import { SelectComponent, MovieCard, Tag } from 'alex-unicode';
+import ReactPaginate from 'react-paginate';
 import styled from 'styled-components';
 
 import { PALETTE } from '@/palette';
@@ -6,6 +7,10 @@ import { PALETTE } from '@/palette';
 interface StyleProps {
   colorStyle?: string;
 }
+
+export const Paginate = styled(ReactPaginate)`
+  flex-wrap: wrap;
+`;
 
 export const SearchContainer = styled.div`
   display: flex;

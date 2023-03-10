@@ -3,7 +3,6 @@ import { useRouter } from 'next/router';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import ReactPaginate from 'react-paginate';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -17,6 +16,7 @@ import {
   CardComponent,
   PanelWrapper,
   TagComponent,
+  Paginate,
   Select,
   Text,
   Root,
@@ -43,11 +43,8 @@ const MovieList = () => {
     });
   {
   }
-
   const { categoriesId, rating, search }: any = router.query;
-
   const [movieRating, setMovieRating] = useState(Number(rating));
-
   const [arrayCategoriesId, setArrayCategoriesId] = useState(
     categoriesId ? categoriesId.split(',').map((id: string) => Number(id)) : [],
   );
@@ -66,7 +63,7 @@ const MovieList = () => {
     count: 40,
     arrowUpload: false,
     isLoading: false,
-    pageSize: 4,
+    pageSize: 5,
   });
 
   const handleScrollTotop = () => {
@@ -237,7 +234,7 @@ const MovieList = () => {
         </Text>
         <Select
           className="selectCategory"
-          placeholder={'PageSize'}
+          placeholder={query.pageSize}
           onChange={(name: IName) => {
             setQuery({ ...query, pageSize: Number(name.label) });
           }}
@@ -246,11 +243,11 @@ const MovieList = () => {
           closeMenu={true}
         />
       </ArrowUploadWrapper>
-      <ReactPaginate
+      <Paginate
         breakLabel="..."
         nextLabel={'>'}
         onPageChange={handlePageClick}
-        pageRangeDisplayed={5}
+        pageRangeDisplayed={3}
         pageCount={query.count}
         previousLabel="<"
         className="paginateClass"
@@ -258,7 +255,6 @@ const MovieList = () => {
         containerClassName="container"
         forcePage={query.currentPage}
       />
-      {/* <button onClick={notify}>Notify !</button> */}
       <ToastContainer
         position="top-right"
         autoClose={5000}
