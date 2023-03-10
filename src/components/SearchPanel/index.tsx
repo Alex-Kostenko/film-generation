@@ -66,8 +66,7 @@ const SearchPanel: FC<ISearchPanel> = ({
     genres.forEach(
       (option: ISelectedFilms) => (
         (option.value = option.id),
-        (option.label = option[genreLanguages]),
-        (option.label = toUpperCase(option.label)),
+        (option.label = toUpperCase(option[genreLanguages])),
         (option.name_eng = toUpperCase(option.name_eng)),
         (option.name_ukr = toUpperCase(option.name_ukr)),
         delete option[genreLanguages]
