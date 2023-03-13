@@ -231,11 +231,13 @@ const MovieList = () => {
             });
           }}
         >
-          Show More
+          {t('movieList.showMore')}
         </Text>
         <Select
           className="selectCategory"
-          placeholder={query.pageSize}
+          placeholder={
+            query.pageSize === 5 ? t('movieList.countFilm') : query.pageSize
+          }
           onChange={(name: IName) => {
             setQuery({ ...query, pageSize: Number(name.label) });
           }}

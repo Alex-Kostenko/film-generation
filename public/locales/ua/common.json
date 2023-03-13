@@ -11,7 +11,8 @@
 
   "movieList": {
     "release": "Дата релiзу",
-    "countFilm": "Кіл-ть фільмів"
+    "countFilm": "К-ть фільмів",
+    "showMore": "Показати ще"
   },
 
   "filmPage": {
