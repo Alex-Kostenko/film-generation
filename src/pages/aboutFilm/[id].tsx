@@ -138,25 +138,7 @@ const AboutFilm: FC<IAboutFilmProps> = ({ movie, id, apiKey }) => {
   );
 };
 
-export async function getStaticPaths({ locales }: any) {
-  const ids = await queryMovie.getAllId();
-
-  const paths = ids.flatMap((id: string) => {
-    return locales.map((locale: string) => {
-      return {
-        params: { id: id.toString() },
-        locale: locale,
-      };
-    });
-  });
-
-  return {
-    paths,
-    fallback: false,
-  };
-}
-
-export async function getStaticProps({ locale, params }: any) {
+export async function getServerSideProps({ locale, params }: any) {
   const movie = await queryMovie.getByID(params.id);
 
   return {
