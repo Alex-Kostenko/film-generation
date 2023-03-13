@@ -152,7 +152,7 @@ export async function getStaticPaths({ locales }: any) {
 
   return {
     paths,
-    fallback: false,
+    fallback: true,
   };
 }
 
@@ -162,7 +162,7 @@ export async function getStaticProps({ locale, params }: any) {
   return {
     props: {
       apiKey: process.env.GOOGLE_TRANSLATE_API_KEY,
-      ...(await serverSideTranslations(locale, ['common', 'footer'])),
+      ...(await serverSideTranslations(locale)),
       movie,
       id: params.id,
     },
