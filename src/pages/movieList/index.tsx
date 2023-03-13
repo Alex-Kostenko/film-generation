@@ -161,8 +161,11 @@ const MovieList = () => {
           <TagComponent className="tag-medium" label={searchTerm} />
         )}
         {arrayCategoriesId &&
-          arrayCategoriesId.map((movie: number) => (
-            <TagComponent className="tag-medium" label={Genres[movie]} />
+          arrayCategoriesId.map((categoriesId: number) => (
+            <TagComponent
+              className="tag-medium"
+              label={t(`genres.${Genres[categoriesId]}`)}
+            />
           ))}
       </SearchContainer>
       <PanelWrapper>

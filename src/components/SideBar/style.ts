@@ -41,7 +41,7 @@ export const WrapperSvg = styled.div`
   align-items: center;
   row-gap: 50px;
   & .triangle {
-    margin-top: 40px;
+    margin-top: 60px;
     cursor: pointer;
     fill: rgba(29, 29, 29, 1);
     pointer-events: all;
