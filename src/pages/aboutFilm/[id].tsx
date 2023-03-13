@@ -29,8 +29,15 @@ import {
 } from '../../styles/aboutFilmStyles/style';
 
 const AboutFilm: FC<IAboutFilmProps> = ({ movie, id, apiKey }) => {
+  const { t, i18n } = useTranslation(['common', 'footer'], {
+    bindI18n: 'languageChanged loaded',
+  });
+
+  useEffect(() => {
+    i18n.reloadResources(i18n.resolvedLanguage, ['common', 'footer']);
+  }, []);
+
   const router = useRouter();
-  const { t } = useTranslation();
 
   const [rezkaLink, setRezkaLink] = useState('');
   const [trailerLink, setTrailerLink] = useState('');
