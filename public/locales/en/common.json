@@ -11,7 +11,8 @@
 
   "movieList": {
     "release": "Release date",
-    "countFilm": "Count film"
+    "countFilm": "Count film",
+    "showMore": "Show more"
   },
 
   "filmPage": {
