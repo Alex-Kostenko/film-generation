@@ -152,7 +152,7 @@ export async function getStaticPaths({ locales }: any) {
 
   return {
     paths,
-    fallback: true,
+    fallback: false,
   };
 }
 
