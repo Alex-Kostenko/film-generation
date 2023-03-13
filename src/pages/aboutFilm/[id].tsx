@@ -29,14 +29,7 @@ import {
 } from '../../styles/aboutFilmStyles/style';
 
 const AboutFilm: FC<IAboutFilmProps> = ({ movie, id, apiKey }) => {
-  const { t, i18n } = useTranslation(['common', 'footer'], {
-    bindI18n: 'languageChanged loaded',
-  });
-
-  useEffect(() => {
-    i18n.reloadResources(i18n.resolvedLanguage, ['common', 'footer']);
-  }, []);
-
+  const { t } = useTranslation();
   const router = useRouter();
 
   const [rezkaLink, setRezkaLink] = useState('');

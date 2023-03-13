@@ -27,13 +27,7 @@ import { Genres } from '@/utils/genres';
 import Reload from '../../../public/reload.svg';
 
 const MovieList = () => {
-  const { t, i18n } = useTranslation(['common', 'footer'], {
-    bindI18n: 'languageChanged loaded',
-  });
-
-  useEffect(() => {
-    i18n.reloadResources(i18n.resolvedLanguage, ['common', 'footer']);
-  }, []);
+  const { t } = useTranslation();
 
   const router = useRouter();
 
