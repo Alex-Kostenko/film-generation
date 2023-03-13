@@ -28,14 +28,39 @@ import {
   Link,
 } from '../../styles/aboutFilmStyles/style';
 
-const AboutFilm: FC<IAboutFilmProps> = ({ movie, id, apiKey }) => {
-  const { t, i18n } = useTranslation(['common', 'footer'], {
-    bindI18n: 'languageChanged loaded',
+export async function getStaticPaths({ locales }: any) {
+  const ids = await queryMovie.getAllId();
+
+  const paths = ids.flatMap((id: string) => {
+    return locales.map((locale: string) => {
+      return {
+        params: { id: id.toString() },
+        locale: locale,
+      };
+    });
   });
 
-  useEffect(() => {
-    i18n.reloadResources(i18n.resolvedLanguage, ['common', 'footer']);
-  }, []);
+  return {
+    paths,
+    fallback: false,
+  };
+}
+
+export async function getStaticProps({ locale, params }: any) {
+  const movie = await queryMovie.getByID(params.id);
+
+  return {
+    props: {
+      apiKey: process.env.GOOGLE_TRANSLATE_API_KEY,
+      ...(await serverSideTranslations(locale)),
+      movie,
+      id: params.id,
+    },
+  };
+}
+
+const AboutFilm: FC<IAboutFilmProps> = ({ movie, id, apiKey }) => {
+  const { t } = useTranslation();
 
   const router = useRouter();
 
@@ -139,34 +164,3 @@ const AboutFilm: FC<IAboutFilmProps> = ({ movie, id, apiKey }) => {
 };
 
 export default AboutFilm;
-
-export async function getStaticProps({ locale, params }: any) {
-  const movie = await queryMovie.getByID(params.id);
-
-  return {
-    props: {
-      apiKey: process.env.GOOGLE_TRANSLATE_API_KEY,
-      ...(await serverSideTranslations(locale, ['common', 'footer'])),
-      movie,
-      id: params.id,
-    },
-  };
-}
-
-export async function getStaticPaths({ locales }: any) {
-  const ids = await queryMovie.getAllId();
-
-  const paths = ids.flatMap((id: string) => {
-    return locales.map((locale: string) => {
-      return {
-        params: { id: id.toString() },
-        locale: locale,
-      };
-    });
-  });
-
-  return {
-    paths,
-    fallback: false,
-  };
-}
