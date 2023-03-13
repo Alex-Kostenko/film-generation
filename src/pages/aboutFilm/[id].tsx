@@ -28,19 +28,6 @@ import {
   Link,
 } from '../../styles/aboutFilmStyles/style';
 
-export async function getServerSideProps({ locale, params }: any) {
-  const movie = await queryMovie.getByID(params.id);
-
-  return {
-    props: {
-      apiKey: process.env.GOOGLE_TRANSLATE_API_KEY,
-      ...(await serverSideTranslations(locale)),
-      movie,
-      id: params.id,
-    },
-  };
-}
-
 const AboutFilm: FC<IAboutFilmProps> = ({ movie, id, apiKey }) => {
   const { t } = useTranslation();
 
@@ -144,5 +131,18 @@ const AboutFilm: FC<IAboutFilmProps> = ({ movie, id, apiKey }) => {
     </>
   );
 };
+
+export async function getServerSideProps({ locale, params }: any) {
+  const movie = await queryMovie.getByID(params.id);
+
+  return {
+    props: {
+      apiKey: process.env.GOOGLE_TRANSLATE_API_KEY,
+      ...(await serverSideTranslations(locale)),
+      movie,
+      id: params.id,
+    },
+  };
+}
 
 export default AboutFilm;

@@ -272,7 +272,7 @@ const MovieList = () => {
   );
 };
 
-export const getStaticProps = async ({ locale }: any) => ({
+export const getServerSideProps = async ({ locale }: any) => ({
   props: {
     ...(await serverSideTranslations(locale)),
   },
