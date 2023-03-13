@@ -280,7 +280,7 @@ const MovieList = () => {
 
 export const getStaticProps = async ({ locale }: any) => ({
   props: {
-    ...(await serverSideTranslations(locale, ['common', 'footer'])),
+    ...(await serverSideTranslations(locale)),
   },
 });
 
