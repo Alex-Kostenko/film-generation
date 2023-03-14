@@ -1,3 +1,4 @@
+import { useTranslation } from 'next-i18next';
 import React, { FC } from 'react';
 import { YearRangePicker } from 'react-year-range-picker';
 
@@ -16,6 +17,8 @@ const YearRangePickerComponent: FC<IYearRangePickerComponent> = ({
   yearMovie,
   setYearMovie,
 }) => {
+  const { t }: any = useTranslation();
+
   const handleOnchange = (startYear: number, endYear: number) => {
     setYearSearch && setYearSearch({ startYear, endYear });
     setYearMovie && setYearMovie({ startYear, endYear });
@@ -30,8 +33,8 @@ const YearRangePickerComponent: FC<IYearRangePickerComponent> = ({
         startYear={typeof yearMovie === 'object' ? yearMovie.startYear : 0}
         endYear={typeof yearMovie === 'object' ? yearMovie.endYear : 0}
         classNames="custom-year-range-picker"
-        startText="Початок"
-        endText="Кінець"
+        startText={t('main.start')}
+        endText={t('main.end')}
       />
     </Root>
   );

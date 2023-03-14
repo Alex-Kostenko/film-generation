@@ -6,7 +6,9 @@
     "go": "Go to movie",
     "to": "to",
     "rating": "Rating",
-    "filter": "Filter"
+    "filter": "Filter",
+    "start": "Start",
+    "end": "End"
   },
 
   "movieList": {
