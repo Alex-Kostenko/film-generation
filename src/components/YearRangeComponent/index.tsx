@@ -1,6 +1,7 @@
+import { useTranslation } from 'next-i18next';
 import React, { FC } from 'react';
 import { YearRangePicker } from 'react-year-range-picker';
-import { useTranslation } from 'next-i18next';
+
 import { IYearRange } from '@/interfaces';
 
 import { Root } from './style';
