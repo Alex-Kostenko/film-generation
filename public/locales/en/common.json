@@ -12,7 +12,8 @@
   "movieList": {
     "release": "Release date",
     "countFilm": "Count film",
-    "showMore": "Show more"
+    "showMore": "Show more",
+    "rating": "ratingFrom"
   },
 
   "filmPage": {
