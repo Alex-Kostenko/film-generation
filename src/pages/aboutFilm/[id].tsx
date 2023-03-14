@@ -104,7 +104,7 @@ const AboutFilm: FC<IAboutFilmProps> = ({ movie, id, apiKey }) => {
             width={300}
             loader={() => src}
             src={src}
-            alt={'logoBurger'}
+            alt={'movie_img'}
           />
         </FilmImage>
         <FilmInfo

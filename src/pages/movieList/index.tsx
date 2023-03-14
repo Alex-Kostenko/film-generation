@@ -154,7 +154,7 @@ const MovieList = () => {
         {rating && (
           <TagComponent
             className="tag-medium"
-            label={`рейтингОт${rating / 2}`}
+            label={`${t('movieList.rating')}${rating / 2}`}
           />
         )}
         {searchTerm && (

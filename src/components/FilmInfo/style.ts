@@ -7,7 +7,7 @@ export const DescriptionContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-left: 30px;
+  margin-left: 40px;
   @media (max-width: 991px) {
     width: fit-content;
     justify-content: space-around;

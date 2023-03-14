@@ -12,7 +12,8 @@
   "movieList": {
     "release": "Дата релiзу",
     "countFilm": "К-ть фільмів",
-    "showMore": "Показати ще"
+    "showMore": "Показати ще",
+    "rating": "рейтингВiд"
   },
 
   "filmPage": {

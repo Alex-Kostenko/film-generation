@@ -56,6 +56,9 @@ export const AboutFilms = styled.div`
 export const FilmImage = styled.div`
   @media (max-width: 991px) {
     display: block;
+    margin-right: 50px;
+  }
+  @media (max-width: 750px) {
     margin: 20px auto;
   }
 `;
