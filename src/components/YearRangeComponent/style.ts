@@ -15,6 +15,8 @@ export const Root = styled.div`
 
   & .custom-year-range-picker .yrp-picker-box span {
     color: #fff;
+    font-family: 'Urbanist';
+    font-weight: 700;
   }
 
   & .custom-year-range-picker .yrp-picker-box i {
@@ -27,6 +29,7 @@ export const Root = styled.div`
     cursor: pointer;
     color: #ffffff;
     border-color: #1f1f1f;
+    background-color: rgb(243 63 63 / 0%) !important;
   }
   & .custom-year-range-picker {
     min-width: 0px;
