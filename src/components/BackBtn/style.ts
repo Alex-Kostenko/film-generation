@@ -11,7 +11,7 @@ export const Img = styled(Image)`
   background: transparent;
   cursor: pointer;
   border: none;
-  stroke: ${PALETTE.crimson.middle}
+  stroke: ${PALETTE.crimson.middle};
   transition: 0.4s;
   z-index: 3;
   -webkit-transition: 0.4s;
@@ -21,7 +21,7 @@ export const Img = styled(Image)`
     transform: scale(1.2);
   }
 
-   @media (max-width: 600px) {
+  @media (max-width: 600px) {
     left: 5px;
   }
 `;

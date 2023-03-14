@@ -1,7 +1,6 @@
-import { SelectComponent, DatePicker } from 'alex-unicode';
+import { SelectComponent } from 'alex-unicode';
 import styled from 'styled-components';
 
-export const DatePickerComponent = styled(DatePicker)``;
 export const Select = styled(SelectComponent)``;
 
 export const CriteriasContainer = styled.div`
@@ -17,25 +16,6 @@ export const CriteriasContainer = styled.div`
       @media (max-width: 968px) {
         width: 100% !important;
       }
-    }
-  }
-  & .datePicker {
-    & div {
-      z-index: 2;
-    }
-    @media (max-width: 968px) {
-      width: 100%;
-      margin-bottom: 20px;
-    }
-    & input {
-      width: 180px;
-      @media (max-width: 968px) {
-        width: 100%;
-      }
-    }
-
-    @media (max-width: 968px) {
-      /* order: 1; */
     }
   }
 

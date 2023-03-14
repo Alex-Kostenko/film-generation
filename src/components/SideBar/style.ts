@@ -20,10 +20,10 @@ export const SiderBar = styled.div`
   & .svgLanguage {
     width: 30px;
     cursor: pointer;
-    height: 25px;
+    height: 20px;
   }
   & .blur {
-    filter: blur(2px);
+    filter: blur(1px);
   }
 `;
 

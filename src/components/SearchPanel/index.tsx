@@ -4,18 +4,14 @@ import { useTranslation } from 'next-i18next';
 import { FC, useEffect, useState } from 'react';
 
 import queryMovie from '@/Services/queryMovies';
-import { ISelectedFilms } from '@/interfaces';
+import { ISelectedFilms, IYearRange } from '@/interfaces';
 import { generateQueries } from '@/utils/common';
 
 import Option from '../Checkbox';
 import Stars from '../Stars';
+import YearRangePickerComponent from '../YearRangeComponent';
 
-import {
-  DatePickerComponent,
-  CriteriasContainer,
-  SearchContainer,
-  Select,
-} from './style';
+import { CriteriasContainer, SearchContainer, Select } from './style';
 
 interface ISearchPanel {
   movieRating: number;
@@ -37,6 +33,7 @@ const SearchPanel: FC<ISearchPanel> = ({
   const [resultGenres, setResultGenres] = useState<ISelectedFilms[]>([]);
   const [genres, setGenres] = useState<ISelectedFilms[]>([]);
   const [valueInput, setValueInput] = useState('');
+  const [yearSearch, setYearSearch] = useState<IYearRange | string>('empty');
 
   useEffect(() => {
     if (genres.length === 0) {
@@ -85,6 +82,15 @@ const SearchPanel: FC<ISearchPanel> = ({
       { label: 'categoriesId', value: searchGenre, key: 'id' },
       { label: 'rating', value: String(movieRating) },
       { label: 'search', value: String(searchTerm) },
+      {
+        label: 'yearRange',
+        value:
+          yearSearch === 'empty'
+            ? 'empty'
+            : `${typeof yearSearch === 'object' && yearSearch.startYear},${
+                typeof yearSearch === 'object' && yearSearch.endYear
+              }`,
+      },
     ]);
 
     router.push(result);
@@ -104,7 +110,7 @@ const SearchPanel: FC<ISearchPanel> = ({
             changeGenre(selectedFilms)
           }
         />
-        <DatePickerComponent to={t('main.to')} className="datePicker" />
+        <YearRangePickerComponent setYearSearch={setYearSearch} />
         <Stars
           rating={t('main.rating')}
           movieRating={movieRating}

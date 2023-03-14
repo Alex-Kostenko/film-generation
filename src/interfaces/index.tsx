@@ -90,7 +90,10 @@ export interface IName {
 export interface ISelectedFilms {
   [index: string]: string | undefined;
 }
-
+export interface IYearRange {
+  startYear: number;
+  endYear: number;
+}
 export interface IMovie {
   id: number;
   engTitle: string;

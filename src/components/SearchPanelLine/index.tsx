@@ -4,16 +4,16 @@ import { useTranslation } from 'next-i18next';
 import { FC, useEffect, useState } from 'react';
 
 import queryMovie from '@/Services/queryMovies';
-import { IName, ISelectedFilms } from '@/interfaces';
+import { IName, ISelectedFilms, IYearRange } from '@/interfaces';
 import { filter } from '@/utils/constants';
 import { useDebounce } from '@/utils/hooks/useDebounce';
 
 import Option from '../Checkbox';
 import Stars from '../Stars';
+import YearRangePickerComponent from '../YearRangeComponent';
 
 import {
   WrapperInArrowInFilter,
-  DatePickerComponent,
   CriteriasContainer,
   WrapperFilter,
   LeftArrow,
@@ -30,9 +30,10 @@ interface ISearchPanel {
   setAscDesc?: any;
   ascDesc?: any;
   arrayGenres: any;
-  setArrayGenres: any;
   arrayCategoriesId: any;
   setArrayCategoriesId: any;
+  yearMovie: IYearRange | string;
+  setYearMovie: React.Dispatch<React.SetStateAction<string | IYearRange>>;
 }
 
 const SearchPanel: FC<ISearchPanel> = ({
@@ -45,13 +46,14 @@ const SearchPanel: FC<ISearchPanel> = ({
   movieRating,
   arrayCategoriesId,
   setArrayCategoriesId,
+  yearMovie,
+  setYearMovie,
 }) => {
   const router = useRouter();
   const { t } = useTranslation();
 
   const [resultGenres, setResultGenres] = useState<ISelectedFilms[]>([]);
   const [genres, setGenres] = useState<ISelectedFilms[]>([]);
-  const [valueInput, setValueInput] = useState('');
 
   useEffect(() => {
     if (genres.length === 0) {
@@ -78,22 +80,18 @@ const SearchPanel: FC<ISearchPanel> = ({
         genreLanguages = 'name_eng';
     }
 
-    genres.forEach(
-      (option: ISelectedFilms) => (
-        (option.value = option.id),
-        (option.label = option[genreLanguages]),
-        (option.label = toUpperCase(option.label)),
-        (option.name_eng = toUpperCase(option.name_eng)),
-        (option.name_ukr = toUpperCase(option.name_ukr)),
-        delete option[genreLanguages]
-      ),
+    setResultGenres(
+      genres.map((option: ISelectedFilms) => {
+        return {
+          value: String(option.id),
+          label: toUpperCase(option[genreLanguages]),
+        };
+      }),
     );
-
-    setResultGenres(genres);
   }, [genres, router.locale]);
 
   const changeGenre = (selectedFilms: ISelectedFilms[]) => {
-    setArrayCategoriesId(selectedFilms.map((item) => String(item.id)));
+    setArrayCategoriesId(selectedFilms.map((item) => item.value));
   };
   const changeSearchTerm = (text: string) => {
     setSearchTerm(text);
@@ -110,6 +108,12 @@ const SearchPanel: FC<ISearchPanel> = ({
             rating: `${movieRating}`,
             search: `${searchTerm}`,
             categoriesId: `${arrayCategoriesId && arrayCategoriesId.join(',')}`,
+            yearRange:
+              yearMovie === 'empty'
+                ? 'empty'
+                : `${typeof yearMovie === 'object' && yearMovie.startYear},${
+                    typeof yearMovie === 'object' && yearMovie.endYear
+                  }`,
           },
         },
         undefined,
@@ -117,7 +121,7 @@ const SearchPanel: FC<ISearchPanel> = ({
       );
     }
     handlePushWithoutRender();
-  }, [movieRating, searchTerm, arrayCategoriesId]);
+  }, [movieRating, searchTerm, arrayCategoriesId, yearMovie]);
 
   return (
     <>
@@ -132,15 +136,25 @@ const SearchPanel: FC<ISearchPanel> = ({
           onChange={(selectedFilms: ISelectedFilms[]) =>
             changeGenre(selectedFilms)
           }
+          defaultValue={
+            router.query.categoriesId &&
+            (router.query.categoriesId as string)
+              .split(',')
+              .map((item: any) => {
+                return { value: item };
+              })
+          }
         />
-        <DatePickerComponent to={t('main.to')} className="datePicker" />
+        <YearRangePickerComponent
+          yearMovie={yearMovie}
+          setYearMovie={setYearMovie}
+        />
         <Input
-          defaultValue={'SODADA'}
           label={t('main.search')}
-          value={valueInput}
+          value={searchTerm}
           onChange={(event: any) => {
             debounce(event.target.value);
-            setValueInput(event.target.value);
+            setSearchTerm(event.target.value);
           }}
         />
         <WrapperFilter>
