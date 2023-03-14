@@ -32,7 +32,7 @@ export const WarpperLanguage = styled.div`
   flex-direction: column;
   align-items: center;
   row-gap: 20px;
-  margin-bottom: 30px;
+  margin-bottom: 50px;
 `;
 
 export const WrapperSvg = styled.div`
