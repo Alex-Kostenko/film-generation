@@ -10,7 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import queryMovie from '@/Services/queryMovies';
 import BackBtn from '@/components/BackBtn';
 import SearchPanelLine from '@/components/SearchPanelLine';
-import { IName } from '@/interfaces';
+import { IName, IYearRange } from '@/interfaces';
 import {
   ArrowUploadWrapper,
   SearchContainer,
@@ -41,10 +41,8 @@ const MovieList = () => {
       progress: undefined,
       theme: 'light',
     });
-  {
-  }
 
-  const { categoriesId, rating, search }: any = router.query;
+  const { categoriesId, rating, search, yearRange }: any = router.query;
 
   const [movieRating, setMovieRating] = useState(Number(rating));
 
@@ -57,6 +55,14 @@ const MovieList = () => {
   const [styless, setStyless] = useState(`a[aria-label='Page -1']`);
   const [content, setContent] = useState([]);
   const [searchTerm, setSearchTerm] = useState(search ? search : '');
+  const [yearMovie, setYearMovie] = useState<IYearRange | string>(
+    yearRange === 'empty'
+      ? 'empty'
+      : {
+          startYear: Number(yearRange.split(',')[0]),
+          endYear: Number(yearRange.split(',')[1]),
+        },
+  );
 
   const [valueFilter, setValueFilter] = useState('popularity');
   const [ascDesc, setAscDesc] = useState('desc');
@@ -100,6 +106,12 @@ const MovieList = () => {
             voteAvarageFrom: movieRating,
             orderBy: valueFilter,
             dir: ascDesc,
+            releaseDateFrom:
+              typeof yearMovie === 'object' ? yearMovie.startYear : 1990,
+            releaseDateTo:
+              typeof yearMovie === 'object'
+                ? yearMovie.endYear
+                : new Date().getFullYear(),
           },
         );
         if (query.arrowUpload) {
@@ -125,6 +137,7 @@ const MovieList = () => {
     searchTerm,
     valueFilter,
     ascDesc,
+    yearMovie,
   ]);
 
   useEffect(() => {
@@ -152,7 +165,6 @@ const MovieList = () => {
   return (
     <Root colorStyle={styless}>
       <BackBtn onClick={() => router.push('/')} />
-      <div></div>
       <SearchContainer>
         {rating && (
           <TagComponent
@@ -180,6 +192,8 @@ const MovieList = () => {
           arrayGenres={arrayCategoriesId}
           arrayCategoriesId={arrayCategoriesId}
           setArrayCategoriesId={setArrayCategoriesId}
+          yearMovie={yearMovie}
+          setYearMovie={setYearMovie}
         />
       </PanelWrapper>
       {content.map((movie: any) => (
