@@ -32,16 +32,15 @@ export const WarpperLanguage = styled.div`
   flex-direction: column;
   align-items: center;
   row-gap: 20px;
-  margin-bottom: 52px;
+  margin-bottom: 50px;
 `;
 
 export const WrapperSvg = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  row-gap: 50px;
   & .triangle {
-    margin-top: 40px;
+    margin-top: 60px;
     cursor: pointer;
     fill: rgba(29, 29, 29, 1);
     pointer-events: all;

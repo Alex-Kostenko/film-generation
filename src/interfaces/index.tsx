@@ -79,7 +79,9 @@ export interface IAboutFilmProps {
   movie: MovieEntity;
   id: string;
   apiKey: string;
+  t: (key: string) => string;
 }
+
 export interface IName {
   value: string;
   label: string;

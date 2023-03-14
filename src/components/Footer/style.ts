@@ -7,8 +7,7 @@ export const FooterComponent = styled.div`
   left: 0;
   bottom: 0;
   width: 100%;
-  height: 50px;
-  padding: 8px;
+  height: 40px;
   background-color: ${PALETTE.dark.darkGrey};
 `;
 export const FooterText = styled.p`

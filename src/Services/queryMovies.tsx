@@ -64,6 +64,14 @@ const queryMovie = {
       return res.data;
     } catch (error) {}
   },
+
+  async getAllId() {
+    try {
+      const res = await api.get('/movies/movies-ids');
+
+      return res.data;
+    } catch (error) {}
+  },
 };
 
 export default queryMovie;

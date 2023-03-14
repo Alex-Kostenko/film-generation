@@ -10,7 +10,10 @@
   },
 
   "movieList": {
-    "release": "Дата релиза"
+    "release": "Дата релиза",
+    "countFilm": "Кол-во фильмов",
+    "showMore": "Показать еще",
+    "rating": "рейтингОт"
   },
 
   "filmPage": {

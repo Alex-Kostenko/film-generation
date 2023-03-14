@@ -1,4 +1,5 @@
 import { SelectComponent, MovieCard, Tag } from 'alex-unicode';
+import ReactPaginate from 'react-paginate';
 import styled from 'styled-components';
 
 import { PALETTE } from '@/palette';
@@ -7,11 +8,19 @@ interface StyleProps {
   colorStyle?: string;
 }
 
+export const Paginate = styled(ReactPaginate)`
+  flex-wrap: wrap;
+`;
+
 export const SearchContainer = styled.div`
   display: flex;
   width: 100%;
   margin: 10px 0 10px 0;
   flex-wrap: wrap;
+
+  @media (max-width: 600px) {
+    padding-left: 25px;
+  }
 `;
 
 export const PanelWrapper = styled.div`
@@ -25,14 +34,13 @@ export const PanelWrapper = styled.div`
 
   @media (max-width: 968px) {
     display: block;
-    width: 400px;
     padding: 30px;
   }
 
   @media (max-width: 600px) {
     display: block;
-    width: 300px;
-    padding: 20px;
+    padding: 10px;
+    padding-left: 25px;
   }
 `;
 
@@ -55,6 +63,12 @@ export const CardComponent = styled(MovieCard)`
   }
 `;
 export const Root = styled.div<StyleProps>`
+  @media (max-width: 1100px) {
+    padding: 0 60px;
+  }
+  @media (max-width: 600px) {
+    padding: 0 12px;
+  }
   & .paginateClass {
     display: flex;
     position: relative;
@@ -122,6 +136,10 @@ export const ArrowUploadWrapper = styled.div`
   justify-content: center;
   align-items: center;
   transition: all 1s ease-in-out;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
 `;
 
 export const Text = styled.div`
@@ -150,5 +168,10 @@ export const Select = styled(SelectComponent)`
   }
   & .castom-select__menu {
     width: 100% !important;
+  }
+
+  @media (max-width: 600px) {
+    position: relative !important;
+    margin-top: 15px;
   }
 `;

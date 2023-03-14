@@ -30,7 +30,9 @@ import {
 
 const AboutFilm: FC<IAboutFilmProps> = ({ movie, id, apiKey }) => {
   const { t } = useTranslation();
+
   const router = useRouter();
+
   const [rezkaLink, setRezkaLink] = useState('');
   const [trailerLink, setTrailerLink] = useState('');
   const [convertedText, setConvertedText] = useState('');
@@ -102,7 +104,7 @@ const AboutFilm: FC<IAboutFilmProps> = ({ movie, id, apiKey }) => {
             width={300}
             loader={() => src}
             src={src}
-            alt={'logoBurger'}
+            alt={'movie_img'}
           />
         </FilmImage>
         <FilmInfo
@@ -130,15 +132,15 @@ const AboutFilm: FC<IAboutFilmProps> = ({ movie, id, apiKey }) => {
   );
 };
 
-export async function getServerSideProps({ locale, query }: any) {
-  const movie = await queryMovie.getByID(query.id);
+export async function getServerSideProps({ locale, params }: any) {
+  const movie = await queryMovie.getByID(params.id);
 
   return {
     props: {
       apiKey: process.env.GOOGLE_TRANSLATE_API_KEY,
       ...(await serverSideTranslations(locale)),
       movie,
-      id: query.id,
+      id: params.id,
     },
   };
 }

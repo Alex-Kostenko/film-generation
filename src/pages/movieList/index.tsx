@@ -3,7 +3,6 @@ import { useRouter } from 'next/router';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import ReactPaginate from 'react-paginate';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -17,6 +16,7 @@ import {
   CardComponent,
   PanelWrapper,
   TagComponent,
+  Paginate,
   Select,
   Text,
   Root,
@@ -28,6 +28,7 @@ import Reload from '../../../public/reload.svg';
 
 const MovieList = () => {
   const { t } = useTranslation();
+
   const router = useRouter();
 
   const notify = () =>
@@ -45,7 +46,6 @@ const MovieList = () => {
   const { categoriesId, rating, search, yearRange }: any = router.query;
 
   const [movieRating, setMovieRating] = useState(Number(rating));
-
   const [arrayCategoriesId, setArrayCategoriesId] = useState(
     categoriesId ? categoriesId.split(',').map((id: string) => Number(id)) : [],
   );
@@ -72,7 +72,7 @@ const MovieList = () => {
     count: 40,
     arrowUpload: false,
     isLoading: false,
-    pageSize: 4,
+    pageSize: 5,
   });
 
   const handleScrollTotop = () => {
@@ -169,15 +169,18 @@ const MovieList = () => {
         {rating && (
           <TagComponent
             className="tag-medium"
-            label={`рейтингОт${rating / 2}`}
+            label={`${t('movieList.rating')}${rating / 2}`}
           />
         )}
         {searchTerm && (
           <TagComponent className="tag-medium" label={searchTerm} />
         )}
         {arrayCategoriesId &&
-          arrayCategoriesId.map((movie: number) => (
-            <TagComponent className="tag-medium" label={Genres[movie]} />
+          arrayCategoriesId.map((categoriesId: number) => (
+            <TagComponent
+              className="tag-medium"
+              label={t(`genres.${Genres[categoriesId]}`)}
+            />
           ))}
       </SearchContainer>
       <PanelWrapper>
@@ -247,11 +250,13 @@ const MovieList = () => {
             });
           }}
         >
-          Show More
+          {t('movieList.showMore')}
         </Text>
         <Select
           className="selectCategory"
-          placeholder={'PageSize'}
+          placeholder={
+            query.pageSize === 5 ? t('movieList.countFilm') : query.pageSize
+          }
           onChange={(name: IName) => {
             setQuery({ ...query, pageSize: Number(name.label) });
           }}
@@ -260,11 +265,11 @@ const MovieList = () => {
           closeMenu={true}
         />
       </ArrowUploadWrapper>
-      <ReactPaginate
+      <Paginate
         breakLabel="..."
         nextLabel={'>'}
         onPageChange={handlePageClick}
-        pageRangeDisplayed={5}
+        pageRangeDisplayed={3}
         pageCount={query.count}
         previousLabel="<"
         className="paginateClass"
@@ -272,7 +277,6 @@ const MovieList = () => {
         containerClassName="container"
         forcePage={query.currentPage}
       />
-      {/* <button onClick={notify}>Notify !</button> */}
       <ToastContainer
         position="top-right"
         autoClose={5000}
@@ -289,12 +293,10 @@ const MovieList = () => {
   );
 };
 
-export const getServerSideProps = async ({ locale }: any) => {
-  return {
-    props: {
-      ...(await serverSideTranslations(locale)),
-    },
-  };
-};
+export const getServerSideProps = async ({ locale }: any) => ({
+  props: {
+    ...(await serverSideTranslations(locale)),
+  },
+});
 
 export default MovieList;
