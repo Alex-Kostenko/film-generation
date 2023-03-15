@@ -22,7 +22,7 @@ import {
 } from './style';
 
 interface ISearchPanel {
-  setArrayCategoriesId: React.Dispatch<React.SetStateAction<string[]>>;
+  setArrayCategoriesId: React.Dispatch<React.SetStateAction<any>>;
   setValueFilter: React.Dispatch<React.SetStateAction<string>>;
   setMovieRating: React.Dispatch<React.SetStateAction<number>>;
   setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
