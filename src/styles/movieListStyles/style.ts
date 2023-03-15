@@ -67,7 +67,7 @@ export const Root = styled.div<StyleProps>`
     padding: 0 60px;
   }
   @media (max-width: 600px) {
-    padding: 0 12px;
+    padding: 35px 12px 0 12px;
   }
   & .paginateClass {
     display: flex;

@@ -2,6 +2,12 @@ import styled from 'styled-components';
 
 import { PALETTE } from '@/palette';
 
+export const Root = styled.div`
+  @media (max-width: 600px) {
+    padding: 35px 12px 0 12px;
+  }
+`;
+
 export const Container = styled.div`
   display: flex;
   margin-top: 30px;

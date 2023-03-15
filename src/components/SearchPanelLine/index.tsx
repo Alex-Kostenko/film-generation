@@ -168,7 +168,7 @@ const SearchPanel: FC<ISearchPanel> = ({
           </WrapperInArrowInFilter>
           <Select
             className="selectFilter"
-            placeholder={t('main.filter')}
+            placeholder={t('main.sort')}
             onChange={(name: IName) => setValueFilter(name.value)}
             options={filter}
             multi={false}

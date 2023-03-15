@@ -45,66 +45,66 @@ export const Root = styled.div`
   }
 `;
 
-export const BurgerHeader = styled.div`
-  display: none;
-  @media (max-width: 600px) {
-    display: block;
-    height: 45px;
-    width: 100%;
-    background: ${PALETTE.gray};
-    position: absolute;
-    top: 0%;
-    z-index: 2;
-    background: ${PALETTE.siderBarGradient};
-  }
-  & .logoBurger {
-    border-radius: 50%;
-    cursor: pointer;
-    margin-left: 5px;
-    position: absolute;
-    top: 50%;
-    transform: translate(0, -50%);
-  }
-  & .menuStyle {
-    border-radius: 50%;
-    cursor: pointer;
-    margin-right: 5px;
-    position: absolute;
-    top: 50%;
-    right: 0%;
-    transform: translate(0, -50%);
-    fill: ${PALETTE.white};
-  }
-`;
+// export const BurgerHeader = styled.div`
+//   display: none;
+//   @media (max-width: 600px) {
+//     display: block;
+//     height: 45px;
+//     width: 100%;
+//     background: ${PALETTE.gray};
+//     position: absolute;
+//     top: 0%;
+//     z-index: 2;
+//     background: ${PALETTE.siderBarGradient};
+//   }
+//   & .logoBurger {
+//     border-radius: 50%;
+//     cursor: pointer;
+//     margin-left: 5px;
+//     position: absolute;
+//     top: 50%;
+//     transform: translate(0, -50%);
+//   }
+//   & .menuStyle {
+//     border-radius: 50%;
+//     cursor: pointer;
+//     margin-right: 5px;
+//     position: absolute;
+//     top: 50%;
+//     right: 0%;
+//     transform: translate(0, -50%);
+//     fill: ${PALETTE.white};
+//   }
+// `;
 
-export const ModalContent = styled.div`
-  width: 100%;
-  height: 300px;
-  display: flex;
-  flex-direction: column;
-  row-gap: 40px;
-  align-items: center;
-  & .triangle {
-    margin-top: 40px;
-    cursor: pointer;
-    fill: ${PALETTE.dark.darkBlack};
-    pointer-events: all;
-    transition: all 0.3s;
-  }
-`;
+// export const ModalContent = styled.div`
+//   width: 100%;
+//   height: 300px;
+//   display: flex;
+//   flex-direction: column;
+//   row-gap: 40px;
+//   align-items: center;
+//   & .triangle {
+//     margin-top: 40px;
+//     cursor: pointer;
+//     fill: ${PALETTE.dark.darkBlack};
+//     pointer-events: all;
+//     transition: all 0.3s;
+//   }
+// `;
 
-export const WrapperRow = styled.div`
-  display: flex;
-  align-items: end;
-  column-gap: 10px;
-  cursor: pointer;
-  &:hover {
-    & .triangle {
-      fill: ${PALETTE.crimson.middle};
-    }
-  }
-  height: 30px;
-`;
+// export const WrapperRow = styled.div`
+//   display: flex;
+//   align-items: end;
+//   column-gap: 10px;
+//   cursor: pointer;
+//   &:hover {
+//     & .triangle {
+//       fill: ${PALETTE.crimson.middle};
+//     }
+//   }
+//   height: 30px;
+// `;
 
 export const LeftArroww = styled.div`
   position: absolute;

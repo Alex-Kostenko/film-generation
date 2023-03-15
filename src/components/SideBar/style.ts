@@ -25,6 +25,25 @@ export const SiderBar = styled.div`
   & .blur {
     filter: blur(1px);
   }
+  & .tooltipCinema,
+  .tooltipStar {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    transition: all 0.3s;
+  }
+
+  & .triangle:hover + .tooltipStar {
+    visibility: visible;
+  }
+  & .triangle:hover + .tooltipCinema {
+    visibility: visible;
+  }
 `;
 
 export const WarpperLanguage = styled.div`
@@ -42,6 +61,7 @@ export const WrapperSvg = styled.div`
   & .triangle {
     margin-top: 60px;
     cursor: pointer;
+    position: relative;
     fill: rgba(29, 29, 29, 1);
     pointer-events: all;
     transition: all 0.3s;
