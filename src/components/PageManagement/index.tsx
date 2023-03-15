@@ -9,9 +9,16 @@ import Reload from '../../../public/reload.svg';
 
 import { ArrowUploadWrapper, Select, Text } from './style';
 
+interface Query {
+  arrowUpload: boolean;
+  count: number;
+  currentPage: number;
+  isLoading: boolean;
+  pageSize: number;
+}
 interface IPageManagement {
-  query: any;
-  setQuery: any;
+  query: Query;
+  setQuery: React.Dispatch<React.SetStateAction<Query>>;
 }
 
 const PageManagementComponent: FC<IPageManagement> = ({ query, setQuery }) => {
