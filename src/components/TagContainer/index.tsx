@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Genres } from '@/utils/genres';
@@ -17,13 +17,13 @@ const TagContainer: FC<ITagContainerProps> = ({
   rating,
 }) => {
   const { t } = useTranslation();
+  const [label, setlabel] = useState<string | null>('');
+
+  useEffect(() => setlabel(t('movieList.rating')), []);
   return (
     <SearchContainer>
       {rating && (
-        <TagComponent
-          className="tag-medium"
-          label={`${t('movieList.rating')}${rating / 2}`}
-        />
+        <TagComponent className="tag-medium" label={`${label}${rating / 2}`} />
       )}
       {searchTerm && <TagComponent className="tag-medium" label={searchTerm} />}
       {arrayCategoriesId &&

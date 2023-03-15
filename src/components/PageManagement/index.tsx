@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { FC, useRef } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { IName } from '@/interfaces';
@@ -22,8 +22,16 @@ interface IPageManagement {
 }
 
 const PageManagementComponent: FC<IPageManagement> = ({ query, setQuery }) => {
+  const [labelSize, setLabelSize] = useState<string | null>('');
+  const [labelText, setLabelText] = useState<string | null>('');
   const reloadRef: React.MutableRefObject<null> = useRef(null);
   const { t } = useTranslation();
+
+  useEffect(() => {
+    setLabelSize(t('movieList.countFilm'));
+    setLabelText(t('movieList.showMore'));
+  }, []);
+
   return (
     <ArrowUploadWrapper>
       <div ref={reloadRef}>
@@ -50,13 +58,11 @@ const PageManagementComponent: FC<IPageManagement> = ({ query, setQuery }) => {
           });
         }}
       >
-        {t('movieList.showMore')}
+        {labelText}
       </Text>
       <Select
         className="selectCategory"
-        placeholder={
-          query.pageSize === 5 ? t('movieList.countFilm') : query.pageSize
-        }
+        placeholder={query.pageSize === 5 ? labelSize : query.pageSize}
         onChange={(name: IName) => {
           setQuery({ ...query, pageSize: Number(name.label) });
         }}
