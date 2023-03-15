@@ -1,3 +1,4 @@
+import { DefaultTFuncReturn } from 'i18next';
 import React from 'react';
 interface Production_companies {
   id: number;
@@ -127,12 +128,32 @@ export interface ISliderTextProps {
 }
 
 export interface IStars {
-  rating: any;
+  rating: number | null | DefaultTFuncReturn;
   movieRating: number;
   setMovieRating: React.Dispatch<React.SetStateAction<number>>;
 }
 
-// export interface ISearchPanel {
-//   movieRating: number;
-//   setMovieRating: React.Dispatch<React.SetStateAction<number>>;
-// }
+interface Params {
+  id: string;
+}
+
+export interface AboutFilmServerSideProps {
+  locale: string;
+  params: Params;
+}
+
+export interface ILocale {
+  locale: string;
+}
+
+export interface IRequestBody {
+  genres_ids: number[];
+  dir: string;
+  orderBy: string;
+  includeAdult?: boolean;
+  searchInDescription?: boolean;
+  voteAvarageFrom: number;
+  voteCountFrom?: number;
+  releaseDateFrom?: number;
+  releaseDateTo?: number;
+}

@@ -1,7 +1,6 @@
 import { useTranslation } from 'next-i18next';
 import { FC } from 'react';
 
-import queryMovie from '@/Services/queryMovies';
 import { IFilmInfoProps } from '@/interfaces';
 import { Genres } from '@/utils/genres';
 
@@ -33,7 +32,7 @@ const FilmInfo: FC<IFilmInfoProps> = ({
       name: t('filmPage.genre'),
       text: (
         <TagBox>
-          {genre.map((item: any) => (
+          {genre.map((item: number) => (
             <TagComponent
               className="tag-small"
               label={t(`genres.${Genres[item]}`)}
@@ -58,23 +57,5 @@ const FilmInfo: FC<IFilmInfoProps> = ({
     </DescriptionContainer>
   );
 };
-
-export async function getStaticPaths({ locales }: any) {
-  const ids = await queryMovie.getAllId();
-
-  const paths = ids.flatMap((id: string) => {
-    return locales.map((locale: string) => {
-      return {
-        params: { id: id.toString() },
-        locale: locale,
-      };
-    });
-  });
-
-  return {
-    paths,
-    fallback: false,
-  };
-}
 
 export default FilmInfo;

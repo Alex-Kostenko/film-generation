@@ -1,30 +1,28 @@
-import classNames from 'classnames';
 import { useRouter } from 'next/router';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import queryMovie from '@/Services/queryMovies';
 import BackBtn from '@/components/BackBtn';
+import PageManagementComponent from '@/components/PageManagement';
 import SearchPanelLine from '@/components/SearchPanelLine';
-import { IName } from '@/interfaces';
+import { ILocale, MovieEntity } from '@/interfaces';
 import {
-  ArrowUploadWrapper,
   SearchContainer,
   CardComponent,
   PanelWrapper,
   TagComponent,
   Paginate,
-  Select,
-  Text,
   Root,
 } from '@/styles/movieListStyles/style';
-import { optionSize } from '@/utils/constants';
 import { Genres } from '@/utils/genres';
 
-import Reload from '../../../public/reload.svg';
+interface PageChangeEvent {
+  selected: number;
+}
 
 const MovieList = () => {
   const { t } = useTranslation();
@@ -50,7 +48,6 @@ const MovieList = () => {
     categoriesId ? categoriesId.split(',').map((id: string) => Number(id)) : [],
   );
 
-  const reloadRef: any = useRef(null);
   // eslint-disable-next-line
   const [styless, setStyless] = useState(`a[aria-label='Page -1']`);
   const [content, setContent] = useState([]);
@@ -111,7 +108,7 @@ const MovieList = () => {
           count: allFilters.data.total_pages,
           isLoading: false,
         });
-      } catch (error: any) {
+      } catch (error: unknown) {
         notify();
       }
     })();
@@ -139,7 +136,7 @@ const MovieList = () => {
     }
   }, [query.currentPage]);
 
-  const handlePageClick = async (event: any) => {
+  const handlePageClick = async (event: PageChangeEvent) => {
     setQuery({ ...query, arrowUpload: false, currentPage: event.selected });
   };
 
@@ -183,7 +180,7 @@ const MovieList = () => {
           setArrayCategoriesId={setArrayCategoriesId}
         />
       </PanelWrapper>
-      {content.map((movie: any) => (
+      {content.map((movie: MovieEntity) => (
         <div key={movie.id}>
           <CardComponent
             img={
@@ -194,9 +191,9 @@ const MovieList = () => {
               movie.original_title === null ? movie.title : movie.original_title
             }
             subtitle={
-              movie.original_title === null ||
+              movie.original_title === '' ||
               movie.original_title === movie.title
-                ? null
+                ? ''
                 : movie.title
             }
             release={t('movieList.release')}
@@ -209,46 +206,7 @@ const MovieList = () => {
           />
         </div>
       ))}
-      <ArrowUploadWrapper>
-        <div ref={reloadRef}>
-          <Reload
-            className={classNames('reload', {
-              loading: query.isLoading,
-            })}
-            aria-label="Reload"
-            onClick={() => {
-              setQuery({
-                ...query,
-                currentPage: query.currentPage + 1,
-                arrowUpload: true,
-              });
-            }}
-          />
-        </div>
-        <Text
-          onClick={() => {
-            setQuery({
-              ...query,
-              currentPage: query.currentPage + 1,
-              arrowUpload: true,
-            });
-          }}
-        >
-          {t('movieList.showMore')}
-        </Text>
-        <Select
-          className="selectCategory"
-          placeholder={
-            query.pageSize === 5 ? t('movieList.countFilm') : query.pageSize
-          }
-          onChange={(name: IName) => {
-            setQuery({ ...query, pageSize: Number(name.label) });
-          }}
-          options={optionSize}
-          multi={false}
-          closeMenu={true}
-        />
-      </ArrowUploadWrapper>
+      <PageManagementComponent query={query} setQuery={setQuery} />
       <Paginate
         breakLabel="..."
         nextLabel={'>'}
@@ -277,7 +235,7 @@ const MovieList = () => {
   );
 };
 
-export const getServerSideProps = async ({ locale }: any) => ({
+export const getServerSideProps = async ({ locale }: ILocale) => ({
   props: {
     ...(await serverSideTranslations(locale)),
   },

@@ -1,3 +1,5 @@
+import { IRequestBody } from '@/interfaces';
+
 import api from './config';
 
 const queryMovie = {
@@ -29,7 +31,7 @@ const queryMovie = {
     pageSize: number,
     page: number,
     searchTerm: string,
-    body: any,
+    body: IRequestBody,
   ) {
     try {
       const res = await api.post(

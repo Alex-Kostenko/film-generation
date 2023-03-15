@@ -1,7 +1,7 @@
 import { Input } from 'alex-unicode';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
-import { FC, useEffect, useState } from 'react';
+import { ChangeEvent, FC, useEffect, useState } from 'react';
 
 import queryMovie from '@/Services/queryMovies';
 import { IName, ISelectedFilms } from '@/interfaces';
@@ -22,29 +22,29 @@ import {
 } from './style';
 
 interface ISearchPanel {
-  movieRating: number;
+  setArrayCategoriesId: React.Dispatch<React.SetStateAction<string[]>>;
+  setArrayGenres: React.Dispatch<React.SetStateAction<string[]>>;
+  setValueFilter: React.Dispatch<React.SetStateAction<string>>;
   setMovieRating: React.Dispatch<React.SetStateAction<number>>;
   setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
-  searchTerm?: string;
-  setValueFilter?: any;
-  setAscDesc?: any;
-  ascDesc?: any;
-  arrayGenres: any;
-  setArrayGenres: any;
-  arrayCategoriesId: any;
-  setArrayCategoriesId: any;
+  setAscDesc: React.Dispatch<React.SetStateAction<string>>;
+  arrayCategoriesId: string[];
+  arrayGenres: string[];
+  movieRating: number;
+  searchTerm: string;
+  ascDesc: string;
 }
 
 const SearchPanel: FC<ISearchPanel> = ({
+  setArrayCategoriesId,
+  arrayCategoriesId,
+  setMovieRating,
   setValueFilter,
   setSearchTerm,
+  movieRating,
   searchTerm,
   setAscDesc,
   ascDesc,
-  setMovieRating,
-  movieRating,
-  arrayCategoriesId,
-  setArrayCategoriesId,
 }) => {
   const router = useRouter();
   const { t } = useTranslation();
@@ -138,7 +138,7 @@ const SearchPanel: FC<ISearchPanel> = ({
           defaultValue={'SODADA'}
           label={t('main.search')}
           value={valueInput}
-          onChange={(event: any) => {
+          onChange={(event: ChangeEvent<HTMLInputElement>) => {
             debounce(event.target.value);
             setValueInput(event.target.value);
           }}

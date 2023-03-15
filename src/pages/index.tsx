@@ -6,7 +6,7 @@ import queryMovie from '@/Services/queryMovies';
 import ModalComponent from '@/components/ModalComponent';
 import SearchPanel from '@/components/SearchPanel';
 import SliderSlick from '@/components/Slider';
-import { MovieEntity } from '@/interfaces';
+import { ILocale, MovieEntity } from '@/interfaces';
 import useToggle from '@/utils/hooks/useToggle';
 
 import BurgerM from '../../public/burgerM.svg';
@@ -79,7 +79,7 @@ const HomePage: FC<IHomePage> = ({ popylarMovies }) => {
   );
 };
 
-export const getStaticProps = async ({ locale }: any) => {
+export const getStaticProps = async ({ locale }: ILocale) => {
   const popylarMovies = await queryMovie.getPopularMovie();
 
   return {
