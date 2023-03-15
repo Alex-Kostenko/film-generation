@@ -121,8 +121,12 @@ const SearchPanel: FC<ISearchPanel> = ({
         <Input
           label={t('main.search')}
           value={valueInput}
-          onChange={(event: any) => setValueInput(event.target.value)}
-          onBlur={(event: any) => setSearchTerm(event.target.value)}
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+            setValueInput(event.target.value)
+          }
+          onBlur={(event: React.FocusEvent<HTMLInputElement>) =>
+            setSearchTerm(event.target.value)
+          }
         />
         <Button label={t('main.search')} onClick={redirect} />
       </SearchContainer>

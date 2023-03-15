@@ -3,7 +3,7 @@ import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { FC } from 'react';
 
-import { ISliderTextProps } from '@/interfaces';
+import { ILocale, ISliderTextProps } from '@/interfaces';
 import { Genres } from '@/utils/genres';
 
 import {
@@ -45,7 +45,7 @@ const SliderText: FC<ISliderTextProps> = ({ movieData }) => {
 
 export default SliderText;
 
-export const getStaticProps = async ({ locale }: any) => {
+export const getStaticProps = async ({ locale }: ILocale) => {
   return {
     props: {
       ...(await serverSideTranslations(locale)),

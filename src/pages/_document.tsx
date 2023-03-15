@@ -30,7 +30,7 @@ export default class MyDocument extends Document {
 
   render() {
     return (
-      <Html lang="ua">
+      <Html lang="eng">
         <Head />
         <body style={{ background: '#0d0d0d' }}>
           <Main />

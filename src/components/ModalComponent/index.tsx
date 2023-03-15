@@ -1,11 +1,16 @@
 import Image from 'next/image';
-import React, { FC } from 'react';
+import React, { FC, MouseEventHandler, ReactNode } from 'react';
 
 import { Portal } from '../Portal';
 
 import { ButtonClose, MainContainer } from './style';
 
-const ModalComponent: FC<any> = ({ onClose, children }) => {
+interface IModalComponent {
+  onClose: MouseEventHandler<HTMLDivElement>;
+  children: ReactNode;
+}
+
+const ModalComponent: FC<IModalComponent> = ({ onClose, children }) => {
   return (
     <Portal>
       <MainContainer>
