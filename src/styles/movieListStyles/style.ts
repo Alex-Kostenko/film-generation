@@ -1,4 +1,4 @@
-import { MovieCard, Tag } from 'alex-unicode';
+import { MovieCard } from 'alex-unicode';
 import ReactPaginate from 'react-paginate';
 import styled from 'styled-components';
 
@@ -10,17 +10,6 @@ interface StyleProps {
 
 export const Paginate = styled(ReactPaginate)`
   flex-wrap: wrap;
-`;
-
-export const SearchContainer = styled.div`
-  display: flex;
-  width: 100%;
-  margin: 10px 0 10px 0;
-  flex-wrap: wrap;
-
-  @media (max-width: 600px) {
-    padding-left: 25px;
-  }
 `;
 
 export const PanelWrapper = styled.div`
@@ -42,13 +31,6 @@ export const PanelWrapper = styled.div`
     padding: 10px;
     padding-left: 25px;
   }
-`;
-
-export const TagComponent = styled(Tag)`
-  margin-right: 10px;
-  margin-top: 10px;
-  display: inline-block;
-  padding: 5px;
 `;
 
 export const CardComponent = styled(MovieCard)`

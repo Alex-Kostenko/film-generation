@@ -9,12 +9,11 @@ import queryMovie from '@/Services/queryMovies';
 import BackBtn from '@/components/BackBtn';
 import PageManagementComponent from '@/components/PageManagement';
 import SearchPanelLine from '@/components/SearchPanelLine';
+import TagContainer from '@/components/TagContainer';
 import { ILocale, MovieEntity, IYearRange } from '@/interfaces';
 import {
-  SearchContainer,
   CardComponent,
   PanelWrapper,
-  TagComponent,
   Paginate,
   Root,
 } from '@/styles/movieListStyles/style';
@@ -162,24 +161,11 @@ const MovieList = () => {
   return (
     <Root colorStyle={styless}>
       <BackBtn onClick={() => router.push('/')} />
-      <SearchContainer>
-        {rating && (
-          <TagComponent
-            className="tag-medium"
-            label={`${t('movieList.rating')}${rating / 2}`}
-          />
-        )}
-        {searchTerm && (
-          <TagComponent className="tag-medium" label={searchTerm} />
-        )}
-        {arrayCategoriesId &&
-          arrayCategoriesId.map((categoriesId: number) => (
-            <TagComponent
-              className="tag-medium"
-              label={t(`genres.${Genres[categoriesId]}`)}
-            />
-          ))}
-      </SearchContainer>
+      <TagContainer
+        rating={rating}
+        searchTerm={searchTerm}
+        arrayCategoriesId={arrayCategoriesId}
+      />
       <PanelWrapper>
         <SearchPanelLine
           ascDesc={ascDesc}
