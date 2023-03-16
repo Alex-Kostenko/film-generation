@@ -1,3 +1,4 @@
+import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useEffect, useState } from 'react';
@@ -7,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import queryMovie from '@/Services/queryMovies';
 import BackBtn from '@/components/BackBtn';
-import PageManagementComponent from '@/components/PageManagement';
+// import PageManagementComponent from '@/components/PageManagement';
 import SearchPanelLine from '@/components/SearchPanelLine';
 import TagContainer from '@/components/TagContainer';
 import { ILocale, MovieEntity, IYearRange } from '@/interfaces';
@@ -22,6 +23,13 @@ import { Genres } from '@/utils/genres';
 interface PageChangeEvent {
   selected: number;
 }
+
+const PageManagementComponent = dynamic(
+  () => import('@/components/PageManagement'),
+  {
+    ssr: false,
+  },
+);
 
 const MovieList = () => {
   const { t } = useTranslation();
