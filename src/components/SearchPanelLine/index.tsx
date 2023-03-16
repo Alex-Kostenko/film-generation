@@ -5,7 +5,6 @@ import { ChangeEvent, FC, useEffect, useState } from 'react';
 
 import queryMovie from '@/Services/queryMovies';
 import { IName, ISelectedFilms, IYearRange, LangGenre } from '@/interfaces';
-import { filter } from '@/utils/constants';
 import { useDebounce } from '@/utils/hooks/useDebounce';
 
 import Option from '../Checkbox';
@@ -54,6 +53,12 @@ const SearchPanel: FC<ISearchPanel> = ({
 
   const [resultGenres, setResultGenres] = useState<IName[]>([]);
   const [genres, setGenres] = useState<LangGenre[]>([]);
+  const filter = [
+    { value: 'popularity', label: t('filter.popularity') },
+    { value: 'release_date', label: t('filter.release_date') },
+    { value: 'vote_average', label: t('filter.vote_average') },
+    { value: 'title', label: t('filter.title') },
+  ];
 
   useEffect(() => {
     if (genres.length === 0) {

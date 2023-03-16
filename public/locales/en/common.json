@@ -55,5 +55,12 @@
     "horror": "horror",
     "fantastic": "fantastic",
     "fantasy": "fantasy"
+  },
+
+  "filter": {
+    "popularity": "By popularity",
+    "release_date": "By release date",
+    "vote_average": "By vote average",
+    "title": "By title"
   }
 }
