@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { FC, useEffect, useRef, useState } from 'react';
+import { FC, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { IName } from '@/interfaces';
@@ -22,15 +22,23 @@ interface IPageManagement {
 }
 
 const PageManagementComponent: FC<IPageManagement> = ({ query, setQuery }) => {
-  const [labelSize, setLabelSize] = useState<string | null>('');
-  const [labelText, setLabelText] = useState<string | null>('');
+  // const [labelSize, setLabelSize] = useState<string | null>('');
+  // const [labelText, setLabelText] = useState<string | null>('');
   const reloadRef: React.MutableRefObject<null> = useRef(null);
   const { t } = useTranslation();
 
-  useEffect(() => {
-    setLabelSize(t('movieList.countFilm'));
-    setLabelText(t('movieList.showMore'));
-  });
+  // useEffect(() => {
+  //   setLabelSize(t('movieList.countFilm'));
+  //   setLabelText(t('movieList.showMore'));
+  // });
+
+  const handleSetQuery = () => {
+    setQuery({
+      ...query,
+      currentPage: query.currentPage + 1,
+      arrowUpload: true,
+    });
+  };
 
   return (
     <ArrowUploadWrapper>
@@ -40,31 +48,17 @@ const PageManagementComponent: FC<IPageManagement> = ({ query, setQuery }) => {
             loading: query.isLoading,
           })}
           aria-label="Reload"
-          onClick={() => {
-            setQuery({
-              ...query,
-              currentPage: query.currentPage + 1,
-              arrowUpload: true,
-            });
-          }}
+          onClick={handleSetQuery}
         />
       </div>
-      <Text
-        onClick={() => {
-          setQuery({
-            ...query,
-            currentPage: query.currentPage + 1,
-            arrowUpload: true,
-          });
-        }}
-      >
-        {labelText}
-      </Text>
+      <Text onClick={handleSetQuery}>{t('movieList.showMore')}</Text>
       <Select
         className="selectCategory"
-        placeholder={query.pageSize === 5 ? labelSize : query.pageSize}
+        placeholder={
+          query.pageSize === 5 ? t('movieList.countFilm') : query.pageSize
+        }
         onChange={(name: IName) => {
-          setQuery({ ...query, pageSize: Number(name.label) });
+          setQuery({ ...query, pageSize: Number(name.label), currentPage: 0 });
         }}
         options={optionSize}
         multi={false}
