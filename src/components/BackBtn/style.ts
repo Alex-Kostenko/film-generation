@@ -23,5 +23,6 @@ export const Img = styled(Image)`
 
   @media (max-width: 600px) {
     left: 5px;
+    top: 50px;
   }
 `;

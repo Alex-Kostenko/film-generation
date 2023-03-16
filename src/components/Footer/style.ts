@@ -10,9 +10,21 @@ export const FooterComponent = styled.div`
   height: 40px;
   background-color: ${PALETTE.dark.darkGrey};
 `;
-export const FooterText = styled.p`
-  display: block;
+
+export const FooterText = styled.div`
+  display: flex;
+  height: 100%;
+  align-items: center;
   width: fit-content;
-  margin: 10px auto;
+  margin: 0px auto;
+  column-gap: 10px;
   color: ${PALETTE.white};
+  & .logoBurger {
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  & .link {
+    color: ${PALETTE.white};
+    text-decoration: none !important;
+  }
 `;

@@ -26,6 +26,7 @@ import {
   FilmImage,
   Title,
   Link,
+  Root,
 } from '../../styles/aboutFilmStyles/style';
 
 const AboutFilm: FC<IAboutFilmProps> = ({ movie, id, apiKey }) => {
@@ -93,7 +94,7 @@ const AboutFilm: FC<IAboutFilmProps> = ({ movie, id, apiKey }) => {
   }, [overview, router.locale]);
 
   return (
-    <>
+    <Root>
       <BackBtn onClick={() => router.back()} />
       <Title>{title}</Title>
       <Container>
@@ -132,7 +133,7 @@ const AboutFilm: FC<IAboutFilmProps> = ({ movie, id, apiKey }) => {
           )} hdRezka`}</Link>
         )}
       </LinkConteiner>
-    </>
+    </Root>
   );
 };
 

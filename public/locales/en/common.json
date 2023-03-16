@@ -6,9 +6,12 @@
     "go": "Go to movie",
     "to": "to",
     "rating": "Rating",
-    "filter": "Filter",
+    "sort": "Sort",
     "start": "Start",
     "end": "End"
+  },
+  "footer": {
+    "create": "Created by UniCode"
   },
 
   "movieList": {

@@ -37,8 +37,14 @@ const SideBar = () => {
           onClick={handleRedirect}
         />
         <Home className="triangle" aria-label="Home" onClick={handleRedirect} />
-        <CinemaLine className="triangle" aria-label="CinemaLine" />
-        <Star className="triangle" aria-label="Star" />
+        <div>
+          <CinemaLine className="triangle" aria-label="CinemaLine" />
+          <div className="tooltipCinema">Will be soon Page Cinema</div>
+        </div>
+        <div>
+          <Star className="triangle" aria-label="Star" />
+          <div className="tooltipStar">Will be soon Page Star</div>
+        </div>
       </WrapperSvg>
       <WarpperLanguage>
         <Ukraine
