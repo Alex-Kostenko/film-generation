@@ -33,7 +33,7 @@ const SearchPanel: FC<ISearchPanel> = ({
   const [resultGenres, setResultGenres] = useState<ISelectedFilms[]>([]);
   const [genres, setGenres] = useState<ISelectedFilms[]>([]);
   const [valueInput, setValueInput] = useState('');
-  const [yearSearch, setYearSearch] = useState<IYearRange | string>('empty');
+  const [yearSearch, setYearSearch] = useState<IYearRange | 'empty'>('empty');
 
   useEffect(() => {
     if (genres.length === 0) {

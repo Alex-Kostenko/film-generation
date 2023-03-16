@@ -51,7 +51,7 @@ const MovieList = () => {
   const [styless, setStyless] = useState(`a[aria-label='Page -1']`);
   const [content, setContent] = useState([]);
   const [searchTerm, setSearchTerm] = useState(search ? search : '');
-  const [yearMovie, setYearMovie] = useState<IYearRange | string>(
+  const [yearMovie, setYearMovie] = useState<IYearRange | 'empty'>(
     yearRange === 'empty'
       ? 'empty'
       : {
@@ -161,6 +161,7 @@ const MovieList = () => {
     <Root colorStyle={styless}>
       <BackBtn onClick={() => router.push('/')} />
       <TagContainer
+        yearMovie={yearMovie}
         rating={rating}
         searchTerm={searchTerm}
         arrayCategoriesId={arrayCategoriesId}
