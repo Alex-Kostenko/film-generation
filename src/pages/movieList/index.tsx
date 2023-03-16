@@ -161,6 +161,7 @@ const MovieList = () => {
     <Root colorStyle={styless}>
       <BackBtn onClick={() => router.push('/')} />
       <TagContainer
+        valueFilter={valueFilter}
         yearMovie={yearMovie}
         rating={rating}
         searchTerm={searchTerm}

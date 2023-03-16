@@ -62,5 +62,12 @@
     "release_date": "By release date",
     "vote_average": "By vote average",
     "title": "By title"
+  },
+
+  "filterTag": {
+    "popularity": "byPopularity",
+    "release_date": "byReleaseDate",
+    "vote_average": "byVoteAverage",
+    "title": "byTitle"
   }
 }
