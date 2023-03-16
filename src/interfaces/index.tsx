@@ -109,6 +109,13 @@ export interface IBackBtn {
   onClick: () => void;
 }
 
+export interface LangGenre {
+  id: number;
+  name: string;
+  name_eng: string;
+  name_ukr: string;
+}
+
 export interface IMovieData {
   adult: boolean;
   backdrop_path: string;
