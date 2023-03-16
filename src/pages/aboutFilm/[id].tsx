@@ -11,7 +11,7 @@ import BackBtn from '@/components/BackBtn';
 import FilmInfo from '@/components/FilmInfo';
 import Loader from '@/components/Loader';
 import VideoPlayer from '@/components/VideoPlayer';
-import { IAboutFilmProps } from '@/interfaces';
+import { AboutFilmServerSideProps, IAboutFilmProps } from '@/interfaces';
 import {
   cutString,
   handleSetColorLastElem,
@@ -49,7 +49,7 @@ const AboutFilm: FC<IAboutFilmProps> = ({ movie, id, apiKey }) => {
     original_title,
   } = movie;
 
-  const src: any =
+  const src: string =
     movie.poster_path &&
     `https://www.themoviedb.org/t/p/w300_and_h450_bestv2${movie.poster_path}`;
 
@@ -111,7 +111,11 @@ const AboutFilm: FC<IAboutFilmProps> = ({ movie, id, apiKey }) => {
         <FilmInfo
           name={original_title}
           year={cutString(release_date)}
-          country={production_companies![0].origin_country}
+          country={
+            production_companies![0].origin_country
+              ? production_companies![0].origin_country
+              : '...'
+          }
           genre={genre_ids.map((item: number) => item)}
           time={minutesToHours(runtime)}
           studio={production_companies![0].name}
@@ -133,7 +137,10 @@ const AboutFilm: FC<IAboutFilmProps> = ({ movie, id, apiKey }) => {
   );
 };
 
-export async function getServerSideProps({ locale, params }: any) {
+export async function getServerSideProps({
+  locale,
+  params,
+}: AboutFilmServerSideProps) {
   const movie = await queryMovie.getByID(params.id);
 
   return {

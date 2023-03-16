@@ -4,7 +4,7 @@ import React, { FC, useState } from 'react';
 import queryMovie from '@/Services/queryMovies';
 import SearchPanel from '@/components/SearchPanel';
 import SliderSlick from '@/components/Slider';
-import { MovieEntity } from '@/interfaces';
+import { ILocale, MovieEntity } from '@/interfaces';
 
 import { PanelWrapper, Root } from '../styles/indexStyles/style';
 
@@ -33,7 +33,7 @@ const HomePage: FC<IHomePage> = ({ popylarMovies }) => {
   );
 };
 
-export const getStaticProps = async ({ locale }: any) => {
+export const getStaticProps = async ({ locale }: ILocale) => {
   const popylarMovies = await queryMovie.getPopularMovie();
 
   return {

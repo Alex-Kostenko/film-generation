@@ -21,6 +21,8 @@ const SideBar = () => {
 
   const handleSwitcherLanguage = (language: number) => {
     router.push(router.route, router.asPath, { locale: lngs[language] });
+    // const { pathname, query } = router;
+    // router.push({ pathname, query }, pathname, { locale: lngs[language] });
   };
 
   return (

@@ -1,4 +1,4 @@
-import { FC, useRef } from 'react';
+import React, { FC } from 'react';
 import Slider from 'react-slick';
 
 import queryMovie from '@/Services/queryMovies';
@@ -15,14 +15,18 @@ interface IHomePage {
 }
 
 const SliderSlick: FC<IHomePage> = ({ propMovies }) => {
-  const sliderRef = useRef<any>(null);
+  const sliderRef = React.createRef<Slider>();
 
   return (
     <ReactSlick>
-      <LeftArroww onClick={() => sliderRef.current.slickPrev()}>
+      <LeftArroww
+        onClick={() => sliderRef.current && sliderRef.current.slickPrev()}
+      >
         <LeftArrow />
       </LeftArroww>
-      <RightArroww onClick={() => sliderRef.current.slickNext()}>
+      <RightArroww
+        onClick={() => sliderRef.current && sliderRef.current.slickNext()}
+      >
         <RightArrow />
       </RightArroww>
       <Slider ref={sliderRef} {...settingsSlider}>
