@@ -189,12 +189,10 @@ const MovieList = () => {
               movie.poster_path &&
               `https://www.themoviedb.org/t/p/w300_and_h450_bestv2${movie.poster_path}`
             }
-            title={
-              movie.original_title === null ? movie.title : movie.original_title
-            }
+            title={movie.original_title ?? movie.title}
             subtitle={
-              movie.original_title === '' ||
-              movie.original_title === movie.title
+              movie.original_title === movie.title ||
+              movie.original_title === null
                 ? ''
                 : movie.title
             }
