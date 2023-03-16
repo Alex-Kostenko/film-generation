@@ -56,5 +56,12 @@
     "horror": "хорор",
     "fantastic": "фантастика",
     "fantasy": "фэнтези"
+  },
+
+  "filter": {
+    "popularity": "По популярности",
+    "release_date": "По дате релиза",
+    "vote_average": "По кол-ву голосов",
+    "title": "От А до Я"
   }
 }
