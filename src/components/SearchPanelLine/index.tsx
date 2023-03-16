@@ -4,7 +4,7 @@ import { useTranslation } from 'next-i18next';
 import { ChangeEvent, FC, useEffect, useState } from 'react';
 
 import queryMovie from '@/Services/queryMovies';
-import { IName, ISelectedFilms, IYearRange } from '@/interfaces';
+import { IName, ISelectedFilms, IYearRange, LangGenre } from '@/interfaces';
 import { filter } from '@/utils/constants';
 import { useDebounce } from '@/utils/hooks/useDebounce';
 
@@ -52,19 +52,20 @@ const SearchPanel: FC<ISearchPanel> = ({
   const router = useRouter();
   const { t } = useTranslation();
 
-  const [resultGenres, setResultGenres] = useState<any>([]);
-  const [genres, setGenres] = useState<any>([]);
+  const [resultGenres, setResultGenres] = useState<IName[]>([]);
+  const [genres, setGenres] = useState<LangGenre[]>([]);
 
   useEffect(() => {
     if (genres.length === 0) {
       (async () => {
         const genres = await queryMovie.getGenres();
+
         setGenres(genres);
       })();
     }
 
-    const toUpperCase = (str: string | undefined) => {
-      return str && str.charAt(0).toUpperCase() + str.slice(1);
+    const toUpperCase = (str: string) => {
+      return str.charAt(0).toUpperCase() + str.slice(1);
     };
 
     let genreLanguages: string;
@@ -81,10 +82,12 @@ const SearchPanel: FC<ISearchPanel> = ({
     }
 
     setResultGenres(
-      genres.map((option: any) => {
+      genres.map((option: LangGenre) => {
         return {
           value: String(option.id),
-          label: toUpperCase(option[genreLanguages]),
+          label: toUpperCase(
+            String(option[genreLanguages as keyof typeof option]),
+          ),
         };
       }),
     );

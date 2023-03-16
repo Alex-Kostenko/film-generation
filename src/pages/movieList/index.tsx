@@ -59,7 +59,6 @@ const MovieList = () => {
           endYear: Number(yearRange.split(',')[1]),
         },
   );
-
   const [valueFilter, setValueFilter] = useState('popularity');
   const [ascDesc, setAscDesc] = useState('desc');
 
