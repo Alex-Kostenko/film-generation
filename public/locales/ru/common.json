@@ -63,5 +63,12 @@
     "release_date": "По дате релиза",
     "vote_average": "По кол-ву голосов",
     "title": "От А до Я"
+  },
+
+  "filterTag": {
+    "popularity": "поПопулярности",
+    "release_date": "поДатеРелиза",
+    "vote_average": "поКоличествуГолосов",
+    "title": "отАдоЯ"
   }
 }

@@ -11,10 +11,12 @@ interface ITagContainerProps {
   arrayCategoriesId: number[];
   searchTerm: string;
   rating: number;
+  valueFilter: string;
 }
 
 const TagContainer: FC<ITagContainerProps> = ({
   arrayCategoriesId,
+  valueFilter,
   searchTerm,
   yearMovie,
   rating,
@@ -32,6 +34,12 @@ const TagContainer: FC<ITagContainerProps> = ({
         <TagComponent
           className="tag-medium"
           label={`${yearMovie.startYear}/${yearMovie.endYear}`}
+        />
+      )}
+      {valueFilter !== 'popularity' && (
+        <TagComponent
+          className="tag-medium"
+          label={t(`filterTag.${valueFilter}`)}
         />
       )}
       {searchTerm && <TagComponent className="tag-medium" label={searchTerm} />}
