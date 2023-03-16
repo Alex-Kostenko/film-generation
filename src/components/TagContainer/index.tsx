@@ -19,11 +19,11 @@ const TagContainer: FC<ITagContainerProps> = ({
   const { t } = useTranslation();
   const [label, setlabel] = useState<string | null>('');
 
-  useEffect(() => setlabel(t('movieList.rating')), []);
+  useEffect(() => setlabel(t('movieList.rating')));
   return (
     <SearchContainer>
       {rating && (
-        <TagComponent className="tag-medium" label={`${label}${rating / 2}`} />
+        <TagComponent className="tag-medium" label={`${label}${rating / 2}★`} />
       )}
       {searchTerm && <TagComponent className="tag-medium" label={searchTerm} />}
       {arrayCategoriesId &&

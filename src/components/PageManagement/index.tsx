@@ -30,7 +30,7 @@ const PageManagementComponent: FC<IPageManagement> = ({ query, setQuery }) => {
   useEffect(() => {
     setLabelSize(t('movieList.countFilm'));
     setLabelText(t('movieList.showMore'));
-  }, []);
+  });
 
   return (
     <ArrowUploadWrapper>
