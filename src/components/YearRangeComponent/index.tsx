@@ -7,9 +7,9 @@ import { IYearRange } from '@/interfaces';
 import { Root } from './style';
 
 interface IYearRangePickerComponent {
-  setYearSearch?: React.Dispatch<React.SetStateAction<string | IYearRange>>;
-  yearMovie?: IYearRange | string;
-  setYearMovie?: React.Dispatch<React.SetStateAction<string | IYearRange>>;
+  setYearSearch?: React.Dispatch<React.SetStateAction<'empty' | IYearRange>>;
+  yearMovie?: IYearRange | 'empty';
+  setYearMovie?: React.Dispatch<React.SetStateAction<'empty' | IYearRange>>;
 }
 
 const YearRangePickerComponent: FC<IYearRangePickerComponent> = ({

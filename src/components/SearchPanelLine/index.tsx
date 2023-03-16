@@ -31,8 +31,8 @@ interface ISearchPanel {
   movieRating: number;
   searchTerm: string;
   ascDesc: string;
-  yearMovie: IYearRange | string;
-  setYearMovie: React.Dispatch<React.SetStateAction<string | IYearRange>>;
+  yearMovie: IYearRange | 'empty';
+  setYearMovie: React.Dispatch<React.SetStateAction<'empty' | IYearRange>>;
 }
 
 const SearchPanel: FC<ISearchPanel> = ({
