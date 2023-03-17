@@ -25,9 +25,9 @@ const FilmInfo: FC<IFilmInfoProps> = ({
 }) => {
   const { t } = useTranslation();
   const ITEM = [
-    { name: t('filmPage.name'), text: `${name}` },
-    { name: t('filmPage.year'), text: `${year}` },
-    { name: t('filmPage.country'), text: `${country}` },
+    { name: t('filmPage.name'), text: name },
+    { name: t('filmPage.year'), text: year },
+    { name: t('filmPage.country'), text: country },
     {
       name: t('filmPage.genre'),
       text: (
@@ -41,10 +41,10 @@ const FilmInfo: FC<IFilmInfoProps> = ({
         </TagBox>
       ),
     },
-    { name: t('filmPage.time'), text: `${time}` },
-    { name: t('filmPage.studio'), text: `${studio}` },
-    { name: t('filmPage.budget'), text: `${budget}` },
-    { name: t('filmPage.voteAverage'), text: `${voteAverage}` },
+    { name: t('filmPage.time'), text: time },
+    { name: t('filmPage.studio'), text: studio },
+    { name: t('filmPage.budget'), text: budget },
+    { name: t('filmPage.voteAverage'), text: voteAverage },
   ];
   return (
     <DescriptionContainer>
