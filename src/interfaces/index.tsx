@@ -9,7 +9,7 @@ interface Production_companies {
 
 export interface MovieEntity {
   id: number;
-  default?: 34234;
+  default: 34234;
   adult: boolean;
   backdrop_path: string;
   budget: number;
@@ -20,7 +20,7 @@ export interface MovieEntity {
   overview: string;
   popularity: number;
   poster_path: string;
-  production_companies?: Production_companies[];
+  production_companies: Production_companies[];
   release_date: string;
   runtime: number;
   status: string;

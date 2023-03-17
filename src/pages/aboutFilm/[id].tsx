@@ -31,9 +31,7 @@ import {
 
 const AboutFilm: FC<IAboutFilmProps> = ({ movie, id, apiKey }) => {
   const { t } = useTranslation();
-
   const router = useRouter();
-
   const [rezkaLink, setRezkaLink] = useState('');
   const [trailerLink, setTrailerLink] = useState('');
   const [convertedText, setConvertedText] = useState('');
@@ -48,6 +46,11 @@ const AboutFilm: FC<IAboutFilmProps> = ({ movie, id, apiKey }) => {
     overview,
     original_title,
   } = movie;
+
+  const { origin_country: country, name: studio } = production_companies[0] || {
+    origin_country: '',
+    name: '',
+  };
 
   const src: string =
     movie.poster_path &&
@@ -111,14 +114,10 @@ const AboutFilm: FC<IAboutFilmProps> = ({ movie, id, apiKey }) => {
         <FilmInfo
           name={original_title}
           year={cutString(release_date)}
-          country={
-            production_companies![0].origin_country
-              ? production_companies![0].origin_country
-              : '...'
-          }
+          country={country}
           genre={genre_ids.map((item: number) => item)}
           time={minutesToHours(runtime)}
-          studio={production_companies![0].name}
+          studio={studio}
           budget={numeral(budget).format('$0,0')}
           voteAverage={cutString(vote_average)}
         />
