@@ -17,5 +17,5 @@ export const TagComponent = styled(Tag)`
   margin-top: 10px;
   display: inline-block;
   padding: 5px;
-  padding-right: 14px;
+  padding-right: 16px;
 `;

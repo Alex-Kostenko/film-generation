@@ -33,7 +33,8 @@
     "studio": "Name studio",
     "budget": "Budget",
     "voteAverage": "Vote average",
-    "links": "Links to watch this movie"
+    "links": "Links to watch this movie",
+    "trailerText": "Movie trailer not found, sorry"
   },
 
   "genres": {
