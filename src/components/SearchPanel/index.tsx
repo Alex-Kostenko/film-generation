@@ -5,6 +5,7 @@ import { FC, useEffect, useState } from 'react';
 
 import queryMovie from '@/Services/queryMovies';
 import { ISelectedFilms, IYearRange } from '@/interfaces';
+import { PALETTE } from '@/palette';
 import { generateQueries } from '@/utils/common';
 
 import Option from '../Checkbox';
@@ -111,6 +112,7 @@ const SearchPanel: FC<ISearchPanel> = ({
         />
         <YearRangePickerComponent setYearSearch={setYearSearch} />
         <Stars
+          style={{ margin: '15px', color: PALETTE.white }}
           rating={t('main.rating')}
           movieRating={movieRating}
           setMovieRating={setMovieRating}

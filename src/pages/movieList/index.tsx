@@ -48,7 +48,21 @@ const MovieList = () => {
       theme: 'light',
     });
 
-  const { categoriesId, rating, search, yearRange }: any = router.query;
+  const {
+    categoriesId,
+    rating,
+    search,
+    yearRange,
+    checkedAdult,
+    checkedSearchInDesc,
+  }: any = router.query;
+
+  const [checked, setChecked] = useState({
+    checkedAdult: checkedAdult ? !(checkedAdult === 'false') : false,
+    checkedSearchInDesc: checkedSearchInDesc
+      ? !(checkedSearchInDesc === 'false')
+      : false,
+  });
 
   const [movieRating, setMovieRating] = useState(Number(rating));
   const [arrayCategoriesId, setArrayCategoriesId] = useState(
@@ -115,6 +129,7 @@ const MovieList = () => {
               typeof yearMovie === 'object'
                 ? yearMovie.endYear
                 : new Date().getFullYear(),
+            includeAdult: checked.checkedAdult,
           },
         );
         if (query.arrowUpload) {
@@ -141,6 +156,7 @@ const MovieList = () => {
     valueFilter,
     ascDesc,
     yearMovie,
+    checked,
   ]);
 
   useEffect(() => {
@@ -178,6 +194,8 @@ const MovieList = () => {
       <PanelWrapper>
         <SearchPanelLine
           ascDesc={ascDesc}
+          checked={checked}
+          setChecked={setChecked}
           setAscDesc={setAscDesc}
           setValueFilter={setValueFilter}
           setSearchTerm={setSearchTerm}

@@ -137,10 +137,15 @@ export interface ISliderTextProps {
   movieData: IMovieData;
 }
 
+interface StyleI {
+  margin: string;
+  color: string;
+}
 export interface IStars {
   rating: number | null | DefaultTFuncReturn;
   movieRating: number;
   setMovieRating: React.Dispatch<React.SetStateAction<number>>;
+  style: StyleI;
 }
 
 interface Params {

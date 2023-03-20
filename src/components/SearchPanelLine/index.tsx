@@ -1,10 +1,15 @@
 import { Input } from 'alex-unicode';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
+import Dropdown from 'rc-dropdown';
+import { Item as MenuItem } from 'rc-menu';
 import { ChangeEvent, FC, useEffect, useState } from 'react';
+import Switch from 'react-switch';
+import 'rc-dropdown/assets/index.css';
 
 import queryMovie from '@/Services/queryMovies';
 import { IName, ISelectedFilms, IYearRange, LangGenre } from '@/interfaces';
+import { PALETTE } from '@/palette';
 import { useDebounce } from '@/utils/hooks/useDebounce';
 
 import Option from '../Checkbox';
@@ -18,6 +23,8 @@ import {
   LeftArrow,
   TopArrow,
   Select,
+  Root,
+  MenuFilter,
 } from './style';
 
 interface ISearchPanel {
@@ -33,6 +40,8 @@ interface ISearchPanel {
   ascDesc: string;
   yearMovie: IYearRange | 'empty';
   setYearMovie: React.Dispatch<React.SetStateAction<'empty' | IYearRange>>;
+  checked: any;
+  setChecked: any;
 }
 
 const SearchPanel: FC<ISearchPanel> = ({
@@ -47,12 +56,14 @@ const SearchPanel: FC<ISearchPanel> = ({
   ascDesc,
   yearMovie,
   setYearMovie,
+  checked,
+  setChecked,
 }) => {
   const router = useRouter();
   const { t } = useTranslation();
-
   const [resultGenres, setResultGenres] = useState<IName[]>([]);
   const [genres, setGenres] = useState<LangGenre[]>([]);
+
   const filter = [
     { value: 'popularity', label: t('filter.popularity') },
     { value: 'release_date', label: t('filter.release_date') },
@@ -122,6 +133,8 @@ const SearchPanel: FC<ISearchPanel> = ({
                 : `${typeof yearMovie === 'object' && yearMovie.startYear},${
                     typeof yearMovie === 'object' && yearMovie.endYear
                   }`,
+            checkedAdult: checked.checkedAdult,
+            checkedSearchInDesc: checked.checkedSearchInDesc,
           },
         },
         undefined,
@@ -129,10 +142,47 @@ const SearchPanel: FC<ISearchPanel> = ({
       );
     }
     handlePushWithoutRender();
-  }, [movieRating, searchTerm, arrayCategoriesId, yearMovie]);
+  }, [movieRating, searchTerm, arrayCategoriesId, yearMovie, checked]);
+
+  const handleChange = (check: boolean, valueIsCheked: string) => {
+    setChecked({ ...checked, [valueIsCheked]: check });
+  };
+
+  const menu = (
+    <MenuFilter>
+      <MenuItem key="1">
+        <label className="labelFilter">
+          <p className="textFilter">Adult</p>
+          <Switch
+            onChange={(check) => handleChange(check, 'checkedAdult')}
+            checked={checked.checkedAdult}
+          />
+        </label>
+      </MenuItem>
+      <MenuItem key="2">
+        <label className="labelFilter">
+          <p className="textFilter"> Search in Desc</p>
+          <Switch
+            onChange={(check) => handleChange(check, 'checkedSearchInDesc')}
+            checked={checked.checkedSearchInDesc}
+          />
+        </label>
+      </MenuItem>
+      <MenuItem key="3">
+        {
+          <Stars
+            style={{ margin: '35px', color: PALETTE.dark.darkBlack }}
+            rating={t('main.rating')}
+            movieRating={movieRating}
+            setMovieRating={setMovieRating}
+          />
+        }
+      </MenuItem>
+    </MenuFilter>
+  );
 
   return (
-    <>
+    <Root>
       <CriteriasContainer>
         <Select
           className="selectCategory"
@@ -184,13 +234,19 @@ const SearchPanel: FC<ISearchPanel> = ({
             hideSelected={true}
           />
         </WrapperFilter>
-        <Stars
+        {/* <Stars
           rating={t('main.rating')}
           movieRating={movieRating}
           setMovieRating={setMovieRating}
-        />
+        /> */}
+
+        <div className="filter">
+          <Dropdown trigger={['click']} overlay={menu} animation="slide-up">
+            <button style={{ width: 100 }}>{t('main.filter')}</button>
+          </Dropdown>
+        </div>
       </CriteriasContainer>
-    </>
+    </Root>
   );
 };
 
