@@ -21,32 +21,38 @@ import {
 } from './style';
 
 interface ISearchPanel {
-  setArrayCategoriesId: React.Dispatch<React.SetStateAction<any>>;
+  setSelectedOptions: React.Dispatch<React.SetStateAction<ISelectedFilms[]>>;
+  setYearMovie: React.Dispatch<React.SetStateAction<'empty' | IYearRange>>;
+  setArrayCategoriesId: React.Dispatch<
+    React.SetStateAction<(string | undefined)[]>
+  >;
   setValueFilter: React.Dispatch<React.SetStateAction<string>>;
   setMovieRating: React.Dispatch<React.SetStateAction<number>>;
   setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
   setAscDesc: React.Dispatch<React.SetStateAction<string>>;
+  selectedOptions: ISelectedFilms[];
+  yearMovie: IYearRange | 'empty';
   arrayCategoriesId: string[];
   arrayGenres: string[];
   movieRating: number;
   searchTerm: string;
   ascDesc: string;
-  yearMovie: IYearRange | 'empty';
-  setYearMovie: React.Dispatch<React.SetStateAction<'empty' | IYearRange>>;
 }
 
 const SearchPanel: FC<ISearchPanel> = ({
   setArrayCategoriesId,
+  setSelectedOptions,
   arrayCategoriesId,
+  selectedOptions,
   setMovieRating,
   setValueFilter,
   setSearchTerm,
+  setYearMovie,
   movieRating,
   searchTerm,
   setAscDesc,
   ascDesc,
   yearMovie,
-  setYearMovie,
 }) => {
   const router = useRouter();
   const { t } = useTranslation();
@@ -100,6 +106,7 @@ const SearchPanel: FC<ISearchPanel> = ({
 
   const changeGenre = (selectedFilms: ISelectedFilms[]) => {
     setArrayCategoriesId(selectedFilms.map((item) => item.value));
+    setSelectedOptions(selectedFilms);
   };
   const changeSearchTerm = (text: string) => {
     setSearchTerm(text);
@@ -144,6 +151,7 @@ const SearchPanel: FC<ISearchPanel> = ({
           onChange={(selectedFilms: ISelectedFilms[]) =>
             changeGenre(selectedFilms)
           }
+          value={selectedOptions}
           defaultValue={
             router.query.categoriesId &&
             (router.query.categoriesId as string)
