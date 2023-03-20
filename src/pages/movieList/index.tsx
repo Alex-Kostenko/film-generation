@@ -11,7 +11,7 @@ import BackBtn from '@/components/BackBtn';
 // import PageManagementComponent from '@/components/PageManagement';
 import SearchPanelLine from '@/components/SearchPanelLine';
 import TagContainer from '@/components/TagContainer';
-import { ILocale, MovieEntity, IYearRange } from '@/interfaces';
+import { ILocale, MovieEntity, IYearRange, ISelectedFilms } from '@/interfaces';
 import {
   CardComponent,
   PanelWrapper,
@@ -69,6 +69,7 @@ const MovieList = () => {
   );
   const [valueFilter, setValueFilter] = useState('popularity');
   const [ascDesc, setAscDesc] = useState('desc');
+  const [selectedOptions, setSelectedOptions] = useState<ISelectedFilms[]>([]);
 
   const [query, setQuery] = useState({
     currentPage: 0,
@@ -169,14 +170,23 @@ const MovieList = () => {
     <Root colorStyle={styless}>
       <BackBtn onClick={() => router.push('/')} />
       <TagContainer
+        selectedOptions={selectedOptions}
+        setSelectedOptions={setSelectedOptions}
         valueFilter={valueFilter}
         yearMovie={yearMovie}
         rating={rating}
         searchTerm={searchTerm}
         arrayCategoriesId={arrayCategoriesId}
+        setYearMovie={setYearMovie}
+        setMovieRating={setMovieRating}
+        setSearchTerm={setSearchTerm}
+        setValueFilter={setValueFilter}
+        setArrayCategoriesId={setArrayCategoriesId}
       />
       <PanelWrapper>
         <SearchPanelLine
+          selectedOptions={selectedOptions}
+          setSelectedOptions={setSelectedOptions}
           ascDesc={ascDesc}
           setAscDesc={setAscDesc}
           setValueFilter={setValueFilter}

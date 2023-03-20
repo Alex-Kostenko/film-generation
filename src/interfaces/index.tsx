@@ -89,7 +89,8 @@ export interface IName {
 }
 
 export interface ISelectedFilms {
-  [index: string]: string | undefined;
+  value: string;
+  label: string;
 }
 export interface IYearRange {
   startYear: number;
