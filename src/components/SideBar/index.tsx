@@ -47,21 +47,33 @@ const SideBar = () => {
       </WrapperSvg>
       <WarpperLanguage>
         <Ukraine
-          className={classNames('svgLanguage', {
-            blur: router.locale !== lngs[1],
-          })}
+          className={classNames(
+            'svgLanguage',
+            router.locale === lngs[1] ? 'activeSvg' : null,
+            {
+              blur: router.locale !== lngs[1],
+            },
+          )}
           onClick={() => handleSwitcherLanguage(1)}
         />
         <UnitedKingdom
-          className={classNames('svgLanguage', {
-            blur: router.locale !== lngs[0],
-          })}
+          className={classNames(
+            'svgLanguage',
+            router.locale === lngs[0] ? 'activeSvg' : null,
+            {
+              blur: router.locale !== lngs[0],
+            },
+          )}
           onClick={() => handleSwitcherLanguage(0)}
         />
         <Image
-          className={classNames('svgLanguage', {
-            blur: router.locale !== lngs[2],
-          })}
+          className={classNames(
+            'svgLanguage',
+            router.locale === lngs[2] ? 'activeSvg' : null,
+            {
+              blur: router.locale !== lngs[2],
+            },
+          )}
           src={'/okypant.jpg'}
           height={40}
           width={40}
