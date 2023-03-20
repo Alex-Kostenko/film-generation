@@ -152,14 +152,6 @@ const SearchPanel: FC<ISearchPanel> = ({
             changeGenre(selectedFilms)
           }
           value={selectedOptions}
-          defaultValue={
-            router.query.categoriesId &&
-            (router.query.categoriesId as string)
-              .split(',')
-              .map((item: any) => {
-                return { value: item };
-              })
-          }
         />
         <YearRangePickerComponent
           yearMovie={yearMovie}
