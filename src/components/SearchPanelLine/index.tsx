@@ -28,36 +28,44 @@ import {
 } from './style';
 
 interface ISearchPanel {
-  setArrayCategoriesId: React.Dispatch<React.SetStateAction<any>>;
-  setValueFilter: React.Dispatch<React.SetStateAction<string>>;
+  setSelectedOptions: React.Dispatch<React.SetStateAction<ISelectedFilms[]>>;
+  setYearMovie: React.Dispatch<React.SetStateAction<'empty' | IYearRange>>;
+  setArrayCategoriesId: React.Dispatch<
+    React.SetStateAction<(string | undefined)[]>
+  >;
   setMovieRating: React.Dispatch<React.SetStateAction<number>>;
   setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
+  setValueSort: React.Dispatch<React.SetStateAction<string>>;
   setAscDesc: React.Dispatch<React.SetStateAction<string>>;
+  selectedOptions: ISelectedFilms[];
   arrayCategoriesId: string[];
   arrayGenres: string[];
   movieRating: number;
   searchTerm: string;
+  valueSort: string;
   ascDesc: string;
   yearMovie: IYearRange | 'empty';
-  setYearMovie: React.Dispatch<React.SetStateAction<'empty' | IYearRange>>;
   checked: any;
   setChecked: any;
 }
 
 const SearchPanel: FC<ISearchPanel> = ({
   setArrayCategoriesId,
+  setSelectedOptions,
   arrayCategoriesId,
+  selectedOptions,
   setMovieRating,
-  setValueFilter,
   setSearchTerm,
+  setYearMovie,
+  setValueSort,
   movieRating,
   searchTerm,
   setAscDesc,
-  ascDesc,
   yearMovie,
-  setYearMovie,
   checked,
   setChecked,
+  valueSort,
+  ascDesc,
 }) => {
   const router = useRouter();
   const { t } = useTranslation();
@@ -111,6 +119,7 @@ const SearchPanel: FC<ISearchPanel> = ({
 
   const changeGenre = (selectedFilms: ISelectedFilms[]) => {
     setArrayCategoriesId(selectedFilms.map((item) => item.value));
+    setSelectedOptions(selectedFilms);
   };
   const changeSearchTerm = (text: string) => {
     setSearchTerm(text);
@@ -135,6 +144,7 @@ const SearchPanel: FC<ISearchPanel> = ({
                   }`,
             checkedAdult: checked.checkedAdult,
             checkedSearchInDesc: checked.checkedSearchInDesc,
+            sorting: `${valueSort}`,
           },
         },
         undefined,
@@ -142,7 +152,14 @@ const SearchPanel: FC<ISearchPanel> = ({
       );
     }
     handlePushWithoutRender();
-  }, [movieRating, searchTerm, arrayCategoriesId, yearMovie, checked]);
+  }, [
+    movieRating,
+    searchTerm,
+    arrayCategoriesId,
+    yearMovie,
+    checked,
+    valueSort,
+  ]);
 
   const handleChange = (check: boolean, valueIsCheked: string) => {
     setChecked({ ...checked, [valueIsCheked]: check });
@@ -194,14 +211,7 @@ const SearchPanel: FC<ISearchPanel> = ({
           onChange={(selectedFilms: ISelectedFilms[]) =>
             changeGenre(selectedFilms)
           }
-          defaultValue={
-            router.query.categoriesId &&
-            (router.query.categoriesId as string)
-              .split(',')
-              .map((item: any) => {
-                return { value: item };
-              })
-          }
+          value={selectedOptions}
         />
         <YearRangePickerComponent
           yearMovie={yearMovie}
@@ -227,7 +237,7 @@ const SearchPanel: FC<ISearchPanel> = ({
           <Select
             className="selectFilter"
             placeholder={t('main.sort')}
-            onChange={(name: IName) => setValueFilter(name.value)}
+            onChange={(name: IName) => setValueSort(name.value)}
             options={filter}
             multi={false}
             closeMenu={true}

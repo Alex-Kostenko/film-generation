@@ -22,6 +22,9 @@ export const SiderBar = styled.div`
     cursor: pointer;
     height: 20px;
   }
+  & .activeSvg {
+    transform: scale(1.2);
+  }
   & .blur {
     filter: blur(1px);
   }

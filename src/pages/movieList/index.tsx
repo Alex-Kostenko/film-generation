@@ -11,7 +11,7 @@ import BackBtn from '@/components/BackBtn';
 // import PageManagementComponent from '@/components/PageManagement';
 import SearchPanelLine from '@/components/SearchPanelLine';
 import TagContainer from '@/components/TagContainer';
-import { ILocale, MovieEntity, IYearRange } from '@/interfaces';
+import { ILocale, MovieEntity, IYearRange, ISelectedFilms } from '@/interfaces';
 import {
   CardComponent,
   PanelWrapper,
@@ -81,8 +81,9 @@ const MovieList = () => {
           endYear: Number(yearRange.split(',')[1]),
         },
   );
-  const [valueFilter, setValueFilter] = useState('popularity');
+  const [valueSort, setValueSort] = useState('popularity');
   const [ascDesc, setAscDesc] = useState('desc');
+  const [selectedOptions, setSelectedOptions] = useState<ISelectedFilms[]>([]);
 
   const [query, setQuery] = useState({
     currentPage: 0,
@@ -96,6 +97,15 @@ const MovieList = () => {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
   };
+
+  useEffect(() => {
+    router.query.categoriesId &&
+      setSelectedOptions(
+        (router.query.categoriesId as string).split(',').map((item: any) => {
+          return { value: item };
+        }),
+      );
+  }, [router.query.categoriesId]);
 
   useEffect(() => {
     setSearchTerm(searchTerm);
@@ -121,7 +131,7 @@ const MovieList = () => {
               ? arrayCategoriesId.map((item: string) => Number(item))
               : [],
             voteAvarageFrom: movieRating,
-            orderBy: valueFilter,
+            orderBy: valueSort,
             dir: ascDesc,
             releaseDateFrom:
               typeof yearMovie === 'object' ? yearMovie.startYear : 1990,
@@ -153,7 +163,7 @@ const MovieList = () => {
     movieRating,
     arrayCategoriesId,
     searchTerm,
-    valueFilter,
+    valueSort,
     ascDesc,
     yearMovie,
     checked,
@@ -185,19 +195,29 @@ const MovieList = () => {
     <Root colorStyle={styless}>
       <BackBtn onClick={() => router.push('/')} />
       <TagContainer
-        valueFilter={valueFilter}
+        selectedOptions={selectedOptions}
+        setSelectedOptions={setSelectedOptions}
+        valueSort={valueSort}
         yearMovie={yearMovie}
         rating={rating}
         searchTerm={searchTerm}
         arrayCategoriesId={arrayCategoriesId}
+        setYearMovie={setYearMovie}
+        setMovieRating={setMovieRating}
+        setSearchTerm={setSearchTerm}
+        setValueSort={setValueSort}
+        setArrayCategoriesId={setArrayCategoriesId}
       />
       <PanelWrapper>
         <SearchPanelLine
+          valueSort={valueSort}
+          selectedOptions={selectedOptions}
+          setSelectedOptions={setSelectedOptions}
           ascDesc={ascDesc}
           checked={checked}
           setChecked={setChecked}
           setAscDesc={setAscDesc}
-          setValueFilter={setValueFilter}
+          setValueSort={setValueSort}
           setSearchTerm={setSearchTerm}
           searchTerm={searchTerm}
           setMovieRating={setMovieRating}
