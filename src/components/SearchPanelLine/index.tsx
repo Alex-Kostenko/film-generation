@@ -26,9 +26,9 @@ interface ISearchPanel {
   setArrayCategoriesId: React.Dispatch<
     React.SetStateAction<(string | undefined)[]>
   >;
-  setValueFilter: React.Dispatch<React.SetStateAction<string>>;
   setMovieRating: React.Dispatch<React.SetStateAction<number>>;
   setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
+  setValueSort: React.Dispatch<React.SetStateAction<string>>;
   setAscDesc: React.Dispatch<React.SetStateAction<string>>;
   selectedOptions: ISelectedFilms[];
   yearMovie: IYearRange | 'empty';
@@ -36,6 +36,7 @@ interface ISearchPanel {
   arrayGenres: string[];
   movieRating: number;
   searchTerm: string;
+  valueSort: string;
   ascDesc: string;
 }
 
@@ -45,14 +46,15 @@ const SearchPanel: FC<ISearchPanel> = ({
   arrayCategoriesId,
   selectedOptions,
   setMovieRating,
-  setValueFilter,
   setSearchTerm,
   setYearMovie,
+  setValueSort,
   movieRating,
   searchTerm,
   setAscDesc,
-  ascDesc,
   yearMovie,
+  valueSort,
+  ascDesc,
 }) => {
   const router = useRouter();
   const { t } = useTranslation();
@@ -129,6 +131,7 @@ const SearchPanel: FC<ISearchPanel> = ({
                 : `${typeof yearMovie === 'object' && yearMovie.startYear},${
                     typeof yearMovie === 'object' && yearMovie.endYear
                   }`,
+            sorting: `${valueSort}`,
           },
         },
         undefined,
@@ -136,7 +139,7 @@ const SearchPanel: FC<ISearchPanel> = ({
       );
     }
     handlePushWithoutRender();
-  }, [movieRating, searchTerm, arrayCategoriesId, yearMovie]);
+  }, [movieRating, searchTerm, arrayCategoriesId, yearMovie, valueSort]);
 
   return (
     <>
@@ -177,7 +180,7 @@ const SearchPanel: FC<ISearchPanel> = ({
           <Select
             className="selectFilter"
             placeholder={t('main.sort')}
-            onChange={(name: IName) => setValueFilter(name.value)}
+            onChange={(name: IName) => setValueSort(name.value)}
             options={filter}
             multi={false}
             closeMenu={true}

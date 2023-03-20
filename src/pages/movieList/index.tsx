@@ -67,7 +67,7 @@ const MovieList = () => {
           endYear: Number(yearRange.split(',')[1]),
         },
   );
-  const [valueFilter, setValueFilter] = useState('popularity');
+  const [valueSort, setValueSort] = useState('popularity');
   const [ascDesc, setAscDesc] = useState('desc');
   const [selectedOptions, setSelectedOptions] = useState<ISelectedFilms[]>([]);
 
@@ -117,7 +117,7 @@ const MovieList = () => {
               ? arrayCategoriesId.map((item: string) => Number(item))
               : [],
             voteAvarageFrom: movieRating,
-            orderBy: valueFilter,
+            orderBy: valueSort,
             dir: ascDesc,
             releaseDateFrom:
               typeof yearMovie === 'object' ? yearMovie.startYear : 1990,
@@ -148,7 +148,7 @@ const MovieList = () => {
     movieRating,
     arrayCategoriesId,
     searchTerm,
-    valueFilter,
+    valueSort,
     ascDesc,
     yearMovie,
   ]);
@@ -181,7 +181,7 @@ const MovieList = () => {
       <TagContainer
         selectedOptions={selectedOptions}
         setSelectedOptions={setSelectedOptions}
-        valueFilter={valueFilter}
+        valueSort={valueSort}
         yearMovie={yearMovie}
         rating={rating}
         searchTerm={searchTerm}
@@ -189,16 +189,17 @@ const MovieList = () => {
         setYearMovie={setYearMovie}
         setMovieRating={setMovieRating}
         setSearchTerm={setSearchTerm}
-        setValueFilter={setValueFilter}
+        setValueSort={setValueSort}
         setArrayCategoriesId={setArrayCategoriesId}
       />
       <PanelWrapper>
         <SearchPanelLine
+          valueSort={valueSort}
           selectedOptions={selectedOptions}
           setSelectedOptions={setSelectedOptions}
           ascDesc={ascDesc}
           setAscDesc={setAscDesc}
-          setValueFilter={setValueFilter}
+          setValueSort={setValueSort}
           setSearchTerm={setSearchTerm}
           searchTerm={searchTerm}
           setMovieRating={setMovieRating}

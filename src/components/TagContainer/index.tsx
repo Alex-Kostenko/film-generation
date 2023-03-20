@@ -11,12 +11,12 @@ interface ITagContainerProps {
   setYearMovie: React.Dispatch<React.SetStateAction<'empty' | IYearRange>>;
   setArrayCategoriesId: React.Dispatch<React.SetStateAction<number[]>>;
   setMovieRating: React.Dispatch<React.SetStateAction<number>>;
-  setValueFilter: React.Dispatch<React.SetStateAction<string>>;
   setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
+  setValueSort: React.Dispatch<React.SetStateAction<string>>;
   selectedOptions: ISelectedFilms[];
   yearMovie: IYearRange | 'empty';
   arrayCategoriesId: number[];
-  valueFilter: string;
+  valueSort: string;
   searchTerm: string;
   rating: number;
 }
@@ -27,12 +27,12 @@ const TagContainer: FC<ITagContainerProps> = ({
   arrayCategoriesId,
   selectedOptions,
   setMovieRating,
-  setValueFilter,
   setSearchTerm,
   setYearMovie,
-  valueFilter,
+  setValueSort,
   searchTerm,
   yearMovie,
+  valueSort,
   rating,
 }) => {
   const { t } = useTranslation();
@@ -51,7 +51,7 @@ const TagContainer: FC<ITagContainerProps> = ({
   };
 
   const deleteFilter = () => {
-    setValueFilter('popularity');
+    setValueSort('popularity');
   };
 
   const deleteGenre = (categoriesId: number) => {
@@ -77,20 +77,18 @@ const TagContainer: FC<ITagContainerProps> = ({
           onClick={deleteRating}
         />
       )}
+      <TagComponent
+        onClick={deleteFilter}
+        cross={true}
+        className="tag-search"
+        label={t(`filterTag.${valueSort}`)}
+      />
       {yearMovie !== 'empty' && (
         <TagComponent
           className="tag-search"
           label={`${yearMovie.startYear}/${yearMovie.endYear}`}
           onClick={deleteYear}
           cross={true}
-        />
-      )}
-      {valueFilter !== 'popularity' && (
-        <TagComponent
-          onClick={deleteFilter}
-          cross={true}
-          className="tag-search"
-          label={t(`filterTag.${valueFilter}`)}
         />
       )}
       {searchTerm && (
