@@ -8,7 +8,8 @@
     "rating": "Rating",
     "sort": "Sort",
     "start": "Start",
-    "end": "End"
+    "end": "End",
+    "filter": "Filter"
   },
   "footer": {
     "create": "Created by UniCode"
