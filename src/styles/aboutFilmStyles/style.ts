@@ -103,3 +103,10 @@ export const Link = styled.a`
   user-select: none;
   text-decoration: none;
 `;
+
+export const TrailerText = styled.p`
+  width: fit-content;
+  margin: 40px auto;
+  text-align: center;
+  color: ${PALETTE.beige};
+`;

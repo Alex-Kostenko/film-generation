@@ -10,7 +10,7 @@ import queryMovie from '@/Services/queryMovies';
 import BackBtn from '@/components/BackBtn';
 // import PageManagementComponent from '@/components/PageManagement';
 import SearchPanelLine from '@/components/SearchPanelLine';
-import TagContainer from '@/components/TagContainer';
+// import TagContainer from '@/components/TagContainer';
 import { ILocale, MovieEntity, IYearRange, ISelectedFilms } from '@/interfaces';
 import {
   CardComponent,
@@ -30,6 +30,10 @@ const PageManagementComponent = dynamic(
     ssr: false,
   },
 );
+
+const TagContainer = dynamic(() => import('@/components/TagContainer'), {
+  ssr: false,
+});
 
 const MovieList = () => {
   const { t } = useTranslation();
