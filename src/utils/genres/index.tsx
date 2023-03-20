@@ -13,7 +13,7 @@ export enum Genres {
   cartoon = 16,
   adventures = 12,
   family = 10751,
-  television = 9648,
+  television = 10770,
   thriller = 53,
   horror = 27,
   fantastic = 878,

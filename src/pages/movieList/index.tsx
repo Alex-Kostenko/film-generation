@@ -85,6 +85,15 @@ const MovieList = () => {
   };
 
   useEffect(() => {
+    router.query.categoriesId &&
+      setSelectedOptions(
+        (router.query.categoriesId as string).split(',').map((item: any) => {
+          return { value: item };
+        }),
+      );
+  }, [router.query.categoriesId]);
+
+  useEffect(() => {
     setSearchTerm(searchTerm);
   }, [searchTerm]);
 
