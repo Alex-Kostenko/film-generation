@@ -25,7 +25,7 @@ const YearRangePickerComponent: FC<IYearRangePickerComponent> = ({
   };
 
   return (
-    <Root className="rootLox">
+    <Root className="rootDatePicker">
       <YearRangePicker
         minYear={new Date(1990, 0, 1).getFullYear()}
         maxYear={new Date().getFullYear()}

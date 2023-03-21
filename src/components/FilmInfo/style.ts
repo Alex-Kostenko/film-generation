@@ -28,19 +28,15 @@ export const DescriptionContainer = styled.div`
 export const DescriptionItem = styled.div`
   display: flex;
   align-items: baseline;
-  @media (max-width: 991px) {
-    margin-bottom: 15px;
-  }
 `;
 
 export const DescriptionName = styled.div`
-  margin-right: 20px;
+  margin-right: 5px;
   font-size: 15px;
   letter-spacing: 1px;
   color: ${PALETTE.beige};
   @media (max-width: 991px) {
-    min-width: 150px;
-    margin-right: 30px;
+    margin-right: 5px;
     font-size: 13px;
   }
 `;

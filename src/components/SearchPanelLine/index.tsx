@@ -264,7 +264,7 @@ const SearchPanel: FC<ISearchPanel> = ({
         </WrapperFilter>
         <div className="filter">
           <Dropdown trigger={['click']} overlay={menu} animation="slide-up">
-            <button style={{ width: 100 }}>{t('main.filter')}</button>
+            <button>{t('main.filter')}</button>
           </Dropdown>
         </div>
         <Input
