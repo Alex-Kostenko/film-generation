@@ -77,6 +77,7 @@ const SearchPanel: FC<ISearchPanel> = ({
   const { t } = useTranslation();
   const [resultGenres, setResultGenres] = useState<IName[]>([]);
   const [genres, setGenres] = useState<LangGenre[]>([]);
+  const [inputValue, setInputValue] = useState<string>(searchTerm);
 
   const filter = [
     { value: 'popularity', label: t('filter.popularity') },
@@ -127,11 +128,16 @@ const SearchPanel: FC<ISearchPanel> = ({
     setArrayCategoriesId(selectedFilms.map((item) => item.value));
     setSelectedOptions(selectedFilms);
   };
-  const changeSearchTerm = (text: string) => {
-    setSearchTerm(text);
+
+  const debouncedValue = useDebounce<string>(inputValue, 2000);
+
+  const changeSearchValue = (event: ChangeEvent<HTMLInputElement>) => {
+    setInputValue(event.target.value);
   };
 
-  const debounce = useDebounce(changeSearchTerm);
+  useEffect(() => {
+    setSearchTerm(debouncedValue);
+  }, [debouncedValue]);
 
   useEffect(() => {
     function handlePushWithoutRender() {
@@ -263,11 +269,8 @@ const SearchPanel: FC<ISearchPanel> = ({
         </div>
         <Input
           label={t('main.search')}
-          value={searchTerm}
-          onChange={(event: ChangeEvent<HTMLInputElement>) => {
-            debounce(event.target.value);
-            setSearchTerm(event.target.value);
-          }}
+          value={inputValue}
+          onChange={changeSearchValue}
         />
       </CriteriasContainer>
     </Root>
