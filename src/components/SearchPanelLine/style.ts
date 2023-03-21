@@ -95,6 +95,31 @@ export const CriteriasContainer = styled.div`
     row-gap: 15px;
   }
 
+  & .rootLox .yrp-container {
+    @media (max-width: 600px) {
+      width: 100%;
+    }
+    @media (max-width: 1100px) {
+      width: 100%;
+    }
+  }
+  & .rootLox {
+    @media (max-width: 1100px) {
+      width: 50%;
+    }
+    @media (max-width: 600px) {
+      width: 100%;
+    }
+  }
+  & .rootLox .yrp-picker-box {
+    @media (max-width: 600px) {
+      width: 100%;
+    }
+    @media (max-width: 1100px) {
+      width: 100%;
+    }
+  }
+
   & .wrapperInput {
     @media (max-width: 1100px) {
       width: 50%;

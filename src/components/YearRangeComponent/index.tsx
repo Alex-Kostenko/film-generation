@@ -25,14 +25,14 @@ const YearRangePickerComponent: FC<IYearRangePickerComponent> = ({
   };
 
   return (
-    <Root>
+    <Root className="rootLox">
       <YearRangePicker
         minYear={new Date(1990, 0, 1).getFullYear()}
         maxYear={new Date().getFullYear()}
         onSelect={(startYear, endYear) => handleOnchange(startYear, endYear)}
         startYear={typeof yearMovie === 'object' ? yearMovie.startYear : 0}
         endYear={typeof yearMovie === 'object' ? yearMovie.endYear : 0}
-        classNames="custom-year-range-picker"
+        // classNames="custom-year-range-picker"
         startText={t('main.start')}
         endText={t('main.end')}
       />
