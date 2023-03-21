@@ -64,13 +64,17 @@
     "popularity": "За популярністю",
     "release_date": "За датою",
     "vote_average": "За к-стю голосів",
-    "title": "Від А до Я"
+    "title": "Від А до Я",
+    "adult": "Для дорослих",
+    "description": "Пошук в описі"
   },
 
   "filterTag": {
     "popularity": "заПопулярністю",
     "release_date": "заДатою",
     "vote_average": "заКiлькiстюГолосів",
-    "title": "відАдоЯ"
+    "title": "відАдоЯ",
+    "adult": "фiльмиДляДорослих",
+    "description": "шукатиВописі"
   }
 }

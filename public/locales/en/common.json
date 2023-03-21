@@ -63,13 +63,17 @@
     "popularity": "By popularity",
     "release_date": "By release date",
     "vote_average": "By vote average",
-    "title": "By title"
+    "title": "By title",
+    "adult": "For adults",
+    "description": "Search in Desc"
   },
 
   "filterTag": {
     "popularity": "byPopularity",
     "release_date": "byReleaseDate",
     "vote_average": "byVoteAverage",
-    "title": "byTitle"
+    "title": "byTitle",
+    "adult": "filmsForAdults",
+    "description": "searchInDesc"
   }
 }
