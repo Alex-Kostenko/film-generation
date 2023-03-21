@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { PALETTE } from '@/palette';
 
 export const Root = styled.div`
-  & .custom-year-range-picker .yrp-picker-box {
+  & .yrp-picker-box {
     background-color: ${PALETTE.crimson.middle} !important;
     height: 38px;
     width: 180px;
@@ -13,17 +13,17 @@ export const Root = styled.div`
     transition: 0.25s;
   }
 
-  & .custom-year-range-picker .yrp-picker-box span {
+  & .yrp-picker-box span {
     color: #fff;
     font-family: 'Urbanist';
     font-weight: 700;
   }
 
-  & .custom-year-range-picker .yrp-picker-box i {
+  & .yrp-picker-box i {
     border-color: #fff;
   }
 
-  & .custom-year-range-picker .yrp-picker-box:hover,
+  & .yrp-picker-box:hover,
   .custom-year-range-picker .yrp-picker-box:focus {
     box-shadow: 0.3em 0.3em 0 0 #e4dada, inset 0.3em 0.3em 0 0 #e4dada;
     cursor: pointer;
@@ -31,7 +31,7 @@ export const Root = styled.div`
     border-color: #1f1f1f;
     background-color: rgb(243 63 63 / 0%) !important;
   }
-  & .custom-year-range-picker {
+  & .yrp-container {
     min-width: 0px;
     border: none;
   }
