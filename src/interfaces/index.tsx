@@ -172,3 +172,8 @@ export interface IRequestBody {
   releaseDateFrom?: number;
   releaseDateTo?: number;
 }
+
+export interface IFilter {
+  checkedAdult: boolean;
+  checkedSearchInDesc: boolean;
+}

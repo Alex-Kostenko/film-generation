@@ -8,7 +8,13 @@ import Switch from 'react-switch';
 import 'rc-dropdown/assets/index.css';
 
 import queryMovie from '@/Services/queryMovies';
-import { IName, ISelectedFilms, IYearRange, LangGenre } from '@/interfaces';
+import {
+  IFilter,
+  IName,
+  ISelectedFilms,
+  IYearRange,
+  LangGenre,
+} from '@/interfaces';
 import { PALETTE } from '@/palette';
 import { useDebounce } from '@/utils/hooks/useDebounce';
 
@@ -36,17 +42,17 @@ interface ISearchPanel {
   setMovieRating: React.Dispatch<React.SetStateAction<number>>;
   setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
   setValueSort: React.Dispatch<React.SetStateAction<string>>;
+  setChecked: React.Dispatch<React.SetStateAction<IFilter>>;
   setAscDesc: React.Dispatch<React.SetStateAction<string>>;
   selectedOptions: ISelectedFilms[];
+  yearMovie: IYearRange | 'empty';
   arrayCategoriesId: string[];
   arrayGenres: string[];
   movieRating: number;
   searchTerm: string;
   valueSort: string;
+  checked: IFilter;
   ascDesc: string;
-  yearMovie: IYearRange | 'empty';
-  checked: any;
-  setChecked: any;
 }
 
 const SearchPanel: FC<ISearchPanel> = ({
@@ -61,11 +67,11 @@ const SearchPanel: FC<ISearchPanel> = ({
   movieRating,
   searchTerm,
   setAscDesc,
-  yearMovie,
-  checked,
   setChecked,
+  yearMovie,
   valueSort,
   ascDesc,
+  checked,
 }) => {
   const router = useRouter();
   const { t } = useTranslation();
@@ -169,8 +175,15 @@ const SearchPanel: FC<ISearchPanel> = ({
     <MenuFilter>
       <MenuItem key="1">
         <label className="labelFilter">
-          <p className="textFilter">Adult</p>
+          <p className="textFilter">{t('filter.adult')}</p>
           <Switch
+            offColor="#1f1f1f"
+            onColor="#f33f3f"
+            uncheckedIcon={false}
+            checkedIcon={false}
+            height={22}
+            width={33}
+            activeBoxShadow="0 0 2px 3px #f33f3f"
             onChange={(check) => handleChange(check, 'checkedAdult')}
             checked={checked.checkedAdult}
           />
@@ -178,8 +191,15 @@ const SearchPanel: FC<ISearchPanel> = ({
       </MenuItem>
       <MenuItem key="2">
         <label className="labelFilter">
-          <p className="textFilter"> Search in Desc</p>
+          <p className="textFilter">{t('filter.description')}</p>
           <Switch
+            offColor="#1f1f1f"
+            onColor="#f33f3f"
+            uncheckedIcon={false}
+            checkedIcon={false}
+            height={22}
+            width={33}
+            activeBoxShadow="0 0 2px 3px #f33f3f"
             onChange={(check) => handleChange(check, 'checkedSearchInDesc')}
             checked={checked.checkedSearchInDesc}
           />
@@ -217,14 +237,6 @@ const SearchPanel: FC<ISearchPanel> = ({
           yearMovie={yearMovie}
           setYearMovie={setYearMovie}
         />
-        <Input
-          label={t('main.search')}
-          value={searchTerm}
-          onChange={(event: ChangeEvent<HTMLInputElement>) => {
-            debounce(event.target.value);
-            setSearchTerm(event.target.value);
-          }}
-        />
         <WrapperFilter>
           <WrapperInArrowInFilter>
             <TopArrow onClick={() => setAscDesc('desc')}>
@@ -244,17 +256,19 @@ const SearchPanel: FC<ISearchPanel> = ({
             hideSelected={true}
           />
         </WrapperFilter>
-        {/* <Stars
-          rating={t('main.rating')}
-          movieRating={movieRating}
-          setMovieRating={setMovieRating}
-        /> */}
-
         <div className="filter">
           <Dropdown trigger={['click']} overlay={menu} animation="slide-up">
             <button style={{ width: 100 }}>{t('main.filter')}</button>
           </Dropdown>
         </div>
+        <Input
+          label={t('main.search')}
+          value={searchTerm}
+          onChange={(event: ChangeEvent<HTMLInputElement>) => {
+            debounce(event.target.value);
+            setSearchTerm(event.target.value);
+          }}
+        />
       </CriteriasContainer>
     </Root>
   );

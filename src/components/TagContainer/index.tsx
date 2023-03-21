@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { ISelectedFilms, IYearRange } from '@/interfaces';
+import { IFilter, ISelectedFilms, IYearRange } from '@/interfaces';
 import { Genres } from '@/utils/genres';
 
 import { SearchContainer, TagComponent } from './style';
@@ -13,11 +13,13 @@ interface ITagContainerProps {
   setMovieRating: React.Dispatch<React.SetStateAction<number>>;
   setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
   setValueSort: React.Dispatch<React.SetStateAction<string>>;
+  setChecked: React.Dispatch<React.SetStateAction<IFilter>>;
   selectedOptions: ISelectedFilms[];
   yearMovie: IYearRange | 'empty';
   arrayCategoriesId: number[];
   valueSort: string;
   searchTerm: string;
+  checked: IFilter;
   rating: number;
 }
 
@@ -31,8 +33,10 @@ const TagContainer: FC<ITagContainerProps> = ({
   setYearMovie,
   setValueSort,
   searchTerm,
+  setChecked,
   yearMovie,
   valueSort,
+  checked,
   rating,
 }) => {
   const { t } = useTranslation();
@@ -50,7 +54,7 @@ const TagContainer: FC<ITagContainerProps> = ({
     setSearchTerm('');
   };
 
-  const deleteFilter = () => {
+  const deleteSort = () => {
     setValueSort('popularity');
   };
 
@@ -66,6 +70,13 @@ const TagContainer: FC<ITagContainerProps> = ({
     setSelectedOptions(newArrValue);
   };
 
+  const deleteFilter = (key: string, value: boolean) => {
+    setChecked((prevState) => ({
+      ...prevState,
+      [key]: value,
+    }));
+  };
+
   useEffect(() => setlabel(t('movieList.rating')));
   return (
     <SearchContainer>
@@ -78,7 +89,7 @@ const TagContainer: FC<ITagContainerProps> = ({
         />
       )}
       <TagComponent
-        onClick={deleteFilter}
+        onClick={deleteSort}
         cross={true}
         className="tag-search"
         label={t(`filterTag.${valueSort}`)}
@@ -108,6 +119,22 @@ const TagContainer: FC<ITagContainerProps> = ({
             label={t(`genres.${Genres[categoriesId]}`)}
           />
         ))}
+      {checked.checkedAdult && (
+        <TagComponent
+          onClick={() => deleteFilter('checkedAdult', false)}
+          cross={true}
+          className="tag-search"
+          label={t('filterTag.adult')}
+        />
+      )}
+      {checked.checkedSearchInDesc && (
+        <TagComponent
+          onClick={() => deleteFilter('checkedSearchInDesc', false)}
+          cross={true}
+          className="tag-search"
+          label={t('filterTag.description')}
+        />
+      )}
     </SearchContainer>
   );
 };

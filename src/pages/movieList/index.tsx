@@ -199,6 +199,8 @@ const MovieList = () => {
     <Root colorStyle={styless}>
       <BackBtn onClick={() => router.push('/')} />
       <TagContainer
+        checked={checked}
+        setChecked={setChecked}
         selectedOptions={selectedOptions}
         setSelectedOptions={setSelectedOptions}
         valueSort={valueSort}

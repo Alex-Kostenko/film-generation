@@ -64,13 +64,17 @@
     "popularity": "По популярности",
     "release_date": "По дате релиза",
     "vote_average": "По кол-ву голосов",
-    "title": "От А до Я"
+    "title": "От А до Я",
+    "adult": "Для взрослых",
+    "description": "Искать в описании"
   },
 
   "filterTag": {
     "popularity": "поПопулярности",
     "release_date": "поДатеРелиза",
     "vote_average": "поКоличествуГолосов",
-    "title": "отАдоЯ"
+    "title": "отАдоЯ",
+    "adult": "фильмыДляВзрослых",
+    "description": "искатьВописании"
   }
 }

@@ -32,14 +32,16 @@ export const Root = styled.div`
 
 export const MenuFilter = styled(Menu)`
   & .labelFilter {
+    padding: 0 10px;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     margin: 10px 0 10px 0;
   }
   & .textFilter {
     font-family: 'Roboto';
     font-weight: 500;
+    font-size: 12.5px;
   }
 `;
 
