@@ -11,7 +11,7 @@ interface ITagContainerProps {
   setYearMovie: React.Dispatch<React.SetStateAction<'empty' | IYearRange>>;
   setArrayCategoriesId: React.Dispatch<React.SetStateAction<number[]>>;
   setMovieRating: React.Dispatch<React.SetStateAction<number>>;
-  setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
+  setInputValue: React.Dispatch<React.SetStateAction<string>>;
   setValueSort: React.Dispatch<React.SetStateAction<string>>;
   setChecked: React.Dispatch<React.SetStateAction<IFilter>>;
   selectedOptions: ISelectedFilms[];
@@ -29,7 +29,7 @@ const TagContainer: FC<ITagContainerProps> = ({
   arrayCategoriesId,
   selectedOptions,
   setMovieRating,
-  setSearchTerm,
+  setInputValue,
   setYearMovie,
   setValueSort,
   searchTerm,
@@ -51,7 +51,7 @@ const TagContainer: FC<ITagContainerProps> = ({
   };
 
   const deleteSearchString = () => {
-    setSearchTerm('');
+    setInputValue('');
   };
 
   const deleteSort = () => {
@@ -80,7 +80,7 @@ const TagContainer: FC<ITagContainerProps> = ({
   useEffect(() => setlabel(t('movieList.rating')));
   return (
     <SearchContainer>
-      {rating && (
+      {Number(rating) === 1 ? null : (
         <TagComponent
           cross={true}
           className="tag-search"
@@ -88,12 +88,14 @@ const TagContainer: FC<ITagContainerProps> = ({
           onClick={deleteRating}
         />
       )}
-      <TagComponent
-        onClick={deleteSort}
-        cross={true}
-        className="tag-search"
-        label={t(`filterTag.${valueSort}`)}
-      />
+      {valueSort === 'popularity' ? null : (
+        <TagComponent
+          onClick={deleteSort}
+          cross={true}
+          className="tag-search"
+          label={t(`filterTag.${valueSort}`)}
+        />
+      )}
       {yearMovie !== 'empty' && (
         <TagComponent
           className="tag-search"
