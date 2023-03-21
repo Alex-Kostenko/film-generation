@@ -50,6 +50,24 @@ export const CriteriasContainer = styled.div`
   justify-content: space-between;
   align-items: center;
 
+  & .filter {
+    @media (max-width: 600px) {
+      width: 100% !important;
+    }
+    @media (max-width: 1100px) {
+      width: 50%;
+    }
+
+    & button {
+      @media (max-width: 600px) {
+        width: 100% !important;
+      }
+      @media (max-width: 1100px) {
+        width: 100% !important;
+      }
+    }
+  }
+
   & .selectCategory {
     @media (max-width: 1100px) {
       width: 50%;
@@ -95,27 +113,27 @@ export const CriteriasContainer = styled.div`
     row-gap: 15px;
   }
 
-  & .rootLox .yrp-container {
-    @media (max-width: 600px) {
-      width: 100%;
-    }
+  & .rootDatePicker .yrp-container {
     @media (max-width: 1100px) {
       width: 100%;
     }
+    @media (max-width: 600px) {
+      width: 100%;
+    }
   }
-  & .rootLox {
+  & .rootDatePicker {
+    @media (max-width: 600px) {
+      width: 100% !important;
+    }
     @media (max-width: 1100px) {
       width: 50%;
     }
-    @media (max-width: 600px) {
-      width: 100%;
-    }
   }
-  & .rootLox .yrp-picker-box {
-    @media (max-width: 600px) {
+  & .rootDatePicker .yrp-picker-box {
+    @media (max-width: 1100px) {
       width: 100%;
     }
-    @media (max-width: 1100px) {
+    @media (max-width: 600px) {
       width: 100%;
     }
   }

@@ -123,7 +123,9 @@ const AboutFilm: FC<IAboutFilmProps> = ({ movie, id, apiKey }) => {
           voteAverage={cutString(vote_average)}
         />
       </Container>
-      <AboutFilms>{handleSetColorLastElem(convertedText)}</AboutFilms>
+      <AboutFilms>
+        {handleSetColorLastElem(convertedText.replace('&#39;', "'"))}
+      </AboutFilms>
       {trailerLink ? (
         <VideoPlayer link={trailerLink} />
       ) : (

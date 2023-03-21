@@ -8,6 +8,23 @@ export const CriteriasContainer = styled.div`
   justify-content: space-between;
   align-items: center;
 
+  & .rootDatePicker {
+    @media (max-width: 968px) {
+      width: 100%;
+    }
+  }
+  & .rootDatePicker .yrp-container {
+    @media (max-width: 968px) {
+      width: 100%;
+    }
+  }
+
+  & .rootDatePicker .yrp-picker-box {
+    @media (max-width: 968px) {
+      width: 100%;
+    }
+  }
+
   & .selectCategory {
     @media (max-width: 968px) {
       width: 100%;
