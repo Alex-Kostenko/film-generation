@@ -9,6 +9,7 @@ import { FC, useEffect, useState } from 'react';
 import queryMovie from '@/Services/queryMovies';
 import BackBtn from '@/components/BackBtn';
 import FilmInfo from '@/components/FilmInfo';
+import Loader from '@/components/Loader';
 import VideoPlayer from '@/components/VideoPlayer';
 import { AboutFilmServerSideProps, IAboutFilmProps } from '@/interfaces';
 import {
@@ -34,6 +35,7 @@ const AboutFilm: FC<IAboutFilmProps> = ({ movie, id, apiKey }) => {
   const router = useRouter();
   const [rezkaLink, setRezkaLink] = useState('');
   const [trailerLink, setTrailerLink] = useState('');
+  const [errorLink, setErrorLink] = useState(false);
   const trailerText = t('filmPage.trailerText');
   const [convertedText, setConvertedText] = useState('');
   const {
@@ -59,11 +61,14 @@ const AboutFilm: FC<IAboutFilmProps> = ({ movie, id, apiKey }) => {
 
   useEffect(() => {
     (async () => {
+      const rezkaLink = await queryMovie.getRezka(id);
+      setRezkaLink(rezkaLink.link);
+
       const trailerLink = await queryMovie.getTrailer(id);
       setTrailerLink(trailerLink.key);
-
-      const rezkaLink = await queryMovie.getRezka(id);
-      setRezkaLink(rezkaLink?.link);
+      if (Object.keys(trailerLink).length === 0) {
+        setErrorLink(true);
+      }
     })();
   }, []);
 
@@ -124,10 +129,12 @@ const AboutFilm: FC<IAboutFilmProps> = ({ movie, id, apiKey }) => {
         />
       </Container>
       <AboutFilms>{handleSetColorLastElem(convertedText)}</AboutFilms>
-      {trailerLink ? (
+      {errorLink ? (
+        <TrailerText>{trailerText}</TrailerText>
+      ) : trailerLink ? (
         <VideoPlayer link={trailerLink} />
       ) : (
-        <TrailerText>{trailerText}</TrailerText>
+        <Loader />
       )}
       <LinkConteiner>
         <LinkTitle>{t('filmPage.links')}:</LinkTitle>
