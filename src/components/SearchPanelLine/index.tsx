@@ -9,11 +9,11 @@ import 'rc-dropdown/assets/index.css';
 
 import queryMovie from '@/Services/queryMovies';
 import {
-  IFilter,
-  IName,
   ISelectedFilms,
   IYearRange,
   LangGenre,
+  IFilter,
+  IName,
 } from '@/interfaces';
 import { PALETTE } from '@/palette';
 import { useDebounce } from '@/utils/hooks/useDebounce';
@@ -41,6 +41,7 @@ interface ISearchPanel {
   >;
   setMovieRating: React.Dispatch<React.SetStateAction<number>>;
   setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
+  setInputValue: React.Dispatch<React.SetStateAction<string>>;
   setValueSort: React.Dispatch<React.SetStateAction<string>>;
   setChecked: React.Dispatch<React.SetStateAction<IFilter>>;
   setAscDesc: React.Dispatch<React.SetStateAction<string>>;
@@ -51,6 +52,7 @@ interface ISearchPanel {
   movieRating: number;
   searchTerm: string;
   valueSort: string;
+  inputValue: string;
   checked: IFilter;
   ascDesc: string;
   curPage: number;
@@ -62,6 +64,7 @@ const SearchPanel: FC<ISearchPanel> = ({
   arrayCategoriesId,
   selectedOptions,
   setMovieRating,
+  setInputValue,
   setSearchTerm,
   setYearMovie,
   setValueSort,
@@ -69,6 +72,7 @@ const SearchPanel: FC<ISearchPanel> = ({
   searchTerm,
   setAscDesc,
   setChecked,
+  inputValue,
   yearMovie,
   valueSort,
   ascDesc,
@@ -79,7 +83,6 @@ const SearchPanel: FC<ISearchPanel> = ({
   const { t } = useTranslation();
   const [resultGenres, setResultGenres] = useState<IName[]>([]);
   const [genres, setGenres] = useState<LangGenre[]>([]);
-  const [inputValue, setInputValue] = useState<string>(searchTerm);
 
   const filter = [
     { value: 'popularity', label: t('filter.popularity') },
@@ -131,7 +134,7 @@ const SearchPanel: FC<ISearchPanel> = ({
     setSelectedOptions(selectedFilms);
   };
 
-  const debouncedValue = useDebounce<string>(inputValue, 2000);
+  const debouncedValue = useDebounce<string>(inputValue, 700);
 
   const changeSearchValue = (event: ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
@@ -264,6 +267,7 @@ const SearchPanel: FC<ISearchPanel> = ({
             multi={false}
             closeMenu={true}
             hideSelected={true}
+            value={valueSort}
           />
         </WrapperFilter>
         <div className="filter">

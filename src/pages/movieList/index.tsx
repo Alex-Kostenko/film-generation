@@ -89,6 +89,7 @@ const MovieList = () => {
   const [valueSort, setValueSort] = useState('popularity');
   const [ascDesc, setAscDesc] = useState('desc');
   const [selectedOptions, setSelectedOptions] = useState<ISelectedFilms[]>([]);
+  const [inputValue, setInputValue] = useState<string>(searchTerm);
 
   const [query, setQuery] = useState({
     currentPage: curPage ? Number(curPage) : 0,
@@ -200,6 +201,7 @@ const MovieList = () => {
     <Root colorStyle={styless}>
       <BackBtn onClick={() => router.push('/')} />
       <TagContainer
+        setInputValue={setInputValue}
         checked={checked}
         setChecked={setChecked}
         selectedOptions={selectedOptions}
@@ -211,13 +213,14 @@ const MovieList = () => {
         arrayCategoriesId={arrayCategoriesId}
         setYearMovie={setYearMovie}
         setMovieRating={setMovieRating}
-        setSearchTerm={setSearchTerm}
         setValueSort={setValueSort}
         setArrayCategoriesId={setArrayCategoriesId}
       />
       <PanelWrapper>
         <SearchPanelLine
           curPage={query.currentPage}
+          setInputValue={setInputValue}
+          inputValue={inputValue}
           valueSort={valueSort}
           selectedOptions={selectedOptions}
           setSelectedOptions={setSelectedOptions}
