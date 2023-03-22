@@ -59,6 +59,7 @@ const MovieList = () => {
     yearRange,
     checkedAdult,
     checkedSearchInDesc,
+    curPage,
   }: any = router.query;
 
   const [checked, setChecked] = useState({
@@ -90,7 +91,7 @@ const MovieList = () => {
   const [selectedOptions, setSelectedOptions] = useState<ISelectedFilms[]>([]);
 
   const [query, setQuery] = useState({
-    currentPage: 0,
+    currentPage: curPage ? Number(curPage) : 0,
     count: 40,
     arrowUpload: false,
     isLoading: false,
@@ -216,6 +217,7 @@ const MovieList = () => {
       />
       <PanelWrapper>
         <SearchPanelLine
+          curPage={query.currentPage}
           valueSort={valueSort}
           selectedOptions={selectedOptions}
           setSelectedOptions={setSelectedOptions}

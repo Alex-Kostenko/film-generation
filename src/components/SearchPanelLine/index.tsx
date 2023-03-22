@@ -53,6 +53,7 @@ interface ISearchPanel {
   valueSort: string;
   checked: IFilter;
   ascDesc: string;
+  curPage: number;
 }
 
 const SearchPanel: FC<ISearchPanel> = ({
@@ -72,6 +73,7 @@ const SearchPanel: FC<ISearchPanel> = ({
   valueSort,
   ascDesc,
   checked,
+  curPage,
 }) => {
   const router = useRouter();
   const { t } = useTranslation();
@@ -157,6 +159,7 @@ const SearchPanel: FC<ISearchPanel> = ({
             checkedAdult: checked.checkedAdult,
             checkedSearchInDesc: checked.checkedSearchInDesc,
             sorting: `${valueSort}`,
+            curPage: curPage,
           },
         },
         undefined,
@@ -171,6 +174,7 @@ const SearchPanel: FC<ISearchPanel> = ({
     yearMovie,
     checked,
     valueSort,
+    curPage,
   ]);
 
   const handleChange = (check: boolean, valueIsCheked: string) => {
