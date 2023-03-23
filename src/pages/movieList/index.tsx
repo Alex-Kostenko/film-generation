@@ -60,6 +60,7 @@ const MovieList = () => {
     checkedAdult,
     checkedSearchInDesc,
     curPage,
+    sorting,
   }: any = router.query;
 
   const [checked, setChecked] = useState({
@@ -86,7 +87,7 @@ const MovieList = () => {
           endYear: Number(yearRange.split(',')[1]),
         },
   );
-  const [valueSort, setValueSort] = useState('popularity');
+  const [valueSort, setValueSort] = useState(sorting ? sorting : 'popularity');
   const [ascDesc, setAscDesc] = useState('desc');
   const [selectedOptions, setSelectedOptions] = useState<ISelectedFilms[]>([]);
   const [inputValue, setInputValue] = useState<string>(searchTerm);
