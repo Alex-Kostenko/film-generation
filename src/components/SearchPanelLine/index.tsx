@@ -95,7 +95,6 @@ const SearchPanel: FC<ISearchPanel> = ({
     if (genres.length === 0) {
       (async () => {
         const genres = await queryMovie.getGenres();
-
         setGenres(genres);
       })();
     }
@@ -267,7 +266,6 @@ const SearchPanel: FC<ISearchPanel> = ({
             multi={false}
             closeMenu={true}
             hideSelected={true}
-            value={valueSort}
           />
         </WrapperFilter>
         <div className="filter">
