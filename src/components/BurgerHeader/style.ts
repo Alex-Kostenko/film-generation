@@ -2,10 +2,78 @@ import styled from 'styled-components';
 
 import { PALETTE } from '@/palette';
 
+export const BurgerM = styled.div`
+  display: flex;
+  align-self: center;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 25px;
+  height: 17px;
+  margin-right: 13px;
+  cursor: pointer;
+  & .bgTop,
+  .bgMid,
+  .bgBot {
+    align-self: flex-end;
+    height: 2px;
+    width: 100%;
+    background: #fff;
+  }
+
+  & .bgMid {
+    width: 75%;
+    transition: all 200ms ease-in-out;
+  }
+
+  & .bgBot {
+    width: 50%;
+    transition: all 400ms ease-in-out;
+  }
+  &:hover .bgTop,
+  .bgMid,
+  .bgBot {
+    width: 100%;
+  }
+
+  &:hover .bgTop {
+    animation: burger-hover 1s infinite ease-in-out alternate;
+  }
+  &:hover .bgMid {
+    animation: burger-hover 1s infinite ease-in-out alternate forwards 200ms;
+  }
+  &:hover .bgBot {
+    animation: burger-hover 1s infinite ease-in-out alternate forwards 400ms;
+  }
+
+  @keyframes burger-hover {
+    0% {
+      width: 100%;
+    }
+    50% {
+      width: 50%;
+    }
+    100% {
+      width: 100%;
+    }
+  }
+`;
+
+export const BurgerTop = styled.span`
+  top: 6px;
+`;
+export const BurgerMid = styled.span`
+  top: 15px;
+`;
+export const BurgerBot = styled.span`
+  top: 24px;
+`;
+
 export const BurgerHeader = styled.div`
   display: none;
+
   @media (max-width: 600px) {
-    display: block;
+    display: flex;
+    justify-content: space-between;
     height: 45px;
     width: 100%;
     background: ${PALETTE.gray};
@@ -14,6 +82,7 @@ export const BurgerHeader = styled.div`
     z-index: 3;
     background: ${PALETTE.siderBarGradient};
   }
+
   & .logoBurger {
     border-radius: 50%;
     cursor: pointer;
