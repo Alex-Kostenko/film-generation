@@ -22,15 +22,8 @@ interface IPageManagement {
 }
 
 const PageManagementComponent: FC<IPageManagement> = ({ query, setQuery }) => {
-  // const [labelSize, setLabelSize] = useState<string | null>('');
-  // const [labelText, setLabelText] = useState<string | null>('');
   const reloadRef: React.MutableRefObject<null> = useRef(null);
   const { t } = useTranslation();
-
-  // useEffect(() => {
-  //   setLabelSize(t('movieList.countFilm'));
-  //   setLabelText(t('movieList.showMore'));
-  // });
 
   const handleSetQuery = () => {
     setQuery({
