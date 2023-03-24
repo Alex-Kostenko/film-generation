@@ -146,8 +146,8 @@ export interface IStars {
   movieRating: number;
   setMovieRating: React.Dispatch<React.SetStateAction<number>>;
   style: StyleI;
-  query: IQuery;
-  setQuery: React.Dispatch<
+  query?: IQuery;
+  setQuery?: React.Dispatch<
     React.SetStateAction<{
       currentPage: number;
       count: number;

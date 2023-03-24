@@ -15,7 +15,7 @@ const Stars: FC<IStars> = ({
   setQuery,
 }) => {
   const handleRating = (rate: number) => {
-    setQuery({ ...query, currentPage: 0 });
+    setQuery && query && setQuery({ ...query, currentPage: 0 });
     setMovieRating(rate * 2);
   };
 

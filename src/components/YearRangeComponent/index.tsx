@@ -10,8 +10,8 @@ interface IYearRangePickerComponent {
   setYearSearch?: React.Dispatch<React.SetStateAction<'empty' | IYearRange>>;
   yearMovie?: IYearRange | 'empty';
   setYearMovie?: React.Dispatch<React.SetStateAction<'empty' | IYearRange>>;
-  query: IQuery;
-  setQuery: React.Dispatch<
+  query?: IQuery;
+  setQuery?: React.Dispatch<
     SetStateAction<{
       currentPage: number;
       count: number;
@@ -32,7 +32,7 @@ const YearRangePickerComponent: FC<IYearRangePickerComponent> = ({
   const { t }: any = useTranslation();
 
   const handleOnchange = (startYear: number, endYear: number) => {
-    setQuery({ ...query, currentPage: 0 });
+    setQuery && query && setQuery({ ...query, currentPage: 0 });
     setYearSearch && setYearSearch({ startYear, endYear });
     setYearMovie && setYearMovie({ startYear, endYear });
   };
