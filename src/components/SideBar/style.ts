@@ -18,9 +18,9 @@ export const SiderBar = styled.div`
     display: none;
   }
   & .svgLanguage {
-    width: 30px;
+    width: 31px;
     cursor: pointer;
-    height: 20px;
+    height: 23px;
   }
   & .activeSvg {
     transform: scale(1.2);
