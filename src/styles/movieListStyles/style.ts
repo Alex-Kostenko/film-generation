@@ -12,6 +12,12 @@ export const Paginate = styled(ReactPaginate)`
   flex-wrap: wrap;
 `;
 
+export const TextEmptyFilm = styled.div`
+  color: ${PALETTE.white};
+  font-family: 'Roboto';
+  font-weight: 400;
+`;
+
 export const PanelWrapper = styled.div`
   position: relative;
   width: 100%;

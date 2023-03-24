@@ -175,10 +175,6 @@ export interface AboutFilmServerSideProps {
   params: Params;
 }
 
-export interface ILocale {
-  locale: string;
-}
-
 export interface IRequestBody {
   genres_ids: number[];
   dir: string;
