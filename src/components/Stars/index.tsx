@@ -6,8 +6,16 @@ import { PALETTE } from '@/palette';
 
 import { Wrapper, Title } from './style';
 
-const Stars: FC<IStars> = ({ setMovieRating, movieRating, rating, style }) => {
+const Stars: FC<IStars> = ({
+  setMovieRating,
+  movieRating,
+  rating,
+  style,
+  query,
+  setQuery,
+}) => {
   const handleRating = (rate: number) => {
+    setQuery && query && setQuery({ ...query, currentPage: 0 });
     setMovieRating(rate * 2);
   };
 

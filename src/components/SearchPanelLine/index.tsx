@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import Dropdown from 'rc-dropdown';
 import { Item as MenuItem } from 'rc-menu';
-import { ChangeEvent, FC, useEffect, useState } from 'react';
+import { ChangeEvent, FC, SetStateAction, useEffect, useState } from 'react';
 import Switch from 'react-switch';
 import 'rc-dropdown/assets/index.css';
 
@@ -14,6 +14,7 @@ import {
   LangGenre,
   IFilter,
   IName,
+  IQuery,
 } from '@/interfaces';
 import { PALETTE } from '@/palette';
 import { useDebounce } from '@/utils/hooks/useDebounce';
@@ -56,6 +57,16 @@ interface ISearchPanel {
   checked: IFilter;
   ascDesc: string;
   curPage: number;
+  query: IQuery;
+  setQuery: React.Dispatch<
+    SetStateAction<{
+      currentPage: number;
+      count: number;
+      arrowUpload: boolean;
+      isLoading: boolean;
+      pageSize: number;
+    }>
+  >;
 }
 
 const SearchPanel: FC<ISearchPanel> = ({
@@ -78,6 +89,8 @@ const SearchPanel: FC<ISearchPanel> = ({
   ascDesc,
   checked,
   curPage,
+  query,
+  setQuery,
 }) => {
   const router = useRouter();
   const { t } = useTranslation();
@@ -129,6 +142,7 @@ const SearchPanel: FC<ISearchPanel> = ({
   }, [genres, router.locale]);
 
   const changeGenre = (selectedFilms: ISelectedFilms[]) => {
+    setQuery({ ...query, currentPage: 0 });
     setArrayCategoriesId(selectedFilms.map((item) => item.value));
     setSelectedOptions(selectedFilms);
   };
@@ -136,6 +150,7 @@ const SearchPanel: FC<ISearchPanel> = ({
   const debouncedValue = useDebounce<string>(inputValue, 700);
 
   const changeSearchValue = (event: ChangeEvent<HTMLInputElement>) => {
+    setQuery({ ...query, currentPage: 0 });
     setInputValue(event.target.value);
   };
 
@@ -180,6 +195,7 @@ const SearchPanel: FC<ISearchPanel> = ({
   ]);
 
   const handleChange = (check: boolean, valueIsCheked: string) => {
+    setQuery({ ...query, currentPage: 0 });
     setChecked({ ...checked, [valueIsCheked]: check });
   };
 
@@ -224,6 +240,8 @@ const SearchPanel: FC<ISearchPanel> = ({
             rating={t('main.rating')}
             movieRating={movieRating}
             setMovieRating={setMovieRating}
+            query={query}
+            setQuery={setQuery}
           />
         }
       </MenuItem>
@@ -246,22 +264,37 @@ const SearchPanel: FC<ISearchPanel> = ({
           value={selectedOptions}
         />
         <YearRangePickerComponent
+          query={query}
+          setQuery={setQuery}
           yearMovie={yearMovie}
           setYearMovie={setYearMovie}
         />
         <WrapperFilter>
           <WrapperInArrowInFilter>
-            <TopArrow onClick={() => setAscDesc('desc')}>
+            <TopArrow
+              onClick={() => {
+                setQuery({ ...query, currentPage: 0 });
+                setAscDesc('desc');
+              }}
+            >
               {ascDesc === 'desc' ? <>&#9650;</> : <>&#9651;</>}
             </TopArrow>
-            <LeftArrow onClick={() => setAscDesc('asc')}>
+            <LeftArrow
+              onClick={() => {
+                setQuery({ ...query, currentPage: 0 });
+                setAscDesc('asc');
+              }}
+            >
               {ascDesc === 'desc' ? <>&#9661;</> : <>&#9660;</>}
             </LeftArrow>
           </WrapperInArrowInFilter>
           <Select
             className="selectFilter"
             placeholder={t('main.sort')}
-            onChange={(name: IName) => setValueSort(name.value)}
+            onChange={(name: IName) => {
+              setQuery({ ...query, currentPage: 0 });
+              setValueSort(name.value);
+            }}
             options={filter}
             multi={false}
             closeMenu={true}

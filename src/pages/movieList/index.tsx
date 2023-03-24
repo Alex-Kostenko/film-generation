@@ -176,6 +176,8 @@ const MovieList = () => {
     checked,
   ]);
 
+  // setQuery({ ...query, currentPage: 0 });
+
   useEffect(() => {
     if (query.arrowUpload) {
       // eslint-disable-next-line
@@ -219,6 +221,8 @@ const MovieList = () => {
       />
       <PanelWrapper>
         <SearchPanelLine
+          query={query}
+          setQuery={setQuery}
           curPage={query.currentPage}
           setInputValue={setInputValue}
           inputValue={inputValue}
