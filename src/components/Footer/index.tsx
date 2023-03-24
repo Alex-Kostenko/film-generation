@@ -9,7 +9,11 @@ const Footer = () => {
   return (
     <FooterComponent>
       <FooterText>
-        <a className="link" href="https://developer.mozilla.org">
+        <a
+          className="link"
+          target={'_blank'}
+          href="https://unicode-studio.com/#/"
+        >
           {t('footer.create')}
         </a>
         <Image
