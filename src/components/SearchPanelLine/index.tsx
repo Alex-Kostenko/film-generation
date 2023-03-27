@@ -176,6 +176,7 @@ const SearchPanel: FC<ISearchPanel> = ({
             checkedAdult: checked.checkedAdult,
             checkedSearchInDesc: checked.checkedSearchInDesc,
             sorting: `${valueSort}`,
+            ascDescc: ascDesc,
             curPage: curPage,
           },
         },
@@ -192,6 +193,7 @@ const SearchPanel: FC<ISearchPanel> = ({
     checked,
     valueSort,
     curPage,
+    ascDesc,
   ]);
 
   const handleChange = (check: boolean, valueIsCheked: string) => {
