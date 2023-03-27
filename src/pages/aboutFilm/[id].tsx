@@ -24,8 +24,8 @@ import {
   AboutFilms,
   Container,
   LinkTitle,
-  FilmImage,
   Title,
+  FilmImage,
   Link,
   Root,
 } from '../../styles/aboutFilmStyles/style';
