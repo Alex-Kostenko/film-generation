@@ -299,6 +299,7 @@ const SearchPanel: FC<ISearchPanel> = ({
             multi={false}
             closeMenu={true}
             hideSelected={true}
+            value={valueSort}
           />
         </WrapperFilter>
         <div className="filter">
