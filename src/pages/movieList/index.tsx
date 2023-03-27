@@ -18,7 +18,6 @@ import {
   Root,
 } from '@/styles/movieListStyles/style';
 import { Genres } from '@/utils/genres';
-import Link from 'next/link';
 
 interface PageChangeEvent {
   selected: number;
