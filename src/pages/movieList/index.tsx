@@ -198,10 +198,6 @@ const MovieList = () => {
     setQuery({ ...query, arrowUpload: false, currentPage: event.selected });
   };
 
-  const redirect = (id: number) => {
-    router.push(`/aboutFilm/${id}`);
-  };
-
   return (
     <Root colorStyle={styless}>
       <BackBtn onClick={() => router.push('/')} />
@@ -249,28 +245,23 @@ const MovieList = () => {
       </PanelWrapper>
       {content.map((movie: MovieEntity) => (
         <div key={movie.id}>
-          <a href={`/aboutFilm/${movie.id}`} style={{ textDecoration: 'none' }}>
-            <CardComponent
-              img={
-                movie.poster_path &&
-                `https://www.themoviedb.org/t/p/w300_and_h450_bestv2${movie.poster_path}`
-              }
-              title={movie.original_title ?? movie.title}
-              subtitle={
-                movie.original_title === movie.title ||
-                movie.original_title === null
-                  ? ''
-                  : movie.title
-              }
-              release={t('movieList.release')}
-              date={movie.release_date}
-              description={movie.overview}
-              action={() => redirect(movie.id)}
-              labels={movie.genre_ids.map((item: number) =>
-                t(`genres.${Genres[item]}`),
-              )}
-            />
-          </a>
+          <CardComponent
+            img={`https://www.themoviedb.org/t/p/w300_and_h450_bestv2${movie.poster_path}`}
+            title={movie.original_title ?? movie.title}
+            subtitle={
+              movie.original_title === movie.title ||
+              movie.original_title === null
+                ? ''
+                : movie.title
+            }
+            release={t('movieList.release')}
+            date={movie.release_date}
+            description={movie.overview}
+            movieId={movie.id}
+            labels={movie.genre_ids.map((item: number) =>
+              t(`genres.${Genres[item]}`),
+            )}
+          />
         </div>
       ))}
       {content.length !== 0 ? (
