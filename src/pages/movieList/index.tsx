@@ -18,6 +18,7 @@ import {
   Root,
 } from '@/styles/movieListStyles/style';
 import { Genres } from '@/utils/genres';
+import Link from 'next/link';
 
 interface PageChangeEvent {
   selected: number;
@@ -249,26 +250,28 @@ const MovieList = () => {
       </PanelWrapper>
       {content.map((movie: MovieEntity) => (
         <div key={movie.id}>
-          <CardComponent
-            img={
-              movie.poster_path &&
-              `https://www.themoviedb.org/t/p/w300_and_h450_bestv2${movie.poster_path}`
-            }
-            title={movie.original_title ?? movie.title}
-            subtitle={
-              movie.original_title === movie.title ||
-              movie.original_title === null
-                ? ''
-                : movie.title
-            }
-            release={t('movieList.release')}
-            date={movie.release_date}
-            description={movie.overview}
-            action={() => redirect(movie.id)}
-            labels={movie.genre_ids.map((item: number) =>
-              t(`genres.${Genres[item]}`),
-            )}
-          />
+          <a href={`/aboutFilm/${movie.id}`} style={{ textDecoration: 'none' }}>
+            <CardComponent
+              img={
+                movie.poster_path &&
+                `https://www.themoviedb.org/t/p/w300_and_h450_bestv2${movie.poster_path}`
+              }
+              title={movie.original_title ?? movie.title}
+              subtitle={
+                movie.original_title === movie.title ||
+                movie.original_title === null
+                  ? ''
+                  : movie.title
+              }
+              release={t('movieList.release')}
+              date={movie.release_date}
+              description={movie.overview}
+              action={() => redirect(movie.id)}
+              labels={movie.genre_ids.map((item: number) =>
+                t(`genres.${Genres[item]}`),
+              )}
+            />
+          </a>
         </div>
       ))}
       {content.length !== 0 ? (
