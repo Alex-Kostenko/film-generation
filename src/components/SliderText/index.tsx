@@ -28,8 +28,9 @@ const SliderText: FC<ISliderTextProps> = ({ movieData }) => {
       <Container>
         <Title>{movieData.title}</Title>
         <TagContainer>
-          {movieData.genre_ids.map((movie) => (
+          {movieData.genre_ids.map((movie, index) => (
             <TagComponent
+              key={index}
               className="tag-small"
               label={t(`genres.${Genres[movie]}`)}
             />

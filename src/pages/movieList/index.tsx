@@ -64,6 +64,7 @@ const MovieList = () => {
     checkedSearchInDesc,
     curPage,
     sorting,
+    ascDescc,
   }: any = router.query;
 
   const [checked, setChecked] = useState({
@@ -91,7 +92,7 @@ const MovieList = () => {
         },
   );
   const [valueSort, setValueSort] = useState(sorting ? sorting : 'popularity');
-  const [ascDesc, setAscDesc] = useState('desc');
+  const [ascDesc, setAscDesc] = useState(ascDescc ? ascDescc : 'desc');
   const [selectedOptions, setSelectedOptions] = useState<ISelectedFilms[]>([]);
   const [inputValue, setInputValue] = useState<string>(searchTerm);
 
@@ -248,26 +249,28 @@ const MovieList = () => {
       </PanelWrapper>
       {content.map((movie: MovieEntity) => (
         <div key={movie.id}>
-          <CardComponent
-            img={
-              movie.poster_path &&
-              `https://www.themoviedb.org/t/p/w300_and_h450_bestv2${movie.poster_path}`
-            }
-            title={movie.original_title ?? movie.title}
-            subtitle={
-              movie.original_title === movie.title ||
-              movie.original_title === null
-                ? ''
-                : movie.title
-            }
-            release={t('movieList.release')}
-            date={movie.release_date}
-            description={movie.overview}
-            action={() => redirect(movie.id)}
-            labels={movie.genre_ids.map((item: number) =>
-              t(`genres.${Genres[item]}`),
-            )}
-          />
+          <a href={`/aboutFilm/${movie.id}`} style={{ textDecoration: 'none' }}>
+            <CardComponent
+              img={
+                movie.poster_path &&
+                `https://www.themoviedb.org/t/p/w300_and_h450_bestv2${movie.poster_path}`
+              }
+              title={movie.original_title ?? movie.title}
+              subtitle={
+                movie.original_title === movie.title ||
+                movie.original_title === null
+                  ? ''
+                  : movie.title
+              }
+              release={t('movieList.release')}
+              date={movie.release_date}
+              description={movie.overview}
+              action={() => redirect(movie.id)}
+              labels={movie.genre_ids.map((item: number) =>
+                t(`genres.${Genres[item]}`),
+              )}
+            />
+          </a>
         </div>
       ))}
       {content.length !== 0 ? (
