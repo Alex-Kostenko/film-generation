@@ -141,9 +141,9 @@ const AboutFilm: FC<IAboutFilmProps> = ({ movie, id, apiKey }) => {
       <LinkConteiner>
         <LinkTitle>{t('filmPage.links')}:</LinkTitle>
         {rezkaLink && (
-          <Link href={rezkaLink}>{`${t('filmPage.watch')} "${title}" ${t(
-            'filmPage.on',
-          )} hdRezka`}</Link>
+          <Link href={rezkaLink}>{`${t('filmPage.watch')} "${
+            router.locale === 'en' ? original_title : title
+          }" ${t('filmPage.on')} hdRezka`}</Link>
         )}
       </LinkConteiner>
     </Root>
