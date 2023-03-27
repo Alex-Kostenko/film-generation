@@ -7,6 +7,10 @@ interface Production_companies {
   origin_country: string;
 }
 
+export interface ILocale {
+  locale: string;
+}
+
 export interface MovieEntity {
   id: number;
   default: 34234;
@@ -173,10 +177,6 @@ interface Params {
 export interface AboutFilmServerSideProps {
   locale: string;
   params: Params;
-}
-
-export interface ILocale {
-  locale: string;
 }
 
 export interface IRequestBody {

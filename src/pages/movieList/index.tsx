@@ -1,3 +1,4 @@
+import { GetStaticProps } from 'next';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -8,10 +9,8 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import queryMovie from '@/Services/queryMovies';
 import BackBtn from '@/components/BackBtn';
-// import PageManagementComponent from '@/components/PageManagement';
 import SearchPanelLine from '@/components/SearchPanelLine';
-// import TagContainer from '@/components/TagContainer';
-import { ILocale, MovieEntity, IYearRange, ISelectedFilms } from '@/interfaces';
+import { MovieEntity, IYearRange, ISelectedFilms } from '@/interfaces';
 import {
   CardComponent,
   PanelWrapper,
@@ -23,6 +22,10 @@ import { Genres } from '@/utils/genres';
 interface PageChangeEvent {
   selected: number;
 }
+
+const EmptyFilms = dynamic(() => import('@/components/EmptyFilm'), {
+  ssr: false,
+});
 
 const PageManagementComponent = dynamic(
   () => import('@/components/PageManagement'),
@@ -83,8 +86,8 @@ const MovieList = () => {
     yearRange === 'empty'
       ? 'empty'
       : {
-          startYear: Number(yearRange.split(',')[0]),
-          endYear: Number(yearRange.split(',')[1]),
+          startYear: Number(yearRange?.split(',')[0]),
+          endYear: Number(yearRange?.split(',')[1]),
         },
   );
   const [valueSort, setValueSort] = useState(sorting ? sorting : 'popularity');
@@ -175,8 +178,6 @@ const MovieList = () => {
     yearMovie,
     checked,
   ]);
-
-  // setQuery({ ...query, currentPage: 0 });
 
   useEffect(() => {
     if (query.arrowUpload) {
@@ -269,19 +270,25 @@ const MovieList = () => {
           />
         </div>
       ))}
-      <PageManagementComponent query={query} setQuery={setQuery} />
-      <Paginate
-        breakLabel="..."
-        nextLabel={'>'}
-        onPageChange={handlePageClick}
-        pageRangeDisplayed={3}
-        pageCount={query.count}
-        previousLabel="<"
-        className="paginateClass"
-        activeClassName="active"
-        containerClassName="container"
-        forcePage={query.currentPage}
-      />
+      {content.length !== 0 ? (
+        <>
+          <PageManagementComponent query={query} setQuery={setQuery} />
+          <Paginate
+            breakLabel="..."
+            nextLabel={'>'}
+            onPageChange={handlePageClick}
+            pageRangeDisplayed={3}
+            pageCount={query.count}
+            previousLabel="<"
+            className="paginateClass"
+            activeClassName="active"
+            containerClassName="container"
+            forcePage={query.currentPage}
+          />
+        </>
+      ) : (
+        <EmptyFilms />
+      )}
       <ToastContainer
         position="top-right"
         autoClose={5000}
@@ -298,10 +305,12 @@ const MovieList = () => {
   );
 };
 
-export const getServerSideProps = async ({ locale }: ILocale) => ({
-  props: {
-    ...(await serverSideTranslations(locale)),
-  },
-});
-
 export default MovieList;
+
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale as string, ['common'])),
+    },
+  };
+};
