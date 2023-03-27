@@ -75,6 +75,7 @@
     "vote_average": "byVoteAverage",
     "title": "byTitle",
     "adult": "filmsForAdults",
-    "description": "searchInDesc"
+    "description": "searchInDesc",
+    "clearAll": "clearAll"
   }
 }

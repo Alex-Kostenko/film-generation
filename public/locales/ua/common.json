@@ -76,6 +76,7 @@
     "vote_average": "заКiлькiстюГолосів",
     "title": "відАдоЯ",
     "adult": "фiльмиДляДорослих",
-    "description": "шукатиВописі"
+    "description": "шукатиВописі",
+    "clearAll": "прибратиУсi"
   }
 }

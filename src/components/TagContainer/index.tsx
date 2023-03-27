@@ -17,8 +17,8 @@ interface ITagContainerProps {
   selectedOptions: ISelectedFilms[];
   yearMovie: IYearRange | 'empty';
   arrayCategoriesId: number[];
-  valueSort: string;
   searchTerm: string;
+  valueSort: string;
   checked: IFilter;
   rating: number;
 }
@@ -41,6 +41,7 @@ const TagContainer: FC<ITagContainerProps> = ({
 }) => {
   const { t } = useTranslation();
   const [label, setlabel] = useState<string | null>('');
+  const [tagCount, setTagCount] = useState<number>(0);
 
   const deleteYear = () => {
     setYearMovie('empty');
@@ -76,6 +77,37 @@ const TagContainer: FC<ITagContainerProps> = ({
       [key]: value,
     }));
   };
+
+  const deleteAll = () => {
+    setChecked({ checkedAdult: false, checkedSearchInDesc: false });
+    setArrayCategoriesId([]);
+    setSelectedOptions([]);
+    deleteSort();
+    deleteSearchString();
+    deleteRating();
+    deleteYear();
+  };
+
+  useEffect(() => {
+    const count =
+      (Number(rating) !== 1 ? 1 : 0) +
+      (valueSort !== 'popularity' ? 1 : 0) +
+      (yearMovie !== 'empty' ? 1 : 0) +
+      (searchTerm ? 1 : 0) +
+      arrayCategoriesId.length +
+      (checked.checkedAdult ? 1 : 0) +
+      (checked.checkedSearchInDesc ? 1 : 0);
+
+    setTagCount(count);
+  }, [
+    rating,
+    valueSort,
+    yearMovie,
+    searchTerm,
+    arrayCategoriesId,
+    checked.checkedAdult,
+    checked.checkedSearchInDesc,
+  ]);
 
   useEffect(() => setlabel(t('movieList.rating')));
   return (
@@ -137,6 +169,15 @@ const TagContainer: FC<ITagContainerProps> = ({
           label={t('filterTag.description')}
         />
       )}
+
+      {tagCount >= 2 ? (
+        <TagComponent
+          onClick={deleteAll}
+          cross={true}
+          className="tag-search"
+          label={t('filterTag.clearAll')}
+        />
+      ) : null}
     </SearchContainer>
   );
 };
