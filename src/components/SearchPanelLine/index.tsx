@@ -274,18 +274,18 @@ const SearchPanel: FC<ISearchPanel> = ({
             <TopArrow
               onClick={() => {
                 setQuery({ ...query, currentPage: 0 });
-                setAscDesc('desc');
+                setAscDesc('asc');
               }}
             >
-              {ascDesc === 'desc' ? <>&#9650;</> : <>&#9651;</>}
+              {ascDesc === 'desc' ? <>&#9651;</> : <>&#9650;</>}
             </TopArrow>
             <LeftArrow
               onClick={() => {
                 setQuery({ ...query, currentPage: 0 });
-                setAscDesc('asc');
+                setAscDesc('desc');
               }}
             >
-              {ascDesc === 'desc' ? <>&#9661;</> : <>&#9660;</>}
+              {ascDesc === 'desc' ? <>&#9660;</> : <>&#9661;</>}
             </LeftArrow>
           </WrapperInArrowInFilter>
           <Select
