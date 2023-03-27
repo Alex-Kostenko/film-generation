@@ -177,6 +177,7 @@ const SearchPanel: FC<ISearchPanel> = ({
             checkedSearchInDesc: checked.checkedSearchInDesc,
             sorting: `${valueSort}`,
             curPage: curPage,
+            pageSize: query.pageSize,
           },
         },
         undefined,
@@ -192,6 +193,7 @@ const SearchPanel: FC<ISearchPanel> = ({
     checked,
     valueSort,
     curPage,
+    query.pageSize,
   ]);
 
   const handleChange = (check: boolean, valueIsCheked: string) => {

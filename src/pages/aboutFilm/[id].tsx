@@ -65,8 +65,9 @@ const AboutFilm: FC<IAboutFilmProps> = ({ movie, id, apiKey }) => {
       setRezkaLink(rezkaLink.link);
 
       const trailerLink = await queryMovie.getTrailer(id);
-      setTrailerLink(trailerLink.key);
-      if (Object.keys(trailerLink).length === 0) {
+      if (trailerLink && trailerLink.key) {
+        setTrailerLink(trailerLink.key);
+      } else {
         setErrorLink(true);
       }
     })();
