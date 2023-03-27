@@ -178,6 +178,7 @@ const SearchPanel: FC<ISearchPanel> = ({
             sorting: `${valueSort}`,
             ascDescc: ascDesc,
             curPage: curPage,
+            pageSize: query.pageSize,
           },
         },
         undefined,
@@ -194,6 +195,7 @@ const SearchPanel: FC<ISearchPanel> = ({
     valueSort,
     curPage,
     ascDesc,
+    query.pageSize,
   ]);
 
   const handleChange = (check: boolean, valueIsCheked: string) => {
