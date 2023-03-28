@@ -110,10 +110,11 @@ const AboutFilm: FC<IAboutFilmProps> = ({ movie, id, apiKey }) => {
       <Container>
         <FilmImage>
           <Image
+            priority={true}
             className="filmID"
             height={450}
             width={300}
-            loader={() => src}
+            unoptimized={true}
             src={src}
             alt={'movie_img'}
           />
