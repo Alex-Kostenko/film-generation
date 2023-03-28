@@ -13,6 +13,7 @@ const HorizontalSideBar = ({ openModal }: any) => {
     <BurgerHeader>
       <div>
         <Image
+          priority={true}
           className="logoBurger"
           src={'/UniCode.jpg'}
           height={30}

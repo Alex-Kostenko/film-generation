@@ -16,6 +16,7 @@ const ModalComponent: FC<IModalComponent> = ({ onClose, children }) => {
       <MainContainer>
         <div className="wrapperHeader">
           <Image
+            priority={true}
             className="logoBurger"
             src={'/UniCode.jpg'}
             height={30}

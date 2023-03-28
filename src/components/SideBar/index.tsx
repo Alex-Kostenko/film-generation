@@ -28,6 +28,7 @@ const SideBar = () => {
     <SiderBar>
       <WrapperSvg>
         <Image
+          priority={true}
           className="triangle"
           src={'/UniCode.jpg'}
           height={40}
