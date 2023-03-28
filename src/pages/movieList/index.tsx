@@ -246,7 +246,11 @@ const MovieList = () => {
       {content.map((movie: MovieEntity) => (
         <div key={movie.id}>
           <CardComponent
-            img={`https://www.themoviedb.org/t/p/w300_and_h450_bestv2${movie.poster_path}`}
+            img={
+              movie.poster_path
+                ? `https://www.themoviedb.org/t/p/w300_and_h450_bestv2${movie.poster_path}`
+                : null
+            }
             title={movie.original_title ?? movie.title}
             subtitle={
               movie.original_title === movie.title ||

@@ -147,6 +147,7 @@ const TagContainer: FC<ITagContainerProps> = ({
       {arrayCategoriesId &&
         arrayCategoriesId.map((categoriesId: number) => (
           <TagComponent
+            key={categoriesId}
             onClick={() => deleteGenre(categoriesId)}
             cross={true}
             className="tag-search"
