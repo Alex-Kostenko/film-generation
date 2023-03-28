@@ -32,8 +32,9 @@ const FilmInfo: FC<IFilmInfoProps> = ({
       name: t('filmPage.genre'),
       text: (
         <TagBox>
-          {genre.map((item: number) => (
+          {genre.map((item: number, index: number) => (
             <TagComponent
+              key={index}
               className="tag-small"
               label={t(`genres.${Genres[item]}`)}
             />
