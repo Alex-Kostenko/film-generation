@@ -1,7 +1,4 @@
-import { SelectComponent } from 'alex-unicode';
 import styled from 'styled-components';
-
-export const Select = styled(SelectComponent)``;
 
 export const CriteriasContainer = styled.div`
   display: flex;
