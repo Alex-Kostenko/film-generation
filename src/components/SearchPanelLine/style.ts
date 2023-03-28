@@ -1,11 +1,10 @@
-import { SelectComponent, DatePicker } from 'alex-unicode';
+import { DatePicker } from 'alex-unicode';
 import Menu from 'rc-menu';
 import styled from 'styled-components';
 
 import { PALETTE } from '@/palette';
 
 export const DatePickerComponent = styled(DatePicker)``;
-export const Select = styled(SelectComponent)``;
 
 export const Root = styled.div`
   & .filter button {
