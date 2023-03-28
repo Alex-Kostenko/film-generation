@@ -1,4 +1,3 @@
-import { GetStaticProps } from 'next';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -10,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import queryMovie from '@/Services/queryMovies';
 import BackBtn from '@/components/BackBtn';
 import SearchPanelLine from '@/components/SearchPanelLine';
-import { MovieEntity, IYearRange, ISelectedFilms } from '@/interfaces';
+import { MovieEntity, IYearRange, ISelectedFilms, ILocale } from '@/interfaces';
 import {
   CardComponent,
   PanelWrapper,
@@ -65,6 +64,7 @@ const MovieList = () => {
     curPage,
     sorting,
     ascDescc,
+    pageSize,
   }: any = router.query;
 
   const [checked, setChecked] = useState({
@@ -101,7 +101,7 @@ const MovieList = () => {
     count: 40,
     arrowUpload: false,
     isLoading: false,
-    pageSize: 5,
+    pageSize: pageSize ? pageSize : 5,
   });
 
   const handleScrollTotop = () => {
@@ -310,10 +310,10 @@ const MovieList = () => {
 
 export default MovieList;
 
-export const getStaticProps: GetStaticProps = async ({ locale }) => {
+export const getServerSideProps = async ({ locale }: ILocale) => {
   return {
     props: {
-      ...(await serverSideTranslations(locale as string, ['common'])),
+      ...(await serverSideTranslations(locale)),
     },
   };
 };
