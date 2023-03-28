@@ -17,6 +17,7 @@ import {
   minutesToHours,
   cutString,
 } from '@/utils/aboutFilm';
+import { srcNoImage } from '@/utils/constants';
 
 import {
   LinkConteiner,
@@ -112,10 +113,10 @@ const AboutFilm: FC<IAboutFilmProps> = ({ movie, id, apiKey }) => {
           <Image
             priority={true}
             className="filmID"
-            height={450}
-            width={300}
+            height={src ? 450 : 280}
+            width={src ? 300 : 280}
             unoptimized={true}
-            src={src}
+            src={src ? src : srcNoImage}
             alt={'movie_img'}
           />
         </FilmImage>
