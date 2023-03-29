@@ -49,6 +49,10 @@ export const CardComponent = styled(MovieCard)`
     font-weight: 400;
     letter-spacing: 1px;
   }
+
+  & .movie-link-img {
+    width: inherit;
+  }
 `;
 export const Root = styled.div<StyleProps>`
   @media (max-width: 1100px) {

@@ -4,7 +4,7 @@ import { PALETTE } from '@/palette';
 
 export const Root = styled.div`
   @media (max-width: 600px) {
-    padding: 35px 12px 0 12px;
+    padding: 35px 10px 0 10px;
   }
 `;
 
@@ -33,6 +33,10 @@ export const Title = styled.h1`
   padding-top: 15px;
   font-size: 25px;
   color: ${PALETTE.crimson.middle};
+
+  @media (max-width: 600px) {
+    padding-left: 20px;
+  }
 `;
 
 export const AboutFilms = styled.div`
@@ -55,7 +59,7 @@ export const AboutFilms = styled.div`
 
   @media (max-width: 600px) {
     width: fit-content;
-    margin: 0 auto;
+    margin: 15px auto 10px auto;
   }
 `;
 
