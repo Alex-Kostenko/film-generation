@@ -51,12 +51,12 @@ export const CardComponent = styled(MovieCard)`
   }
 
   & .movie-link-img {
-    width: fit-content;
+    width: 250px;
   }
 
   @media (max-width: 768px) {
     & .movie-link-img {
-      width: inherit;
+      margin: 0 auto;
     }
   }
 `;
