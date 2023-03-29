@@ -53,6 +53,12 @@ export const CardComponent = styled(MovieCard)`
   & .movie-link-img {
     width: fit-content;
   }
+
+  @media (max-width: 768px) {
+    & .movie-link-img {
+      width: inherit;
+    }
+  }
 `;
 export const Root = styled.div<StyleProps>`
   @media (max-width: 1100px) {
