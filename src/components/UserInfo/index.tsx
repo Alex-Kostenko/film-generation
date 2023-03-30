@@ -1,9 +1,10 @@
 import { useTranslation } from 'next-i18next';
 import { FC, useState } from 'react';
 
+import { IUserBody } from '@/interfaces';
+
 export interface IUserInfoProps {
-  name: string;
-  email: string;
+  profileData: IUserBody;
 }
 
 interface PasswordState {
@@ -28,11 +29,11 @@ import {
   Img,
 } from './style';
 
-const UserInfo: FC<IUserInfoProps> = ({ name, email }) => {
+const UserInfo: FC<IUserInfoProps> = ({ profileData }) => {
   const { t } = useTranslation();
 
-  const [userName, setUserName] = useState(name);
-  const [userEmail, setUserEmail] = useState(email);
+  const [userName, setUserName] = useState(profileData.username);
+  const [userEmail, setUserEmail] = useState(profileData.email);
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [showPassword, setShowPassword] = useState<PasswordState>({
