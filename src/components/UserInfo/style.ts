@@ -1,7 +1,24 @@
 import { Button, Input } from 'alex-unicode';
+import Image from 'next/image';
 import styled from 'styled-components';
 
 import { PALETTE } from '@/palette';
+
+export const Img = styled(Image)`
+  position: absolute;
+  right: 3px;
+  top: 3px;
+  cursor: pointer;
+  stroke: ${PALETTE.crimson.middle};
+  fill: ${PALETTE.crimson.middle};
+  transition: 0.4s;
+  -webkit-transition: 0.4s;
+
+  &:hover {
+    transition: 0.4s;
+    transform: scale(1.2);
+  }
+`;
 
 export const PasswordButton = styled(Button)`
   margin: 0 0 20px 40px;

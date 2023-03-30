@@ -6,6 +6,11 @@ export interface IUserInfoProps {
   email: string;
 }
 
+interface PasswordState {
+  currentPassword: boolean;
+  newPassword: boolean;
+}
+
 import {
   InformationItem,
   InformationName,
@@ -20,6 +25,7 @@ import {
   EditButton,
   Password,
   ErrorText,
+  Img,
 } from './style';
 
 const UserInfo: FC<IUserInfoProps> = ({ name, email }) => {
@@ -29,6 +35,10 @@ const UserInfo: FC<IUserInfoProps> = ({ name, email }) => {
   const [userEmail, setUserEmail] = useState(email);
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
+  const [showPassword, setShowPassword] = useState<PasswordState>({
+    currentPassword: false,
+    newPassword: false,
+  });
   const [editMode, setEditMode] = useState({ data: false, password: false });
   const [valid, setValid] = useState({ nameValid: true, emailValid: true });
 
@@ -66,6 +76,13 @@ const UserInfo: FC<IUserInfoProps> = ({ name, email }) => {
   const validateEmail = (email: string) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
+  };
+
+  const toggleShowPassword = (passwordKey: keyof PasswordState) => {
+    setShowPassword((prev) => ({
+      ...prev,
+      [passwordKey]: !prev[passwordKey],
+    }));
   };
 
   return (
@@ -131,27 +148,45 @@ const UserInfo: FC<IUserInfoProps> = ({ name, email }) => {
           <PasswordItem>
             <PasswordName>{t('userProfile.currentPassword')}:</PasswordName>
             <PasswordText>
-              <InputComponent
-                inputType="password"
-                value={currentPassword}
-                onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-                  changeCurrentPassword(event.target.value)
-                }
-                disabled={!editMode.password}
-              />
+              <div style={{ position: 'relative' }}>
+                <InputComponent
+                  inputType={showPassword.currentPassword ? 'text' : 'password'}
+                  value={currentPassword}
+                  onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+                    changeCurrentPassword(event.target.value)
+                  }
+                  disabled={!editMode.password}
+                />
+                <Img
+                  onClick={() => toggleShowPassword('currentPassword')}
+                  src={'/eye_visible_icon.svg'}
+                  width={'30'}
+                  height={'30'}
+                  alt={'buttonBack'}
+                />
+              </div>
             </PasswordText>
           </PasswordItem>
           <PasswordItem>
             <PasswordName>{t('userProfile.newPassword')}:</PasswordName>
             <PasswordText>
-              <InputComponent
-                inputType="password"
-                value={newPassword}
-                onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-                  changeNewPassword(event.target.value)
-                }
-                disabled={!editMode.password}
-              />
+              <div style={{ position: 'relative' }}>
+                <InputComponent
+                  inputType={showPassword.newPassword ? 'text' : 'password'}
+                  value={newPassword}
+                  onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+                    changeNewPassword(event.target.value)
+                  }
+                  disabled={!editMode.password}
+                />
+                <Img
+                  onClick={() => toggleShowPassword('newPassword')}
+                  src={'/eye_visible_icon.svg'}
+                  width={'30'}
+                  height={'30'}
+                  alt={'buttonBack'}
+                />
+              </div>
             </PasswordText>
           </PasswordItem>
         </Password>
