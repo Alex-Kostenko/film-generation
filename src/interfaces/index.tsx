@@ -195,3 +195,15 @@ export interface IFilter {
   checkedAdult: boolean;
   checkedSearchInDesc: boolean;
 }
+
+export interface ILoginBody {
+  email: string;
+  password: string;
+}
+
+export interface IRegisterBody {
+  username: string;
+  email: string;
+  password: string;
+  refreshToken: string;
+}
