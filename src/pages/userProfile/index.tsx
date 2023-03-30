@@ -4,7 +4,8 @@ interface IUserProfile {
   email: string;
 }
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import UserInfo from '@/components/UserInfo';
 import { ILocale } from '@/interfaces';
@@ -12,9 +13,15 @@ import { Wrapper, Title, ImgContainer } from '@/styles/userProfile/style';
 import { userProfileImage } from '@/utils/constants';
 
 const UserProfile: FC<IUserProfile> = ({ name, email }) => {
+  const { t } = useTranslation();
+  const [title, setTitle] = useState<string | null>('');
+
+  useEffect(() => {
+    setTitle(t('userProfile.profile'));
+  });
   return (
     <>
-      <Title>Profile</Title>
+      <Title>{title}</Title>
       <Wrapper>
         <ImgContainer>
           <Image
