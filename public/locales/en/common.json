@@ -77,5 +77,17 @@
     "adult": "filmsForAdults",
     "description": "searchInDesc",
     "clearAll": "clearAll"
+  },
+
+  "userProfile": {
+    "profile": "Profile",
+    "edit": "Edit",
+    "changePassword": "Change password",
+    "name": "Name",
+    "email": "Email",
+    "currentPassword": "Current password",
+    "newPassword": "New password",
+    "errorName": "Enter your name",
+    "errorEmail": "Enter a valid email address"
   }
 }

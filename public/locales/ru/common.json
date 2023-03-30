@@ -78,5 +78,17 @@
     "adult": "фильмыДляВзрослых",
     "description": "искатьВописании",
     "clearAll": "убратьВсе"
+  },
+
+  "userProfile": {
+    "profile": "Профиль",
+    "edit": "Редактировать",
+    "changePassword": "Изменить пароль",
+    "name": "Имя",
+    "email": "Почта",
+    "currentPassword": "Текущий пароль",
+    "newPassword": "Новый пароль",
+    "errorName": "Введите ваше имя",
+    "errorEmail": "Введите корректный пароль"
   }
 }
