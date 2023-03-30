@@ -201,9 +201,9 @@ export interface ILoginBody {
   password: string;
 }
 
-export interface IRegisterBody {
+export interface IUserBody {
   username: string;
   email: string;
   password: string;
-  refreshToken: string;
+  refreshToken?: string;
 }
