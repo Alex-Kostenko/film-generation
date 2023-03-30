@@ -47,6 +47,15 @@ export const SiderBar = styled.div`
   & .triangle:hover + .tooltipCinema {
     visibility: visible;
   }
+  & .userIcon {
+    scale: 1.2;
+
+    & path {
+      &:hover {
+        fill: ${PALETTE.crimson.middle};
+      }
+    }
+  }
 `;
 
 export const WarpperLanguage = styled.div`

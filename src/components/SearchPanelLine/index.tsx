@@ -105,7 +105,7 @@ const SearchPanel: FC<ISearchPanel> = ({
   ];
 
   useEffect(() => {
-    if (genres.length === 0) {
+    if (genres?.length === 0) {
       (async () => {
         const genres = await queryMovie.getGenres();
         setGenres(genres);
@@ -312,6 +312,7 @@ const SearchPanel: FC<ISearchPanel> = ({
           </Dropdown>
         </div>
         <Input
+          inputType={'text'}
           label={t('main.search')}
           value={inputValue}
           onChange={changeSearchValue}

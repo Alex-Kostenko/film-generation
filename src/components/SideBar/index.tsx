@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 
 import CinemaLine from '../../../public/cinemaLine.svg';
 import Home from '../../../public/home.svg';
-import Star from '../../../public/star.svg';
+import UserIcon from '../../../public/icon.svg';
 import Ukraine from '../../../public/ukraine(UA).svg';
 import UnitedKingdom from '../../../public/unitedKingdom(GB).svg';
 
@@ -15,8 +15,8 @@ const SideBar = () => {
 
   const lngs = ['en', 'ua', 'ru'];
 
-  const handleRedirect = () => {
-    return router.push('/');
+  const handleRedirect = (path: string) => {
+    return router.push(path);
   };
 
   const handleSwitcherLanguage = (language: number) => {
@@ -33,7 +33,7 @@ const SideBar = () => {
           height={40}
           width={40}
           alt={'triangleClass'}
-          onClick={handleRedirect}
+          onClick={() => handleRedirect('/')}
         />
         <Home className="triangle" aria-label="Home" onClick={handleRedirect} />
         <div>
@@ -41,8 +41,11 @@ const SideBar = () => {
           <div className="tooltipCinema">Will be soon Page Cinema</div>
         </div>
         <div>
-          <Star className="triangle" aria-label="Star" />
-          <div className="tooltipStar">Will be soon Page Star</div>
+          <UserIcon
+            onClick={() => handleRedirect('/registration')}
+            className="triangle userIcon"
+            aria-label="UserIcon"
+          />
         </div>
       </WrapperSvg>
       <WarpperLanguage>
