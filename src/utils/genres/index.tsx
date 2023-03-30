@@ -1,3 +1,5 @@
+import { toast } from 'react-toastify';
+
 export enum Genres {
   action = 28,
   western = 37,
@@ -19,3 +21,15 @@ export enum Genres {
   fantastic = 878,
   fantasy = 14,
 }
+
+export const notify = () =>
+  toast.error('🦄 УПС ХАЛЕПКА', {
+    position: 'top-right',
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: 'light',
+  });

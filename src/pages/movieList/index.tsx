@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import queryMovie from '@/Services/queryMovies';
@@ -16,7 +16,7 @@ import {
   Paginate,
   Root,
 } from '@/styles/movieListStyles/style';
-import { Genres } from '@/utils/genres';
+import { Genres, notify } from '@/utils/genres';
 
 interface PageChangeEvent {
   selected: number;
@@ -41,18 +41,6 @@ const MovieList = () => {
   const { t } = useTranslation();
 
   const router = useRouter();
-
-  const notify = () =>
-    toast.error('🦄 УПС ХАЛЕПКА', {
-      position: 'top-right',
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: 'light',
-    });
 
   const {
     categoriesId,

@@ -121,7 +121,7 @@ const SearchPanel: FC<ISearchPanel> = ({
       </CriteriasContainer>
       <SearchContainer>
         <Input
-          inputType="text"
+          inputType={'text'}
           label={t('main.search')}
           value={valueInput}
           onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
