@@ -59,7 +59,8 @@ const UserInfo: FC<IUserInfoProps> = ({ name, email }) => {
   };
 
   const validateName = (name: string) => {
-    return name.trim().length > 0;
+    const nameRegex = /^[a-zA-Z]+$/;
+    return nameRegex.test(name);
   };
 
   const validateEmail = (email: string) => {
