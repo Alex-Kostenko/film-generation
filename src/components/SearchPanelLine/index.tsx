@@ -312,6 +312,7 @@ const SearchPanel: FC<ISearchPanel> = ({
           </Dropdown>
         </div>
         <Input
+          inputType="text"
           label={t('main.search')}
           value={inputValue}
           onChange={changeSearchValue}

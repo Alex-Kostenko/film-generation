@@ -19,6 +19,10 @@ const SideBar = () => {
     return router.push('/');
   };
 
+  const goProfile = () => {
+    return router.push('/userProfile');
+  };
+
   const handleSwitcherLanguage = (language: number) => {
     const { pathname, query, asPath } = router;
     router.push({ pathname, query }, asPath, { locale: lngs[language] });
@@ -38,7 +42,11 @@ const SideBar = () => {
         />
         <Home className="triangle" aria-label="Home" onClick={handleRedirect} />
         <div>
-          <CinemaLine className="triangle" aria-label="CinemaLine" />
+          <CinemaLine
+            className="triangle"
+            aria-label="CinemaLine"
+            onClick={goProfile}
+          />
           <div className="tooltipCinema">Will be soon Page Cinema</div>
         </div>
         <div>

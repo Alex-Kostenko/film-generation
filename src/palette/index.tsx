@@ -1,4 +1,5 @@
 export const PALETTE = {
+  error: '#FF0000',
   beige: '#e4dada',
   white: '#ffffff',
   dark: { darkGrey: '#1f1f1f', darkModal: '#0d0d0d', darkBlack: '#1d1d1d' },

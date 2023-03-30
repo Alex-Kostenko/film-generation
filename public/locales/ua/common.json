@@ -78,5 +78,17 @@
     "adult": "фiльмиДляДорослих",
     "description": "шукатиВописі",
     "clearAll": "прибратиУсi"
+  },
+
+  "userProfile": {
+    "profile": "Профіль",
+    "edit": "Редактувати",
+    "changePassword": "Змінити пароль",
+    "name": "Ім'я",
+    "email": "Пошта",
+    "currentPassword": "Поточний пароль",
+    "newPassword": "Новий пароль",
+    "errorName": "Введіть ваше ім'я",
+    "errorEmail": "Введіть коректний пароль"
   }
 }
