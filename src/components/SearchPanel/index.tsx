@@ -1,4 +1,4 @@
-import { Button, Input } from 'alex-unicode';
+import { Button, Input, SelectComponent } from 'alex-unicode';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { FC, useEffect, useState } from 'react';
@@ -12,7 +12,7 @@ import Option from '../Checkbox';
 import Stars from '../Stars';
 import YearRangePickerComponent from '../YearRangeComponent';
 
-import { CriteriasContainer, SearchContainer, Select } from './style';
+import { CriteriasContainer, SearchContainer } from './style';
 
 interface ISearchPanel {
   movieRating: number;
@@ -99,7 +99,8 @@ const SearchPanel: FC<ISearchPanel> = ({
   return (
     <>
       <CriteriasContainer>
-        <Select
+        <SelectComponent
+          instanceId="test123"
           className="selectCategory"
           placeholder={t('main.genre')}
           options={resultGenres}

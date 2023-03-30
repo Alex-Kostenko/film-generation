@@ -17,6 +17,7 @@ const Footer = () => {
           {t('footer.create')}
         </a>
         <Image
+          priority={true}
           className="logoBurger"
           src={'/UniCode.jpg'}
           height={27}

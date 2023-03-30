@@ -49,6 +49,16 @@ export const CardComponent = styled(MovieCard)`
     font-weight: 400;
     letter-spacing: 1px;
   }
+
+  & .movie-link-img {
+    width: 250px;
+  }
+
+  @media (max-width: 768px) {
+    & .movie-link-img {
+      margin: 0 auto;
+    }
+  }
 `;
 export const Root = styled.div<StyleProps>`
   @media (max-width: 1100px) {

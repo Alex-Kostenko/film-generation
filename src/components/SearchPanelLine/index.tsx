@@ -1,4 +1,4 @@
-import { Input } from 'alex-unicode';
+import { Input, SelectComponent } from 'alex-unicode';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import Dropdown from 'rc-dropdown';
@@ -29,7 +29,6 @@ import {
   WrapperFilter,
   LeftArrow,
   TopArrow,
-  Select,
   Root,
   MenuFilter,
 } from './style';
@@ -255,7 +254,8 @@ const SearchPanel: FC<ISearchPanel> = ({
   return (
     <Root>
       <CriteriasContainer>
-        <Select
+        <SelectComponent
+          instanceId="test123"
           className="selectCategory"
           placeholder={t('main.genre')}
           options={resultGenres}
@@ -292,7 +292,7 @@ const SearchPanel: FC<ISearchPanel> = ({
               {ascDesc === 'desc' ? <>&#9660;</> : <>&#9661;</>}
             </LeftArrow>
           </WrapperInArrowInFilter>
-          <Select
+          <SelectComponent
             className="selectFilter"
             placeholder={t('main.sort')}
             onChange={(name: IName) => {

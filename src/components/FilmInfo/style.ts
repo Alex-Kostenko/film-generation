@@ -10,17 +10,19 @@ export const DescriptionContainer = styled.div`
   margin-left: 40px;
   @media (max-width: 991px) {
     width: fit-content;
-    justify-content: space-around;
+
     margin-left: 15px;
     margin-top: 5px;
   }
 
   @media (max-width: 750px) {
+    min-height: 320px;
     width: fit-content;
     margin: 0 auto;
   }
 
   @media (max-width: 600px) {
+    min-height: 320px;
     padding-left: 30px;
   }
 `;
