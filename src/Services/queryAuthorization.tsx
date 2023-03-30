@@ -1,4 +1,4 @@
-import { ILoginBody, IRegisterBody } from '@/interfaces';
+import { ILoginBody, IUserBody } from '@/interfaces';
 
 import api from './config';
 
@@ -11,7 +11,7 @@ const queryAuthorization = {
     } catch (error) {}
   },
 
-  async register(body: IRegisterBody) {
+  async register(body: IUserBody) {
     try {
       const res = await api.post('/auth/register', body);
 
