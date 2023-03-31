@@ -1,10 +1,11 @@
 import { Button, Input } from 'alex-unicode';
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { Root, WrapperLoginBlock } from './style';
 
 const RegistrationUser = ({ check }: any) => {
-  // const { t } = useTranslation();
+  const { t } = useTranslation();
 
   const [loginForm, setLoginForm] = useState<any>({
     nameInput: '',
@@ -109,7 +110,7 @@ const RegistrationUser = ({ check }: any) => {
       <WrapperLoginBlock>
         <Input
           inputType={'text'}
-          label={'Name'}
+          label={t('registration.name')}
           minlength="4"
           maxlength="40"
           class={'name'}
@@ -121,7 +122,7 @@ const RegistrationUser = ({ check }: any) => {
 
         <Input
           inputType={'text'}
-          label={'Email'}
+          label={t('registration.email')}
           class={'email'}
           value={loginForm.email}
           onChange={(e: { target: { value: string } }) =>
@@ -131,7 +132,7 @@ const RegistrationUser = ({ check }: any) => {
 
         <Input
           inputType={'password'}
-          label={'Password'}
+          label={t('registration.password')}
           class={'password'}
           minlength="3"
           maxlength="30"
@@ -142,14 +143,14 @@ const RegistrationUser = ({ check }: any) => {
         />
         <Input
           inputType={'password'}
-          label={'Again password'}
+          label={t('registration.againPassword')}
           class={'againPass'}
           value={loginForm.againPass}
           onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
             setLoginForm({ ...loginForm, againPass: event.target.value })
           }
         />
-        <Button label={'Вхід'} onClick={handleEnter} />
+        <Button label={t('registration.registration')} onClick={handleEnter} />
       </WrapperLoginBlock>
     </Root>
   );

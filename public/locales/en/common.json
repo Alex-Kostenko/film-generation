@@ -89,5 +89,16 @@
     "newPassword": "New password",
     "errorName": "Enter your name",
     "errorEmail": "Enter a valid email address"
+  },
+
+  "registration": {
+    "welcome": "Welcome",
+    "signIn": "Sign in",
+    "registration": "Registration",
+    "agreement": "I agree with the site's privacy policy and consent to the processing of my personal data",
+    "email": "Email",
+    "password": "Password",
+    "againPassword": "Again password",
+    "name": "Name"
   }
 }
