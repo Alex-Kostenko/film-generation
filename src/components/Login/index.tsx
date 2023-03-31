@@ -1,6 +1,7 @@
-import queryAuthorization from '@/Services/queryAuthorization';
 import { Button, Input } from 'alex-unicode';
 import { useState } from 'react';
+
+import queryAuthorization from '@/Services/queryAuthorization';
 import { IQueryToken } from '@/interfaces';
 
 import { Root, WrapperLoginBlock } from './style';
