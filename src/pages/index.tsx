@@ -33,7 +33,7 @@ const HomePage: FC<IHomePage> = ({ popylarMovies }) => {
   );
 };
 
-export const getStaticProps = async ({ locale }: ILocale) => {
+export const getStaticProps = async ({ locale }: any) => {
   const popylarMovies = await queryMovie.getPopularMovie();
 
   return {
