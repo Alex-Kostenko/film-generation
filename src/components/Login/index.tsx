@@ -1,10 +1,11 @@
 import { Button, Input } from 'alex-unicode';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { Root, WrapperLoginBlock } from './style';
 
 const Login = () => {
-  // const { t } = useTranslation();
+  const { t } = useTranslation();
 
   const [loginForm, setLoginForm] = useState({ nameInput: '', password: '' });
 
@@ -17,7 +18,7 @@ const Login = () => {
       <WrapperLoginBlock>
         <Input
           inputType={'text'}
-          label={'Name'}
+          label={t('registration.email')}
           value={loginForm.nameInput}
           onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
             setLoginForm({ ...loginForm, nameInput: event.target.value })
@@ -25,13 +26,13 @@ const Login = () => {
         />
         <Input
           inputType={'password'}
-          label={'Password'}
+          label={t('registration.password')}
           value={loginForm.password}
           onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
             setLoginForm({ ...loginForm, password: event.target.value })
           }
         />
-        <Button label={'Вхід'} onClick={handleEnter} />
+        <Button label={t('registration.signIn')} onClick={handleEnter} />
       </WrapperLoginBlock>
     </Root>
   );

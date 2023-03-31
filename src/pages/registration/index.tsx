@@ -1,7 +1,9 @@
+import dynamic from 'next/dynamic';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import React, { useEffect, useState } from 'react';
 
-import Login from '@/components/Login';
-import RegistrationUser from '@/components/Registr';
+import { ILocale } from '@/interfaces';
 import {
   BottomBox,
   LoginModal,
@@ -14,7 +16,17 @@ import {
   WrapperRagistration,
 } from '@/styles/registration/style';
 
+const Login = dynamic(() => import('@/components/Login'), {
+  ssr: false,
+});
+
+const RegistrationUser = dynamic(() => import('@/components/Registr'), {
+  ssr: false,
+});
+
 const Registration = () => {
+  const { t } = useTranslation();
+
   const [resize, setResize] = useState(0);
 
   const [active, setActive] = useState(false);
@@ -30,20 +42,20 @@ const Registration = () => {
     <Root sizeHeight={resize}>
       <WrapperRagistration>
         <TopBox>
-          <TextBox>Ласкаво просимо</TextBox>
+          <TextBox>{t('registration.welcome')}</TextBox>
           <span className="line" />
           <WarepperNavigation>
             <LoginModal
               onClick={() => setActive(false)}
               className={`login ${!active && 'activeclass'}`}
             >
-              Увійти
+              {t('registration.signIn')}
             </LoginModal>
             <RegistrationTag
               onClick={() => setActive(true)}
               className={`registrationTag ${active && 'activeclass'}`}
             >
-              Реєстрація
+              {t('registration.registration')}
             </RegistrationTag>
           </WarepperNavigation>
         </TopBox>
@@ -62,10 +74,7 @@ const Registration = () => {
             <label className="labelCheckBox" htmlFor="one">
               <span></span>
             </label>
-            <TextPrivacy>
-              Я згоден з політикою конфіденційності магазину і даю згоду на
-              обробку cвоіх персональних даних
-            </TextPrivacy>
+            <TextPrivacy>{t('registration.agreement')}</TextPrivacy>
           </div>
         </BottomBox>
       </WrapperRagistration>
@@ -74,3 +83,11 @@ const Registration = () => {
 };
 
 export default Registration;
+
+export const getServerSideProps = async ({ locale }: ILocale) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale)),
+    },
+  };
+};
