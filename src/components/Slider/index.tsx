@@ -35,6 +35,7 @@ const SliderSlick: FC<IHomePage> = ({ propMovies }) => {
             <Mask />
             <SliderText movieData={item} />
             <img
+              alt="slider img"
               src={`https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/${item.poster_path}`}
             />
           </div>
