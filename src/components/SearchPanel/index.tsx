@@ -133,7 +133,7 @@ const SearchPanel: FC<ISearchPanel> = ({
         />
         <Button
           aria-label="search"
-          label={t('main.search')}
+          buttonText={t('main.search')}
           onClick={redirect}
         />
       </SearchContainer>
