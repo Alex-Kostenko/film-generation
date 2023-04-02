@@ -31,8 +31,8 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
-        <title>movie picker</title>
         <Head>
+          <title>movie picker</title>
           <meta
             name="description"
             content="This is a site for selecting a movie for any of your criteria and requests"
