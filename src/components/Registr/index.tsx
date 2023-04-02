@@ -150,7 +150,10 @@ const RegistrationUser = ({ check }: any) => {
             setLoginForm({ ...loginForm, againPass: event.target.value })
           }
         />
-        <Button label={t('registration.registration')} onClick={handleEnter} />
+        <Button
+          buttonText={t('registration.registration')}
+          onClick={handleEnter}
+        />
       </WrapperLoginBlock>
     </Root>
   );

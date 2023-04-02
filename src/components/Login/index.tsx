@@ -32,7 +32,7 @@ const Login = () => {
             setLoginForm({ ...loginForm, password: event.target.value })
           }
         />
-        <Button label={t('registration.signIn')} onClick={handleEnter} />
+        <Button buttonText={t('registration.signIn')} onClick={handleEnter} />
       </WrapperLoginBlock>
     </Root>
   );
