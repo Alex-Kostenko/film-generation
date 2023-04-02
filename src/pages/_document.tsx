@@ -30,7 +30,8 @@ export default class MyDocument extends Document {
 
   render() {
     return (
-      <Html lang="en" title="movie picker">
+      <Html lang="en">
+        <title>movie picker</title>
         <Head>
           <meta
             name="description"
