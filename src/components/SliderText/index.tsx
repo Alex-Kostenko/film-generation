@@ -38,7 +38,10 @@ const SliderText: FC<ISliderTextProps> = ({ movieData }) => {
         </TagContainer>
 
         <Description>{movieData.overview}</Description>
-        <Btn label={t('main.go')} onClick={() => redirect(movieData.id)}></Btn>
+        <Btn
+          buttonText={t('main.go')}
+          onClick={() => redirect(movieData.id)}
+        ></Btn>
       </Container>
     </>
   );
