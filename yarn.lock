@@ -1854,10 +1854,10 @@ ajv@^8.0.1:
     require-from-string "^2.0.2"
     uri-js "^4.2.2"
 
-alex-unicode@^0.0.68:
-  version "0.0.68"
-  resolved "https://registry.yarnpkg.com/alex-unicode/-/alex-unicode-0.0.68.tgz#47e07e71d7c09a13f48416955bd864baabeb12a6"
-  integrity sha512-gly+HQ+hs8ywIL/vvrEjepBLwtAHoo1ORnlLke1xLcYRx+OjD/Cu8Auohw6/SWd3PMZcl9SpjbSmFbmqGSmgEw==
+alex-unicode@^0.0.71:
+  version "0.0.71"
+  resolved "https://registry.yarnpkg.com/alex-unicode/-/alex-unicode-0.0.71.tgz#8e8395e8251cddc624626e18f846ce894352adfd"
+  integrity sha512-ueHu0e2wx5e9d7ZOIfi2GhFI7BmR0FKZw0VodCTDXkxJejKN2Rm9Fr6WZJh8ubakjuS2sRKL/Jv2SJ6zczyPYw==
   dependencies:
     "@babel/plugin-proposal-class-properties" "^7.18.6"
     "@babel/plugin-proposal-nullish-coalescing-operator" "^7.18.6"
