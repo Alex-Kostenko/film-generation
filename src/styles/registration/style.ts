@@ -27,7 +27,6 @@ export const Root = styled.div<Iresize>`
   & .login,
   .registrationTag {
     width: 50%;
-    font-family: 'Exo2';
     font-weight: 700;
     font-size: 20px;
     text-align: center;
@@ -138,11 +137,9 @@ export const LoginModal = styled.div``;
 export const RegistrationTag = styled.div``;
 export const TextBox = styled.div`
   font-size: 20px;
-  font-family: 'Exo2';
   font-weight: 700;
 `;
 export const TextPrivacy = styled.div`
-  font-family: 'Exo2';
   font-weight: 300;
   font-size: 15px;
 `;
