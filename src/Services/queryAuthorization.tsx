@@ -1,4 +1,5 @@
 import { ILoginBody, IUserBody } from '@/interfaces';
+
 import { api } from './config';
 
 const queryAuthorization = {

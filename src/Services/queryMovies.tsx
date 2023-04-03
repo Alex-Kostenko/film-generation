@@ -1,4 +1,5 @@
 import { IRequestBody } from '@/interfaces';
+
 import { api, apiAuth } from './config';
 
 const queryMovie = {

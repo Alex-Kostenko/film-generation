@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useState } from 'react';
 
 import queryMovie from '@/Services/queryMovies';
 import SearchPanel from '@/components/SearchPanel';

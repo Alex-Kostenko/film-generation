@@ -1,4 +1,5 @@
 import { IUserBody } from '@/interfaces';
+
 import { api } from './config';
 
 const queryUser = {
