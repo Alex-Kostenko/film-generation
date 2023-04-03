@@ -1,4 +1,5 @@
 import dynamic from 'next/dynamic';
+import Head from 'next/head';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import React, { useEffect, useState } from 'react';
@@ -39,46 +40,51 @@ const Registration = () => {
   }, []);
 
   return (
-    <Root sizeHeight={resize}>
-      <WrapperRagistration>
-        <TopBox>
-          <TextBox>{t('registration.welcome')}</TextBox>
+    <>
+      <Head>
+        <title>Registration</title>
+      </Head>
+      <Root sizeHeight={resize}>
+        <WrapperRagistration>
+          <TopBox>
+            <TextBox>{t('registration.welcome')}</TextBox>
+            <span className="line" />
+            <WarepperNavigation>
+              <LoginModal
+                onClick={() => setActive(false)}
+                className={`login ${!active && 'activeclass'}`}
+              >
+                {t('registration.signIn')}
+              </LoginModal>
+              <RegistrationTag
+                onClick={() => setActive(true)}
+                className={`registrationTag ${active && 'activeclass'}`}
+              >
+                {t('registration.registration')}
+              </RegistrationTag>
+            </WarepperNavigation>
+          </TopBox>
+          {!active ? <Login /> : <RegistrationUser check={check} />}
           <span className="line" />
-          <WarepperNavigation>
-            <LoginModal
-              onClick={() => setActive(false)}
-              className={`login ${!active && 'activeclass'}`}
-            >
-              {t('registration.signIn')}
-            </LoginModal>
-            <RegistrationTag
-              onClick={() => setActive(true)}
-              className={`registrationTag ${active && 'activeclass'}`}
-            >
-              {t('registration.registration')}
-            </RegistrationTag>
-          </WarepperNavigation>
-        </TopBox>
-        {!active ? <Login /> : <RegistrationUser check={check} />}
-        <span className="line" />
 
-        <BottomBox>
-          <div style={{ display: 'flex' }}>
-            <input
-              className="inputCheckBox"
-              type="checkbox"
-              checked={check}
-              onChange={() => setCheck((item) => !item)}
-              id="one"
-            />
-            <label className="labelCheckBox" htmlFor="one">
-              <span></span>
-            </label>
-            <TextPrivacy>{t('registration.agreement')}</TextPrivacy>
-          </div>
-        </BottomBox>
-      </WrapperRagistration>
-    </Root>
+          <BottomBox>
+            <div style={{ display: 'flex' }}>
+              <input
+                className="inputCheckBox"
+                type="checkbox"
+                checked={check}
+                onChange={() => setCheck((item) => !item)}
+                id="one"
+              />
+              <label className="labelCheckBox" htmlFor="one">
+                <span></span>
+              </label>
+              <TextPrivacy>{t('registration.agreement')}</TextPrivacy>
+            </div>
+          </BottomBox>
+        </WrapperRagistration>
+      </Root>
+    </>
   );
 };
 

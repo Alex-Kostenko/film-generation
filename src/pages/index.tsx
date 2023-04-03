@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import React, { FC, useEffect, useState } from 'react';
 
@@ -28,6 +29,9 @@ const HomePage: FC<IHomePage> = () =>
 
     return (
       <>
+        <Head>
+          <title>Main</title>
+        </Head>
         <Root>
           <SliderSlick propMovies={testArray} />
           <PanelWrapper>
