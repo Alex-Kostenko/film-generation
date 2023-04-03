@@ -1,4 +1,5 @@
 import dynamic from 'next/dynamic';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useEffect, useState } from 'react';
@@ -187,107 +188,112 @@ const MovieList = () => {
   };
 
   return (
-    <Root colorStyle={styless}>
-      <BackBtn onClick={() => router.push('/')} />
-      <TagContainer
-        setInputValue={setInputValue}
-        checked={checked}
-        setChecked={setChecked}
-        selectedOptions={selectedOptions}
-        setSelectedOptions={setSelectedOptions}
-        valueSort={valueSort}
-        yearMovie={yearMovie}
-        rating={rating}
-        searchTerm={searchTerm}
-        arrayCategoriesId={arrayCategoriesId}
-        setYearMovie={setYearMovie}
-        setMovieRating={setMovieRating}
-        setValueSort={setValueSort}
-        setArrayCategoriesId={setArrayCategoriesId}
-      />
-      <PanelWrapper>
-        <SearchPanelLine
-          query={query}
-          setQuery={setQuery}
-          curPage={query.currentPage}
+    <>
+      <Head>
+        <title>Movie picker</title>
+      </Head>
+      <Root colorStyle={styless}>
+        <BackBtn onClick={() => router.push('/')} />
+        <TagContainer
           setInputValue={setInputValue}
-          inputValue={inputValue}
-          valueSort={valueSort}
-          selectedOptions={selectedOptions}
-          setSelectedOptions={setSelectedOptions}
-          ascDesc={ascDesc}
           checked={checked}
           setChecked={setChecked}
-          setAscDesc={setAscDesc}
-          setValueSort={setValueSort}
-          setSearchTerm={setSearchTerm}
-          searchTerm={searchTerm}
-          setMovieRating={setMovieRating}
-          movieRating={movieRating}
-          arrayGenres={arrayCategoriesId}
-          arrayCategoriesId={arrayCategoriesId}
-          setArrayCategoriesId={setArrayCategoriesId}
+          selectedOptions={selectedOptions}
+          setSelectedOptions={setSelectedOptions}
+          valueSort={valueSort}
           yearMovie={yearMovie}
+          rating={rating}
+          searchTerm={searchTerm}
+          arrayCategoriesId={arrayCategoriesId}
           setYearMovie={setYearMovie}
+          setMovieRating={setMovieRating}
+          setValueSort={setValueSort}
+          setArrayCategoriesId={setArrayCategoriesId}
         />
-      </PanelWrapper>
-      {content.map((movie: MovieEntity) => (
-        <div key={movie.id}>
-          <CardComponent
-            img={
-              movie.poster_path
-                ? `https://www.themoviedb.org/t/p/w300_and_h450_bestv2${movie.poster_path}`
-                : null
-            }
-            title={movie.original_title ?? movie.title}
-            subtitle={
-              movie.original_title === movie.title ||
-              movie.original_title === null
-                ? ''
-                : movie.title
-            }
-            release={t('movieList.release')}
-            date={movie.release_date}
-            description={movie.overview}
-            movieId={movie.id}
-            labels={movie.genre_ids.map((item: number) =>
-              t(`genres.${Genres[item]}`),
-            )}
+        <PanelWrapper>
+          <SearchPanelLine
+            query={query}
+            setQuery={setQuery}
+            curPage={query.currentPage}
+            setInputValue={setInputValue}
+            inputValue={inputValue}
+            valueSort={valueSort}
+            selectedOptions={selectedOptions}
+            setSelectedOptions={setSelectedOptions}
+            ascDesc={ascDesc}
+            checked={checked}
+            setChecked={setChecked}
+            setAscDesc={setAscDesc}
+            setValueSort={setValueSort}
+            setSearchTerm={setSearchTerm}
+            searchTerm={searchTerm}
+            setMovieRating={setMovieRating}
+            movieRating={movieRating}
+            arrayGenres={arrayCategoriesId}
+            arrayCategoriesId={arrayCategoriesId}
+            setArrayCategoriesId={setArrayCategoriesId}
+            yearMovie={yearMovie}
+            setYearMovie={setYearMovie}
           />
-        </div>
-      ))}
-      {content.length !== 0 ? (
-        <>
-          <PageManagementComponent query={query} setQuery={setQuery} />
-          <Paginate
-            breakLabel="..."
-            nextLabel={'>'}
-            onPageChange={handlePageClick}
-            pageRangeDisplayed={3}
-            pageCount={query.count}
-            previousLabel="<"
-            className="paginateClass"
-            activeClassName="active"
-            containerClassName="container"
-            forcePage={query.currentPage}
-          />
-        </>
-      ) : (
-        <EmptyFilms />
-      )}
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
-    </Root>
+        </PanelWrapper>
+        {content.map((movie: MovieEntity) => (
+          <div key={movie.id}>
+            <CardComponent
+              img={
+                movie.poster_path
+                  ? `https://www.themoviedb.org/t/p/w300_and_h450_bestv2${movie.poster_path}`
+                  : null
+              }
+              title={movie.original_title ?? movie.title}
+              subtitle={
+                movie.original_title === movie.title ||
+                movie.original_title === null
+                  ? ''
+                  : movie.title
+              }
+              release={t('movieList.release')}
+              date={movie.release_date}
+              description={movie.overview}
+              movieId={movie.id}
+              labels={movie.genre_ids.map((item: number) =>
+                t(`genres.${Genres[item]}`),
+              )}
+            />
+          </div>
+        ))}
+        {content.length !== 0 ? (
+          <>
+            <PageManagementComponent query={query} setQuery={setQuery} />
+            <Paginate
+              breakLabel="..."
+              nextLabel={'>'}
+              onPageChange={handlePageClick}
+              pageRangeDisplayed={3}
+              pageCount={query.count}
+              previousLabel="<"
+              className="paginateClass"
+              activeClassName="active"
+              containerClassName="container"
+              forcePage={query.currentPage}
+            />
+          </>
+        ) : (
+          <EmptyFilms />
+        )}
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
+      </Root>
+    </>
   );
 };
 

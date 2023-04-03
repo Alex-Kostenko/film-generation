@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import Image from 'next/image';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useEffect, useState } from 'react';
@@ -30,6 +31,9 @@ const UserProfile = () => {
   });
   return (
     <>
+      <Head>
+        <title>User profile</title>
+      </Head>
       <Title>{title}</Title>
       <Wrapper>
         <ImgContainer>
