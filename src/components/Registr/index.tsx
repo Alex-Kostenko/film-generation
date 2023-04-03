@@ -4,6 +4,8 @@ import { useTranslation } from 'react-i18next';
 
 import queryAuthorization from '@/Services/queryAuthorization';
 
+import queryAuthorization from '@/Services/queryAuthorization';
+
 import { Root, WrapperLoginBlock } from './style';
 
 const RegistrationUser = ({ check }: any) => {

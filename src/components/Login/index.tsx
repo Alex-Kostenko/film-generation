@@ -2,8 +2,8 @@ import { Button, Input } from 'alex-unicode';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import queryAuthorization from '@/Services/queryAuthorization';
 import { IQueryToken } from '@/interfaces';
+import queryAuthorization from '@/Services/queryAuthorization';
 
 import { Root, WrapperLoginBlock } from './style';
 
