@@ -1,6 +1,6 @@
 import { IRequestBody } from '@/interfaces';
 
-import api from './config';
+import { api, apiAuth } from './config';
 
 const queryMovie = {
   async getAllFilter() {
@@ -21,7 +21,7 @@ const queryMovie = {
 
   async getPopularMovie() {
     try {
-      const res = await api.get('/movies/last-popular?moviesAmount=5');
+      const res = await apiAuth.get('/movies/last-popular?moviesAmount=5');
 
       return res.data;
     } catch (error) {}
