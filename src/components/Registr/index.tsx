@@ -122,8 +122,7 @@ const RegistrationUser = ({ check }: any) => {
         <Input
           inputType={'text'}
           label={t('registration.name')}
-          minlength="4"
-          maxlength="40"
+          minLength={4}
           class={'name'}
           value={loginForm.nameInput}
           onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
@@ -145,8 +144,8 @@ const RegistrationUser = ({ check }: any) => {
           inputType={'password'}
           label={t('registration.password')}
           class={'password'}
-          minlength="3"
-          maxlength="30"
+          minLength={3}
+          maxLength={30}
           value={loginForm.password}
           onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
             setLoginForm({ ...loginForm, password: event.target.value })
