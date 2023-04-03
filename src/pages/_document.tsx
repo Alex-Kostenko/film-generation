@@ -30,8 +30,14 @@ export default class MyDocument extends Document {
 
   render() {
     return (
-      <Html lang="eng">
-        <Head />
+      <Html lang="en">
+        <Head>
+          <title>movie picker</title>
+          <meta
+            name="description"
+            content="This is a site for selecting a movie for any of your criteria and requests"
+          />
+        </Head>
         <body style={{ background: '#0d0d0d' }}>
           <Main />
           <div id="portal" />

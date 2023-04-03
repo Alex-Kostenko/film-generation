@@ -1,5 +1,6 @@
 import { Button, Input } from 'alex-unicode';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import queryAuthorization from '@/Services/queryAuthorization';
 import { IQueryToken } from '@/interfaces';
@@ -7,7 +8,7 @@ import { IQueryToken } from '@/interfaces';
 import { Root, WrapperLoginBlock } from './style';
 
 const Login = () => {
-  // const { t } = useTranslation();
+  const { t } = useTranslation();
 
   const [loginForm, setLoginForm] = useState({ email: '', password: '' });
   const [resultQuery, setResultQuery] = useState<IQueryToken | any>({});
@@ -26,7 +27,7 @@ const Login = () => {
       <WrapperLoginBlock>
         <Input
           inputType={'text'}
-          label={'Name'}
+          label={t('registration.email')}
           value={loginForm.email}
           onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
             setLoginForm({ ...loginForm, email: event.target.value })
@@ -34,13 +35,13 @@ const Login = () => {
         />
         <Input
           inputType={'password'}
-          label={'Password'}
+          label={t('registration.password')}
           value={loginForm.password}
           onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
             setLoginForm({ ...loginForm, password: event.target.value })
           }
         />
-        <Button label={'Вхід'} onClick={handleEnter} />
+        <Button value={t('registration.signIn')} onClick={handleEnter} />
       </WrapperLoginBlock>
     </Root>
   );

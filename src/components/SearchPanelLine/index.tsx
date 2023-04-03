@@ -255,6 +255,7 @@ const SearchPanel: FC<ISearchPanel> = ({
     <Root>
       <CriteriasContainer>
         <SelectComponent
+          aria-label="Genre"
           instanceId="test123"
           className="selectCategory"
           placeholder={t('main.genre')}
@@ -293,6 +294,7 @@ const SearchPanel: FC<ISearchPanel> = ({
             </LeftArrow>
           </WrapperInArrowInFilter>
           <SelectComponent
+            aria-label="Sort"
             className="selectFilter"
             placeholder={t('main.sort')}
             onChange={(name: IName) => {
@@ -312,6 +314,7 @@ const SearchPanel: FC<ISearchPanel> = ({
           </Dropdown>
         </div>
         <Input
+          aria-label="Search"
           inputType={'text'}
           label={t('main.search')}
           value={inputValue}
