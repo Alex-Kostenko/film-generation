@@ -112,7 +112,6 @@ const UserInfo: FC<IUserInfoProps> = ({ profileData }) => {
             )}
           </InformationText>
           <EditButton
-            aria-label="edit"
             value={t('userProfile.edit')}
             onClick={changeEditDataMode}
           />
@@ -142,7 +141,6 @@ const UserInfo: FC<IUserInfoProps> = ({ profileData }) => {
         </InformationItem>
       </Information>
       <PasswordButton
-        aria-label="changePassword"
         value={t('userProfile.changePassword')}
         onClick={changeEditPasswordMode}
       />
