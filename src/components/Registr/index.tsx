@@ -2,6 +2,8 @@ import { Button, Input } from 'alex-unicode';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import queryAuthorization from '@/Services/queryAuthorization';
+
 import { Root, WrapperLoginBlock } from './style';
 
 const RegistrationUser = ({ check }: any) => {
@@ -21,14 +23,23 @@ const RegistrationUser = ({ check }: any) => {
     againPass: { againPassStyle: 'none', isEnter: false },
   });
 
-  const handleEnter = () => {
+  const handleEnter = async () => {
     styleAndBoolean.name.isEnter &&
       styleAndBoolean.email.isEnter &&
       styleAndBoolean.password.isEnter &&
       styleAndBoolean.againPass.isEnter &&
       check &&
       // eslint-disable-next-line
-      console.log('Enter');
+      //  try {
+      (await queryAuthorization.register({
+        username: loginForm.nameInput,
+        email: loginForm.email,
+        password: loginForm.password,
+      }));
+
+    // } catch (error: unknown) {
+    //   // notify();
+    // }
   };
 
   const validateEmail = (email: string) => {
