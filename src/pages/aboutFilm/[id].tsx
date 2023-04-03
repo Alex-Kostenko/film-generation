@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Head from 'next/head';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
@@ -105,51 +106,58 @@ const AboutFilm: FC<IAboutFilmProps> = ({ movie, id, apiKey }) => {
   }, [overview, router.locale]);
 
   return (
-    <Root>
-      <BackBtn onClick={() => router.back()} />
-      <Title>{title}</Title>
-      <Container>
-        <FilmImage>
-          <Image
-            priority={true}
-            className="filmID"
-            height={src ? 450 : 280}
-            width={src ? 300 : 280}
-            unoptimized={true}
-            src={src ? src : srcNoImage}
-            alt={'movie_img'}
+    <>
+      <Head>
+        <title>About movie</title>
+      </Head>
+      <Root>
+        <BackBtn onClick={() => router.back()} />
+        <Title>{title}</Title>
+        <Container>
+          <FilmImage>
+            <Image
+              priority={true}
+              className="filmID"
+              height={src ? 450 : 280}
+              width={src ? 300 : 280}
+              unoptimized={true}
+              src={src ? src : srcNoImage}
+              alt={'movie_img'}
+            />
+          </FilmImage>
+          <FilmInfo
+            name={original_title}
+            year={cutString(release_date)}
+            country={country}
+            genre={genre_ids.map((item: number) => item)}
+            time={minutesToHours(runtime)}
+            studio={studio}
+            budget={numeral(budget).format('$0,0')}
+            voteAverage={cutString(vote_average)}
           />
-        </FilmImage>
-        <FilmInfo
-          name={original_title}
-          year={cutString(release_date)}
-          country={country}
-          genre={genre_ids.map((item: number) => item)}
-          time={minutesToHours(runtime)}
-          studio={studio}
-          budget={numeral(budget).format('$0,0')}
-          voteAverage={cutString(vote_average)}
-        />
-      </Container>
-      <AboutFilms>
-        {handleSetColorLastElem(convertedText.replace('&#39;', "'"))}
-      </AboutFilms>
-      {errorLink ? (
-        <TrailerText>{trailerText}</TrailerText>
-      ) : trailerLink ? (
-        <VideoPlayer link={trailerLink} />
-      ) : (
-        <Loader />
-      )}
-      <LinkConteiner>
-        <LinkTitle>{t('filmPage.links')}:</LinkTitle>
-        {rezkaLink && (
-          <Link href={rezkaLink} target={'_blank'}>{`${t('filmPage.watch')} "${
-            router.locale === 'en' ? original_title : title
-          }" ${t('filmPage.on')} hdRezka`}</Link>
+        </Container>
+        <AboutFilms>
+          {handleSetColorLastElem(convertedText.replace('&#39;', "'"))}
+        </AboutFilms>
+        {errorLink ? (
+          <TrailerText>{trailerText}</TrailerText>
+        ) : trailerLink ? (
+          <VideoPlayer link={trailerLink} />
+        ) : (
+          <Loader />
         )}
-      </LinkConteiner>
-    </Root>
+        <LinkConteiner>
+          <LinkTitle>{t('filmPage.links')}:</LinkTitle>
+          {rezkaLink && (
+            <Link href={rezkaLink} target={'_blank'}>{`${t(
+              'filmPage.watch',
+            )} "${router.locale === 'en' ? original_title : title}" ${t(
+              'filmPage.on',
+            )} hdRezka`}</Link>
+          )}
+        </LinkConteiner>
+      </Root>
+    </>
   );
 };
 

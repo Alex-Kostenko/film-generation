@@ -30,7 +30,7 @@ const HomePage: FC<IHomePage> = () =>
     return (
       <>
         <Head>
-          <title>Movie picker</title>
+          <title>Main</title>
         </Head>
         <Root>
           <SliderSlick propMovies={testArray} />
