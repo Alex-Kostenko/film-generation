@@ -13,47 +13,36 @@ interface IHomePage {
   popylarMovies: MovieEntity[];
 }
 
-const HomePage: FC<IHomePage> = () =>
-  // { popylarMovies }
-  {
-    const [movieRating, setMovieRating] = useState(1);
-    const [searchTerm, setSearchTerm] = useState('');
-    const [testArray, setArray] = useState([]);
+const HomePage: FC<IHomePage> = ({ popylarMovies }) => {
+  const [movieRating, setMovieRating] = useState(1);
+  const [searchTerm, setSearchTerm] = useState('');
 
-    useEffect(() => {
-      (async () => {
-        const testRes = await queryMovie.getPopularMovie();
-        setArray(testRes);
-      })();
-    }, []);
-
-    return (
-      <>
-        <Head>
-          <title>Main</title>
-        </Head>
-        <Root>
-          <SliderSlick propMovies={testArray} />
-          <PanelWrapper>
-            <SearchPanel
-              searchTerm={searchTerm}
-              setSearchTerm={setSearchTerm}
-              movieRating={movieRating}
-              setMovieRating={setMovieRating}
-            />
-          </PanelWrapper>
-        </Root>
-      </>
-    );
-  };
+  return (
+    <>
+      <Head>
+        <title>Main</title>
+      </Head>
+      <Root>
+        <SliderSlick propMovies={popylarMovies} />
+        <PanelWrapper>
+          <SearchPanel
+            searchTerm={searchTerm}
+            setSearchTerm={setSearchTerm}
+            movieRating={movieRating}
+            setMovieRating={setMovieRating}
+          />
+        </PanelWrapper>
+      </Root>
+    </>
+  );
+};
 
 export const getServerSideProps = async ({ locale }: ILocale) => {
-  // const popylarMovies = await queryMovie.getPopularMovie();
-  // console.log('TEEEST', popylarMovies);
+  const popylarMovies = await queryMovie.getPopularMovie();
 
   return {
     props: {
-      // popylarMovies,
+      popylarMovies,
       ...(await serverSideTranslations(locale)),
     },
   };

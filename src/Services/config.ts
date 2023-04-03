@@ -8,23 +8,31 @@ const api: AxiosInstance = axios.create({
   },
 });
 
-// api.interceptors.request.use(async (config): Promise<any> => {
-//   const token = localStorage.getItem('access_token');
-//   if (config.headers && token) {
-//     config.headers.Authorization = `Bearer ${token}`;
-//   }
-//   return config;
-// });
+const apiAuth: AxiosInstance = axios.create({
+  baseURL: 'https://api-filmgen-pearl.vercel.app',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
 
-// api.interceptors.response.use(
-//   (response) => response,
-//   (error) => {
-//     if (error.response.status === 401 || error.response.status === 403) {
-//       localStorage.remove('access_token');
-//       // return router.push('/registration');
-//       return (window.location.href = '/registration');
-//     }
-//     return Promise.reject(error);
-//   },
-// );
-export default api;
+api.interceptors.request.use(async (config): Promise<any> => {
+  const token = localStorage.getItem('access_token');
+  if (config.headers && token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
+
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response.status === 401 || error.response.status === 403) {
+      localStorage.remove('access_token');
+      // return router.push('/registration');
+      return (window.location.href = '/registration');
+    }
+    return Promise.reject(error);
+  },
+);
+
+export { apiAuth, api };
