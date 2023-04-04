@@ -1,16 +1,13 @@
 import { useTranslation } from 'next-i18next';
-import { FC, useState } from 'react';
-
-import { IUserBody } from '@/interfaces';
-
-export interface IUserInfoProps {
-  profileData: IUserBody;
-}
+import { useEffect, useState } from 'react';
 
 interface PasswordState {
   currentPassword: boolean;
   newPassword: boolean;
 }
+
+import queryAuthorization from '@/Services/queryAuthorization';
+import queryUser from '@/Services/queryUser';
 
 import {
   InformationItem,
@@ -29,11 +26,16 @@ import {
   Img,
 } from './style';
 
-const UserInfo: FC<IUserInfoProps> = ({ profileData }) => {
+const UserInfo = () => {
   const { t } = useTranslation();
-
-  const [userName, setUserName] = useState(profileData.username);
-  const [userEmail, setUserEmail] = useState(profileData.email);
+  const [userData, setUserData] = useState({
+    username: '',
+    email: '',
+  });
+  const [userInfo, setUserInfo] = useState({
+    username: '',
+    email: '',
+  });
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [showPassword, setShowPassword] = useState<PasswordState>({
@@ -42,6 +44,28 @@ const UserInfo: FC<IUserInfoProps> = ({ profileData }) => {
   });
   const [editMode, setEditMode] = useState({ data: false, password: false });
   const [valid, setValid] = useState({ nameValid: true, emailValid: true });
+
+  useEffect(() => {
+    (async () => {
+      const profileData = await queryAuthorization.getProfileData();
+      setUserData(profileData);
+      setUserInfo(profileData);
+    })();
+  }, []);
+
+  useEffect(() => {
+    {
+      userData.username &&
+        userData.email &&
+        (async () => {
+          const newUserData = {
+            username: userData.username,
+            email: userData.email,
+          };
+          await queryUser.changeUserData(newUserData);
+        })();
+    }
+  }, [userData.username, userData.email]);
 
   const changeEditDataMode = () => {
     setEditMode((prev) => ({ ...prev, data: !editMode.data }));
@@ -52,12 +76,12 @@ const UserInfo: FC<IUserInfoProps> = ({ profileData }) => {
   };
 
   const changeName = (name: string) => {
-    setUserName(name);
+    setUserInfo((prev) => ({ ...prev, username: name }));
     setValid((prev) => ({ ...prev, nameValid: validateName(name) }));
   };
 
   const changeEmail = (email: string) => {
-    setUserEmail(email);
+    setUserInfo((prev) => ({ ...prev, email: email }));
     setValid((prev) => ({ ...prev, emailValid: validateEmail(email) }));
   };
 
@@ -95,15 +119,21 @@ const UserInfo: FC<IUserInfoProps> = ({ profileData }) => {
             {editMode.data ? (
               <InputComponent
                 inputType="text"
-                value={userName}
+                value={userInfo.username}
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
                   changeName(event.target.value)
                 }
                 disabled={!editMode.data}
-                onBlur={changeEditDataMode}
+                onBlur={(event: React.ChangeEvent<HTMLInputElement>) => {
+                  changeEditDataMode;
+                  setUserData((prev) => ({
+                    ...prev,
+                    username: event.target.value,
+                  }));
+                }}
               />
-            ) : userName ? (
-              userName
+            ) : userData.username ? (
+              userData.username
             ) : (
               '...'
             )}
@@ -122,15 +152,21 @@ const UserInfo: FC<IUserInfoProps> = ({ profileData }) => {
             {editMode.data ? (
               <InputComponent
                 inputType="text"
-                value={userEmail}
+                value={userInfo.email}
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
                   changeEmail(event.target.value)
                 }
                 disabled={!editMode.data}
-                onBlur={changeEditDataMode}
+                onBlur={(event: React.ChangeEvent<HTMLInputElement>) => {
+                  changeEditDataMode;
+                  setUserData((prev) => ({
+                    ...prev,
+                    email: event.target.value,
+                  }));
+                }}
               />
-            ) : userEmail ? (
-              userEmail
+            ) : userData.email ? (
+              userData.email
             ) : (
               '...'
             )}

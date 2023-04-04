@@ -13,7 +13,7 @@ const queryUser = {
 
   async changeUserData(body: IUserBody) {
     try {
-      const res = await api.post('/auth/register', body);
+      const res = await api.patch('/users', body);
 
       return res.data;
     } catch (error) {}
