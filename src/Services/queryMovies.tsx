@@ -13,7 +13,7 @@ const queryMovie = {
 
   async getByID(movieId: string) {
     try {
-      const res = await api.get(`/movies/get-by-id/${movieId}`);
+      const res = await apiAuth.get(`/movies/get-by-id/${movieId}`);
 
       return res.data;
     } catch (error) {}
