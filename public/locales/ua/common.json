@@ -83,6 +83,7 @@
   "userProfile": {
     "profile": "Профіль",
     "edit": "Редактувати",
+    "cancel": "Назад",
     "changePassword": "Змінити пароль",
     "name": "Ім'я",
     "email": "Пошта",
