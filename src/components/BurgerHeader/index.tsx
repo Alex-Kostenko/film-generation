@@ -11,6 +11,7 @@ import {
 const HorizontalSideBar = ({ openModal }: any) => {
   return (
     <BurgerHeader>
+      //TODO check div
       <div>
         <Image
           priority={true}

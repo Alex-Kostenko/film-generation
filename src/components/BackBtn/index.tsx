@@ -4,8 +4,10 @@ import { IBackBtn } from '@/interfaces';
 
 import { Img } from './style';
 
+// TODO it is not btn
 const BackBtn: FC<IBackBtn> = ({ onClick }) => {
   return (
+    //delete <>
     <>
       <Img
         onClick={onClick}

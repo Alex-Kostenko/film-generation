@@ -28,15 +28,17 @@ const RegistrationUser = dynamic(() => import('@/components/Registr'), {
 const Registration = () => {
   const { t } = useTranslation();
 
-  const [resize, setResize] = useState(0);
+  const [size, setSize] = useState(0);
 
   const [active, setActive] = useState(false);
 
   const [check, setCheck] = useState(false);
 
   useEffect(() => {
-    setResize(window.innerHeight);
-    window.addEventListener('resize', () => setResize(window.innerHeight));
+    setSize(window.innerHeight);
+    window.addEventListener('resize', () => setSize(window.innerHeight));
+
+    //TODO add return resize
   }, []);
 
   return (
@@ -44,7 +46,7 @@ const Registration = () => {
       <Head>
         <title>Registration</title>
       </Head>
-      <Root sizeHeight={resize}>
+      <Root sizeHeight={size}>
         <WrapperRagistration>
           <TopBox>
             <TextBox>{t('registration.welcome')}</TextBox>

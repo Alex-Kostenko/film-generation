@@ -10,17 +10,20 @@ import UnitedKingdom from '../../../public/unitedKingdom(GB).svg';
 
 import { SiderBar, WarpperLanguage, WrapperSvg } from './style';
 
+const lngs = ['en', 'ua', 'ru'];
+
 const SideBar = () => {
   const router = useRouter();
-
-  const lngs = ['en', 'ua', 'ru'];
 
   const handleRedirect = (path: string) => {
     return router.push(path);
   };
 
   const goProfile = () => {
-    return router.push('/userProfile');
+    if (localStorage.getItem('access_token')) {
+      //TODO create file with ENIM with all Paths
+      router.push('/userProfile');
+    } else router.push('/registration');
   };
 
   const handleSwitcherLanguage = (language: number) => {
@@ -38,6 +41,7 @@ const SideBar = () => {
           height={40}
           width={40}
           alt={'triangleClass'}
+          //TODO use / from enum
           onClick={() => handleRedirect('/')}
         />
         <Home className="triangle" aria-label="Home" onClick={handleRedirect} />
@@ -47,9 +51,11 @@ const SideBar = () => {
             aria-label="CinemaLine"
             onClick={goProfile}
           />
+          //TODO i18n
           <div className="tooltipCinema">Will be soon Page Cinema</div>
         </div>
         <div>
+          //TODO check delete div
           <UserIcon
             onClick={() => handleRedirect('/registration')}
             className="triangle userIcon"
@@ -59,28 +65,29 @@ const SideBar = () => {
       </WrapperSvg>
       <WarpperLanguage>
         <Ukraine
-          className={classNames(
-            'svgLanguage',
-            router.locale === lngs[1] ? 'activeSvg' : null,
-            {
-              blur: router.locale !== lngs[1],
-            },
-          )}
+          className={classNames('svgLanguage', {
+            activeSvg: router.locale === lngs[1],
+            blur: router.locale !== lngs[1],
+          })}
+          //TODO global use EN or RU ... Not 1 2 3
           onClick={() => handleSwitcherLanguage(1)}
         />
         <UnitedKingdom
           className={classNames(
             'svgLanguage',
+            //TODO
             router.locale === lngs[0] ? 'activeSvg' : null,
             {
               blur: router.locale !== lngs[0],
             },
           )}
+          //TODO
           onClick={() => handleSwitcherLanguage(0)}
         />
         <Image
           className={classNames(
             'svgLanguage',
+            //TODO
             router.locale === lngs[2] ? 'activeSvg' : null,
             {
               blur: router.locale !== lngs[2],
@@ -90,6 +97,7 @@ const SideBar = () => {
           height={40}
           width={40}
           alt={'triangleClass'}
+          //TODO
           onClick={() => handleSwitcherLanguage(2)}
         />
       </WarpperLanguage>

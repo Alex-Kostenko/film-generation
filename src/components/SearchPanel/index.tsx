@@ -36,18 +36,19 @@ const SearchPanel: FC<ISearchPanel> = ({
   const [valueInput, setValueInput] = useState('');
   const [yearSearch, setYearSearch] = useState<IYearRange | 'empty'>('empty');
 
+  const toUpperCase = (str: string | undefined) => {
+    return str && str.charAt(0).toUpperCase() + str.slice(1);
+  };
+
+  //TODO check
   useEffect(() => {
-    if (genres.length === 0) {
-      (async () => {
-        const genres = await queryMovie.getGenres();
-        setGenres(genres);
-      })();
-    }
+    (async () => {
+      const genres = await queryMovie.getGenres();
+      setGenres(genres);
+    })();
+  }, []);
 
-    const toUpperCase = (str: string | undefined) => {
-      return str && str.charAt(0).toUpperCase() + str.slice(1);
-    };
-
+  useEffect(() => {
     let genreLanguages: string;
 
     switch (router.locale) {
@@ -124,9 +125,11 @@ const SearchPanel: FC<ISearchPanel> = ({
           inputType={'text'}
           label={t('main.search')}
           value={valueInput}
+          //TODO GLOBAL
           onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
             setValueInput(event.target.value)
           }
+          //TODO GLOBAL
           onBlur={(event: React.FocusEvent<HTMLInputElement>) =>
             setSearchTerm(event.target.value)
           }

@@ -3,6 +3,7 @@ import { components } from 'react-select';
 
 const Checkbox = (props: any) => {
   return (
+    //TODO check div
     <div>
       <components.Option {...props}>
         <input
@@ -11,6 +12,7 @@ const Checkbox = (props: any) => {
           checked={props.isSelected}
           onChange={() => null}
         />
+        //TODO CHEck span
         <span className="checkbox_span"></span>
         <label className="lable">{props.label}</label>
       </components.Option>

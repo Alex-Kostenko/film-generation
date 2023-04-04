@@ -102,7 +102,12 @@ const SearchPanel: FC<ISearchPanel> = ({
     { value: 'vote_average', label: t('filter.vote_average') },
     { value: 'title', label: t('filter.title') },
   ];
+  //TODO move to utils
+  const toUpperCase = (str: string) => {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  };
 
+  //TODO Check
   useEffect(() => {
     if (genres?.length === 0) {
       (async () => {
@@ -110,10 +115,6 @@ const SearchPanel: FC<ISearchPanel> = ({
         setGenres(genres);
       })();
     }
-
-    const toUpperCase = (str: string) => {
-      return str.charAt(0).toUpperCase() + str.slice(1);
-    };
 
     let genreLanguages: string;
 
@@ -158,33 +159,30 @@ const SearchPanel: FC<ISearchPanel> = ({
   }, [debouncedValue]);
 
   useEffect(() => {
-    function handlePushWithoutRender() {
-      router.push(
-        {
-          pathname: '/movieList',
-          query: {
-            rating: `${movieRating}`,
-            search: `${searchTerm}`,
-            categoriesId: `${arrayCategoriesId && arrayCategoriesId.join(',')}`,
-            yearRange:
-              yearMovie === 'empty'
-                ? 'empty'
-                : `${typeof yearMovie === 'object' && yearMovie.startYear},${
-                    typeof yearMovie === 'object' && yearMovie.endYear
-                  }`,
-            checkedAdult: checked.checkedAdult,
-            checkedSearchInDesc: checked.checkedSearchInDesc,
-            sorting: `${valueSort}`,
-            ascDescc: ascDesc,
-            curPage: curPage,
-            pageSize: query.pageSize,
-          },
+    router.push(
+      {
+        pathname: '/movieList',
+        query: {
+          rating: `${movieRating}`,
+          search: `${searchTerm}`,
+          categoriesId: `${arrayCategoriesId && arrayCategoriesId.join(',')}`,
+          yearRange:
+            yearMovie === 'empty'
+              ? 'empty'
+              : `${typeof yearMovie === 'object' && yearMovie.startYear},${
+                  typeof yearMovie === 'object' && yearMovie.endYear
+                }`,
+          checkedAdult: checked.checkedAdult,
+          checkedSearchInDesc: checked.checkedSearchInDesc,
+          sorting: `${valueSort}`,
+          ascDescc: ascDesc,
+          curPage: curPage,
+          pageSize: query.pageSize,
         },
-        undefined,
-        { shallow: true },
-      );
-    }
-    handlePushWithoutRender();
+      },
+      undefined,
+      { shallow: true },
+    );
   }, [
     movieRating,
     searchTerm,
@@ -204,6 +202,7 @@ const SearchPanel: FC<ISearchPanel> = ({
 
   const menu = (
     <MenuFilter>
+      //TODO CHange logic use map
       <MenuItem key="1">
         <label className="labelFilter">
           <p className="textFilter">{t('filter.adult')}</p>
@@ -237,16 +236,14 @@ const SearchPanel: FC<ISearchPanel> = ({
         </label>
       </MenuItem>
       <MenuItem key="3">
-        {
-          <Stars
-            style={{ margin: '35px', color: PALETTE.dark.darkBlack }}
-            rating={t('main.rating')}
-            movieRating={movieRating}
-            setMovieRating={setMovieRating}
-            query={query}
-            setQuery={setQuery}
-          />
-        }
+        <Stars
+          style={{ margin: '35px', color: PALETTE.dark.darkBlack }}
+          rating={t('main.rating')}
+          movieRating={movieRating}
+          setMovieRating={setMovieRating}
+          query={query}
+          setQuery={setQuery}
+        />
       </MenuItem>
     </MenuFilter>
   );
@@ -263,9 +260,7 @@ const SearchPanel: FC<ISearchPanel> = ({
           multi={true}
           closeMenu={false}
           checkbox={{ Option }}
-          onChange={(selectedFilms: ISelectedFilms[]) =>
-            changeGenre(selectedFilms)
-          }
+          onChange={changeGenre}
           value={selectedOptions}
         />
         <YearRangePickerComponent
@@ -282,6 +277,8 @@ const SearchPanel: FC<ISearchPanel> = ({
                 setAscDesc('asc');
               }}
             >
+              //TODO create new file with ENUM ASC or DECS && &#9651; colors
+              from pallet
               {ascDesc === 'desc' ? <>&#9651;</> : <>&#9650;</>}
             </TopArrow>
             <LeftArrow

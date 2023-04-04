@@ -11,6 +11,7 @@ const VideoPlayer: FC<IVideoPlayerProps> = ({ link }) => {
     <Container>
       <Player
         className="react-player"
+        //TODO env
         url={`https://www.youtube.com/watch?v=${link}`}
         width="100%"
         height="100%"

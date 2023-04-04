@@ -56,6 +56,7 @@ const MovieList = () => {
     pageSize,
   }: any = router.query;
 
+  //TODO make more easy code
   const [checked, setChecked] = useState({
     checkedAdult: checkedAdult ? !(checkedAdult === 'false') : false,
     checkedSearchInDesc: checkedSearchInDesc
@@ -64,14 +65,20 @@ const MovieList = () => {
   });
 
   const [movieRating, setMovieRating] = useState(Number(rating));
+  //TODO make more easy code
   const [arrayCategoriesId, setArrayCategoriesId] = useState(
     categoriesId ? categoriesId.split(',').map((id: string) => Number(id)) : [],
   );
 
   // eslint-disable-next-line
-  const [styless, setStyless] = useState(`a[aria-label='Page -1']`);
+  //TODO
+  const [styless, setStyless] = useState("a[aria-label='Page -1']");
+
+  //TODO add type
   const [content, setContent] = useState([]);
+  //TODO ??
   const [searchTerm, setSearchTerm] = useState(search ? search : '');
+  //TODO make more easy code
   const [yearMovie, setYearMovie] = useState<IYearRange | 'empty'>(
     yearRange === 'empty'
       ? 'empty'
@@ -80,6 +87,7 @@ const MovieList = () => {
           endYear: Number(yearRange?.split(',')[1]),
         },
   );
+  //TODO ??
   const [valueSort, setValueSort] = useState(sorting ? sorting : 'popularity');
   const [ascDesc, setAscDesc] = useState(ascDescc ? ascDescc : 'desc');
   const [selectedOptions, setSelectedOptions] = useState<ISelectedFilms[]>([]);
@@ -101,9 +109,10 @@ const MovieList = () => {
   useEffect(() => {
     router.query.categoriesId &&
       setSelectedOptions(
-        (router.query.categoriesId as string).split(',').map((item: any) => {
-          return { value: item };
-        }),
+        //TODO check types categoriesId
+        (router.query.categoriesId as string)
+          .split(',')
+          .map((item) => ({ value: item })),
       );
   }, [router.query.categoriesId]);
 
@@ -127,6 +136,7 @@ const MovieList = () => {
           query.currentPage + 1,
           searchTerm,
           {
+            //TODO check type
             genres_ids: arrayCategoriesId
               ? arrayCategoriesId.map((item: string) => Number(item))
               : [],
@@ -170,6 +180,7 @@ const MovieList = () => {
   ]);
 
   useEffect(() => {
+    //TODO /???????????????????????????????/
     if (query.arrowUpload) {
       // eslint-disable-next-line
       if (styless === `a[aria-label='Page -1']`) {
@@ -192,6 +203,7 @@ const MovieList = () => {
       <Head>
         <title>Movie picker</title>
       </Head>
+      //TODO create new prop for path
       <Root colorStyle={styless}>
         <BackBtn onClick={() => router.push('/')} />
         <TagContainer
@@ -238,6 +250,7 @@ const MovieList = () => {
         </PanelWrapper>
         {content.map((movie: MovieEntity) => (
           <div key={movie.id}>
+            //TODO change null to undef
             <CardComponent
               img={
                 movie.poster_path
@@ -261,7 +274,7 @@ const MovieList = () => {
             />
           </div>
         ))}
-        {content.length !== 0 ? (
+        {content.length ? (
           <>
             <PageManagementComponent query={query} setQuery={setQuery} />
             <Paginate
@@ -286,7 +299,6 @@ const MovieList = () => {
           hideProgressBar={false}
           newestOnTop={false}
           closeOnClick
-          rtl={false}
           pauseOnFocusLoss
           draggable
           pauseOnHover

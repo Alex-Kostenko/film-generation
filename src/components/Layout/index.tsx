@@ -16,15 +16,19 @@ const Layout: FC<ILayoutProps> = ({ children }) => {
 
   const [isModalOpen, openModal, closeModal] = useToggle();
 
-  return router.pathname !== '/' ? (
-    <LayoutContainer>
-      <SideBar />
-      <HorizontalSideBar openModal={openModal} />
-      <ModalUI isModalOpen={isModalOpen} closeModal={closeModal} />
-      {children}
-      <Footer />
-    </LayoutContainer>
-  ) : (
+  //TODO improve
+  if (router.pathname !== '/')
+    return (
+      <LayoutContainer>
+        <SideBar />
+        <HorizontalSideBar openModal={openModal} />
+        <ModalUI isModalOpen={isModalOpen} closeModal={closeModal} />
+        {children}
+        <Footer />
+      </LayoutContainer>
+    );
+
+  return (
     <>
       <SideBar />
       <HorizontalSideBar openModal={openModal} />

@@ -20,27 +20,26 @@ const SliderText: FC<ISliderTextProps> = ({ movieData }) => {
   const router = useRouter();
 
   const redirect = (id: number) => {
+    //TODO
     router.push(`/aboutFilm/${id}`);
   };
 
   return (
-    <>
-      <Container>
-        <Title>{movieData.title}</Title>
-        <TagContainer>
-          {movieData.genre_ids.map((movie, index) => (
-            <TagComponent
-              key={index}
-              className="tag-small"
-              label={t(`genres.${Genres[movie]}`)}
-            />
-          ))}
-        </TagContainer>
+    <Container>
+      <Title>{movieData.title}</Title>
+      <TagContainer>
+        {movieData.genre_ids.map((movie, index) => (
+          <TagComponent
+            key={index}
+            className="tag-small"
+            label={t(`genres.${Genres[movie]}`)}
+          />
+        ))}
+      </TagContainer>
 
-        <Description>{movieData.overview}</Description>
-        <Btn value={t('main.go')} onClick={() => redirect(movieData.id)}></Btn>
-      </Container>
-    </>
+      <Description>{movieData.overview}</Description>
+      <Btn value={t('main.go')} onClick={() => redirect(movieData.id)} />
+    </Container>
   );
 };
 

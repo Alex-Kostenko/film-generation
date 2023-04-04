@@ -18,8 +18,8 @@ const Login = () => {
       email: loginForm.email,
       password: loginForm.password,
     });
+    localStorage.setItem('access_token', res?.accessToken);
     setResultQuery(res);
-    localStorage.setItem('access_token', resultQuery?.accessToken);
   };
 
   return (

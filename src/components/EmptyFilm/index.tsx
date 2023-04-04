@@ -8,6 +8,7 @@ const EmptyFilms = () => {
   const { t } = useTranslation();
   return (
     <WrapperEmptyFilm>
+      // TODO check name emptyFilms = empty-films
       <EmptyFilm className="emptyFilms" aria-label="EmptyFilms" />
       <TextEmptyFilm>{t('main.emptyFilm')}</TextEmptyFilm>
     </WrapperEmptyFilm>

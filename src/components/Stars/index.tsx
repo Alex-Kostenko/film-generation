@@ -20,7 +20,9 @@ const Stars: FC<IStars> = ({
   };
 
   return (
+    //TODO styleTest???
     <Wrapper styleTest={style.margin}>
+      //TODO colorStyle = color
       <Title colorStyle={style.color}>{rating}</Title>
       <Rating
         allowFraction={true}
