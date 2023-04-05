@@ -16,7 +16,7 @@ const Layout: FC<ILayoutProps> = ({ children }) => {
 
   const [isModalOpen, openModal, closeModal] = useToggle();
 
-  let isLoyaout = router.pathname !== '/';
+  const isLoyaout = router.pathname !== '/';
 
   return (
     <Root className={`${isLoyaout && 'loyoutContainer'}`}>
