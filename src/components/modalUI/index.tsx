@@ -3,7 +3,6 @@ import Home from '../../../public/home.svg';
 import Star from '../../../public/star.svg';
 import ModalComponent from '../ModalComponent';
 
-//TODO / delete root
 import { ModalContent, WrapperRow } from './style';
 
 const ModalUI = ({ isModalOpen, closeModal }: any) => {

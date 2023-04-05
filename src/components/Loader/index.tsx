@@ -11,16 +11,14 @@ const override: CSSProperties = {
 
 const Loader = () => {
   return (
-    <div className="sweet-loading">
-      <CircleLoader
-        color={PALETTE.crimson.middle}
-        loading={true}
-        cssOverride={override}
-        size={100}
-        aria-label="Loading Spinner"
-        data-testid="loader"
-      />
-    </div>
+    <CircleLoader
+      color={PALETTE.crimson.middle}
+      loading={true}
+      cssOverride={override}
+      size={100}
+      aria-label="Loading Spinner"
+      data-testid="loader"
+    />
   );
 };
 

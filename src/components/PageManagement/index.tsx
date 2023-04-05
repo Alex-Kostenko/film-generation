@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { FC, useRef } from 'react';
+import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { IName } from '@/interfaces';
@@ -22,8 +22,6 @@ interface IPageManagement {
 }
 
 const PageManagementComponent: FC<IPageManagement> = ({ query, setQuery }) => {
-  //TODO delete ref
-  const reloadRef: React.MutableRefObject<null> = useRef(null);
   const { t } = useTranslation();
 
   const handleSetQuery = () => {
@@ -36,19 +34,16 @@ const PageManagementComponent: FC<IPageManagement> = ({ query, setQuery }) => {
 
   return (
     <ArrowUploadWrapper>
-      <div ref={reloadRef}>
-        <Reload
-          className={classNames('reload', {
-            loading: query.isLoading,
-          })}
-          aria-label="Reload"
-          onClick={handleSetQuery}
-        />
-      </div>
+      <Reload
+        className={classNames('reload', {
+          loading: query.isLoading,
+        })}
+        aria-label="Reload"
+        onClick={handleSetQuery}
+      />
       <Text onClick={handleSetQuery}>{t('movieList.showMore')}</Text>
       <Select
         className="selectCategory"
-        //TODO create enum with all counts of page
         placeholder={
           query.pageSize === 5 ? t('movieList.countFilm') : query.pageSize
         }
