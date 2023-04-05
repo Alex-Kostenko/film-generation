@@ -8,7 +8,7 @@ export const BurgerM = styled.div`
   flex-direction: column;
   justify-content: space-between;
   width: 25px;
-  height: 17px;
+  height: 18px;
   margin-right: 13px;
   cursor: pointer;
   & .bgTop,
@@ -77,7 +77,7 @@ export const BurgerHeader = styled.div`
     height: 45px;
     width: 100%;
     background: ${PALETTE.gray};
-    position: absolute;
+    align-items: center;
     top: 0%;
     z-index: 3;
     background: ${PALETTE.siderBarGradient};
@@ -86,10 +86,8 @@ export const BurgerHeader = styled.div`
   & .logoBurger {
     border-radius: 50%;
     cursor: pointer;
-    margin-left: 5px;
-    position: absolute;
-    top: 50%;
-    transform: translate(0, -50%);
+    align-items: center;
+    display: block;
   }
   & .menuStyle {
     border-radius: 50%;

@@ -109,7 +109,7 @@ export interface IMovie {
   date: string;
 }
 
-export interface IBackBtn {
+export interface IBackArrow {
   onClick: () => void;
 }
 

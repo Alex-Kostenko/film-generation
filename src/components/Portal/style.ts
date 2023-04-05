@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 import { PALETTE } from '@/palette';
 
+//TODO delete
 export const Overlay = styled.div`
   /* display: block;
   position: fixed;

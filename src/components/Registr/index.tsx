@@ -6,6 +6,7 @@ import queryAuthorization from '@/Services/queryAuthorization';
 
 import { Root, WrapperLoginBlock } from './style';
 
+//TODO change folder name
 const RegistrationUser = ({ check }: any) => {
   const { t } = useTranslation();
 
@@ -16,13 +17,14 @@ const RegistrationUser = ({ check }: any) => {
     againPass: '',
   });
 
+  //TODO change isEnter
   const [styleAndBoolean, setStyleAndBoolean] = useState<any>({
     name: { nameStyle: 'none', isEnter: false },
     email: { emailStyle: 'none', isEnter: false },
     password: { passwordStyle: 'none', isEnter: false },
     againPass: { againPassStyle: 'none', isEnter: false },
   });
-
+  //TODO clear code
   const handleEnter = async () => {
     styleAndBoolean.name.isEnter &&
       styleAndBoolean.email.isEnter &&
@@ -43,23 +45,17 @@ const RegistrationUser = ({ check }: any) => {
   };
 
   const validateEmail = (email: string) => {
+    //TODO move to file with RegExps
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     setLoginForm({ ...loginForm, email: email });
 
-    if (emailRegex.test(email)) {
-      setStyleAndBoolean({
-        ...styleAndBoolean,
-        email: { emailStyle: 'none', isEnter: emailRegex.test(email) },
-      });
-    } else {
-      setStyleAndBoolean({
-        ...styleAndBoolean,
-        email: {
-          emailStyle: 'rgb(167 84 84 / 20%);',
-          isEnter: emailRegex.test(email),
-        },
-      });
-    }
+    setStyleAndBoolean({
+      ...styleAndBoolean,
+      email: {
+        emailStyle: emailRegex.test(email) ? 'none' : 'rgb(167 84 84 / 20%);',
+        isEnter: emailRegex.test(email),
+      },
+    });
   };
 
   const handleStyleAndBool = (
@@ -67,21 +63,23 @@ const RegistrationUser = ({ check }: any) => {
     styleAndBooleanKey: string,
     styleAndBooleanSecondKey: string,
   ) => {
-    loginForm[`${nameOFInput}`].length <= 3
-      ? setStyleAndBoolean({
-          ...styleAndBoolean,
-          [`${styleAndBooleanKey}`]: {
-            [`${styleAndBooleanSecondKey}`]: 'rgb(167 84 84 / 20%);',
-            isEnter: false,
-          },
-        })
-      : setStyleAndBoolean({
-          ...styleAndBoolean,
-          [`${styleAndBooleanKey}`]: {
-            [`${styleAndBooleanSecondKey}`]: 'none',
-            isEnter: true,
-          },
-        });
+    //TODO chagne name & check
+    const a = loginForm[nameOFInput].length <= 3;
+    // loginForm[`${nameOFInput}`].length <= 3
+    setStyleAndBoolean({
+      ...styleAndBoolean,
+      [`${styleAndBooleanKey}`]: {
+        [`${styleAndBooleanSecondKey}`]: a ? 'rgb(167 84 84 / 20%);' : 'none',
+        isEnter: !a,
+      },
+    });
+    // : setStyleAndBoolean({
+    //     ...styleAndBoolean,
+    //     [`${styleAndBooleanKey}`]: {
+    //       [`${styleAndBooleanSecondKey}`]: 'none',
+    //       isEnter: true,
+    //     },
+    //   });
   };
 
   useEffect(() => {
@@ -93,6 +91,7 @@ const RegistrationUser = ({ check }: any) => {
   }, [loginForm.password]);
 
   useEffect(() => {
+    //TODO
     if (loginForm.password === loginForm.againPass) {
       setStyleAndBoolean({
         ...styleAndBoolean,
@@ -134,9 +133,8 @@ const RegistrationUser = ({ check }: any) => {
           label={t('registration.email')}
           class={'email'}
           value={loginForm.email}
-          onChange={(e: { target: { value: string } }) =>
-            validateEmail(e.target.value)
-          }
+          //TODO change lib types
+          onChange={(e: any) => validateEmail(e.target.value)}
         />
 
         <Input
@@ -144,6 +142,7 @@ const RegistrationUser = ({ check }: any) => {
           label={t('registration.password')}
           class={'password'}
           value={loginForm.password}
+          //TODO Change input logic GLOBAL
           onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
             setLoginForm({ ...loginForm, password: event.target.value })
           }
@@ -151,6 +150,7 @@ const RegistrationUser = ({ check }: any) => {
         <Input
           inputType={'password'}
           label={t('registration.againPassword')}
+          //TODO change class to className
           class={'againPass'}
           value={loginForm.againPass}
           onChange={(event: React.ChangeEvent<HTMLInputElement>) =>

@@ -22,6 +22,7 @@ interface IPageManagement {
 }
 
 const PageManagementComponent: FC<IPageManagement> = ({ query, setQuery }) => {
+  //TODO delete ref
   const reloadRef: React.MutableRefObject<null> = useRef(null);
   const { t } = useTranslation();
 
@@ -47,6 +48,7 @@ const PageManagementComponent: FC<IPageManagement> = ({ query, setQuery }) => {
       <Text onClick={handleSetQuery}>{t('movieList.showMore')}</Text>
       <Select
         className="selectCategory"
+        //TODO create enum with all counts of page
         placeholder={
           query.pageSize === 5 ? t('movieList.countFilm') : query.pageSize
         }

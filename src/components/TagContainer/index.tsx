@@ -59,6 +59,7 @@ const TagContainer: FC<ITagContainerProps> = ({
     setValueSort('popularity');
   };
 
+  //TODO GLOBAL use normal name for callback
   const deleteGenre = (categoriesId: number) => {
     const newArrayId = arrayCategoriesId.filter(
       (item) => item !== categoriesId,
@@ -71,6 +72,7 @@ const TagContainer: FC<ITagContainerProps> = ({
     setSelectedOptions(newArrValue);
   };
 
+  //TODO bad name
   const deleteFilter = (key: string, value: boolean) => {
     setChecked((prevState) => ({
       ...prevState,
@@ -89,6 +91,7 @@ const TagContainer: FC<ITagContainerProps> = ({
   };
 
   useEffect(() => {
+    //TODO
     const count =
       (Number(rating) !== 1 ? 1 : 0) +
       (valueSort !== 'popularity' ? 1 : 0) +
@@ -171,14 +174,14 @@ const TagContainer: FC<ITagContainerProps> = ({
         />
       )}
 
-      {tagCount >= 2 ? (
+      {tagCount >= 2 && (
         <TagComponent
           onClick={deleteAll}
           cross={true}
           className="tag-search"
           label={t('filterTag.clearAll')}
         />
-      ) : null}
+      )}
     </SearchContainer>
   );
 };

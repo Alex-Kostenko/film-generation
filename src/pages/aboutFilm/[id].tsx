@@ -8,7 +8,7 @@ import numeral from 'numeral';
 import { FC, useEffect, useState } from 'react';
 
 import queryMovie from '@/Services/queryMovies';
-import BackBtn from '@/components/BackBtn';
+import ArrowBack from '@/components/ArrowBack';
 import FilmInfo from '@/components/FilmInfo';
 import Loader from '@/components/Loader';
 import VideoPlayer from '@/components/VideoPlayer';
@@ -38,7 +38,6 @@ const AboutFilm: FC<IAboutFilmProps> = ({ movie, id, apiKey }) => {
   const [rezkaLink, setRezkaLink] = useState('');
   const [trailerLink, setTrailerLink] = useState('');
   const [errorLink, setErrorLink] = useState(false);
-  const trailerText = t('filmPage.trailerText');
   const [convertedText, setConvertedText] = useState('');
   const {
     title,
@@ -57,9 +56,8 @@ const AboutFilm: FC<IAboutFilmProps> = ({ movie, id, apiKey }) => {
     name: '',
   };
 
-  const src: string =
-    movie.poster_path &&
-    `https://www.themoviedb.org/t/p/w300_and_h450_bestv2${movie.poster_path}`;
+  //TODO ENV bad name
+  const src = `https://www.themoviedb.org/t/p/w300_and_h450_bestv2${movie.poster_path}`;
 
   useEffect(() => {
     (async () => {
@@ -79,6 +77,7 @@ const AboutFilm: FC<IAboutFilmProps> = ({ movie, id, apiKey }) => {
     let language: string;
 
     switch (router.locale) {
+      //TODO move to ENUM all  country
       case 'ua':
         language = 'uk';
         break;
@@ -88,6 +87,8 @@ const AboutFilm: FC<IAboutFilmProps> = ({ movie, id, apiKey }) => {
       default:
         language = 'en';
     }
+
+    //TODO link env
     axios
       .post(
         'https://translation.googleapis.com/language/translate/v2',
@@ -111,14 +112,16 @@ const AboutFilm: FC<IAboutFilmProps> = ({ movie, id, apiKey }) => {
         <title>About movie</title>
       </Head>
       <Root>
-        <BackBtn onClick={() => router.back()} />
+        <ArrowBack onClick={() => router.back()} />
         <Title>{title}</Title>
         <Container>
           <FilmImage>
             <Image
               priority={true}
               className="filmID"
+              //TODO check src
               height={src ? 450 : 280}
+              //TODO check src
               width={src ? 300 : 280}
               unoptimized={true}
               src={src ? src : srcNoImage}
@@ -140,7 +143,7 @@ const AboutFilm: FC<IAboutFilmProps> = ({ movie, id, apiKey }) => {
           {handleSetColorLastElem(convertedText.replace('&#39;', "'"))}
         </AboutFilms>
         {errorLink ? (
-          <TrailerText>{trailerText}</TrailerText>
+          <TrailerText>{t('filmPage.trailerText')}</TrailerText>
         ) : trailerLink ? (
           <VideoPlayer link={trailerLink} />
         ) : (
@@ -148,6 +151,7 @@ const AboutFilm: FC<IAboutFilmProps> = ({ movie, id, apiKey }) => {
         )}
         <LinkConteiner>
           <LinkTitle>{t('filmPage.links')}:</LinkTitle>
+          //TODO move to func
           {rezkaLink && (
             <Link href={rezkaLink} target={'_blank'}>{`${t(
               'filmPage.watch',

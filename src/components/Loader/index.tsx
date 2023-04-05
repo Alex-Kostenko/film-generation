@@ -4,6 +4,7 @@ import CircleLoader from 'react-spinners/CircleLoader';
 const override: CSSProperties = {
   display: 'block',
   margin: '0 auto',
+  //TODO use color pallet
   borderColor: '#f33f3f',
 };
 
