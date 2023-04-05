@@ -18,6 +18,7 @@ import {
 } from '@/interfaces';
 import { PALETTE } from '@/palette';
 import { useDebounce } from '@/utils/hooks/useDebounce';
+import { Paths } from '@/utils/paths';
 
 import Option from '../Checkbox';
 import Stars from '../Stars';
@@ -161,7 +162,7 @@ const SearchPanel: FC<ISearchPanel> = ({
   useEffect(() => {
     router.push(
       {
-        pathname: '/movieList',
+        pathname: `${Paths.movieList}`,
         query: {
           rating: `${movieRating}`,
           search: `${searchTerm}`,

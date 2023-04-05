@@ -1,5 +1,7 @@
 import axios, { AxiosInstance } from 'axios';
 
+import { Paths } from '@/utils/paths';
+
 const BASE_URL = 'https://api-filmgen-pearl.vercel.app';
 
 const api: AxiosInstance = axios.create({
@@ -30,7 +32,7 @@ api.interceptors.response.use(
     if (error.response.status === 401 || error.response.status === 403) {
       localStorage.remove('access_token');
       // return router.push('/registration');
-      return (window.location.href = '/registration');
+      return (window.location.href = `${Paths.registration}`);
     }
     return Promise.reject(error);
   },

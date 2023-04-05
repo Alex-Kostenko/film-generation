@@ -7,6 +7,7 @@ import queryMovie from '@/Services/queryMovies';
 import { ISelectedFilms, IYearRange } from '@/interfaces';
 import { PALETTE } from '@/palette';
 import { generateQueries } from '@/utils/common';
+import { Paths } from '@/utils/paths';
 
 import Option from '../Checkbox';
 import Stars from '../Stars';
@@ -79,7 +80,7 @@ const SearchPanel: FC<ISearchPanel> = ({
   };
 
   const redirect = () => {
-    const { result } = generateQueries<ISelectedFilms>('/movieList', [
+    const { result } = generateQueries<ISelectedFilms>(`${Paths.movieList}`, [
       { label: 'categoriesId', value: searchGenre, key: 'id' },
       { label: 'rating', value: String(movieRating) },
       { label: 'search', value: String(searchTerm) },

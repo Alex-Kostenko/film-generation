@@ -15,6 +15,7 @@ import {
   LogoutButton,
 } from '@/styles/userProfile/style';
 import { userProfileImage } from '@/utils/constants';
+import { Paths } from '@/utils/paths';
 
 const UserProfile = () => {
   const router = useRouter();
@@ -25,7 +26,7 @@ const UserProfile = () => {
   const logout = async () => {
     await queryAuthorization.logout();
     localStorage.removeItem('access_token');
-    router.push('/');
+    router.push(`${Paths.home}`);
   };
 
   useEffect(() => {

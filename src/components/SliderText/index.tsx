@@ -5,6 +5,7 @@ import { FC } from 'react';
 
 import { ILocale, ISliderTextProps } from '@/interfaces';
 import { Genres } from '@/utils/genres';
+import { Paths } from '@/utils/paths';
 
 import {
   TagComponent,
@@ -20,8 +21,7 @@ const SliderText: FC<ISliderTextProps> = ({ movieData }) => {
   const router = useRouter();
 
   const redirect = (id: number) => {
-    //TODO
-    router.push(`/aboutFilm/${id}`);
+    router.push(`${Paths.aboutFilm}/${id}`);
   };
 
   return (
