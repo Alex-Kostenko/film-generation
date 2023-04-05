@@ -97,9 +97,7 @@ const UserInfo = () => {
           label={t('userProfile.name')}
           inputType="text"
           value={userData.username}
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-            changeName(event.target.value)
-          }
+          onChange={(event) => changeName(event.target.value)}
           disabled={!editMode}
         />
         {!valid.nameValid && (
@@ -109,9 +107,7 @@ const UserInfo = () => {
           label={t('userProfile.email')}
           inputType="text"
           value={userData.email}
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-            changeEmail(event.target.value)
-          }
+          onChange={(event) => changeEmail(event.target.value)}
           disabled={!editMode}
         />
         {!valid.emailValid && (
@@ -136,7 +132,7 @@ const UserInfo = () => {
             label={t('userProfile.currentPassword')}
             inputType={showPassword.currentPassword ? 'text' : 'password'}
             value={password.currentPassword}
-            onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+            onChange={(event) =>
               changePassword('currentPassword', event.target.value)
             }
           />
@@ -153,7 +149,7 @@ const UserInfo = () => {
             label={t('userProfile.newPassword')}
             inputType={showPassword.newPassword ? 'text' : 'password'}
             value={password.newPassword}
-            onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+            onChange={(event) =>
               changePassword('newPassword', event.target.value)
             }
           />

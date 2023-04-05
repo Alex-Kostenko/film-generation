@@ -102,7 +102,7 @@ const RegistrationUser = ({ check }: any) => {
           label={t('registration.name')}
           className={'name'}
           value={loginForm.nameInput}
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+          onChange={(event) => {
             setLoginForm({ ...loginForm, nameInput: event.target.value });
           }}
         />
@@ -113,7 +113,7 @@ const RegistrationUser = ({ check }: any) => {
           className={'email'}
           value={loginForm.email}
           //TODO change lib types
-          onChange={(e: any) => validateEmail(e.target.value)}
+          onChange={(event) => validateEmail(event.target.value)}
         />
 
         <Input
@@ -122,7 +122,7 @@ const RegistrationUser = ({ check }: any) => {
           className={'password'}
           value={loginForm.password}
           //TODO Change input logic GLOBAL
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+          onChange={(event) =>
             setLoginForm({ ...loginForm, password: event.target.value })
           }
         />
@@ -131,7 +131,7 @@ const RegistrationUser = ({ check }: any) => {
           label={t('registration.againPassword')}
           className={'againPass'}
           value={loginForm.againPass}
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+          onChange={(event) =>
             setLoginForm({ ...loginForm, againPass: event.target.value })
           }
         />
