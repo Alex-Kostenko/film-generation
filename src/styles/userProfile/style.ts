@@ -1,3 +1,4 @@
+import { Button } from 'alex-unicode';
 import styled from 'styled-components';
 
 import { PALETTE } from '@/palette';
@@ -36,4 +37,11 @@ export const ImgContainer = styled.div`
     width: fit-content;
     margin: 10px auto;
   }
+`;
+
+export const LogoutButton = styled(Button)`
+  max-width: 100px;
+  position: absolute;
+  top: 0;
+  right: 0;
 `;

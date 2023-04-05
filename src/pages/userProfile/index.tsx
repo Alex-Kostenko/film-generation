@@ -4,24 +4,39 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import queryAuthorization from '@/Services/queryAuthorization';
 import UserInfo from '@/components/UserInfo';
 import { ILocale } from '@/interfaces';
-import { Wrapper, Title, ImgContainer } from '@/styles/userProfile/style';
+import {
+  Wrapper,
+  Title,
+  ImgContainer,
+  LogoutButton,
+} from '@/styles/userProfile/style';
 import { userProfileImage } from '@/utils/constants';
 
 const UserProfile = () => {
   const { t } = useTranslation();
-  const [title, setTitle] = useState<string | null>('');
+  const [translate, setTranslate] = useState({ title: '', button: '' });
+
+  const logout = async () => {
+    await queryAuthorization.logout();
+    localStorage.removeItem('access_token');
+  };
 
   useEffect(() => {
-    setTitle(t('userProfile.profile'));
+    setTranslate({
+      title: t('userProfile.profile'),
+      button: t('userProfile.logout'),
+    });
   });
+
   return (
     <>
       <Head>
         <title>User profile</title>
       </Head>
-      <Title>{title}</Title>
+      <Title>{translate.title}</Title>
       <Wrapper>
         <ImgContainer>
           <Image
@@ -34,9 +49,9 @@ const UserProfile = () => {
             alt={'movie_img'}
           />
         </ImgContainer>
-
         <UserInfo />
       </Wrapper>
+      <LogoutButton value={translate.button} onClick={logout} />
     </>
   );
 };

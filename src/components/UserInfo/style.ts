@@ -25,14 +25,14 @@ export const PasswordButton = styled(Button)`
   margin: 0;
 `;
 
-export const ButtonContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
-
 export const EditButton = styled(Button)`
   max-width: 100px;
   margin: 0;
+`;
+
+export const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
 `;
 
 export const ErrorText = styled.span`
