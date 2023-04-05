@@ -1,6 +1,8 @@
 import Document, { Head, Html, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 
+import { PALETTE } from '@/palette';
+
 export default class MyDocument extends Document {
   static async getInitialProps(ctx: any) {
     const sheet = new ServerStyleSheet();
@@ -37,7 +39,7 @@ export default class MyDocument extends Document {
             content="This is a site for selecting a movie for any of your criteria and requests"
           />
         </Head>
-        <body style={{ background: '#0d0d0d' }}>
+        <body style={{ background: PALETTE.dark.darkModal }}>
           <Main />
           <div id="portal" />
           <NextScript />

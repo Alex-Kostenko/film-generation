@@ -21,11 +21,12 @@ export const Root = styled.div`
   }
   & .filter button:hover,
   .filter button:focus {
-    box-shadow: 0.3em 0.3em 0 0 #e4dada, inset 0.3em 0.3em 0 0 #e4dada;
+    box-shadow: 0.3em 0.3em 0 0 ${PALETTE.beige},
+      inset 0.3em 0.3em 0 0 ${PALETTE.beige};
     cursor: pointer;
-    color: #ffffff;
-    border-color: #1f1f1f !important;
-    background-color: #0d0d0d !important;
+    color: ${PALETTE.white};
+    border-color: ${PALETTE.dark.darkGrey} !important;
+    background-color: ${PALETTE.dark.darkModal} !important;
   }
 `;
 

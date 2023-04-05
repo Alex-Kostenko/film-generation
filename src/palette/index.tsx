@@ -1,9 +1,11 @@
 export const PALETTE = {
+  lightPink: '#e1d7d7',
   error: '#FF0000',
   beige: '#e4dada',
   white: '#ffffff',
   dark: { darkGrey: '#1f1f1f', darkModal: '#0d0d0d', darkBlack: '#1d1d1d' },
   gray: '#808080',
+  drab: '#9e9e9e',
   yellow: '#ffff00',
   crimson: {
     lite: 'rgb(243, 63, 63, 0.3)',
