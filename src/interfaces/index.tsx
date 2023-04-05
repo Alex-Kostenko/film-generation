@@ -207,6 +207,7 @@ export interface ILoginBody {
 export interface IUserBody {
   username?: string;
   email?: string;
+  password?: string;
 }
 
 export interface IPasswordBody {
