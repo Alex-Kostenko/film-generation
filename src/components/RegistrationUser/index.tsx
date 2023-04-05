@@ -112,7 +112,6 @@ const RegistrationUser = ({ check }: any) => {
           label={t('registration.email')}
           className={'email'}
           value={loginForm.email}
-          //TODO change lib types
           onChange={(event) => validateEmail(event.target.value)}
         />
 
@@ -121,7 +120,6 @@ const RegistrationUser = ({ check }: any) => {
           label={t('registration.password')}
           className={'password'}
           value={loginForm.password}
-          //TODO Change input logic GLOBAL
           onChange={(event) =>
             setLoginForm({ ...loginForm, password: event.target.value })
           }
