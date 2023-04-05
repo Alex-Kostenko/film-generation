@@ -2,7 +2,7 @@ import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -10,7 +10,13 @@ import 'react-toastify/dist/ReactToastify.css';
 import queryMovie from '@/Services/queryMovies';
 import ArrowBack from '@/components/ArrowBack';
 import SearchPanelLine from '@/components/SearchPanelLine';
-import { MovieEntity, IYearRange, ISelectedFilms, ILocale } from '@/interfaces';
+import {
+  MovieEntity,
+  IYearRange,
+  ISelectedFilms,
+  ILocale,
+  IMovieList,
+} from '@/interfaces';
 import {
   CardComponent,
   PanelWrapper,
@@ -38,7 +44,7 @@ const TagContainer = dynamic(() => import('@/components/TagContainer'), {
   ssr: false,
 });
 
-const MovieList = () => {
+const MovieList: FC<IMovieList> = ({ imgLink }) => {
   const { t } = useTranslation();
 
   const router = useRouter();
@@ -252,11 +258,7 @@ const MovieList = () => {
           <div key={movie.id}>
             //TODO change null to undef
             <CardComponent
-              img={
-                movie.poster_path
-                  ? `https://www.themoviedb.org/t/p/w300_and_h450_bestv2${movie.poster_path}`
-                  : null
-              }
+              img={movie.poster_path ? `${imgLink}${movie.poster_path}` : null}
               title={movie.original_title ?? movie.title}
               subtitle={
                 movie.original_title === movie.title ||
@@ -314,6 +316,7 @@ export default MovieList;
 export const getServerSideProps = async ({ locale }: ILocale) => {
   return {
     props: {
+      imgLink: process.env.MOVIE_PICTURE,
       ...(await serverSideTranslations(locale)),
     },
   };

@@ -31,8 +31,7 @@ const YearRangePickerComponent: FC<IYearRangePickerComponent> = ({
 }) => {
   const { t }: any = useTranslation();
 
-  //TODO name
-  const handleOnchange = (startYear: number, endYear: number) => {
+  const changeTimePeriod = (startYear: number, endYear: number) => {
     setQuery && query && setQuery({ ...query, currentPage: 0 });
     setYearSearch && setYearSearch({ startYear, endYear });
     setYearMovie && setYearMovie({ startYear, endYear });
@@ -43,10 +42,9 @@ const YearRangePickerComponent: FC<IYearRangePickerComponent> = ({
       <YearRangePicker
         minYear={new Date(1990, 0, 1).getFullYear()}
         maxYear={new Date().getFullYear()}
-        onSelect={(startYear, endYear) => handleOnchange(startYear, endYear)}
+        onSelect={(startYear, endYear) => changeTimePeriod(startYear, endYear)}
         startYear={typeof yearMovie === 'object' ? yearMovie.startYear : 0}
         endYear={typeof yearMovie === 'object' ? yearMovie.endYear : 0}
-        // classNames="custom-year-range-picker"
         startText={t('main.start')}
         endText={t('main.end')}
       />

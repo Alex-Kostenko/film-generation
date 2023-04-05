@@ -84,7 +84,14 @@ export interface IAboutFilmProps {
   movie: MovieEntity;
   id: string;
   apiKey: string;
+  imgLink: string;
+  youTubeLink: string;
+  translateLink: string;
   t: (key: string) => string;
+}
+
+export interface IMovieList {
+  imgLink: string;
 }
 
 export interface IName {
