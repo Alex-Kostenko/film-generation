@@ -8,7 +8,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import queryMovie from '@/Services/queryMovies';
-import BackBtn from '@/components/BackBtn';
+import ArrowBack from '@/components/ArrowBack';
 import SearchPanelLine from '@/components/SearchPanelLine';
 import { MovieEntity, IYearRange, ISelectedFilms, ILocale } from '@/interfaces';
 import {
@@ -23,7 +23,7 @@ interface PageChangeEvent {
   selected: number;
 }
 
-const EmptyFilms = dynamic(() => import('@/components/EmptyFilm'), {
+const EmptyFilms = dynamic(() => import('@/components/NoMovies'), {
   ssr: false,
 });
 
@@ -205,7 +205,7 @@ const MovieList = () => {
       </Head>
       //TODO create new prop for path
       <Root colorStyle={styless}>
-        <BackBtn onClick={() => router.push('/')} />
+        <ArrowBack onClick={() => router.push('/')} />
         <TagContainer
           setInputValue={setInputValue}
           checked={checked}

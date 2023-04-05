@@ -8,7 +8,7 @@ import numeral from 'numeral';
 import { FC, useEffect, useState } from 'react';
 
 import queryMovie from '@/Services/queryMovies';
-import BackBtn from '@/components/BackBtn';
+import ArrowBack from '@/components/ArrowBack';
 import FilmInfo from '@/components/FilmInfo';
 import Loader from '@/components/Loader';
 import VideoPlayer from '@/components/VideoPlayer';
@@ -112,7 +112,7 @@ const AboutFilm: FC<IAboutFilmProps> = ({ movie, id, apiKey }) => {
         <title>About movie</title>
       </Head>
       <Root>
-        <BackBtn onClick={() => router.back()} />
+        <ArrowBack onClick={() => router.back()} />
         <Title>{title}</Title>
         <Container>
           <FilmImage>

@@ -9,7 +9,6 @@ const Footer = () => {
   return (
     <FooterComponent>
       <FooterText>
-        //MB use LInk
         <a
           className="link"
           target={'_blank'}

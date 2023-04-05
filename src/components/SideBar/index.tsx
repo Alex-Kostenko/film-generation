@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 import CinemaLine from '../../../public/cinemaLine.svg';
@@ -34,16 +35,18 @@ const SideBar = () => {
   return (
     <SiderBar>
       <WrapperSvg>
-        <Image
-          priority={true}
-          className="triangle"
-          src={'/UniCode.jpg'}
-          height={40}
-          width={40}
-          alt={'triangleClass'}
-          //TODO use / from enum
-          onClick={() => handleRedirect('/')}
-        />
+        <Link href="/">
+          <Image
+            priority={true}
+            className="triangle"
+            src={'/UniCode.jpg'}
+            height={40}
+            width={40}
+            alt={'triangleClass'}
+            //TODO use / from enum
+            // onClick={() => handleRedirect('/')}
+          />
+        </Link>
         <Home className="triangle" aria-label="Home" onClick={handleRedirect} />
         <div>
           <CinemaLine

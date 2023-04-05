@@ -2,13 +2,13 @@ import styled from 'styled-components';
 
 import { PALETTE } from '@/palette';
 
-export const WrapperEmptyFilm = styled.div`
+export const WrapperNoMovie = styled.div`
   margin-top: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
 
-  & .emptyFilms {
+  & .noMovies {
     transform: scaleX(-1);
 
     & path {
@@ -17,7 +17,7 @@ export const WrapperEmptyFilm = styled.div`
   }
 `;
 
-export const TextEmptyFilm = styled.div`
+export const TextNoMovies = styled.div`
   color: ${PALETTE.white};
   font-family: 'Roboto';
   font-weight: 400;

@@ -11,17 +11,14 @@ import {
 const HorizontalSideBar = ({ openModal }: any) => {
   return (
     <BurgerHeader>
-      //TODO check div
-      <div>
-        <Image
-          priority={true}
-          className="logoBurger"
-          src={'/UniCode.jpg'}
-          height={30}
-          width={30}
-          alt={'logoBurger'}
-        />
-      </div>
+      <Image
+        priority={true}
+        className="logoBurger"
+        src={'/UniCode.jpg'}
+        height={30}
+        width={30}
+        alt={'logoBurger'}
+      />
       <BurgerM onClick={openModal}>
         <BurgerTop className="bgTop" />
         <BurgerMid className="bgMid" />
