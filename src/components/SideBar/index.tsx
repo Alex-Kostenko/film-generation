@@ -3,6 +3,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
+import { Paths } from '@/utils/paths';
+
 import CinemaLine from '../../../public/cinemaLine.svg';
 import Home from '../../../public/home.svg';
 import UserIcon from '../../../public/icon.svg';
@@ -22,9 +24,8 @@ const SideBar = () => {
 
   const goProfile = () => {
     if (localStorage.getItem('access_token')) {
-      //TODO create file with ENIM with all Paths
-      router.push('/userProfile');
-    } else router.push('/registration');
+      router.push(`${Paths.userProfile}`);
+    } else router.push(`${Paths.registration}`);
   };
 
   const handleSwitcherLanguage = (language: number) => {
@@ -43,8 +44,7 @@ const SideBar = () => {
             height={40}
             width={40}
             alt={'triangleClass'}
-            //TODO use / from enum
-            // onClick={() => handleRedirect('/')}
+            onClick={() => handleRedirect(`${Paths.home}`)}
           />
         </Link>
         <Home className="triangle" aria-label="Home" onClick={handleRedirect} />
@@ -60,7 +60,7 @@ const SideBar = () => {
         <div>
           //TODO check delete div
           <UserIcon
-            onClick={() => handleRedirect('/registration')}
+            onClick={() => handleRedirect(`${Paths.registration}`)}
             className="triangle userIcon"
             aria-label="UserIcon"
           />

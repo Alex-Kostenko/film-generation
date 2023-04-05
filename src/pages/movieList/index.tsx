@@ -24,6 +24,7 @@ import {
   Root,
 } from '@/styles/movieListStyles/style';
 import { Genres, notify } from '@/utils/genres';
+import { Paths } from '@/utils/paths';
 
 interface PageChangeEvent {
   selected: number;
@@ -211,7 +212,7 @@ const MovieList: FC<IMovieList> = ({ imgLink }) => {
       </Head>
       //TODO create new prop for path
       <Root colorStyle={styless}>
-        <ArrowBack onClick={() => router.push('/')} />
+        <ArrowBack onClick={() => router.push(`${Paths.home}`)} />
         <TagContainer
           setInputValue={setInputValue}
           checked={checked}
