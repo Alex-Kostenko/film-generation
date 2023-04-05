@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 import { PALETTE } from '@/palette';
 
-export const Root = styled.div``;
 export const ModalContent = styled.div`
   width: 100%;
   height: 300px;

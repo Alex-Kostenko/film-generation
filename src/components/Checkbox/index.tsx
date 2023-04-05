@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 import { components } from 'react-select';
 
 const Checkbox = (props: any) => {
