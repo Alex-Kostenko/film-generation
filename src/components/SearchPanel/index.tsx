@@ -126,14 +126,8 @@ const SearchPanel: FC<ISearchPanel> = ({
           inputType={'text'}
           label={t('main.search')}
           value={valueInput}
-          //TODO GLOBAL
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-            setValueInput(event.target.value)
-          }
-          //TODO GLOBAL
-          onBlur={(event: React.FocusEvent<HTMLInputElement>) =>
-            setSearchTerm(event.target.value)
-          }
+          onChange={(event) => setValueInput(event.target.value)}
+          onBlur={(event) => setSearchTerm(event.target.value)}
         />
         <Button
           aria-label="search"
