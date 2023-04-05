@@ -33,7 +33,7 @@ export const SiderBar = styled.div`
     visibility: hidden;
     width: 120px;
     background-color: black;
-    color: #fff;
+    color: ${PALETTE.white};
     text-align: center;
     border-radius: 6px;
     padding: 5px 0;

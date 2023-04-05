@@ -1,14 +1,16 @@
 import axios, { AxiosInstance } from 'axios';
 
+const BASE_URL = 'https://api-filmgen-pearl.vercel.app';
+
 const api: AxiosInstance = axios.create({
-  baseURL: 'https://api-filmgen-pearl.vercel.app',
+  baseURL: BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },
 });
 
 const apiAuth: AxiosInstance = axios.create({
-  baseURL: 'https://api-filmgen-pearl.vercel.app',
+  baseURL: BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },

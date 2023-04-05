@@ -17,7 +17,7 @@ export const BurgerM = styled.div`
     align-self: flex-end;
     height: 2px;
     width: 100%;
-    background: #fff;
+    background: ${PALETTE.white};
   }
 
   & .bgMid {

@@ -21,7 +21,7 @@ export const Root = styled.div<Iresize>`
     display: block;
     width: 100%;
     height: 1px;
-    background-color: #e1d7d7;
+    background-color: ${PALETTE.lightPink};
     margin: 15px 0 15px 0;
   }
   & .login,
@@ -55,7 +55,7 @@ export const Root = styled.div<Iresize>`
     height: 20px;
     display: flex;
     justify-content: center;
-    border: 2px solid #9e9e9e;
+    border: 2px solid ${PALETTE.drab};
     margin-right: 15px;
     border-radius: 3px;
     transition: all 0.3s;
@@ -83,19 +83,19 @@ export const Root = styled.div<Iresize>`
     0% {
       width: 0;
       height: 0;
-      border-color: #212121;
+      border-color: ${PALETTE.gray};
       transform: translate(0, 0) rotate(45deg);
     }
     33% {
       width: 4px;
       height: 0;
-      border-color: #212121;
+      border-color: ${PALETTE.gray};
       transform: translate(0, 0) rotate(45deg);
     }
     100% {
       width: 4px;
       height: 8px;
-      border-color: #212121;
+      border-color: ${PALETTE.gray};
       transform: translate(0, -8px) rotate(45deg);
     }
   }

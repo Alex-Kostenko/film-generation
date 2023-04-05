@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
 import Slider from 'react-slick';
 
-import queryMovie from '@/Services/queryMovies';
 import SliderText from '@/components/SliderText';
 import LeftArrow from '@/icons/LeftArrow';
 import RightArrow from '@/icons/RightArrow';
@@ -12,9 +11,10 @@ import { RightArroww, LeftArroww, ReactSlick, Mask } from './style';
 
 interface IHomePage {
   propMovies: MovieEntity[];
+  moviePoster: string;
 }
 
-const SliderSlick: FC<IHomePage> = ({ propMovies }) => {
+const SliderSlick: FC<IHomePage> = ({ propMovies, moviePoster }) => {
   const sliderRef = React.createRef<Slider>();
 
   return (
@@ -32,8 +32,8 @@ const SliderSlick: FC<IHomePage> = ({ propMovies }) => {
             <SliderText movieData={item} />
             <img
               alt="slider img"
-              //TODO move base url to env & add logic for check mobile device
-              src={`https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/${item.poster_path}`}
+              //TODO add logic for check mobile device
+              src={`${moviePoster}${item.poster_path}`}
             />
           </div>
         ))}
@@ -41,15 +41,5 @@ const SliderSlick: FC<IHomePage> = ({ propMovies }) => {
     </ReactSlick>
   );
 };
-
-export async function getServerSideProps() {
-  const popylarMovies = await queryMovie.getPopularMovie();
-
-  return {
-    props: {
-      popylarMovies,
-    },
-  };
-}
 
 export default SliderSlick;
