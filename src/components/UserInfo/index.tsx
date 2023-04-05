@@ -8,6 +8,7 @@ interface PasswordState {
 
 import queryAuthorization from '@/Services/queryAuthorization';
 import queryUser from '@/Services/queryUser';
+import { regexpEmail } from '@/utils/constants';
 
 import {
   PasswordContainer,
@@ -78,7 +79,7 @@ const UserInfo = () => {
   };
 
   const validateEmail = (email: string) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailRegex = regexpEmail;
     return emailRegex.test(email);
   };
 

@@ -3,7 +3,7 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { IName } from '@/interfaces';
-import { optionSize } from '@/utils/constants';
+import { defaultPageSize, optionSize } from '@/utils/constants';
 
 import Reload from '../../../public/reload.svg';
 
@@ -45,7 +45,9 @@ const PageManagementComponent: FC<IPageManagement> = ({ query, setQuery }) => {
       <Select
         className="selectCategory"
         placeholder={
-          query.pageSize === 5 ? t('movieList.countFilm') : query.pageSize
+          query.pageSize === defaultPageSize
+            ? t('movieList.countFilm')
+            : query.pageSize
         }
         onChange={(name: IName) => {
           setQuery({ ...query, pageSize: Number(name.label), currentPage: 0 });
