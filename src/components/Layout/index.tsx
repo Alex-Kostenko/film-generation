@@ -9,32 +9,23 @@ import Footer from '../Footer';
 import SideBar from '../SideBar';
 import ModalUI from '../modalUI';
 
-import { LayoutContainer } from './style';
+import { Root } from './style';
 
 const Layout: FC<ILayoutProps> = ({ children }) => {
   const router = useRouter();
 
   const [isModalOpen, openModal, closeModal] = useToggle();
 
-  //TODO improve
-  if (router.pathname !== '/')
-    return (
-      <LayoutContainer>
-        <SideBar />
-        <HorizontalSideBar openModal={openModal} />
-        <ModalUI isModalOpen={isModalOpen} closeModal={closeModal} />
-        {children}
-        <Footer />
-      </LayoutContainer>
-    );
+  let isLoyaout = router.pathname !== '/';
 
   return (
-    <>
+    <Root className={`${isLoyaout && 'loyoutContainer'}`}>
       <SideBar />
       <HorizontalSideBar openModal={openModal} />
       <ModalUI isModalOpen={isModalOpen} closeModal={closeModal} />
       {children}
-    </>
+      {isLoyaout && <Footer />}
+    </Root>
   );
 };
 
