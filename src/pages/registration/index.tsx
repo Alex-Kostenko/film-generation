@@ -21,9 +21,12 @@ const Login = dynamic(() => import('@/components/Login'), {
   ssr: false,
 });
 
-const RegistrationUser = dynamic(() => import('@/components/Registr'), {
-  ssr: false,
-});
+const RegistrationUser = dynamic(
+  () => import('@/components/RegistrationUser'),
+  {
+    ssr: false,
+  },
+);
 
 const Registration = () => {
   const { t } = useTranslation();

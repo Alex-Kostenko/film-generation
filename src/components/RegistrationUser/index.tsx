@@ -5,8 +5,8 @@ import { useTranslation } from 'react-i18next';
 import queryAuthorization from '@/Services/queryAuthorization';
 
 import { Root, WrapperLoginBlock } from './style';
+import { regexpEmail } from '@/utils/constants';
 
-//TODO change folder name
 const RegistrationUser = ({ check }: any) => {
   const { t } = useTranslation();
 
@@ -17,43 +17,35 @@ const RegistrationUser = ({ check }: any) => {
     againPass: '',
   });
 
-  //TODO change isEnter
   const [styleAndBoolean, setStyleAndBoolean] = useState<any>({
-    name: { nameStyle: 'none', isEnter: false },
-    email: { emailStyle: 'none', isEnter: false },
-    password: { passwordStyle: 'none', isEnter: false },
-    againPass: { againPassStyle: 'none', isEnter: false },
+    name: { nameStyle: 'none', isValidField: false },
+    email: { emailStyle: 'none', isValidField: false },
+    password: { passwordStyle: 'none', isValidField: false },
+    againPass: { againPassStyle: 'none', isValidField: false },
   });
-  //TODO clear code
+
   const handleEnter = async () => {
-    styleAndBoolean.name.isEnter &&
-      styleAndBoolean.email.isEnter &&
-      styleAndBoolean.password.isEnter &&
-      styleAndBoolean.againPass.isEnter &&
+    styleAndBoolean.name.isValidField &&
+      styleAndBoolean.email.isValidField &&
+      styleAndBoolean.password.isValidField &&
+      styleAndBoolean.againPass.isValidField &&
       check &&
-      // eslint-disable-next-line
-      //  try {
       (await queryAuthorization.register({
         username: loginForm.nameInput,
         email: loginForm.email,
         password: loginForm.password,
       }));
-
-    // } catch (error: unknown) {
-    //   // notify();
-    // }
   };
 
   const validateEmail = (email: string) => {
-    //TODO move to file with RegExps
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailRegex = regexpEmail;
     setLoginForm({ ...loginForm, email: email });
 
     setStyleAndBoolean({
       ...styleAndBoolean,
       email: {
         emailStyle: emailRegex.test(email) ? 'none' : 'rgb(167 84 84 / 20%);',
-        isEnter: emailRegex.test(email),
+        isValidField: emailRegex.test(email),
       },
     });
   };
@@ -63,23 +55,16 @@ const RegistrationUser = ({ check }: any) => {
     styleAndBooleanKey: string,
     styleAndBooleanSecondKey: string,
   ) => {
-    //TODO chagne name & check
-    const a = loginForm[nameOFInput].length <= 3;
-    // loginForm[`${nameOFInput}`].length <= 3
+    const checkLength = loginForm[nameOFInput].length <= 3;
     setStyleAndBoolean({
       ...styleAndBoolean,
-      [`${styleAndBooleanKey}`]: {
-        [`${styleAndBooleanSecondKey}`]: a ? 'rgb(167 84 84 / 20%);' : 'none',
-        isEnter: !a,
+      [styleAndBooleanKey]: {
+        [styleAndBooleanSecondKey]: checkLength
+          ? 'rgb(167 84 84 / 20%);'
+          : 'none',
+        isValidField: !checkLength,
       },
     });
-    // : setStyleAndBoolean({
-    //     ...styleAndBoolean,
-    //     [`${styleAndBooleanKey}`]: {
-    //       [`${styleAndBooleanSecondKey}`]: 'none',
-    //       isEnter: true,
-    //     },
-    //   });
   };
 
   useEffect(() => {
@@ -91,21 +76,15 @@ const RegistrationUser = ({ check }: any) => {
   }, [loginForm.password]);
 
   useEffect(() => {
-    //TODO
-    if (loginForm.password === loginForm.againPass) {
-      setStyleAndBoolean({
-        ...styleAndBoolean,
-        againPass: { againPassStyle: 'none', isEnter: true },
-      });
-    } else {
-      setStyleAndBoolean({
-        ...styleAndBoolean,
-        againPass: {
-          againPassStyle: 'rgb(167 84 84 / 20%);',
-          isEnter: false,
-        },
-      });
-    }
+    const checkPass = loginForm.password === loginForm.againPass;
+
+    setStyleAndBoolean({
+      ...styleAndBoolean,
+      againPass: {
+        againPassStyle: checkPass ? 'none' : 'rgb(167 84 84 / 20%);',
+        isValidField: checkPass,
+      },
+    });
   }, [loginForm.againPass]);
 
   return (
@@ -121,7 +100,7 @@ const RegistrationUser = ({ check }: any) => {
         <Input
           inputType={'text'}
           label={t('registration.name')}
-          class={'name'}
+          className={'name'}
           value={loginForm.nameInput}
           onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
             setLoginForm({ ...loginForm, nameInput: event.target.value });
@@ -131,7 +110,7 @@ const RegistrationUser = ({ check }: any) => {
         <Input
           inputType={'text'}
           label={t('registration.email')}
-          class={'email'}
+          className={'email'}
           value={loginForm.email}
           //TODO change lib types
           onChange={(e: any) => validateEmail(e.target.value)}
@@ -140,7 +119,7 @@ const RegistrationUser = ({ check }: any) => {
         <Input
           inputType={'password'}
           label={t('registration.password')}
-          class={'password'}
+          className={'password'}
           value={loginForm.password}
           //TODO Change input logic GLOBAL
           onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
@@ -150,8 +129,7 @@ const RegistrationUser = ({ check }: any) => {
         <Input
           inputType={'password'}
           label={t('registration.againPassword')}
-          //TODO change class to className
-          class={'againPass'}
+          className={'againPass'}
           value={loginForm.againPass}
           onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
             setLoginForm({ ...loginForm, againPass: event.target.value })

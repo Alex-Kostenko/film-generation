@@ -20,6 +20,7 @@ import {
   Wrapper,
   Img,
 } from './style';
+import { regexpEmail } from '@/utils/constants';
 
 const UserInfo = () => {
   const { t } = useTranslation();
@@ -78,7 +79,7 @@ const UserInfo = () => {
   };
 
   const validateEmail = (email: string) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailRegex = regexpEmail;
     return emailRegex.test(email);
   };
 
