@@ -16,14 +16,18 @@ export const Title = styled.h1`
 export const Wrapper = styled.div`
   position: relative;
   display: flex;
+
   @media (max-width: 1090px) {
     margin-left: 60px;
   }
-  @media (max-width: 700px) {
-    flex-direction: column;
+
+  @media (max-width: 900px) {
+    justify-content: space-around;
   }
+
   @media (max-width: 600px) {
-    margin: 15px;
+    flex-direction: column;
+    margin: 0 auto;
   }
 `;
 

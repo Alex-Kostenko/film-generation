@@ -10,19 +10,14 @@ import queryAuthorization from '@/Services/queryAuthorization';
 import queryUser from '@/Services/queryUser';
 
 import {
-  InformationItem,
-  InformationName,
-  InformationText,
-  ColumnContainer,
+  PasswordContainer,
+  ButtonContainer,
   PasswordButton,
   InputComponent,
-  PasswordItem,
-  PasswordName,
-  PasswordText,
-  Information,
+  DataContainer,
   EditButton,
-  Password,
   ErrorText,
+  Wrapper,
   Img,
 } from './style';
 
@@ -32,11 +27,6 @@ const UserInfo = () => {
     username: '',
     email: '',
   });
-  const [userInfo, setUserInfo] = useState({
-    username: '',
-    email: '',
-  });
-
   const [password, setPassword] = useState({
     currentPassword: '',
     newPassword: '',
@@ -45,30 +35,20 @@ const UserInfo = () => {
     currentPassword: false,
     newPassword: false,
   });
-  const [editMode, setEditMode] = useState(false);
   const [valid, setValid] = useState({ nameValid: true, emailValid: true });
+  const [editMode, setEditMode] = useState(false);
 
   useEffect(() => {
     (async () => {
       const profileData = await queryAuthorization.getProfileData();
       setUserData(profileData);
-      setUserInfo(profileData);
     })();
   }, []);
 
-  useEffect(() => {
-    {
-      userData.username &&
-        userData.email &&
-        (async () => {
-          const newUserData = {
-            username: userData.username,
-            email: userData.email,
-          };
-          await queryUser.changeUserData(newUserData);
-        })();
-    }
-  }, [userData.username, userData.email]);
+  const editData = async () => {
+    editMode && (await queryUser.changeUserData(userData));
+    setEditMode(!editMode);
+  };
 
   const editPassword = async () => {
     await queryUser.changeUserPasswoed(password);
@@ -79,12 +59,12 @@ const UserInfo = () => {
   };
 
   const changeName = (name: string) => {
-    setUserInfo((prev) => ({ ...prev, username: name }));
+    setUserData((prev) => ({ ...prev, username: name }));
     setValid((prev) => ({ ...prev, nameValid: validateName(name) }));
   };
 
   const changeEmail = (email: string) => {
-    setUserInfo((prev) => ({ ...prev, email: email }));
+    setUserData((prev) => ({ ...prev, email: email }));
     setValid((prev) => ({ ...prev, emailValid: validateEmail(email) }));
   };
 
@@ -110,126 +90,86 @@ const UserInfo = () => {
   };
 
   return (
-    <ColumnContainer>
-      <Information>
-        <InformationItem>
-          <InformationName>{t('userProfile.name')}:</InformationName>
-          <InformationText>
-            {editMode ? (
-              <InputComponent
-                inputType="text"
-                value={userInfo.username}
-                onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-                  changeName(event.target.value)
-                }
-                disabled={!editMode}
-                onBlur={(event: React.ChangeEvent<HTMLInputElement>) => {
-                  setEditMode(!editMode);
-                  setUserData((prev) => ({
-                    ...prev,
-                    username: event.target.value,
-                  }));
-                }}
-              />
-            ) : userData.username ? (
-              userData.username
-            ) : (
-              '...'
-            )}
-            {!valid.nameValid && (
-              <ErrorText>{t('userProfile.errorName')}</ErrorText>
-            )}
-          </InformationText>
+    <Wrapper>
+      <DataContainer>
+        <InputComponent
+          label={t('userProfile.name')}
+          inputType="text"
+          value={userData.username}
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+            changeName(event.target.value)
+          }
+          disabled={!editMode}
+        />
+        {!valid.nameValid && (
+          <ErrorText>{t('userProfile.errorName')}</ErrorText>
+        )}
+        <InputComponent
+          label={t('userProfile.email')}
+          inputType="text"
+          value={userData.email}
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+            changeEmail(event.target.value)
+          }
+          disabled={!editMode}
+        />
+        {!valid.emailValid && (
+          <ErrorText>{t('userProfile.errorEmail')}</ErrorText>
+        )}
+        <ButtonContainer>
+          <EditButton
+            value={editMode ? t('userProfile.accept') : t('userProfile.edit')}
+            onClick={editData}
+          />
           {editMode && (
             <EditButton
               value={t('userProfile.cancel')}
               onClick={() => setEditMode(!editMode)}
             />
           )}
-          <EditButton
-            value={t('userProfile.edit')}
-            onClick={() => setEditMode(!editMode)}
+        </ButtonContainer>
+      </DataContainer>
+      <PasswordContainer>
+        <div style={{ position: 'relative' }}>
+          <InputComponent
+            label={t('userProfile.currentPassword')}
+            inputType={showPassword.currentPassword ? 'text' : 'password'}
+            value={password.currentPassword}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+              changePassword('currentPassword', event.target.value)
+            }
           />
-        </InformationItem>
-        <InformationItem>
-          <InformationName>{t('userProfile.email')}:</InformationName>
-          <InformationText>
-            {editMode ? (
-              <InputComponent
-                inputType="text"
-                value={userInfo.email}
-                onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-                  changeEmail(event.target.value)
-                }
-                disabled={!editMode}
-                onBlur={(event: React.ChangeEvent<HTMLInputElement>) => {
-                  setEditMode(!editMode);
-                  setUserData((prev) => ({
-                    ...prev,
-                    email: event.target.value,
-                  }));
-                }}
-              />
-            ) : userData.email ? (
-              userData.email
-            ) : (
-              '...'
-            )}
-            {!valid.emailValid && (
-              <ErrorText>{t('userProfile.errorEmail')}</ErrorText>
-            )}
-          </InformationText>
-        </InformationItem>
-      </Information>
-      <Password>
-        <PasswordItem>
-          <PasswordName>{t('userProfile.currentPassword')}:</PasswordName>
-          <PasswordText>
-            <div style={{ position: 'relative' }}>
-              <InputComponent
-                inputType={showPassword.currentPassword ? 'text' : 'password'}
-                value={password.currentPassword}
-                onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-                  changePassword('currentPassword', event.target.value)
-                }
-              />
-              <Img
-                onClick={() => toggleShowPassword('currentPassword')}
-                src={'/eye_visible_icon.svg'}
-                width={'30'}
-                height={'30'}
-                alt={'buttonBack'}
-              />
-            </div>
-          </PasswordText>
-        </PasswordItem>
-        <PasswordItem>
-          <PasswordName>{t('userProfile.newPassword')}:</PasswordName>
-          <PasswordText>
-            <div style={{ position: 'relative' }}>
-              <InputComponent
-                inputType={showPassword.newPassword ? 'text' : 'password'}
-                value={password.newPassword}
-                onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-                  changePassword('newPassword', event.target.value)
-                }
-              />
-              <Img
-                onClick={() => toggleShowPassword('newPassword')}
-                src={'/eye_visible_icon.svg'}
-                width={'30'}
-                height={'30'}
-                alt={'buttonBack'}
-              />
-            </div>
-          </PasswordText>
-        </PasswordItem>
-      </Password>
-      <PasswordButton
-        value={t('userProfile.changePassword')}
-        onClick={editPassword}
-      />
-    </ColumnContainer>
+          <Img
+            onClick={() => toggleShowPassword('currentPassword')}
+            src={'/eye_visible_icon.svg'}
+            width={'30'}
+            height={'30'}
+            alt={'buttonBack'}
+          />
+        </div>
+        <div style={{ position: 'relative' }}>
+          <InputComponent
+            label={t('userProfile.newPassword')}
+            inputType={showPassword.newPassword ? 'text' : 'password'}
+            value={password.newPassword}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+              changePassword('newPassword', event.target.value)
+            }
+          />
+          <Img
+            onClick={() => toggleShowPassword('newPassword')}
+            src={'/eye_visible_icon.svg'}
+            width={'30'}
+            height={'30'}
+            alt={'buttonBack'}
+          />
+        </div>
+        <PasswordButton
+          value={t('userProfile.changePassword')}
+          onClick={editPassword}
+        />
+      </PasswordContainer>
+    </Wrapper>
   );
 };
 
