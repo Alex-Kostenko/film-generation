@@ -10,7 +10,7 @@ export const Title = styled.h1`
   color: ${PALETTE.crimson.middle};
 
   @media (max-width: 600px) {
-    margin-top: 50px;
+    margin: 60px 0 20px 20px;
   }
 `;
 
@@ -47,6 +47,11 @@ export const LogoutButton = styled(Button)`
   margin: 10px;
 
   @media (max-width: 600px) {
+    top: 50px;
+    margin-right: 20px;
+  }
+
+  @media (max-width: 500px) {
     top: 50px;
   }
 `;
