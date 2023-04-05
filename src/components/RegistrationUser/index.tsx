@@ -3,9 +3,9 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import queryAuthorization from '@/Services/queryAuthorization';
+import { regexpEmail } from '@/utils/constants';
 
 import { Root, WrapperLoginBlock } from './style';
-import { regexpEmail } from '@/utils/constants';
 
 const RegistrationUser = ({ check }: any) => {
   const { t } = useTranslation();

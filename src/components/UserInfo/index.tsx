@@ -8,6 +8,7 @@ interface PasswordState {
 
 import queryAuthorization from '@/Services/queryAuthorization';
 import queryUser from '@/Services/queryUser';
+import { regexpEmail } from '@/utils/constants';
 
 import {
   PasswordContainer,
@@ -20,7 +21,6 @@ import {
   Wrapper,
   Img,
 } from './style';
-import { regexpEmail } from '@/utils/constants';
 
 const UserInfo = () => {
   const { t } = useTranslation();
