@@ -168,10 +168,6 @@ export interface IStars {
     }>
   >;
 }
-export interface IQueryToken {
-  accessToken: string;
-  refreshToken: string;
-}
 export interface IQuery {
   currentPage: number;
   count: number;

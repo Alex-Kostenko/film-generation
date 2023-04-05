@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import queryAuthorization from '@/Services/queryAuthorization';
-// import { IQueryToken } from '@/interfaces';
 
 import { Root, WrapperLoginBlock } from './style';
 
@@ -11,7 +10,6 @@ const Login = () => {
   const { t } = useTranslation();
 
   const [loginForm, setLoginForm] = useState({ email: '', password: '' });
-  // const [resultQuery, setResultQuery] = useState<IQueryToken | any>({});
 
   const handleEnter = async () => {
     const res = await queryAuthorization.login({
@@ -19,7 +17,6 @@ const Login = () => {
       password: loginForm.password,
     });
     localStorage.setItem('access_token', res?.accessToken);
-    // setResultQuery(res);
   };
 
   return (
