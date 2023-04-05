@@ -5,7 +5,7 @@ import { PALETTE } from '@/palette';
 
 export const Title = styled.h1`
   width: fit-content;
-  margin: 10px auto 20px auto;
+  margin: 10px auto 25px auto;
   font-size: 30px;
   color: ${PALETTE.crimson.middle};
 
@@ -42,7 +42,7 @@ export const ImgContainer = styled.div`
 export const LogoutButton = styled(Button)`
   max-width: 100px;
   position: absolute;
-  top: 0;
+  top: 2px;
   right: 0;
   margin: 10px;
 
