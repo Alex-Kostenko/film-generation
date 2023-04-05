@@ -32,7 +32,14 @@ import {
   Root,
 } from '../../styles/aboutFilmStyles/style';
 
-const AboutFilm: FC<IAboutFilmProps> = ({ movie, id, apiKey }) => {
+const AboutFilm: FC<IAboutFilmProps> = ({
+  translateLink,
+  youTubeLink,
+  imgLink,
+  apiKey,
+  movie,
+  id,
+}) => {
   const { t } = useTranslation();
   const router = useRouter();
   const [rezkaLink, setRezkaLink] = useState('');
@@ -56,8 +63,7 @@ const AboutFilm: FC<IAboutFilmProps> = ({ movie, id, apiKey }) => {
     name: '',
   };
 
-  //TODO ENV bad name
-  const src = `https://www.themoviedb.org/t/p/w300_and_h450_bestv2${movie.poster_path}`;
+  const movieLink = `${imgLink}${movie.poster_path}`;
 
   useEffect(() => {
     (async () => {
@@ -88,10 +94,9 @@ const AboutFilm: FC<IAboutFilmProps> = ({ movie, id, apiKey }) => {
         language = 'en';
     }
 
-    //TODO link env
     axios
       .post(
-        'https://translation.googleapis.com/language/translate/v2',
+        `${translateLink}`,
         {},
         {
           params: {
@@ -120,11 +125,11 @@ const AboutFilm: FC<IAboutFilmProps> = ({ movie, id, apiKey }) => {
               priority={true}
               className="filmID"
               //TODO check src
-              height={src ? 450 : 280}
+              height={movieLink ? 450 : 280}
               //TODO check src
-              width={src ? 300 : 280}
+              width={movieLink ? 300 : 280}
               unoptimized={true}
-              src={src ? src : srcNoImage}
+              src={movieLink ? movieLink : srcNoImage}
               alt={'movie_img'}
             />
           </FilmImage>
@@ -145,7 +150,7 @@ const AboutFilm: FC<IAboutFilmProps> = ({ movie, id, apiKey }) => {
         {errorLink ? (
           <TrailerText>{t('filmPage.trailerText')}</TrailerText>
         ) : trailerLink ? (
-          <VideoPlayer link={trailerLink} />
+          <VideoPlayer youTubeLink={youTubeLink} link={trailerLink} />
         ) : (
           <Loader />
         )}
@@ -173,6 +178,9 @@ export async function getServerSideProps({
 
   return {
     props: {
+      translateLink: process.env.GOOGLE_TRANSLATE_LINK,
+      youTubeLink: process.env.YOUTUBE_LINK,
+      imgLink: process.env.MOVIE_PICTURE,
       apiKey: process.env.GOOGLE_TRANSLATE_API_KEY,
       ...(await serverSideTranslations(locale)),
       movie,

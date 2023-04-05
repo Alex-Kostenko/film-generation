@@ -4,15 +4,15 @@ import { Container, Player } from './style';
 
 interface IVideoPlayerProps {
   link: string;
+  youTubeLink: string;
 }
 
-const VideoPlayer: FC<IVideoPlayerProps> = ({ link }) => {
+const VideoPlayer: FC<IVideoPlayerProps> = ({ youTubeLink, link }) => {
   return (
     <Container>
       <Player
         className="react-player"
-        //TODO env
-        url={`https://www.youtube.com/watch?v=${link}`}
+        url={`${youTubeLink}${link}`}
         width="100%"
         height="100%"
         controls={true}
