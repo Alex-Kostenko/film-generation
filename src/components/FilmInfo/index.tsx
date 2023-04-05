@@ -24,8 +24,7 @@ const FilmInfo: FC<IFilmInfoProps> = ({
   time,
 }) => {
   const { t } = useTranslation();
-  //TODO change name , try to use enum
-  const ITEM = [
+  const film = [
     { name: t('filmPage.name'), text: name },
     { name: t('filmPage.year'), text: year },
     { name: t('filmPage.country'), text: country },
@@ -51,7 +50,7 @@ const FilmInfo: FC<IFilmInfoProps> = ({
 
   return (
     <DescriptionContainer>
-      {ITEM.map((item, index) => (
+      {film.map((item, index) => (
         <DescriptionItem key={index}>
           <DescriptionName>{item.name}:</DescriptionName>
           <DescriptionText>{item.text}</DescriptionText>
