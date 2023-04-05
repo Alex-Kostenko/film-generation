@@ -44,4 +44,9 @@ export const LogoutButton = styled(Button)`
   position: absolute;
   top: 0;
   right: 0;
+  margin: 10px;
+
+  @media (max-width: 600px) {
+    top: 50px;
+  }
 `;
