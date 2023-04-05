@@ -10,7 +10,7 @@ export const Title = styled.h1`
   color: ${PALETTE.crimson.middle};
 
   @media (max-width: 600px) {
-    margin: 60px 0 20px 20px;
+    margin: 16px 0 20px 20px;
   }
 `;
 

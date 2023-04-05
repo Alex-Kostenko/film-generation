@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -16,6 +17,7 @@ import {
 import { userProfileImage } from '@/utils/constants';
 
 const UserProfile = () => {
+  const router = useRouter();
   const { t } = useTranslation();
   const [title, setTitle] = useState<null | string>('');
   const [textButton, setTextButton] = useState<null | string>('');
@@ -23,6 +25,7 @@ const UserProfile = () => {
   const logout = async () => {
     await queryAuthorization.logout();
     localStorage.removeItem('access_token');
+    router.push('/');
   };
 
   useEffect(() => {
