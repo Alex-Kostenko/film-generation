@@ -26,7 +26,7 @@ const Login = () => {
           inputType={'text'}
           label={t('registration.email')}
           value={loginForm.email}
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+          onChange={(event) =>
             setLoginForm({ ...loginForm, email: event.target.value })
           }
         />
@@ -34,7 +34,7 @@ const Login = () => {
           inputType={'password'}
           label={t('registration.password')}
           value={loginForm.password}
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+          onChange={(event) =>
             setLoginForm({ ...loginForm, password: event.target.value })
           }
         />
