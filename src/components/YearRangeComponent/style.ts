@@ -14,22 +14,23 @@ export const Root = styled.div`
   }
 
   & .yrp-picker-box span {
-    color: #fff;
+    color: ${PALETTE.white};
     font-family: 'Urbanist';
     font-weight: 700;
   }
 
   & .yrp-picker-box i {
-    border-color: #fff;
+    border-color: ${PALETTE.white};
   }
 
   & .yrp-picker-box:hover,
   .custom-year-range-picker .yrp-picker-box:focus {
-    box-shadow: 0.3em 0.3em 0 0 #e4dada, inset 0.3em 0.3em 0 0 #e4dada;
+    box-shadow: 0.3em 0.3em 0 0 ${PALETTE.beige},
+      inset 0.3em 0.3em 0 0 ${PALETTE.beige};
     cursor: pointer;
-    color: #ffffff;
-    border-color: #1f1f1f;
-    background-color: rgb(243 63 63 / 0%) !important;
+    color: ${PALETTE.white};
+    border-color: ${PALETTE.dark.darkGrey};
+    background-color: ${PALETTE.crimson.middle} !important;
   }
   & .yrp-container {
     min-width: 0px;

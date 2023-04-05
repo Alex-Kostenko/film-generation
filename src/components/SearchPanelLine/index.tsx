@@ -207,13 +207,13 @@ const SearchPanel: FC<ISearchPanel> = ({
         <label className="labelFilter">
           <p className="textFilter">{t('filter.adult')}</p>
           <Switch
-            offColor="#1f1f1f"
-            onColor="#f33f3f"
+            offColor={PALETTE.dark.darkGrey}
+            onColor={PALETTE.crimson.middle}
             uncheckedIcon={false}
             checkedIcon={false}
             height={22}
             width={33}
-            activeBoxShadow="0 0 2px 3px #f33f3f"
+            activeBoxShadow={`0 0 2px 3px ${PALETTE.crimson.middle}`}
             onChange={(check) => handleChange(check, 'checkedAdult')}
             checked={checked.checkedAdult}
           />
@@ -223,13 +223,13 @@ const SearchPanel: FC<ISearchPanel> = ({
         <label className="labelFilter">
           <p className="textFilter">{t('filter.description')}</p>
           <Switch
-            offColor="#1f1f1f"
-            onColor="#f33f3f"
+            offColor={PALETTE.dark.darkGrey}
+            onColor={PALETTE.crimson.middle}
             uncheckedIcon={false}
             checkedIcon={false}
             height={22}
             width={33}
-            activeBoxShadow="0 0 2px 3px #f33f3f"
+            activeBoxShadow={`0 0 2px 3px ${PALETTE.crimson.middle}`}
             onChange={(check) => handleChange(check, 'checkedSearchInDesc')}
             checked={checked.checkedSearchInDesc}
           />
