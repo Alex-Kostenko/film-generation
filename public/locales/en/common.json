@@ -82,6 +82,9 @@
   "userProfile": {
     "profile": "Profile",
     "edit": "Edit",
+    "cancel": "Cancel",
+    "accept": "Accept",
+    "logout": "Logout",
     "changePassword": "Change password",
     "name": "Name",
     "email": "Email",

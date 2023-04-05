@@ -83,6 +83,9 @@
   "userProfile": {
     "profile": "Профиль",
     "edit": "Редактировать",
+    "cancel": "Назад",
+    "accept": "Принять",
+    "logout": "Выйти",
     "changePassword": "Изменить пароль",
     "name": "Имя",
     "email": "Почта",

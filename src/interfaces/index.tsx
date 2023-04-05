@@ -205,8 +205,12 @@ export interface ILoginBody {
 }
 
 export interface IUserBody {
-  username: string;
-  email: string;
-  password: string;
-  refreshToken?: string;
+  username?: string;
+  email?: string;
+  password?: string;
+}
+
+export interface IPasswordBody {
+  currentPassword: string;
+  newPassword: string;
 }

@@ -6,7 +6,7 @@ import { PALETTE } from '@/palette';
 
 export const Img = styled(Image)`
   position: absolute;
-  right: 3px;
+  left: 185px;
   top: 3px;
   cursor: pointer;
   stroke: ${PALETTE.crimson.middle};
@@ -21,20 +21,18 @@ export const Img = styled(Image)`
 `;
 
 export const PasswordButton = styled(Button)`
-  margin: 0 0 20px 40px;
-  @media (max-width: 700px) {
-    margin-left: 0;
-  }
+  width: 220px;
+  margin: 0;
 `;
 
 export const EditButton = styled(Button)`
-  max-width: 120px;
-  margin: 0 0 0 auto;
+  max-width: 100px;
+  margin: 0;
+`;
 
-  @media (max-width: 500px) {
-    position: absolute;
-    top: -55px;
-  }
+export const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
 `;
 
 export const ErrorText = styled.span`
@@ -45,88 +43,45 @@ export const ErrorText = styled.span`
   font-family: 'SFProDisplay-Light';
 `;
 
-export const ColumnContainer = styled.div`
+export const Wrapper = styled.div`
   display: flex;
-  flex-direction: column;
   width: 100%;
-`;
+  justify-content: space-around;
 
-export const Information = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-left: 40px;
-  margin-bottom: 15px;
-  padding-right: 5px;
-
-  @media (max-width: 991px) {
-    margin-top: 5px;
+  @media (max-width: 900px) {
+    width: fit-content;
+    flex-direction: column;
   }
 
-  @media (max-width: 700px) {
-    margin-left: 0;
-  }
-
-  :first-child {
-    border-bottom: 1px solid ${PALETTE.crimson.lite};
-  }
-`;
-
-export const InformationItem = styled.div`
-  position: relative;
-  display: flex;
-  align-items: baseline;
-  margin-bottom: 15px;
-
-  @media (max-width: 500px) {
-    :first-child {
-      margin-top: 60px;
-    }
-  }
-`;
-
-export const InformationName = styled.div`
-  margin-right: 5px;
-  min-width: 60px;
-  font-size: 15px;
-  letter-spacing: 1px;
-  color: ${PALETTE.beige};
-
-  @media (max-width: 991px) {
-    margin-right: 5px;
-    font-size: 13px;
-  }
-`;
-
-export const InformationText = styled.div`
-  letter-spacing: 1px;
-  font-size: 16px;
-  color: ${PALETTE.white};
-
-  @media (max-width: 991px) {
-    font-size: 14px;
+  @media (max-width: 600px) {
+    width: 100%;
   }
 `;
 
 export const InputComponent = styled(Input)``;
 
-export const Password = styled(Information)``;
+export const PasswordContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 200px;
+  justify-content: space-between;
+  padding: 0 20px;
+  border-left: 1px solid ${PALETTE.crimson.lite};
+  border-right: 1px solid ${PALETTE.crimson.lite};
 
-export const PasswordItem = styled(InformationItem)`
-  @media (max-width: 500px) {
-    flex-direction: column;
+  @media (max-width: 900px) {
+    max-width: 260px;
+    margin-bottom: 25px;
+    border: 0;
+  }
 
-    :first-child {
-      margin-top: 0px;
-    }
+  @media (max-width: 600px) {
+    margin: 10px auto;
   }
 `;
 
-export const PasswordName = styled(InformationName)`
-  min-width: 140px;
-
-  @media (max-width: 500px) {
-    margin-bottom: 10px;
+export const DataContainer = styled(PasswordContainer)`
+  @media (max-width: 900px) {
+    margin-bottom: 25px;
   }
 `;
-
-export const PasswordText = styled(InformationText)``;
