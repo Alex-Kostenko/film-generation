@@ -41,7 +41,6 @@ const SearchPanel: FC<ISearchPanel> = ({
     return str && str.charAt(0).toUpperCase() + str.slice(1);
   };
 
-  //TODO check
   useEffect(() => {
     (async () => {
       const genres = await queryMovie.getGenres();

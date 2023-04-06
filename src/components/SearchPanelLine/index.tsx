@@ -17,6 +17,8 @@ import {
   IQuery,
 } from '@/interfaces';
 import { PALETTE } from '@/palette';
+import { toUpperCase } from '@/utils/constants';
+import { Sort } from '@/utils/genres';
 import { useDebounce } from '@/utils/hooks/useDebounce';
 import { Paths } from '@/utils/paths';
 
@@ -103,20 +105,18 @@ const SearchPanel: FC<ISearchPanel> = ({
     { value: 'vote_average', label: t('filter.vote_average') },
     { value: 'title', label: t('filter.title') },
   ];
-  //TODO move to utils
-  const toUpperCase = (str: string) => {
-    return str.charAt(0).toUpperCase() + str.slice(1);
-  };
 
-  //TODO Check
   useEffect(() => {
     if (genres?.length === 0) {
       (async () => {
         const genres = await queryMovie.getGenres();
+
         setGenres(genres);
       })();
     }
+  }, []);
 
+  useEffect(() => {
     let genreLanguages: string;
 
     switch (router.locale) {
@@ -201,41 +201,33 @@ const SearchPanel: FC<ISearchPanel> = ({
     setChecked({ ...checked, [valueIsCheked]: check });
   };
 
+  const menuItem = [
+    { name: t('filter.adult'), params: 'checkedAdult' },
+    { name: t('filter.description'), params: 'checkedSearchInDesc' },
+  ];
+
   const menu = (
     <MenuFilter>
-      //TODO CHange logic use map
-      <MenuItem key="1">
-        <label className="labelFilter">
-          <p className="textFilter">{t('filter.adult')}</p>
-          <Switch
-            offColor={PALETTE.dark.darkGrey}
-            onColor={PALETTE.crimson.middle}
-            uncheckedIcon={false}
-            checkedIcon={false}
-            height={22}
-            width={33}
-            activeBoxShadow={`0 0 2px 3px ${PALETTE.crimson.middle}`}
-            onChange={(check) => handleChange(check, 'checkedAdult')}
-            checked={checked.checkedAdult}
-          />
-        </label>
-      </MenuItem>
-      <MenuItem key="2">
-        <label className="labelFilter">
-          <p className="textFilter">{t('filter.description')}</p>
-          <Switch
-            offColor={PALETTE.dark.darkGrey}
-            onColor={PALETTE.crimson.middle}
-            uncheckedIcon={false}
-            checkedIcon={false}
-            height={22}
-            width={33}
-            activeBoxShadow={`0 0 2px 3px ${PALETTE.crimson.middle}`}
-            onChange={(check) => handleChange(check, 'checkedSearchInDesc')}
-            checked={checked.checkedSearchInDesc}
-          />
-        </label>
-      </MenuItem>
+      {menuItem.map((switchInfo, index) => (
+        <MenuItem key={index + 1}>
+          <label className="labelFilter">
+            <p className="textFilter">{switchInfo.name}</p>
+
+            <Switch
+              offColor={PALETTE.dark.darkGrey}
+              onColor={PALETTE.crimson.middle}
+              uncheckedIcon={false}
+              checkedIcon={false}
+              height={22}
+              width={33}
+              activeBoxShadow={`0 0 2px 3px ${PALETTE.crimson.middle}`}
+              onChange={(check) => handleChange(check, switchInfo.params)}
+              checked={checked.checkedAdult}
+            />
+          </label>
+        </MenuItem>
+      ))}
+
       <MenuItem key="3">
         <Stars
           style={{ margin: '35px', color: PALETTE.dark.darkBlack }}
@@ -275,20 +267,18 @@ const SearchPanel: FC<ISearchPanel> = ({
             <TopArrow
               onClick={() => {
                 setQuery({ ...query, currentPage: 0 });
-                setAscDesc('asc');
+                setAscDesc(Sort.asc);
               }}
             >
-              //TODO create new file with ENUM ASC or DECS && &#9651; colors
-              from pallet
-              {ascDesc === 'desc' ? <>&#9651;</> : <>&#9650;</>}
+              {ascDesc === Sort.desc ? <>&#9651;</> : <>&#9650;</>}
             </TopArrow>
             <LeftArrow
               onClick={() => {
                 setQuery({ ...query, currentPage: 0 });
-                setAscDesc('desc');
+                setAscDesc(Sort.desc);
               }}
             >
-              {ascDesc === 'desc' ? <>&#9660;</> : <>&#9661;</>}
+              {ascDesc === Sort.desc ? <>&#9660;</> : <>&#9661;</>}
             </LeftArrow>
           </WrapperInArrowInFilter>
           <SelectComponent

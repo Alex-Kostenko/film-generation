@@ -22,6 +22,11 @@ export enum Genres {
   fantasy = 14,
 }
 
+export enum Sort {
+  asc = 'asc',
+  desc = 'desc',
+}
+
 export const notify = () =>
   toast.error('🦄 УПС ХАЛЕПКА', {
     position: 'top-right',

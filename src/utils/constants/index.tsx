@@ -13,6 +13,10 @@ export const settingsSlider = {
   autoplaySpeed: 5000,
 };
 
+export const toUpperCase = (str: string) => {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+};
+
 export const defaultPageSize = 5;
 
 export const regexpEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

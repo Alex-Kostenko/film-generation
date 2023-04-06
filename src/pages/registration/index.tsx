@@ -41,7 +41,7 @@ const Registration = () => {
     setSize(window.innerHeight);
     window.addEventListener('resize', () => setSize(window.innerHeight));
 
-    //TODO add return resize
+    return;
   }, []);
 
   return (

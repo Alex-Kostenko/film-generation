@@ -23,7 +23,7 @@ import {
   Paginate,
   Root,
 } from '@/styles/movieListStyles/style';
-import { Genres, notify } from '@/utils/genres';
+import { Genres, notify, Sort } from '@/utils/genres';
 import { Paths } from '@/utils/paths';
 
 interface PageChangeEvent {
@@ -96,7 +96,7 @@ const MovieList: FC<IMovieList> = ({ imgLink }) => {
   );
   //TODO ??
   const [valueSort, setValueSort] = useState(sorting ? sorting : 'popularity');
-  const [ascDesc, setAscDesc] = useState(ascDescc ? ascDescc : 'desc');
+  const [ascDesc, setAscDesc] = useState(ascDescc ? ascDescc : Sort.desc);
   const [selectedOptions, setSelectedOptions] = useState<ISelectedFilms[]>([]);
   const [inputValue, setInputValue] = useState<string>(searchTerm);
 
