@@ -27,8 +27,8 @@ export enum Sort {
   desc = 'desc',
 }
 
-export const notify = () =>
-  toast.error('🦄 УПС ХАЛЕПКА', {
+export const notify = (errorText: string) =>
+  toast.error(`${errorText} `, {
     position: 'top-right',
     autoClose: 5000,
     hideProgressBar: false,

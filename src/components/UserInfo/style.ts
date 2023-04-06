@@ -30,6 +30,8 @@ export const EditButton = styled(Button)`
   margin: 0;
 `;
 
+export const CancelButton = styled(EditButton)``;
+
 export const ButtonContainer = styled.div`
   display: flex;
   justify-content: space-between;

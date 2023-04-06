@@ -129,7 +129,7 @@ const MovieList: FC<IMovieList> = ({ imgLink }) => {
 
   useEffect(() => {
     if (content === undefined) {
-      notify();
+      notify('УПС ХАЛЕПКА');
     }
   }, [content]);
 
@@ -170,8 +170,8 @@ const MovieList: FC<IMovieList> = ({ imgLink }) => {
           count: allFilters.data.total_pages,
           isLoading: false,
         });
-      } catch (error: unknown) {
-        notify();
+      } catch (error: any) {
+        notify(error.response.data.message[0]);
       }
     })();
   }, [

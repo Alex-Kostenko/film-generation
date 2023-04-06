@@ -1,4 +1,5 @@
 import { IPasswordBody, IUserBody } from '@/interfaces';
+import { notify } from '@/utils/genres';
 
 import { api } from './config';
 
@@ -16,15 +17,19 @@ const queryUser = {
       const res = await api.patch('/users/update-user', body);
 
       return res.data;
-    } catch (error) {}
+    } catch (error: any) {
+      notify(error.response.data.message[0]);
+    }
   },
 
-  async changeUserPasswoed(body: IPasswordBody) {
+  async changeUserPassword(body: IPasswordBody) {
     try {
       const res = await api.patch('/users/change-password', body);
 
       return res.data;
-    } catch (error) {}
+    } catch (error: any) {
+      notify(error.response.data.message[0]);
+    }
   },
 };
 

@@ -1,14 +1,14 @@
 import { useTranslation } from 'next-i18next';
 import { useEffect, useState } from 'react';
+import { ToastContainer } from 'react-toastify';
 
+import queryAuthorization from '@/Services/queryAuthorization';
+import queryUser from '@/Services/queryUser';
+import { regexpEmail, regexName } from '@/utils/constants';
 interface PasswordState {
   currentPassword: boolean;
   newPassword: boolean;
 }
-
-import queryAuthorization from '@/Services/queryAuthorization';
-import queryUser from '@/Services/queryUser';
-import { regexpEmail } from '@/utils/constants';
 
 import {
   PasswordContainer,
@@ -16,6 +16,7 @@ import {
   PasswordButton,
   InputComponent,
   DataContainer,
+  CancelButton,
   EditButton,
   ErrorText,
   Wrapper,
@@ -25,6 +26,10 @@ import {
 const UserInfo = () => {
   const { t } = useTranslation();
   const [userData, setUserData] = useState({
+    username: '',
+    email: '',
+  });
+  const [previousData, setPreviousData] = useState({
     username: '',
     email: '',
   });
@@ -47,12 +52,30 @@ const UserInfo = () => {
   }, []);
 
   const editData = async () => {
-    editMode && (await queryUser.changeUserData(userData));
+    const name = userData.username;
+    const email = userData.email;
+
+    if (valid.nameValid) {
+      if (editMode) {
+        await queryUser.changeUserData(userData);
+      }
+      setEditMode(!editMode);
+      setPreviousData((prev) => ({ ...prev, username: name, email: email }));
+    }
+  };
+
+  const editCancel = async () => {
     setEditMode(!editMode);
+    setUserData((prev) => ({
+      ...prev,
+      username: previousData.username,
+      email: previousData.email,
+    }));
+    setValid({ nameValid: true, emailValid: true });
   };
 
   const editPassword = async () => {
-    await queryUser.changeUserPasswoed(password);
+    await queryUser.changeUserPassword(password);
     setPassword({
       currentPassword: '',
       newPassword: '',
@@ -74,7 +97,7 @@ const UserInfo = () => {
   };
 
   const validateName = (name: string) => {
-    const nameRegex = /^[a-zA-Z]+$/;
+    const nameRegex = regexName;
     return nameRegex.test(name);
   };
 
@@ -119,9 +142,9 @@ const UserInfo = () => {
             onClick={editData}
           />
           {editMode && (
-            <EditButton
+            <CancelButton
               value={t('userProfile.cancel')}
-              onClick={() => setEditMode(!editMode)}
+              onClick={editCancel}
             />
           )}
         </ButtonContainer>
@@ -166,6 +189,17 @@ const UserInfo = () => {
           onClick={editPassword}
         />
       </PasswordContainer>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </Wrapper>
   );
 };

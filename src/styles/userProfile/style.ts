@@ -43,8 +43,12 @@ export const LogoutButton = styled(Button)`
   max-width: 100px;
   position: absolute;
   top: -72px;
-  right: 5.5%;
+  right: 12%;
   margin: 10px;
+
+  @media (max-width: 1092px) {
+    right: 9%;
+  }
 
   @media (max-width: 600px) {
     margin-right: 20px;
