@@ -2,6 +2,20 @@ import styled from 'styled-components';
 
 import { PALETTE } from '@/palette';
 
+interface StyleRoot {
+  sliderSize: string;
+}
+
+export const Root = styled.div<StyleRoot>`
+  height: ${(props) => props.sliderSize};
+
+  .slick-slide img {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+  }
+`;
+
 export const ReactSlick = styled.div`
   position: relative;
   z-index: 2;

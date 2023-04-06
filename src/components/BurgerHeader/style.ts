@@ -74,7 +74,7 @@ export const BurgerHeader = styled.div`
   @media (max-width: 600px) {
     display: flex;
     justify-content: space-between;
-    height: 45px;
+    height: 6vh;
     width: 100%;
     background: ${PALETTE.gray};
     align-items: center;
