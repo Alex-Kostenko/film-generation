@@ -47,7 +47,7 @@ const Registration = () => {
   return (
     <>
       <Head>
-        <title>Registration</title>
+        <title>{t('main.registration')}</title>
       </Head>
       <Root sizeHeight={size}>
         <WrapperRagistration>
