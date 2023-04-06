@@ -19,6 +19,7 @@ import {
   cutString,
 } from '@/utils/aboutFilm';
 import { srcNoImage } from '@/utils/constants';
+import { Locale } from '@/utils/locale';
 
 import {
   LinkConteiner,
@@ -83,15 +84,14 @@ const AboutFilm: FC<IAboutFilmProps> = ({
     let language: string;
 
     switch (router.locale) {
-      //TODO move to ENUM all  country
-      case 'ua':
-        language = 'uk';
+      case Locale.ukrainian:
+        language = Locale.ukrainianOnGoogleTranslate;
         break;
-      case 'ru':
-        language = 'ru';
+      case Locale.russian:
+        language = Locale.russian;
         break;
       default:
-        language = 'en';
+        language = Locale.english;
     }
 
     axios
@@ -111,6 +111,22 @@ const AboutFilm: FC<IAboutFilmProps> = ({
       });
   }, [overview, router.locale]);
 
+  const generateWatchLink = (
+    locale: string | undefined,
+    originalTitle: string,
+    title: string,
+  ) => {
+    const rezkaLink = 'https://hdrezka.ag';
+    const watchText = t('filmPage.watch');
+    const onText = t('filmPage.on');
+    const linkText = locale === 'en' ? originalTitle : title;
+    return (
+      <Link href={rezkaLink} target="_blank">
+        {`${watchText} "${linkText}" ${onText} hdRezka`}
+      </Link>
+    );
+  };
+
   return (
     <>
       <Head>
@@ -124,12 +140,10 @@ const AboutFilm: FC<IAboutFilmProps> = ({
             <Image
               priority={true}
               className="filmID"
-              //TODO check src
-              height={movieLink ? 450 : 280}
-              //TODO check src
-              width={movieLink ? 300 : 280}
+              height={movie.poster_path ? 450 : 280}
+              width={movie.poster_path ? 300 : 280}
               unoptimized={true}
-              src={movieLink ? movieLink : srcNoImage}
+              src={movie.poster_path ? movieLink : srcNoImage}
               alt={'movie_img'}
             />
           </FilmImage>
@@ -156,14 +170,7 @@ const AboutFilm: FC<IAboutFilmProps> = ({
         )}
         <LinkConteiner>
           <LinkTitle>{t('filmPage.links')}:</LinkTitle>
-          //TODO move to func
-          {rezkaLink && (
-            <Link href={rezkaLink} target={'_blank'}>{`${t(
-              'filmPage.watch',
-            )} "${router.locale === 'en' ? original_title : title}" ${t(
-              'filmPage.on',
-            )} hdRezka`}</Link>
-          )}
+          {rezkaLink && generateWatchLink(router.locale, original_title, title)}
         </LinkConteiner>
       </Root>
     </>
