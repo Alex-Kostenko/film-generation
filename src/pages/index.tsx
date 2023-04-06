@@ -11,10 +11,11 @@ import { PanelWrapper, Root } from '../styles/indexStyles/style';
 
 interface IHomePage {
   popylarMovies: MovieEntity[];
-  moviePoster: string;
+  bigPoster: string;
+  smallPoster: string;
 }
 
-const HomePage: FC<IHomePage> = ({ popylarMovies, moviePoster }) => {
+const HomePage: FC<IHomePage> = ({ popylarMovies, bigPoster, smallPoster }) => {
   const [movieRating, setMovieRating] = useState(1);
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -24,7 +25,11 @@ const HomePage: FC<IHomePage> = ({ popylarMovies, moviePoster }) => {
         <title>Main</title>
       </Head>
       <Root>
-        <SliderSlick moviePoster={moviePoster} propMovies={popylarMovies} />
+        <SliderSlick
+          bigPoster={bigPoster}
+          propMovies={popylarMovies}
+          smallPoster={smallPoster}
+        />
         <PanelWrapper>
           <SearchPanel
             searchTerm={searchTerm}
@@ -43,7 +48,8 @@ export const getServerSideProps = async ({ locale }: ILocale) => {
 
   return {
     props: {
-      moviePoster: process.env.POSTER_IMAGE,
+      smallPoster: process.env.MOVIE_PICTURE,
+      bigPoster: process.env.POSTER_IMAGE,
       popylarMovies,
       ...(await serverSideTranslations(locale)),
     },
