@@ -53,8 +53,8 @@ const UserProfile = () => {
           />
         </ImgContainer>
         <UserInfo />
+        <LogoutButton value={textButton} onClick={logout} />
       </Wrapper>
-      <LogoutButton value={textButton} onClick={logout} />
     </>
   );
 };
