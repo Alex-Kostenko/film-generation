@@ -11,7 +11,7 @@ export const Root = styled.div<StyleRoot>`
 
   .slick-slide img {
     width: 100%;
-    height: 100vh;
+    height: ${(props) => props.sliderSize};
     object-fit: cover;
   }
 `;
