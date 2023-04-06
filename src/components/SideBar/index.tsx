@@ -13,7 +13,7 @@ import UnitedKingdom from '../../../public/unitedKingdom(GB).svg';
 
 import { SiderBar, WarpperLanguage, WrapperSvg } from './style';
 
-const lngs = ['en', 'ua', 'ru'];
+const lngs = { en: 'en', ua: 'ua', ru: 'ru' };
 
 const SideBar = () => {
   const router = useRouter();
@@ -28,9 +28,11 @@ const SideBar = () => {
     } else router.push(`${Paths.registration}`);
   };
 
-  const handleSwitcherLanguage = (language: number) => {
+  const handleSwitcherLanguage = (language: string) => {
     const { pathname, query, asPath } = router;
-    router.push({ pathname, query }, asPath, { locale: lngs[language] });
+    router.push({ pathname, query }, asPath, {
+      locale: lngs[language as keyof typeof lngs],
+    });
   };
 
   return (
@@ -48,60 +50,42 @@ const SideBar = () => {
           />
         </Link>
         <Home className="triangle" aria-label="Home" onClick={handleRedirect} />
-        <div>
-          <CinemaLine
-            className="triangle"
-            aria-label="CinemaLine"
-            onClick={goProfile}
-          />
-          //TODO i18n
-          <div className="tooltipCinema">Will be soon Page Cinema</div>
-        </div>
-        <div>
-          //TODO check delete div
-          <UserIcon
-            onClick={() => handleRedirect(`${Paths.registration}`)}
-            className="triangle userIcon"
-            aria-label="UserIcon"
-          />
-        </div>
+        <CinemaLine
+          className="triangle"
+          aria-label="CinemaLine"
+          onClick={goProfile}
+        />
+        <UserIcon
+          onClick={() => handleRedirect(`${Paths.registration}`)}
+          className="triangle userIcon"
+          aria-label="UserIcon"
+        />
       </WrapperSvg>
       <WarpperLanguage>
         <Ukraine
           className={classNames('svgLanguage', {
-            activeSvg: router.locale === lngs[1],
-            blur: router.locale !== lngs[1],
+            activeSvg: router.locale === lngs.ua,
+            blur: router.locale !== lngs.ua,
           })}
-          //TODO global use EN or RU ... Not 1 2 3
-          onClick={() => handleSwitcherLanguage(1)}
+          onClick={() => handleSwitcherLanguage(lngs.ua)}
         />
         <UnitedKingdom
-          className={classNames(
-            'svgLanguage',
-            //TODO
-            router.locale === lngs[0] ? 'activeSvg' : null,
-            {
-              blur: router.locale !== lngs[0],
-            },
-          )}
-          //TODO
-          onClick={() => handleSwitcherLanguage(0)}
+          className={classNames('svgLanguage', {
+            activeSvg: router.locale === lngs.en,
+            blur: router.locale !== lngs.en,
+          })}
+          onClick={() => handleSwitcherLanguage(lngs.en)}
         />
         <Image
-          className={classNames(
-            'svgLanguage',
-            //TODO
-            router.locale === lngs[2] ? 'activeSvg' : null,
-            {
-              blur: router.locale !== lngs[2],
-            },
-          )}
+          className={classNames('svgLanguage', {
+            activeSvg: router.locale === lngs.ru,
+            blur: router.locale !== lngs.ru,
+          })}
           src={'/okypant.jpg'}
           height={40}
           width={40}
           alt={'triangleClass'}
-          //TODO
-          onClick={() => handleSwitcherLanguage(2)}
+          onClick={() => handleSwitcherLanguage(lngs.ru)}
         />
       </WarpperLanguage>
     </SiderBar>

@@ -28,6 +28,7 @@ export const SiderBar = styled.div`
   & .blur {
     filter: blur(1px);
   }
+
   & .tooltipCinema,
   .tooltipStar {
     visibility: hidden;
