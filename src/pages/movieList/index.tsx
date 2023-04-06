@@ -5,7 +5,6 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 import queryMovie from '@/Services/queryMovies';
 import ArrowBack from '@/components/ArrowBack';
@@ -291,17 +290,7 @@ const MovieList: FC<IMovieList> = ({ imgLink }) => {
         ) : (
           <EmptyFilms />
         )}
-        <ToastContainer
-          position="top-right"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="light"
-        />
+        <ToastContainer />
       </Root>
     </>
   );

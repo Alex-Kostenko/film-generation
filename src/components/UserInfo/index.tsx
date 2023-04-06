@@ -189,17 +189,7 @@ const UserInfo = () => {
           onClick={editPassword}
         />
       </PasswordContainer>
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
+      <ToastContainer />
     </Wrapper>
   );
 };
