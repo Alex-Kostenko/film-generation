@@ -30,11 +30,7 @@ const SliderSlick: FC<IHomePage> = ({ propMovies, moviePoster }) => {
           <div key={index}>
             <Mask />
             <SliderText movieData={item} />
-            <img
-              alt="slider img"
-              //TODO add logic for check mobile device
-              src={`${moviePoster}${item.poster_path}`}
-            />
+            <img alt="slider img" src={`${moviePoster}${item.poster_path}`} />
           </div>
         ))}
       </Slider>
