@@ -1,4 +1,5 @@
 import { ILoginBody, IUserBody } from '@/interfaces';
+import { notify } from '@/utils/genres';
 
 import { api } from './config';
 
@@ -8,7 +9,9 @@ const queryAuthorization = {
       const res = await api.post('/auth/login', body);
 
       return res.data;
-    } catch (error) {}
+    } catch (error: any) {
+      notify(error.response.data.message[0]);
+    }
   },
 
   async register(body: IUserBody) {

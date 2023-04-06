@@ -28,3 +28,5 @@ export enum Sort {
 }
 
 export const notify = (errorText: string) => toast.error(`${errorText} `, {});
+export const notifySuccess = (successText: string) =>
+  toast.success(`${successText} `, {});
