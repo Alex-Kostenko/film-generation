@@ -10,7 +10,8 @@
     "start": "Start",
     "end": "End",
     "filter": "Filter",
-    "emptyFilm": "No movies were found for this search"
+    "emptyFilm": "No movies were found for this search",
+    "registration": "Registration"
   },
   "footer": {
     "create": "Created by UniCode"

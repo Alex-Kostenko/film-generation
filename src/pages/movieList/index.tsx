@@ -11,11 +11,11 @@ import queryMovie from '@/Services/queryMovies';
 import ArrowBack from '@/components/ArrowBack';
 import SearchPanelLine from '@/components/SearchPanelLine';
 import {
-  MovieEntity,
   IYearRange,
   ISelectedFilms,
   ILocale,
   IMovieList,
+  IMovieData,
 } from '@/interfaces';
 import {
   CardComponent,
@@ -63,7 +63,6 @@ const MovieList: FC<IMovieList> = ({ imgLink }) => {
     pageSize,
   }: any = router.query;
 
-  //TODO make more easy code
   const [checked, setChecked] = useState({
     checkedAdult: checkedAdult ? !(checkedAdult === 'false') : false,
     checkedSearchInDesc: checkedSearchInDesc
@@ -72,20 +71,18 @@ const MovieList: FC<IMovieList> = ({ imgLink }) => {
   });
 
   const [movieRating, setMovieRating] = useState(Number(rating));
-  //TODO make more easy code
+
   const [arrayCategoriesId, setArrayCategoriesId] = useState(
     categoriesId ? categoriesId.split(',').map((id: string) => Number(id)) : [],
   );
 
   // eslint-disable-next-line
-  //TODO
   const [styless, setStyless] = useState("a[aria-label='Page -1']");
 
-  //TODO add type
-  const [content, setContent] = useState([]);
-  //TODO ??
-  const [searchTerm, setSearchTerm] = useState(search ? search : '');
-  //TODO make more easy code
+  const [content, setContent] = useState<IMovieData[]>([]);
+
+  const [searchTerm, setSearchTerm] = useState(search ?? '');
+
   const [yearMovie, setYearMovie] = useState<IYearRange | 'empty'>(
     yearRange === 'empty'
       ? 'empty'
@@ -94,9 +91,9 @@ const MovieList: FC<IMovieList> = ({ imgLink }) => {
           endYear: Number(yearRange?.split(',')[1]),
         },
   );
-  //TODO ??
-  const [valueSort, setValueSort] = useState(sorting ? sorting : 'popularity');
-  const [ascDesc, setAscDesc] = useState(ascDescc ? ascDescc : Sort.desc);
+
+  const [valueSort, setValueSort] = useState(sorting ?? 'popularity');
+  const [ascDesc, setAscDesc] = useState(ascDescc ?? Sort.desc);
   const [selectedOptions, setSelectedOptions] = useState<ISelectedFilms[]>([]);
   const [inputValue, setInputValue] = useState<string>(searchTerm);
 
@@ -116,7 +113,6 @@ const MovieList: FC<IMovieList> = ({ imgLink }) => {
   useEffect(() => {
     router.query.categoriesId &&
       setSelectedOptions(
-        //TODO check types categoriesId
         (router.query.categoriesId as string)
           .split(',')
           .map((item) => ({ value: item })),
@@ -143,7 +139,6 @@ const MovieList: FC<IMovieList> = ({ imgLink }) => {
           query.currentPage + 1,
           searchTerm,
           {
-            //TODO check type
             genres_ids: arrayCategoriesId
               ? arrayCategoriesId.map((item: string) => Number(item))
               : [],
@@ -159,6 +154,7 @@ const MovieList: FC<IMovieList> = ({ imgLink }) => {
             includeAdult: checked.checkedAdult,
           },
         );
+
         if (query.arrowUpload) {
           setContent(content.concat(allFilters.data.results));
         } else {
@@ -187,7 +183,6 @@ const MovieList: FC<IMovieList> = ({ imgLink }) => {
   ]);
 
   useEffect(() => {
-    //TODO /???????????????????????????????/
     if (query.arrowUpload) {
       // eslint-disable-next-line
       if (styless === `a[aria-label='Page -1']`) {
@@ -210,8 +205,7 @@ const MovieList: FC<IMovieList> = ({ imgLink }) => {
       <Head>
         <title>Movie picker</title>
       </Head>
-      //TODO create new prop for path
-      <Root colorStyle={styless}>
+      <Root styleLabel={styless}>
         <ArrowBack onClick={() => router.push(`${Paths.home}`)} />
         <TagContainer
           setInputValue={setInputValue}
@@ -255,11 +249,12 @@ const MovieList: FC<IMovieList> = ({ imgLink }) => {
             setYearMovie={setYearMovie}
           />
         </PanelWrapper>
-        {content.map((movie: MovieEntity) => (
+        {content.map((movie: IMovieData) => (
           <div key={movie.id}>
-            //TODO change null to undef
             <CardComponent
-              img={movie.poster_path ? `${imgLink}${movie.poster_path}` : null}
+              img={
+                movie.poster_path ? `${imgLink}${movie.poster_path}` : undefined
+              }
               title={movie.original_title ?? movie.title}
               subtitle={
                 movie.original_title === movie.title ||

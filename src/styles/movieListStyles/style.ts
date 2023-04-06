@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { PALETTE } from '@/palette';
 
 interface StyleProps {
-  colorStyle?: string;
+  styleLabel?: string;
 }
 
 export const Paginate = styled(ReactPaginate)`
@@ -88,7 +88,7 @@ export const Root = styled.div<StyleProps>`
         padding: 8px 16px;
         display: block;
       }
-      & ${(props) => props.colorStyle} {
+      & ${(props) => props.styleLabel} {
         padding: 8px 16px;
         border: 1px solid ${PALETTE.crimson.middle};
         border-radius: 6px;
