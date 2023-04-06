@@ -16,7 +16,7 @@ interface IHomePage {
 }
 
 const SliderSlick: FC<IHomePage> = ({ propMovies, bigPoster, smallPoster }) => {
-  const [windowSize, setWindowSize] = useState(0);
+  const [windowSize, setWindowSize] = useState(900);
 
   useEffect(() => {
     setWindowSize(window.innerWidth);
