@@ -1,8 +1,10 @@
 import { Button, Input } from 'alex-unicode';
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { ToastContainer } from 'react-toastify';
 
 import queryAuthorization from '@/Services/queryAuthorization';
+import { notifySuccess } from '@/utils/genres';
 
 import { Root, WrapperLoginBlock } from './style';
 
@@ -21,7 +23,9 @@ const Login: FC<ILogin> = ({ check }) => {
         email: loginForm.email,
         password: loginForm.password,
       });
+      notifySuccess('authorization succeeded');
       localStorage.setItem('access_token', res?.accessToken);
+      setLoginForm({ email: '', password: '' });
     }
   };
 
@@ -46,6 +50,7 @@ const Login: FC<ILogin> = ({ check }) => {
         />
         <Button value={t('registration.signIn')} onClick={handleEnter} />
       </WrapperLoginBlock>
+      <ToastContainer />
     </Root>
   );
 };

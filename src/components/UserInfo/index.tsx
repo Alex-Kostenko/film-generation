@@ -18,7 +18,8 @@ import {
   DataContainer,
   CancelButton,
   EditButton,
-  ErrorText,
+  ErrorEmail,
+  ErrorName,
   Wrapper,
   Img,
 } from './style';
@@ -124,7 +125,7 @@ const UserInfo = () => {
           disabled={!editMode}
         />
         {!valid.nameValid && (
-          <ErrorText>{t('userProfile.errorName')}</ErrorText>
+          <ErrorName>{t('userProfile.errorName')}</ErrorName>
         )}
         <InputComponent
           label={t('userProfile.email')}
@@ -134,7 +135,7 @@ const UserInfo = () => {
           disabled={!editMode}
         />
         {!valid.emailValid && (
-          <ErrorText>{t('userProfile.errorEmail')}</ErrorText>
+          <ErrorEmail>{t('userProfile.errorEmail')}</ErrorEmail>
         )}
         <ButtonContainer>
           <EditButton

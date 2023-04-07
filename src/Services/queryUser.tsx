@@ -1,5 +1,5 @@
 import { IPasswordBody, IUserBody } from '@/interfaces';
-import { notify } from '@/utils/genres';
+import { notify, notifySuccess } from '@/utils/genres';
 
 import { api } from './config';
 
@@ -16,6 +16,7 @@ const queryUser = {
     try {
       const res = await api.patch('/users/update-user', body);
 
+      notifySuccess('you have successfully changed  data');
       return res.data;
     } catch (error: any) {
       notify(error.response.data.message[0]);
@@ -26,6 +27,7 @@ const queryUser = {
     try {
       const res = await api.patch('/users/change-password', body);
 
+      notifySuccess('you have successfully changed  password');
       return res.data;
     } catch (error: any) {
       notify(error.response.data.message[0]);

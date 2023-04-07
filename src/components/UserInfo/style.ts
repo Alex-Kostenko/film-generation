@@ -37,12 +37,26 @@ export const ButtonContainer = styled.div`
   justify-content: space-between;
 `;
 
-export const ErrorText = styled.span`
+export const ErrorName = styled.span`
+  position: absolute;
+  top: 35px;
   display: block;
   font-size: 10px;
   margin-top: 5px;
   color: ${PALETTE.error};
   font-family: 'SFProDisplay-Light';
+
+  @media (max-width: 600px) {
+    top: 268px;
+  }
+`;
+
+export const ErrorEmail = styled(ErrorName)`
+  top: 116px;
+
+  @media (max-width: 600px) {
+    top: 350px;
+  }
 `;
 
 export const Wrapper = styled.div`
