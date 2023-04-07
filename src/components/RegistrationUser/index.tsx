@@ -1,5 +1,5 @@
 import { Button, Input } from 'alex-unicode';
-import { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import queryAuthorization from '@/Services/queryAuthorization';
@@ -7,7 +7,11 @@ import { regexpEmail } from '@/utils/constants';
 
 import { Root, WrapperLoginBlock } from './style';
 
-const RegistrationUser = ({ check }: any) => {
+interface IRegistrationUser {
+  check: boolean;
+}
+
+const RegistrationUser: FC<IRegistrationUser> = ({ check }) => {
   const { t } = useTranslation();
 
   const [loginForm, setLoginForm] = useState<any>({

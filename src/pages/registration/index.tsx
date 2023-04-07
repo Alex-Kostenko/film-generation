@@ -69,7 +69,11 @@ const Registration = () => {
               </RegistrationTag>
             </WarepperNavigation>
           </TopBox>
-          {!active ? <Login /> : <RegistrationUser check={check} />}
+          {!active ? (
+            <Login check={check} />
+          ) : (
+            <RegistrationUser check={check} />
+          )}
           <span className="line" />
 
           <BottomBox>
