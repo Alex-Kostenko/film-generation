@@ -17,6 +17,7 @@ import {
   InputComponent,
   DataContainer,
   CancelButton,
+  AcceptButton,
   EditButton,
   ErrorEmail,
   ErrorName,
@@ -52,16 +53,24 @@ const UserInfo = () => {
     })();
   }, []);
 
-  const editData = async () => {
-    const name = userData.username;
-    const email = userData.email;
+  const savePastData = () => {
+    setEditMode(!editMode);
+    setPreviousData((prev) => ({
+      ...prev,
+      username: userData.username,
+      email: userData.email,
+    }));
+  };
 
-    if (valid.nameValid) {
-      if (editMode) {
-        await queryUser.changeUserData(userData);
-      }
+  const editData = async () => {
+    if (
+      valid.nameValid &&
+      editMode &&
+      (userData.email != previousData.email ||
+        userData.username != previousData.username)
+    ) {
+      await queryUser.changeUserData(userData);
       setEditMode(!editMode);
-      setPreviousData((prev) => ({ ...prev, username: name, email: email }));
     }
   };
 
@@ -138,10 +147,15 @@ const UserInfo = () => {
           <ErrorEmail>{t('userProfile.errorEmail')}</ErrorEmail>
         )}
         <ButtonContainer>
-          <EditButton
-            value={editMode ? t('userProfile.accept') : t('userProfile.edit')}
-            onClick={editData}
-          />
+          {!editMode && (
+            <EditButton value={t('userProfile.edit')} onClick={savePastData} />
+          )}
+          {editMode && (
+            <AcceptButton
+              value={editMode ? t('userProfile.accept') : t('userProfile.edit')}
+              onClick={editData}
+            />
+          )}
           {editMode && (
             <CancelButton
               value={t('userProfile.cancel')}
