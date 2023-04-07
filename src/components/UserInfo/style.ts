@@ -30,6 +30,8 @@ export const EditButton = styled(Button)`
   margin: 0;
 `;
 
+export const AcceptButton = styled(EditButton)``;
+
 export const CancelButton = styled(EditButton)``;
 
 export const ButtonContainer = styled.div`
