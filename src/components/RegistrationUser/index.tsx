@@ -6,6 +6,8 @@ import queryAuthorization from '@/Services/queryAuthorization';
 import { regexpEmail } from '@/utils/constants';
 
 import { Root, WrapperLoginBlock } from './style';
+import { notifySuccess } from '@/utils/genres';
+import { ToastContainer } from 'react-toastify';
 
 interface IRegistrationUser {
   check: boolean;
@@ -39,6 +41,7 @@ const RegistrationUser: FC<IRegistrationUser> = ({ check }) => {
         email: loginForm.email,
         password: loginForm.password,
       }));
+    notifySuccess('registration succeeded');
   };
 
   const validateEmail = (email: string) => {
@@ -139,6 +142,7 @@ const RegistrationUser: FC<IRegistrationUser> = ({ check }) => {
         />
         <Button value={t('registration.registration')} onClick={handleEnter} />
       </WrapperLoginBlock>
+      <ToastContainer />
     </Root>
   );
 };
