@@ -1,9 +1,11 @@
 import { Button, Input } from 'alex-unicode';
 import { FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { ToastContainer } from 'react-toastify';
 
 import queryAuthorization from '@/Services/queryAuthorization';
 import { regexpEmail } from '@/utils/constants';
+import { notifySuccess } from '@/utils/genres';
 
 import { Root, WrapperLoginBlock } from './style';
 
@@ -39,6 +41,7 @@ const RegistrationUser: FC<IRegistrationUser> = ({ check }) => {
         email: loginForm.email,
         password: loginForm.password,
       }));
+    notifySuccess('registration succeeded');
   };
 
   const validateEmail = (email: string) => {
@@ -139,6 +142,7 @@ const RegistrationUser: FC<IRegistrationUser> = ({ check }) => {
         />
         <Button value={t('registration.registration')} onClick={handleEnter} />
       </WrapperLoginBlock>
+      <ToastContainer />
     </Root>
   );
 };
