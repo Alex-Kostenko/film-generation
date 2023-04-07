@@ -116,7 +116,6 @@ const AboutFilm: FC<IAboutFilmProps> = ({
     originalTitle: string,
     title: string,
   ) => {
-    const rezkaLink = 'https://hdrezka.ag';
     const watchText = t('filmPage.watch');
     const onText = t('filmPage.on');
     const linkText = locale === 'en' ? originalTitle : title;
