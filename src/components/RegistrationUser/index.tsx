@@ -1,13 +1,13 @@
 import { Button, Input } from 'alex-unicode';
 import { FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { ToastContainer } from 'react-toastify';
 
 import queryAuthorization from '@/Services/queryAuthorization';
 import { regexpEmail } from '@/utils/constants';
+import { notifySuccess } from '@/utils/genres';
 
 import { Root, WrapperLoginBlock } from './style';
-import { notifySuccess } from '@/utils/genres';
-import { ToastContainer } from 'react-toastify';
 
 interface IRegistrationUser {
   check: boolean;
