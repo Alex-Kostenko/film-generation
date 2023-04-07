@@ -1,22 +1,28 @@
 import { Button, Input } from 'alex-unicode';
-import { useState } from 'react';
+import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import queryAuthorization from '@/Services/queryAuthorization';
 
 import { Root, WrapperLoginBlock } from './style';
 
-const Login = () => {
+interface ILogin {
+  check: boolean;
+}
+
+const Login: FC<ILogin> = ({ check }) => {
   const { t } = useTranslation();
 
   const [loginForm, setLoginForm] = useState({ email: '', password: '' });
 
   const handleEnter = async () => {
-    const res = await queryAuthorization.login({
-      email: loginForm.email,
-      password: loginForm.password,
-    });
-    localStorage.setItem('access_token', res?.accessToken);
+    if (check) {
+      const res = await queryAuthorization.login({
+        email: loginForm.email,
+        password: loginForm.password,
+      });
+      localStorage.setItem('access_token', res?.accessToken);
+    }
   };
 
   return (
