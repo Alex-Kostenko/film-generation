@@ -42,14 +42,12 @@ export const SiderBar = styled.div`
     transition: all 0.3s;
   }
 
-  & .triangle:hover + .tooltipStar {
+  & .icon:hover + .tooltipStar {
     visibility: visible;
   }
-  & .triangle:hover + .tooltipCinema {
+  & .icon:hover + .tooltipCinema {
     visibility: visible;
   }
-  & .userIcon {
-    scale: 1.2;
 
     & path {
       &:hover {
@@ -71,7 +69,7 @@ export const WrapperSvg = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  & .triangle {
+  & .icon {
     margin-top: 60px;
     cursor: pointer;
     position: relative;
@@ -81,5 +79,52 @@ export const WrapperSvg = styled.div`
     &:hover {
       fill: ${PALETTE.crimson.middle};
     }
+  }
+
+  & .register {
+    width: 21px;
+    margin-top: 60px;
+    cursor: pointer;
+    position: relative;
+    fill: ${PALETTE.white};
+    pointer-events: all;
+    transition: all 0.3s;
+    &:hover {
+      fill: ${PALETTE.crimson.middle};
+    }
+  }
+
+  & .uniCode_icon {
+    width: 32px;
+    height: 32px;
+    margin-top: 30px;
+    margin-bottom: 50px;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+  & .user_icon {
+    scale: 1.2;
+    margin-top: 60px;
+    cursor: pointer;
+    position: relative;
+    fill: ${PALETTE.white};
+    pointer-events: all;
+    transition: all 0.3s;
+    &:hover {
+      fill: ${PALETTE.crimson.middle};
+    }
+  }
+
+  & .active {
+    fill: ${PALETTE.crimson.middle};
+    stroke: ${PALETTE.crimson.middle};
+    scale: 1.1;
+  }
+
+  & .user_icon_active {
+    fill: ${PALETTE.crimson.middle};
+    stroke: ${PALETTE.crimson.middle};
+    scale: 1.3;
   }
 `;

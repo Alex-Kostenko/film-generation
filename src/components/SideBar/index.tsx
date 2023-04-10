@@ -2,12 +2,13 @@ import classNames from 'classnames';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useState } from 'react';
 
 import { Paths } from '@/utils/paths';
 
-import CinemaLine from '../../../public/cinemaLine.svg';
 import Home from '../../../public/home.svg';
 import UserIcon from '../../../public/icon.svg';
+import Registration from '../../../public/register_login.svg';
 import Ukraine from '../../../public/ukraine(UA).svg';
 import UnitedKingdom from '../../../public/unitedKingdom(GB).svg';
 
@@ -17,15 +18,21 @@ const lngs = { en: 'en', ua: 'ua', ru: 'ru' };
 
 const SideBar = () => {
   const router = useRouter();
+  const [activePage, setActivePage] = useState('home');
 
-  const handleRedirect = (path: string) => {
+  const handleRedirect = (path: string, pageName: string) => {
+    setActivePage(pageName);
     return router.push(path);
   };
 
   const goProfile = () => {
     if (localStorage.getItem('access_token')) {
+      setActivePage('profile');
       router.push(`${Paths.userProfile}`);
-    } else router.push(`${Paths.registration}`);
+    } else {
+      setActivePage('registration');
+      router.push(`${Paths.registration}`);
+    }
   };
 
   const handleSwitcherLanguage = (language: string) => {
@@ -41,28 +48,37 @@ const SideBar = () => {
         <Link href="/">
           <Image
             priority={true}
-            className="triangle"
+            className="uniCode_icon"
             src={'/UniCode.jpg'}
             height={40}
             width={40}
-            alt={'triangleClass'}
-            onClick={() => handleRedirect(`${Paths.home}`)}
+            alt={'uniCode'}
+            onClick={() => handleRedirect(`${Paths.home}`, 'home')}
           />
         </Link>
         <Home
-          className="triangle"
+          className={classNames('icon', { active: activePage === 'home' })}
           aria-label="Home"
-          onClick={() => handleRedirect(`${Paths.home}`)}
-        />
-        <CinemaLine
-          className="triangle"
-          aria-label="CinemaLine"
-          onClick={goProfile}
+          alt="home"
+          onClick={() => handleRedirect(`${Paths.home}`, 'home')}
         />
         <UserIcon
-          onClick={() => handleRedirect(`${Paths.registration}`)}
-          className="triangle userIcon"
+          onClick={goProfile}
+          className={classNames('user_icon', {
+            user_icon_active: activePage === 'profile',
+          })}
           aria-label="UserIcon"
+          alt="userIcon"
+        />
+        <Registration
+          className={classNames('register', {
+            active: activePage === 'registration',
+          })}
+          aria-label="Registration"
+          alt="registration"
+          onClick={() =>
+            handleRedirect(`${Paths.registration}`, 'registration')
+          }
         />
       </WrapperSvg>
       <WarpperLanguage>
@@ -72,6 +88,7 @@ const SideBar = () => {
             blur: router.locale !== lngs.ua,
           })}
           onClick={() => handleSwitcherLanguage(lngs.ua)}
+          alt="ua"
         />
         <UnitedKingdom
           className={classNames('svgLanguage', {
@@ -79,6 +96,7 @@ const SideBar = () => {
             blur: router.locale !== lngs.en,
           })}
           onClick={() => handleSwitcherLanguage(lngs.en)}
+          alt="eng"
         />
         <Image
           className={classNames('svgLanguage', {
@@ -88,7 +106,7 @@ const SideBar = () => {
           src={'/okypant.jpg'}
           height={40}
           width={40}
-          alt={'triangleClass'}
+          alt="rus"
           onClick={() => handleSwitcherLanguage(lngs.ru)}
         />
       </WarpperLanguage>
