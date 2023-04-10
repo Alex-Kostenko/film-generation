@@ -42,18 +42,47 @@ export const SiderBar = styled.div`
     transition: all 0.3s;
   }
 
-  & .icon:hover + .tooltipStar {
+  & .uniCode_icon:hover + .tooltipLogo {
     visibility: visible;
   }
-  & .icon:hover + .tooltipCinema {
-    visibility: visible;
-  }
+
+  & .userIcon {
+    scale: 1.2;
 
     & path {
       &:hover {
         fill: ${PALETTE.crimson.middle};
       }
     }
+  }
+`;
+
+export const WrapperTooltip = styled.div`
+  position: relative;
+  & .logo {
+    border-radius: 6px;
+  }
+`;
+
+export const Tooltip = styled.div`
+  &:hover {
+    visibility: visible;
+  }
+  position: absolute;
+  visibility: hidden;
+  top: 23px;
+  left: 55px;
+  width: 120px;
+  background-color: ${PALETTE.dark.darkBlack};
+  color: ${PALETTE.white};
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  transition: all 0.3s;
+  & .link {
+    color: ${PALETTE.white};
+    text-decoration: none !important;
   }
 `;
 
