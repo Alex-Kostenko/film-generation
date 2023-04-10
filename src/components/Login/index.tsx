@@ -4,9 +4,10 @@ import { useTranslation } from 'react-i18next';
 import { ToastContainer } from 'react-toastify';
 
 import queryAuthorization from '@/Services/queryAuthorization';
+import { regexpEmail } from '@/utils/constants';
 import { notifySuccess } from '@/utils/genres';
 
-import { Root, WrapperLoginBlock } from './style';
+import { Root, WrapperLoginBlock, InutWrapper } from './style';
 
 interface ILogin {
   check: boolean;
@@ -14,11 +15,21 @@ interface ILogin {
 
 const Login: FC<ILogin> = ({ check }) => {
   const { t } = useTranslation();
-
+  const [emailIsValid, setEmailIsValid] = useState(true);
   const [loginForm, setLoginForm] = useState({ email: '', password: '' });
 
+  const validateEmail = (email: string) => {
+    const emailRegex = regexpEmail;
+    return emailRegex.test(email);
+  };
+
+  const changeEmail = (email: string) => {
+    setLoginForm((prev) => ({ ...prev, email: email }));
+    setEmailIsValid(validateEmail(email));
+  };
+
   const handleEnter = async () => {
-    if (check) {
+    if (check && emailIsValid) {
       const res = await queryAuthorization.login({
         email: loginForm.email,
         password: loginForm.password,
@@ -32,14 +43,21 @@ const Login: FC<ILogin> = ({ check }) => {
   return (
     <Root>
       <WrapperLoginBlock>
-        <Input
-          inputType={'text'}
-          label={t('registration.email')}
-          value={loginForm.email}
-          onChange={(event) =>
-            setLoginForm({ ...loginForm, email: event.target.value })
-          }
-        />
+        <InutWrapper>
+          <Input
+            inputType={'text'}
+            label={t('registration.email')}
+            value={loginForm.email}
+            onChange={(e) => changeEmail(e.target.value)}
+          />
+          {!emailIsValid && (
+            <>
+              <span className="errorField">?</span>
+              <div className="tooltipName">Enter the correct email</div>
+            </>
+          )}
+        </InutWrapper>
+
         <Input
           inputType={'password'}
           label={t('registration.password')}

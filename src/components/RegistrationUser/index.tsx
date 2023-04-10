@@ -129,7 +129,9 @@ const RegistrationUser: FC<IRegistrationUser> = ({ check }) => {
           {styleAndBoolean.name.nameStyle !== 'none' && (
             <>
               <span className="errorField">?</span>
-              <div className="tooltipName">Tooltip</div>
+              <div className="tooltipName">
+                Enter only letters without any symbols
+              </div>
             </>
           )}
         </div>
@@ -144,7 +146,7 @@ const RegistrationUser: FC<IRegistrationUser> = ({ check }) => {
           {styleAndBoolean.email.emailStyle !== 'none' && (
             <>
               <span className="errorField">?</span>
-              <div className="tooltipName">Tooltip email</div>
+              <div className="tooltipName">Enter the correct email</div>
             </>
           )}
         </div>
@@ -161,7 +163,9 @@ const RegistrationUser: FC<IRegistrationUser> = ({ check }) => {
           {styleAndBoolean.password.passwordStyle !== 'none' && (
             <>
               <span className="errorField">?</span>
-              <div className="tooltipName">Tooltip password</div>
+              <div className="tooltipName">
+                Password must contain at least 5 characters
+              </div>
             </>
           )}
         </div>
@@ -178,7 +182,7 @@ const RegistrationUser: FC<IRegistrationUser> = ({ check }) => {
           {styleAndBoolean.againPass.againPassStyle !== 'none' && (
             <>
               <span className="errorField">?</span>
-              <div className="tooltipName">Tooltip againPass</div>
+              <div className="tooltipName">Passwords must match</div>
             </>
           )}
         </div>
