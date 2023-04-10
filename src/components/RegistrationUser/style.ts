@@ -15,6 +15,7 @@ export const Root = styled.div<IStyle>`
       color: ${PALETTE.crimson.middle};
     }
   }
+
   & .offset {
     &:hover {
       color: ${PALETTE.dark.darkBlack};
@@ -44,4 +45,28 @@ export const WrapperLoginBlock = styled.div`
   row-gap: 25px;
   align-items: center;
   margin: 40px 0 30px 0;
+  & .wrapperaName {
+    position: relative;
+  }
+  & .errorField {
+    position: absolute;
+    color: red;
+    cursor: pointer;
+    top: 9px;
+    right: -15px;
+  }
+
+  & .tooltipName {
+    position: absolute;
+    top: 5px;
+    right: -75px;
+    visibility: hidden;
+    color: ${PALETTE.white};
+    padding: 5px;
+    border-radius: 6px;
+    background: ${PALETTE.crimson.middle};
+  }
+  & .errorField:hover + .tooltipName {
+    visibility: visible;
+  }
 `;
