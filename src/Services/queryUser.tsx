@@ -30,7 +30,11 @@ const queryUser = {
       notifySuccess('you have successfully changed  password');
       return res.data;
     } catch (error: any) {
-      notify(error.response.data.message[0]);
+      notify(
+        Array.isArray(error.response.data.message)
+          ? error.response.data.message[0]
+          : error.response.data.message,
+      );
     }
   },
 };
