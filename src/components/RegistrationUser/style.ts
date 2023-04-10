@@ -59,7 +59,7 @@ export const WrapperLoginBlock = styled.div`
   & .tooltipName {
     position: absolute;
     top: 5px;
-    right: -75px;
+    left: 250px;
     visibility: hidden;
     color: ${PALETTE.white};
     padding: 5px;
