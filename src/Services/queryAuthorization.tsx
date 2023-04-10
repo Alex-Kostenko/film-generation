@@ -19,7 +19,9 @@ const queryAuthorization = {
       const res = await api.post('/auth/register', body);
 
       return res.data;
-    } catch (error) {}
+    } catch (error: any) {
+      notify(error.response.data.message);
+    }
   },
 
   async getProfileData() {

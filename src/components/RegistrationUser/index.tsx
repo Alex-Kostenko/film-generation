@@ -40,8 +40,8 @@ const RegistrationUser: FC<IRegistrationUser> = ({ check }) => {
         username: loginForm.nameInput,
         email: loginForm.email,
         password: loginForm.password,
-      }));
-    notifySuccess('registration succeeded');
+      })) &&
+      notifySuccess('registration succeeded');
   };
 
   const validateEmail = (email: string) => {

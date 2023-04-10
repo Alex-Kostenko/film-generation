@@ -119,12 +119,12 @@ export const WrapperSvg = styled.div`
   & .active {
     fill: ${PALETTE.crimson.middle};
     stroke: ${PALETTE.crimson.middle};
-    scale: 1.2;
+    scale: 1.1;
   }
 
   & .user_icon_active {
     fill: ${PALETTE.crimson.middle};
     stroke: ${PALETTE.crimson.middle};
-    scale: 1.4;
+    scale: 1.3;
   }
 `;
