@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Paths } from '@/utils/paths';
 
@@ -33,6 +33,12 @@ const SideBar = () => {
 
     return router.push(path);
   };
+
+  useEffect(() => {
+    if (router.pathname === '/aboutFilm' || router.pathname === '/movieList') {
+      setActivePage('');
+    }
+  }, [router.pathname]);
 
   const goProfile = () => {
     if (localStorage.getItem('access_token')) {
