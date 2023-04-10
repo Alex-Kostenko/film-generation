@@ -97,7 +97,7 @@ export const WrapperSvg = styled.div`
   & .uniCode_icon {
     width: 32px;
     height: 32px;
-    margin-top: 30px;
+    margin-top: 45px;
     margin-bottom: 50px;
     cursor: pointer;
     border-radius: 50%;
