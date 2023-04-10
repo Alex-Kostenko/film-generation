@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import Image from 'next/image';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import { Paths } from '@/utils/paths';
@@ -19,8 +19,6 @@ import {
   WrapperSvg,
   WrapperTooltip,
 } from './style';
-import { useTranslation } from 'next-i18next';
-import { relative } from 'path';
 
 const lngs = { en: 'en', ua: 'ua', ru: 'ru' };
 
