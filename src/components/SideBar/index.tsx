@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import Image from 'next/image';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import { Paths } from '@/utils/paths';
@@ -12,7 +12,13 @@ import Registration from '../../../public/register_login.svg';
 import Ukraine from '../../../public/ukraine(UA).svg';
 import UnitedKingdom from '../../../public/unitedKingdom(GB).svg';
 
-import { SiderBar, WarpperLanguage, WrapperSvg } from './style';
+import {
+  SiderBar,
+  Tooltip,
+  WarpperLanguage,
+  WrapperSvg,
+  WrapperTooltip,
+} from './style';
 
 const lngs = { en: 'en', ua: 'ua', ru: 'ru' };
 
@@ -20,8 +26,11 @@ const SideBar = () => {
   const router = useRouter();
   const [activePage, setActivePage] = useState('home');
 
+  const { t } = useTranslation();
+
   const handleRedirect = (path: string, pageName: string) => {
     setActivePage(pageName);
+
     return router.push(path);
   };
 
@@ -45,17 +54,26 @@ const SideBar = () => {
   return (
     <SiderBar>
       <WrapperSvg>
-        <Link href="/">
+        <WrapperTooltip style={{ position: 'relative' }}>
           <Image
             priority={true}
-            className="uniCode_icon"
+            className="uniCode_icon logo"
             src={'/UniCode.jpg'}
             height={40}
             width={40}
             alt={'uniCode'}
             onClick={() => handleRedirect(`${Paths.home}`, 'home')}
           />
-        </Link>
+          <Tooltip className="tooltipLogo">
+            <a
+              className="link"
+              target={'_blank'}
+              href="https://unicode-studio.com/#/"
+            >
+              <p>{t('footer.create')}</p>
+            </a>
+          </Tooltip>
+        </WrapperTooltip>
         <Home
           className={classNames('icon', { active: activePage === 'home' })}
           aria-label="Home"
