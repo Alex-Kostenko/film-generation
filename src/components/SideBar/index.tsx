@@ -24,7 +24,7 @@ const lngs = { en: 'en', ua: 'ua', ru: 'ru' };
 
 const SideBar = () => {
   const router = useRouter();
-  const [activePage, setActivePage] = useState('home');
+  const [activePage, setActivePage] = useState('');
 
   const { t } = useTranslation();
 
