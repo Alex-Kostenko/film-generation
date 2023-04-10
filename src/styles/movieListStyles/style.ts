@@ -67,6 +67,11 @@ export const Root = styled.div<StyleProps>`
   @media (max-width: 600px) {
     padding: 20px 12px 0 12px;
   }
+
+  & .mobile {
+    font-size: 12px;
+  }
+
   & .paginateClass {
     display: flex;
     position: relative;
@@ -77,7 +82,7 @@ export const Root = styled.div<StyleProps>`
 
     & li {
       display: block;
-      margin: 5px;
+      margin: 2px;
       cursor: pointer;
       font-family: Urbanist;
       font-weight: 700;
@@ -85,11 +90,11 @@ export const Root = styled.div<StyleProps>`
 
       & a {
         align-items: center;
-        padding: 8px 16px;
+        padding: 5px 10px;
         display: block;
       }
       & ${(props) => props.styleLabel} {
-        padding: 8px 16px;
+        padding: 5px 10px;
         border: 1px solid ${PALETTE.crimson.middle};
         border-radius: 6px;
       }
