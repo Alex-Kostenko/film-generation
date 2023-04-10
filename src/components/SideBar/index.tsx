@@ -38,9 +38,9 @@ const SideBar = () => {
     if (
       router.pathname === '/aboutFilm/[id]' ||
       router.pathname === '/movieList'
-    ) {
+    )
       setActivePage('');
-    }
+    else if (router.pathname === '/') setActivePage('home');
   }, [router.pathname]);
 
   const goProfile = () => {
