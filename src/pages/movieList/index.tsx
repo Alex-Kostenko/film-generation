@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
@@ -69,6 +70,7 @@ const MovieList: FC<IMovieList> = ({ imgLink }) => {
       : false,
   });
 
+  const [isMobileVersion, setIsMobileVersion] = useState(false);
   const [movieRating, setMovieRating] = useState(Number(rating));
 
   const [arrayCategoriesId, setArrayCategoriesId] = useState(
@@ -127,6 +129,11 @@ const MovieList: FC<IMovieList> = ({ imgLink }) => {
       notify('УПС ХАЛЕПКА');
     }
   }, [content]);
+
+  useEffect(() => {
+    const handleResize = window.innerWidth;
+    handleResize < 700 ? setIsMobileVersion(true) : setIsMobileVersion(false);
+  }, []);
 
   useEffect(() => {
     (async () => {
@@ -281,7 +288,9 @@ const MovieList: FC<IMovieList> = ({ imgLink }) => {
               pageRangeDisplayed={3}
               pageCount={query.count}
               previousLabel="<"
-              className="paginateClass"
+              className={classNames('paginateClass', {
+                mobile: isMobileVersion,
+              })}
               activeClassName="active"
               containerClassName="container"
               forcePage={query.currentPage}
