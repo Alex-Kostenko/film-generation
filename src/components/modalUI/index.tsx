@@ -1,26 +1,33 @@
-import CinemaLine from '../../../public/cinemaLine.svg';
-import Home from '../../../public/home.svg';
-import Star from '../../../public/star.svg';
+import { useRouter } from 'next/router';
+
+import { Paths } from '@/utils/paths';
+
 import ModalComponent from '../ModalComponent';
 
-import { ModalContent, WrapperRow } from './style';
+import { ModalContent, WrapperRow, Text } from './style';
 
 const ModalUI = ({ isModalOpen, closeModal }: any) => {
+  const router = useRouter();
+  const handleRedirect = (path: string) => {
+    closeModal();
+    return router.push(path);
+  };
   return (
     isModalOpen && (
       <ModalComponent onClose={closeModal}>
         <ModalContent>
           <WrapperRow>
-            <p style={{ color: 'white' }}>Home</p>
-            <Home className="triangle" aria-label="Home" />
+            <Text onClick={() => handleRedirect(`${Paths.home}`)}>Home</Text>
           </WrapperRow>
           <WrapperRow>
-            <p style={{ color: 'white' }}>Cinema</p>
-            <CinemaLine className="triangle" aria-label="CinemaLine" />
+            <Text onClick={() => handleRedirect(`${Paths.userProfile}`)}>
+              Profile
+            </Text>
           </WrapperRow>
           <WrapperRow>
-            <p style={{ color: 'white' }}>Star</p>
-            <Star className="triangle" aria-label="Star" />
+            <Text onClick={() => handleRedirect(`${Paths.registration}`)}>
+              Registration
+            </Text>
           </WrapperRow>
         </ModalContent>
       </ModalComponent>
