@@ -3,8 +3,11 @@ import styled from 'styled-components';
 import { PALETTE } from '@/palette';
 
 export const ModalContent = styled.div`
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 100%;
-  height: 300px;
   display: flex;
   flex-direction: column;
   row-gap: 40px;
@@ -17,15 +20,20 @@ export const ModalContent = styled.div`
     transition: all 0.3s;
   }
 `;
+
+export const Text = styled.div`
+  color: ${PALETTE.white};
+  cursor: pointer;
+  transition: all 0.3s;
+
+  &:hover {
+    color: ${PALETTE.crimson.middle};
+  }
+`;
+
 export const WrapperRow = styled.div`
   display: flex;
   align-items: end;
   column-gap: 10px;
-  cursor: pointer;
-  &:hover {
-    & .triangle {
-      fill: ${PALETTE.crimson.middle};
-    }
-  }
   height: 30px;
 `;
