@@ -49,7 +49,11 @@ const SideBar = () => {
             onClick={() => handleRedirect(`${Paths.home}`)}
           />
         </Link>
-        <Home className="triangle" aria-label="Home" onClick={handleRedirect} />
+        <Home
+          className="triangle"
+          aria-label="Home"
+          onClick={() => handleRedirect(`${Paths.home}`)}
+        />
         <CinemaLine
           className="triangle"
           aria-label="CinemaLine"

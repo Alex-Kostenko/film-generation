@@ -222,7 +222,7 @@ const SearchPanel: FC<ISearchPanel> = ({
               width={33}
               activeBoxShadow={`0 0 2px 3px ${PALETTE.crimson.middle}`}
               onChange={(check) => handleChange(check, switchInfo.params)}
-              checked={checked.checkedAdult}
+              checked={checked[switchInfo.params as keyof typeof checked]}
             />
           </label>
         </MenuItem>
