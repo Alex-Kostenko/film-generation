@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { ToastContainer } from 'react-toastify';
 
 import queryAuthorization from '@/Services/queryAuthorization';
-import { regexpEmail } from '@/utils/constants';
+import { regexName, regexpEmail } from '@/utils/constants';
 import { notifySuccess } from '@/utils/genres';
 
 import { Root, WrapperLoginBlock } from './style';
@@ -44,6 +44,20 @@ const RegistrationUser: FC<IRegistrationUser> = ({ check }) => {
       notifySuccess('registration succeeded');
   };
 
+  const validateName = (name: string) => {
+    const nameRegex = regexName;
+
+    setLoginForm({ ...loginForm, nameInput: name });
+
+    setStyleAndBoolean({
+      ...styleAndBoolean,
+      name: {
+        nameStyle: nameRegex.test(name) ? 'none' : 'rgb(167 84 84 / 20%);',
+        isValidField: nameRegex.test(name),
+      },
+    });
+  };
+
   const validateEmail = (email: string) => {
     const emailRegex = regexpEmail;
     setLoginForm({ ...loginForm, email: email });
@@ -74,9 +88,9 @@ const RegistrationUser: FC<IRegistrationUser> = ({ check }) => {
     });
   };
 
-  useEffect(() => {
-    handleStyleAndBool('nameInput', 'name', 'nameStyle');
-  }, [loginForm.nameInput]);
+  // useEffect(() => {
+  //   handleStyleAndBool('nameInput', 'name', 'nameStyle');
+  // }, [loginForm.nameInput]);
 
   useEffect(() => {
     handleStyleAndBool('password', 'password', 'passwordStyle');
@@ -104,42 +118,70 @@ const RegistrationUser: FC<IRegistrationUser> = ({ check }) => {
       }}
     >
       <WrapperLoginBlock>
-        <Input
-          inputType={'text'}
-          label={t('registration.name')}
-          className={'name'}
-          value={loginForm.nameInput}
-          onChange={(event) => {
-            setLoginForm({ ...loginForm, nameInput: event.target.value });
-          }}
-        />
-
-        <Input
-          inputType={'text'}
-          label={t('registration.email')}
-          className={'email'}
-          value={loginForm.email}
-          onChange={(event) => validateEmail(event.target.value)}
-        />
-
-        <Input
-          inputType={'password'}
-          label={t('registration.password')}
-          className={'password'}
-          value={loginForm.password}
-          onChange={(event) =>
-            setLoginForm({ ...loginForm, password: event.target.value })
-          }
-        />
-        <Input
-          inputType={'password'}
-          label={t('registration.againPassword')}
-          className={'againPass'}
-          value={loginForm.againPass}
-          onChange={(event) =>
-            setLoginForm({ ...loginForm, againPass: event.target.value })
-          }
-        />
+        <div className="wrapperaName">
+          <Input
+            inputType={'text'}
+            label={t('registration.name')}
+            className={'name'}
+            value={loginForm.nameInput}
+            onChange={(event) => validateName(event.target.value)}
+          />
+          {styleAndBoolean.name.nameStyle !== 'none' && (
+            <>
+              <span className="errorField">?</span>
+              <div className="tooltipName">Tooltip</div>
+            </>
+          )}
+        </div>
+        <div className="wrapperaName">
+          <Input
+            inputType={'text'}
+            label={t('registration.email')}
+            className={'email'}
+            value={loginForm.email}
+            onChange={(event) => validateEmail(event.target.value)}
+          />
+          {styleAndBoolean.email.emailStyle !== 'none' && (
+            <>
+              <span className="errorField">?</span>
+              <div className="tooltipName">Tooltip email</div>
+            </>
+          )}
+        </div>
+        <div className="wrapperaName">
+          <Input
+            inputType={'password'}
+            label={t('registration.password')}
+            className={'password'}
+            value={loginForm.password}
+            onChange={(event) =>
+              setLoginForm({ ...loginForm, password: event.target.value })
+            }
+          />
+          {styleAndBoolean.password.passwordStyle !== 'none' && (
+            <>
+              <span className="errorField">?</span>
+              <div className="tooltipName">Tooltip password</div>
+            </>
+          )}
+        </div>
+        <div className="wrapperaName">
+          <Input
+            inputType={'password'}
+            label={t('registration.againPassword')}
+            className={'againPass'}
+            value={loginForm.againPass}
+            onChange={(event) =>
+              setLoginForm({ ...loginForm, againPass: event.target.value })
+            }
+          />
+          {styleAndBoolean.againPass.againPassStyle !== 'none' && (
+            <>
+              <span className="errorField">?</span>
+              <div className="tooltipName">Tooltip againPass</div>
+            </>
+          )}
+        </div>
         <Button value={t('registration.registration')} onClick={handleEnter} />
       </WrapperLoginBlock>
       <ToastContainer />
