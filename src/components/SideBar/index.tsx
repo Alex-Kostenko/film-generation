@@ -35,7 +35,10 @@ const SideBar = () => {
   };
 
   useEffect(() => {
-    if (router.pathname === '/aboutFilm' || router.pathname === '/movieList') {
+    if (
+      router.pathname === '/aboutFilm/[id]' ||
+      router.pathname === '/movieList'
+    ) {
       setActivePage('');
     }
   }, [router.pathname]);
