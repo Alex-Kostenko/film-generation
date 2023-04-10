@@ -84,6 +84,7 @@ export const BurgerHeader = styled.div`
   }
 
   & .logoBurger {
+    margin-left: 13px;
     border-radius: 50%;
     cursor: pointer;
     align-items: center;
