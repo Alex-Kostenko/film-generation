@@ -5,6 +5,7 @@ import { ToastContainer } from 'react-toastify';
 import queryAuthorization from '@/Services/queryAuthorization';
 import queryUser from '@/Services/queryUser';
 import { regexpEmail, regexName } from '@/utils/constants';
+import { notify } from '@/utils/genres';
 interface PasswordState {
   currentPassword: boolean;
   newPassword: boolean;
@@ -64,6 +65,7 @@ const UserInfo = () => {
 
   const editData = async () => {
     if (
+      valid.emailValid &&
       valid.nameValid &&
       editMode &&
       (userData.email != previousData.email ||
@@ -85,11 +87,13 @@ const UserInfo = () => {
   };
 
   const editPassword = async () => {
-    await queryUser.changeUserPassword(password);
-    setPassword({
-      currentPassword: '',
-      newPassword: '',
-    });
+    const { currentPassword, newPassword } = password;
+    if (currentPassword.length >= 5 && newPassword.length >= 5) {
+      await queryUser.changeUserPassword(password);
+      setPassword({ currentPassword: '', newPassword: '' });
+    } else {
+      notify('both passwords must contain at least 5 characters');
+    }
   };
 
   const changeName = (name: string) => {
