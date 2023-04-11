@@ -177,7 +177,7 @@ const UserInfo = () => {
             onChange={(event) =>
               changePassword('currentPassword', event.target.value)
             }
-            autoCompleteOff={true}
+            autocompleteoff={'true'}
           />
           <Img
             onClick={() => toggleShowPassword('currentPassword')}
@@ -195,7 +195,7 @@ const UserInfo = () => {
             onChange={(event) =>
               changePassword('newPassword', event.target.value)
             }
-            autoCompleteOff={true}
+            autocompleteoff={'true'}
           />
           <Img
             onClick={() => toggleShowPassword('newPassword')}
