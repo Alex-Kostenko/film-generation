@@ -125,7 +125,7 @@ const RegistrationUser: FC<IRegistrationUser> = ({ check }) => {
             className={'name'}
             value={loginForm.nameInput}
             onChange={(event) => validateName(event.target.value)}
-            error={!styleAndBoolean.name.isValidField}
+            iserror={!styleAndBoolean.name.isValidField ? 'true' : undefined}
           />
           {styleAndBoolean.name.nameStyle !== 'none' && (
             <>
@@ -141,8 +141,8 @@ const RegistrationUser: FC<IRegistrationUser> = ({ check }) => {
             className={'email'}
             value={loginForm.email}
             onChange={(event) => validateEmail(event.target.value)}
-            error={!styleAndBoolean.email.isValidField}
-            autoCompleteOff={true}
+            iserror={!styleAndBoolean.email.isValidField ? 'true' : undefined}
+            autocompleteoff={'true'}
           />
           {styleAndBoolean.email.emailStyle !== 'none' && (
             <>
@@ -160,8 +160,10 @@ const RegistrationUser: FC<IRegistrationUser> = ({ check }) => {
             onChange={(event) =>
               setLoginForm({ ...loginForm, password: event.target.value })
             }
-            error={!styleAndBoolean.password.isValidField}
-            autoCompleteOff={true}
+            iserror={
+              !styleAndBoolean.password.isValidField ? 'true' : undefined
+            }
+            autocompleteoff={'true'}
           />
           {styleAndBoolean.password.passwordStyle !== 'none' && (
             <>
@@ -179,7 +181,9 @@ const RegistrationUser: FC<IRegistrationUser> = ({ check }) => {
             onChange={(event) =>
               setLoginForm({ ...loginForm, againPass: event.target.value })
             }
-            error={!styleAndBoolean.againPass.isValidField}
+            iserror={
+              !styleAndBoolean.againPass.isValidField ? 'true' : undefined
+            }
           />
           {styleAndBoolean.againPass.againPassStyle !== 'none' && (
             <>

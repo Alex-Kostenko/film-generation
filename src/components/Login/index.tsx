@@ -49,7 +49,7 @@ const Login: FC<ILogin> = ({ check }) => {
             label={t('registration.email')}
             value={loginForm.email}
             onChange={(e) => changeEmail(e.target.value)}
-            error={!emailIsValid}
+            iserror={!emailIsValid ? 'true' : undefined}
           />
           {!emailIsValid && (
             <>
