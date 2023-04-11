@@ -49,11 +49,12 @@ const Login: FC<ILogin> = ({ check }) => {
             label={t('registration.email')}
             value={loginForm.email}
             onChange={(e) => changeEmail(e.target.value)}
+            error={!emailIsValid}
           />
           {!emailIsValid && (
             <>
               <span className="errorField">?</span>
-              <div className="tooltipName">Enter the correct email</div>
+              <div className="tooltipName">{t('error.email')}</div>
             </>
           )}
         </InutWrapper>

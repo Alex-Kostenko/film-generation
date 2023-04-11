@@ -104,5 +104,12 @@
     "password": "Password",
     "againPassword": "Again password",
     "name": "Name"
+  },
+
+  "error": {
+    "email": "Enter the correct email",
+    "name": "Enter only letters without any symbols",
+    "password": "Password must contain at least 5 characters",
+    "againPassword": "Passwords must match"
   }
 }

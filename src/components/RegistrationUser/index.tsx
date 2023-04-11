@@ -125,13 +125,12 @@ const RegistrationUser: FC<IRegistrationUser> = ({ check }) => {
             className={'name'}
             value={loginForm.nameInput}
             onChange={(event) => validateName(event.target.value)}
+            error={!styleAndBoolean.name.isValidField}
           />
           {styleAndBoolean.name.nameStyle !== 'none' && (
             <>
               <span className="errorField">?</span>
-              <div className="tooltipName">
-                Enter only letters without any symbols
-              </div>
+              <div className="tooltipName">{t('error.name')}</div>
             </>
           )}
         </div>
@@ -142,11 +141,13 @@ const RegistrationUser: FC<IRegistrationUser> = ({ check }) => {
             className={'email'}
             value={loginForm.email}
             onChange={(event) => validateEmail(event.target.value)}
+            error={!styleAndBoolean.email.isValidField}
+            autoCompleteOff={true}
           />
           {styleAndBoolean.email.emailStyle !== 'none' && (
             <>
               <span className="errorField">?</span>
-              <div className="tooltipName">Enter the correct email</div>
+              <div className="tooltipName">{t('error.email')}</div>
             </>
           )}
         </div>
@@ -159,13 +160,13 @@ const RegistrationUser: FC<IRegistrationUser> = ({ check }) => {
             onChange={(event) =>
               setLoginForm({ ...loginForm, password: event.target.value })
             }
+            error={!styleAndBoolean.password.isValidField}
+            autoCompleteOff={true}
           />
           {styleAndBoolean.password.passwordStyle !== 'none' && (
             <>
               <span className="errorField">?</span>
-              <div className="tooltipName">
-                Password must contain at least 5 characters
-              </div>
+              <div className="tooltipName">{t('error.password')}</div>
             </>
           )}
         </div>
@@ -178,11 +179,12 @@ const RegistrationUser: FC<IRegistrationUser> = ({ check }) => {
             onChange={(event) =>
               setLoginForm({ ...loginForm, againPass: event.target.value })
             }
+            error={!styleAndBoolean.againPass.isValidField}
           />
           {styleAndBoolean.againPass.againPassStyle !== 'none' && (
             <>
               <span className="errorField">?</span>
-              <div className="tooltipName">Passwords must match</div>
+              <div className="tooltipName">{t('error.againPassword')}</div>
             </>
           )}
         </div>
