@@ -9,7 +9,7 @@ export const optionSize = [
 export const settingsSlider = {
   dots: true,
   arrows: false,
-  autoplay: false,
+  autoplay: true,
   autoplaySpeed: 5000,
 };
 
