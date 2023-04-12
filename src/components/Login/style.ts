@@ -1,12 +1,21 @@
+import { Button } from 'alex-unicode';
 import styled from 'styled-components';
 
 import { PALETTE } from '@/palette';
+
+export const ButtonComponent = styled(Button)`
+  min-width: 220px;
+`;
 
 export const InutWrapper = styled.div`
   position: relative;
 `;
 
 export const Root = styled.div`
+  & .offset:hover {
+    color: ${PALETTE.crimson.middle} !important;
+  }
+
   & .wrapperInput {
     & input {
       color: ${PALETTE.dark.darkBlack};

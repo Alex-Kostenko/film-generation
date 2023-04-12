@@ -1,4 +1,4 @@
-import { Button, Input } from 'alex-unicode';
+import { Input } from 'alex-unicode';
 import { FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ToastContainer } from 'react-toastify';
@@ -7,7 +7,7 @@ import queryAuthorization from '@/Services/queryAuthorization';
 import { regexName, regexpEmail } from '@/utils/constants';
 import { notifySuccess } from '@/utils/genres';
 
-import { Root, WrapperLoginBlock } from './style';
+import { Root, WrapperLoginBlock, ButtonComponent } from './style';
 
 interface IRegistrationUser {
   check: boolean;
@@ -192,7 +192,10 @@ const RegistrationUser: FC<IRegistrationUser> = ({ check }) => {
             </>
           )}
         </div>
-        <Button value={t('registration.registration')} onClick={handleEnter} />
+        <ButtonComponent
+          value={t('registration.registration')}
+          onClick={handleEnter}
+        />
       </WrapperLoginBlock>
       <ToastContainer />
     </Root>

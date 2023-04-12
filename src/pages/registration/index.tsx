@@ -10,11 +10,11 @@ import {
   LoginModal,
   RegistrationTag,
   Root,
-  TextBox,
-  TextPrivacy,
+  Title,
   TopBox,
   WarepperNavigation,
   WrapperRagistration,
+  TextPrivacy,
 } from '@/styles/registration/style';
 
 const Login = dynamic(() => import('@/components/Login'), {
@@ -38,7 +38,14 @@ const Registration = () => {
   const [check, setCheck] = useState(false);
 
   useEffect(() => {
-    setSize(window.innerHeight);
+    const footerSize = 40;
+    const footerAndHeaderSize = 95;
+    const WindowHeight = window.innerHeight;
+    setSize(
+      window.innerWidth > 600
+        ? WindowHeight - footerSize
+        : WindowHeight - footerAndHeaderSize,
+    );
     window.addEventListener('resize', () => setSize(window.innerHeight));
 
     return;
@@ -52,7 +59,7 @@ const Registration = () => {
       <Root sizeHeight={size}>
         <WrapperRagistration>
           <TopBox>
-            <TextBox>{t('registration.welcome')}</TextBox>
+            <Title>{t('registration.welcome')}</Title>
             <span className="line" />
             <WarepperNavigation>
               <LoginModal
@@ -82,13 +89,14 @@ const Registration = () => {
                 className="inputCheckBox"
                 type="checkbox"
                 checked={check}
-                onChange={() => setCheck((item) => !item)}
                 id="one"
               />
               <label className="labelCheckBox" htmlFor="one">
-                <span></span>
+                <span onClick={() => setCheck((item) => !item)}></span>
               </label>
-              <TextPrivacy>{t('registration.agreement')}</TextPrivacy>
+              <TextPrivacy onClick={() => setCheck((item) => !item)}>
+                {t('registration.agreement')}
+              </TextPrivacy>
             </div>
           </BottomBox>
         </WrapperRagistration>
