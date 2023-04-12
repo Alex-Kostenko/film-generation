@@ -13,7 +13,7 @@ export const Root = styled.div<Iresize>`
   height: ${(props) => props.sizeHeight}px;
 
   & .activeclass {
-    border-bottom: 7px solid ${PALETTE.crimson.middle} !important;
+    border-bottom: 2px solid ${PALETTE.crimson.middle} !important;
     color: ${PALETTE.crimson.middle};
   }
 
@@ -31,8 +31,7 @@ export const Root = styled.div<Iresize>`
     font-size: 20px;
     text-align: center;
     cursor: pointer;
-    border-bottom: 1px solid ${PALETTE.crimson.middle};
-    transition: all 0.3s;
+
     &:hover {
       color: ${PALETTE.crimson.middle};
     }
@@ -59,6 +58,7 @@ export const Root = styled.div<Iresize>`
     margin-right: 15px;
     border-radius: 3px;
     transition: all 0.3s;
+    cursor: pointer;
   }
 
   & .inputCheckBox:checked + label > span {
@@ -72,8 +72,8 @@ export const Root = styled.div<Iresize>`
     position: absolute;
     top: -2px;
     left: -6px;
-    border-right: 3px solid transparent;
-    border-bottom: 3px solid transparent;
+    border-right: 3px solid ${PALETTE.white} !important;
+    border-bottom: 3px solid ${PALETTE.white} !important;
     transform: rotate(45deg);
     transform-origin: 0% 100%;
     animation: checked-box 125ms 250ms forwards;
@@ -116,9 +116,7 @@ export const WrapperRagistration = styled.div`
   padding: 15px 20px;
   width: 360px;
   min-height: 150px;
-  border: 1px solid white;
-  border-bottom-right-radius: 15px;
-  border-bottom: 3px solid red;
+  border-bottom: 3px solid ${PALETTE.crimson.middle};
   background-color: ${PALETTE.white};
   z-index: 0;
 `;
@@ -133,13 +131,19 @@ export const WarepperNavigation = styled.div`
   width: 100%;
   display: flex;
 `;
-export const LoginModal = styled.div``;
-export const RegistrationTag = styled.div``;
-export const TextBox = styled.div`
+export const LoginModal = styled.div`
+  padding-bottom: 5px;
+`;
+export const RegistrationTag = styled.div`
+  padding-bottom: 5px;
+`;
+export const Title = styled.div`
   font-size: 20px;
   font-weight: 700;
+  text-align: center;
 `;
 export const TextPrivacy = styled.div`
   font-weight: 300;
   font-size: 15px;
+  cursor: pointer;
 `;

@@ -1,3 +1,4 @@
+import { Button } from 'alex-unicode';
 import styled from 'styled-components';
 
 import { PALETTE } from '@/palette';
@@ -5,8 +6,15 @@ import { PALETTE } from '@/palette';
 interface IStyle {
   customStyle: any;
 }
+export const ButtonComponent = styled(Button)`
+  min-width: 220px;
+`;
 
 export const Root = styled.div<IStyle>`
+  & .offset:hover {
+    color: ${PALETTE.crimson.middle} !important;
+  }
+
   & .wrapperInput {
     & input {
       color: ${PALETTE.dark.darkBlack};
