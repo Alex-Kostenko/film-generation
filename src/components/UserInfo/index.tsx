@@ -136,20 +136,18 @@ const UserInfo = () => {
           value={userData.username}
           onChange={(event) => changeName(event.target.value)}
           disabled={!editMode}
+          iserror={!valid.nameValid ? 'true' : undefined}
         />
-        {!valid.nameValid && (
-          <ErrorName>{t('userProfile.errorName')}</ErrorName>
-        )}
+        {!valid.nameValid && <ErrorName>{t('error.name')}</ErrorName>}
         <InputComponent
           label={t('userProfile.email')}
           inputType="text"
           value={userData.email}
           onChange={(event) => changeEmail(event.target.value)}
           disabled={!editMode}
+          iserror={!valid.emailValid ? 'true' : undefined}
         />
-        {!valid.emailValid && (
-          <ErrorEmail>{t('userProfile.errorEmail')}</ErrorEmail>
-        )}
+        {!valid.emailValid && <ErrorEmail>{t('error.email')}</ErrorEmail>}
         <ButtonContainer>
           {!editMode && (
             <EditButton value={t('userProfile.edit')} onClick={savePastData} />
