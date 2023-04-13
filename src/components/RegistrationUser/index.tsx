@@ -95,7 +95,7 @@ const RegistrationUser: FC<IRegistrationUser> = ({ check }) => {
   }, [loginForm.password]);
 
   useEffect(() => {
-    if (loginForm.password.length) {
+    if (loginForm.password.length || loginForm.againPass.length) {
       const checkPass = loginForm.password === loginForm.againPass;
 
       setStyleAndBoolean({
