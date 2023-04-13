@@ -76,36 +76,36 @@ const RegistrationUser: FC<IRegistrationUser> = ({ check }) => {
     styleAndBooleanKey: string,
     styleAndBooleanSecondKey: string,
   ) => {
-    const checkLength = loginForm[nameOFInput].length <= 3;
-    setStyleAndBoolean({
-      ...styleAndBoolean,
-      [styleAndBooleanKey]: {
-        [styleAndBooleanSecondKey]: checkLength
-          ? 'rgb(167 84 84 / 20%);'
-          : 'none',
-        isValidField: !checkLength,
-      },
-    });
+    if (loginForm.password.length !== 0) {
+      const checkLength = loginForm[nameOFInput].length <= 3;
+      setStyleAndBoolean({
+        ...styleAndBoolean,
+        [styleAndBooleanKey]: {
+          [styleAndBooleanSecondKey]: checkLength
+            ? 'rgb(167 84 84 / 20%);'
+            : 'none',
+          isValidField: !checkLength,
+        },
+      });
+    }
   };
-
-  // useEffect(() => {
-  //   handleStyleAndBool('nameInput', 'name', 'nameStyle');
-  // }, [loginForm.nameInput]);
 
   useEffect(() => {
     handleStyleAndBool('password', 'password', 'passwordStyle');
   }, [loginForm.password]);
 
   useEffect(() => {
-    const checkPass = loginForm.password === loginForm.againPass;
+    if (loginForm.password.length) {
+      const checkPass = loginForm.password === loginForm.againPass;
 
-    setStyleAndBoolean({
-      ...styleAndBoolean,
-      againPass: {
-        againPassStyle: checkPass ? 'none' : 'rgb(167 84 84 / 20%);',
-        isValidField: checkPass,
-      },
-    });
+      setStyleAndBoolean({
+        ...styleAndBoolean,
+        againPass: {
+          againPassStyle: checkPass ? 'none' : 'rgb(167 84 84 / 20%);',
+          isValidField: checkPass,
+        },
+      });
+    }
   }, [loginForm.againPass]);
 
   return (
@@ -125,7 +125,9 @@ const RegistrationUser: FC<IRegistrationUser> = ({ check }) => {
             className={'name'}
             value={loginForm.nameInput}
             onChange={(event) => validateName(event.target.value)}
-            iserror={!styleAndBoolean.name.isValidField ? 'true' : undefined}
+            iserror={
+              styleAndBoolean.name.nameStyle !== 'none' ? 'true' : undefined
+            }
           />
           {styleAndBoolean.name.nameStyle !== 'none' && (
             <>
@@ -141,7 +143,9 @@ const RegistrationUser: FC<IRegistrationUser> = ({ check }) => {
             className={'email'}
             value={loginForm.email}
             onChange={(event) => validateEmail(event.target.value)}
-            iserror={!styleAndBoolean.email.isValidField ? 'true' : undefined}
+            iserror={
+              styleAndBoolean.email.emailStyle !== 'none' ? 'true' : undefined
+            }
             autocompleteoff={'true'}
           />
           {styleAndBoolean.email.emailStyle !== 'none' && (
@@ -161,7 +165,9 @@ const RegistrationUser: FC<IRegistrationUser> = ({ check }) => {
               setLoginForm({ ...loginForm, password: event.target.value })
             }
             iserror={
-              !styleAndBoolean.password.isValidField ? 'true' : undefined
+              styleAndBoolean.password.passwordStyle !== 'none'
+                ? 'true'
+                : undefined
             }
             autocompleteoff={'true'}
           />
@@ -182,7 +188,9 @@ const RegistrationUser: FC<IRegistrationUser> = ({ check }) => {
               setLoginForm({ ...loginForm, againPass: event.target.value })
             }
             iserror={
-              !styleAndBoolean.againPass.isValidField ? 'true' : undefined
+              styleAndBoolean.againPass.againPassStyle !== 'none'
+                ? 'true'
+                : undefined
             }
           />
           {styleAndBoolean.againPass.againPassStyle !== 'none' && (
